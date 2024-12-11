@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+ <html class="no-js">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>practicum</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FREEHTML5.CO" />
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="css/superfish.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+	<!-- CS Select -->
+	<link rel="stylesheet" href="css/cs-select.css">
+	<link rel="stylesheet" href="css/cs-skin-border.css">
+	
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<style>
+       .card {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(400px, 10fr));
+			gap: 70px;
+			padding: 70px;
+
+
+		}
+
+		.feedback-item {
+			background-color: #ffffff;
+			border-radius: 20px;
+			padding: 20px;
+			box-shadow: 0 7px 7px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease-in-out;
+			align-items: center;
+			/* כדי למרכז את התוכן אופקית */
+			text-align: center;
+			/* כדי למרכז את התוכן אנכית */
+			font-weight: bold;
+		}
+
+		.feedback-item:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+		}
+
+		.feedback-item h2 {
+			font-family: 'Kunstler Script', cursive;
+			margin-top: auto;
+			margin-bottom: auto;
+			font-weight: bold;
+			font-size: 50px;
+			color: rgba(120, 101, 101, 0.671);
+			text-align: center;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.feedback-item p {
+			margin: 0;
+			font-size: 16px;
+			color: #666666;
+			font-family: 'calibri';
+			margin-left: auto;
+			align-items: center;
+			/* כדי למרכז את התוכן אופקית */
+			text-align: center;
+			/* כדי למרכז את התוכן אנכית */
+			font-weight: bold;
+		}
+	
+
+		.feedback-card p {
+			margin-bottom: 10px;
+			font-size: 16px;
+			align-items: center;
+			text-align: center;
+			font-family: 'Calibri';
+			font-weight: bold;
+
+		}
+
+		.feedback-card h2 {
+			margin-bottom: 10px;
+			font-size: 50px;
+			color: #6c6c6c;
+			font-family: 'Kunstler Script';
+			align-items: center;
+			/* כדי למרכז את התוכן אופקית */
+			text-align: center;
+			/* כדי למרכז את התוכן אנכית */
+			font-weight: initial
+		}
+
+		.star-rating {
+			display: inline-block;
+			unicode-bidi: bidi-override;
+			color: #ffcc00;
+			/* צבע הכוכבים */
+			font-size: 20px;
+			/* גודל הכוכבים */
+			height: 1em;
+			width: auto;
+
+			/* מרווח משמאל */
+			position: relative;
+			padding: 0;
+		}
+
+		.star-rating::before {
+			content: "\2605";
+			/* תו של כוכב */
+			position: absolute;
+			opacity: 0;
+			/* החלק הבא ישנה את השקיפות כדי להציג את מספר הכוכבים */
+		}
+
+		.star-rating:hover::before,
+		.star-rating:hover~.star-rating::before {
+			opacity: 1;
+			color: #ffcc00;
+			/* צבע הכוכבים במצב השקיפות */
+		}
+
+		.feedback-item .rating {
+			display: inline-block;
+			font-size: 16px;
+			/* גודל הטקסט של מספר הכוכבים */
+			vertical-align: middle;
+		}
+
+		.star-rating {
+			display: inline-block;
+			color: #ffcc00;
+			/* צבע הכוכבים */
+			font-size: 20px;
+			/* גודל הכוכבים */
+			vertical-align: middle;
+			text-align: center;
+			/* לישור כוכבים למרכז */
+			width: 100%;
+			/* לקחת את כל הרוחב של המרכז */
+		}
+
+		.star-rating::before {
+			content: "\f005";
+			/* תו של כוכב בגופן Font Awesome */
+			font-family: 'Font Awesome';
+			/* שם הגופן */
+			font-weight: normal;
+			font-style: normal;
+
+			/* מרווח מימין בין האייקון למספר */
+			display: inline-block;
+			/* מרווח מימין בין האייקון למספר */
+		}
+
+		[class^="icon-"],
+		[class*=" icon-"] {
+			/* use !important to prevent issues with browser extensions that change fonts */
+			font-family: 'icomoon' !important;
+			color: lightpink;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			line-height: 1;
+
+			/* Better Font Rendering =========== */
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		.fh5co-section-gray {
+			background: rgba(0, 0, 0, 0);
+		}
+
+		.speech-bubble {
+			position: relative;
+			background-color: #ffffff;
+			border-radius: 10px;
+			padding: 15px;
+			box-shadow: 0 7px 7px rgba(0, 0, 0, 0.1);
+		}
+
+
+		.triangle {
+			position: absolute;
+			bottom: -9px;
+			/* מרחק מהקצה התחתון של הבועה */
+			left: 20px;
+			/* מיקום אופקי */
+			width: 0;
+			height: 0;
+			border-left: 20px solid transparent;
+			/* צבע המשולש נבחר בצורה שקופה */
+			border-right: 20px solid transparent;
+			border-top: 10px solid #ffffff;
+			/* צבע המשולש */
+		}
+
+		.feedback-card {
+    position: relative;
+  }
+
+  .feedback-card .date {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 20px;
+	padding-top: 10px;
+  }
+  #footer #fh5co-header-subscribe button {
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    background: #de6277;
+    border: none;
+}
+ .quote {
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    text-align: center;
+    font-size: 30px;
+    display: table;
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    margin-top: -30px;
+    background: lightpink;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+}
+#fh5co-testimonial .box-testimony blockquote .quote > span {
+    display: table-cell;
+    vertical-align: middle;
+}
+.feedback-card:hover {
+			transform: translateY(-5px);
+		}
+</style>
+<body>
+	<div id="fh5co-wrapper">
+	<div id="fh5co-page">
+		<header id="fh5co-header-section" class="sticky-banner">
+			<div class="container">
+				<div class="nav-header">
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+					<h1 id="fh5co-logo"><a href="Home.html"><i class="icon-home"></i> Heh B’iyar <span> Real Estate</span></a></h1>
+					<nav id="fh5co-menu-wrap" role="navigation">
+						<ul class="sf-menu" id="fh5co-primary-menu">
+							<li class="active"><a href="Home.html">Home</a></li>
+							<li>
+								<a>Assets</a>
+								<ul class="fh5co-sub-menu">
+									<li><a href="all-Customer.html">Search</a></li>
+									<li><a href="new-Customer.html">New</a></li>
+									<li><a href="sale-Customer.html">Sale</a></li>
+								</ul>
+							</li>
+							<li><a href="blog-Customer.html">Blog</a></li>
+							<li><a href="addC-Customer.html">Join</a></li>
+							<li>
+								<a>Meeting</a>
+								<ul class="fh5co-sub-menu">
+									<li><a href="meeting-Customer.html">Add</a></li>
+									<li><a href="meetingV-Customer.html">View</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+
+		<aside id="fh5co-hero" class="js-fullheight">
+			<div class="flexslider js-fullheight">
+				<ul class="slides">
+			   	<li style="background-image: url(images/cov.png);">
+			   		<div class="overlay"></div>
+			   		<div class="container-fluid">
+			   			<div class="row">
+				   			<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+			   				<div class="slider-text-inner">
+		   						<h2 class="heading-title">Blog</h2>
+		   						<p class="fh5co-lead"><i class="icon-heart3"></i> </p>
+			   				</div>
+			   			</div>
+				   		</div>
+			   		</div>
+			   	</li>
+			  	</ul>
+		  	</div>
+		</aside>
+
+		
+		
+		<div id="fh5co-blog-section" class="fh5co-section-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+						<h3>Our Blog</h3>
+					</div>
+				</div>
+			</div>
+			
+			
+				<div class="card" id="feedbackList">
+				<div class="container">
+					
+					<div class="container" id="feedbackListContainer">
+						<div class="row row-bottom-padded-md">
+							<div class="col-lg-4 col-md-4 col-sm-6">
+								<div class="fh5co-blog animate-box">
+	
+									
+						<div class="row row-bottom-padded-md" id="feedbackList">
+							<!-- Feedback items will be dynamically added here -->
+							<div class="clearfix visible-sm-block"></div>
+							<div class="clearfix visible-sm-block"></div>
+							<div class="clearfix visible-md-block"></div>
+						</div>
+					</div>
+				
+				</div>
+					</div>	</div>
+					
+				
+				</div>
+			</div>
+			</div>
+	
+	
+			<div style="border-bottom: 5px solid rgb(255, 255, 255);"></div>
+		<div id="fh5co-blog-section" class="fh5co-section-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                        <h3>Add New Feedback</h3>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="container">
+                    <form id="feedbackForm" method="POST" action="/addFeedback">
+						<div class="form-group">
+							<label for="Username">Username:</label>
+							<input type="text" class="form-control" id="Username" name="Username" required readonly>
+						</div>
+                        <div class="form-group">
+								<label for="Name">Name:</label>
+								<input type="text" class="form-control" id="Name" name="Name" required>
+						</div>
+						<div class="form-group">
+							<label for="date">Date Posted:</label>
+							<input type="date" class="form-control"  id="Date" name="Date"  readonly>
+
+						</div>
+						<div class="form-group">
+								<label for="FeedbackDesc">FeedbackDesc:</label>
+								<textarea  type="text" class="form-control" id="FeedbackDesc" name="FeedbackDesc" required>
+						</textarea>
+							<div class="form-group">
+								<label for="star5"><span>Rating:</span></label>
+								<div class="center-rating">
+									<div class="rating-stars">
+										<input type="radio" name="rating" id="star5" value="5">
+										<label for="star5"></label>
+										<input type="radio" name="rating" id="star4" value="4">
+										<label for="star4"></label>
+										<input type="radio" name="rating" id="star3" value="3">
+										<label for="star3"></label>
+										<input type="radio" name="rating" id="star2" value="2">
+										<label for="star2"></label>
+										<input type="radio" name="rating" id="star1" value="1">
+										<label for="star1"></label>
+									</div>
+								</div>
+							</div>
+							
+								<br><br><br><br><br>
+						</div>
+						<button type="submit" class="btn btn-primary" id="sub">Add Feedback </button><br><br>
+           				 <div id="successMessage" style="display: none;" class="alert alert-success" role="alert">
+                			Feedback submitted successfully!
+						</div>
+						<div id="errorMessage" style="display: none;" class="alert alert-danger" role="alert">
+							Failed to add feedback. Only a customer who has made a deal may add feedback.
+						</div>
+						</div>
+						
+                </div>
+            
+			
+			
+		<!-- fh5co-blog-section -->
+
+		<footer>
+			<div id="footer">
+				<div class="container">
+					<div class="row row-bottom-padded-md">
+						<div class="col-md-3">
+							<h3 class="section-title">About Us</h3>
+							<p>We, Bar Michal and Nofar, information systems management students at the College of
+								Management, own all the exclusive rights to this website <i class="icon-heart3"></i>
+							</p>
+						</div>
+
+						<div class="col-md-3 col-md-push-1">
+							<h3 class="section-title">Links</h3>
+							<ul>
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Assets</a></li>
+								<li><a href="#">Agent</a></li>
+								<li><a href="#">Blog</a></li>
+								<li><a href="#">Contact</a></li>
+							</ul>
+						</div>
+
+						<div class="col-md-3">
+							<h3 class="section-title">Information</h3>
+							<ul>
+								<li><a href="#">Terms &amp; Condition</a></li>
+								<li><a href="#">License</a></li>
+								<li><a href="#">Privacy &amp; Policy</a></li>
+								<li><a href="#">Contact Us</a></li>
+							</ul>
+						</div>
+						<div class="col-md-3">
+							<h3 class="section-title">Newsletter</h3>
+							<p>Subscribe for our newsletter</p>
+							<form class="form-inline" id="fh5co-header-subscribe">
+								<div class="row">
+									<div class="col-md-12 col-md-offset-0">
+										<div class="form-group">
+											<input type="text" class="form-control" id="email"
+												placeholder="Enter your email">
+											<button type="submit" class="btn btn-default"><i
+													class="icon-paper-plane"></i></button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<p class="fh5co-social-icons">
+								<a href="#"><i class="icon-twitter2"></i></a>
+								<a href="#"><i class="icon-facebook2"></i></a>
+								<a href="#"><i class="icon-instagram"></i></a>
+								<a href="#"><i class="icon-dribbble2"></i></a>
+								<a href="#"><i class="icon-youtube"></i></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+	</div>
+	</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const username = sessionStorage.getItem('username');
+    if (!username) {
+        console.error('Username not found in session storage');
+        return;
+    }
+
+    const usernameInput = document.getElementById('Username');
+    if (usernameInput) {
+        usernameInput.value = username;
+    }
+});
+
+   
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the current date
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + "-" + mm + "-" + dd;
+
+    // Set the current date to the Date input field
+    document.getElementById("Date").value = today;
+});
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('/feedback');
+        if (!response.ok) {
+            throw new Error('Failed to fetch feedback data');
+        }
+        const data = await response.json();
+
+        const feedbackList = document.getElementById('feedbackList');
+        if (!feedbackList) {
+            throw new Error('Element with ID "feedbackList" not found');
+        }
+
+        feedbackList.innerHTML = '';
+
+        data.forEach((feedback) => {
+            const card = document.createElement('div');
+            card.classList.add('feedback-card');
+
+			card.innerHTML = `
+				<div class="speech-bubble">
+					<span class="triangle"></span>
+					<span class="quote"><i class="icon-quotes-right" style="color:white"></i></span><br>
+					<h2><i class="icon-bubble2"></i> <i class="comment">${feedback.Name}</i></h2>
+					<p class="date">${feedback.Date} <i class="far fa-calendar"></i></p>
+					<p>${feedback.FeedbackDesc}</p>
+					<p class="rating star-rating"></p><br><br>
+				</div>
+			`;
+
+
+            const ratingElement = card.querySelector('.rating.star-rating');
+            if (ratingElement) {
+                const stars = '\u2605'; // אייקון של כוכב ב-Unicode
+                ratingElement.textContent = stars.repeat(feedback.rating); // משנה את התוכן למספר המציין כמות כוכבים
+            }
+
+            feedbackList.appendChild(card);
+        });
+    } catch (error) {
+        console.error('Error fetching feedback:', error.message);
+    }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var form = document.getElementById("feedbackForm");
+    var successMessage = document.getElementById("successMessage");
+    var errorMessage = document.getElementById("errorMessage");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var formData = new FormData(form);
+        var data = {};
+        formData.forEach(function (value, key) {
+            data[key] = value;
+        });
+
+        // Fetch feedback data
+        fetch("/addFeedback", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then(function (response) {
+            if (response.ok) {
+                // Display success message and reset form
+                successMessage.style.display = "block";
+                errorMessage.style.display = "none";
+                form.reset();
+                
+                // Load the page automatically after adding feedback
+                setTimeout(function () {
+                    window.location.reload();
+                }, 3000); // זמן המתנה במילישניות (בדוגמה זו - 3 שניות)
+            } else {
+                // Display error message
+                errorMessage.style.display = "block";
+                successMessage.style.display = "none";
+            }
+        })
+        .catch(function (error) {
+            console.error("Error:", error);
+            // Display error message
+            errorMessage.style.display = "block";
+            successMessage.style.display = "none";
+        });
+    });
+});
+
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/sticky.js"></script>
+	<!-- Superfish -->
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- Date Picker -->
+	<script src="js/bootstrap-datepicker.min.js"></script>
+	<!-- CS Select -->
+	<script src="js/classie.js"></script>
+	<script src="js/selectFx.js"></script>
+
+	
+	<!-- Main JS -->
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
