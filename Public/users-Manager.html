@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>practicum</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+    
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
     <meta name="author" content="FREEHTML5.CO" />
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -243,6 +244,7 @@
                     <select id="filter">
                         <option value="all">All</option>
                         <option value="admin">Admin</option>
+                        <option value="customer">Customer</option>
                         <option value="user">User</option>
                     </select>
                 </div><br><br><br><br><br><br>
@@ -271,6 +273,7 @@
                         <label for="phone">Phone:</label>
                         <input type="tel" id="phone" name="Phone" class="form-control" required>
                     </div>
+                    
                     <button type="submit" class="btn btn-primary" id="sub">Add User</button><br>
                     <div id="successMessage" style="display: none;" class="alert alert-success" role="alert">
                         User and partner added successfully!
@@ -404,8 +407,8 @@ function addUserToUI(user) {
         <p class="user-info">Role: ${user.Role}</p>
     </div>
     `;
-    if (user.Role === 'Admin') { 
-        userElement.innerHTML += `<button class="delete-btn" style="display: block; margin: 0 auto;" data-id="${user._id}">Delete</button>`;
+    // כפתור המחיקה של משתמשים במערכת
+    userElement.innerHTML += `<button class="delete-btn" style="display: block; margin: 0 auto;" data-id="${user._id}">Delete</button>`;
         userElement.querySelector('.delete-btn').addEventListener('click', async () => {
             const userId = user._id;
             try {
@@ -421,7 +424,6 @@ function addUserToUI(user) {
                 console.error('Error deleting user:', error);
             }
         });
-    }
     usersContainer.appendChild(userElement);
 }
 document.getElementById('add-user-form').addEventListener('submit', async function(event) {
@@ -436,7 +438,7 @@ document.getElementById('add-user-form').addEventListener('submit', async functi
     const userFormData = {
         UserName: formData.UserName,
         Password: formData.Password,
-        Role: 'Admin'
+        Role: "Customer"
     };
 
     // Save username, email, and phone to "partner" collection
