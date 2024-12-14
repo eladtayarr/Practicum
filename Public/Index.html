@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign in/up Form</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet">
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="shortcut icon" href="src/images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         /* Add your CSS styles here */
@@ -316,7 +316,7 @@
 </head>
 <body>
     <video autoplay muted loop id="video-background">
-        <source src="images/MOVIE_Curtain.mp4" type="video/mp4">
+        <source src="src/images/MOVIE_Curtain.mp4" type="video/mp4">
       </video>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
@@ -364,7 +364,7 @@
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <img class="logo" src="images/logo1.png" alt="Logo">
+                    <img class="logo" src="/src/images/logo1.png" alt="Logo">
                     <h1>Hello, Friend!</h1>
                     <p>Enter your personal details and start journey with us</p>
                     <button class="ghost" id="signUp">Sign Up</button>
@@ -445,20 +445,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (response.ok) {
     if (data.user) {
-        sessionStorage.setItem('username', username);
+    sessionStorage.setItem('username', username);
 
-        // Redirect based on user role
-        if (data.user.Role === 'Admin') {
-            window.location.href = 'HomeManager.html';
-        } else if (data.user.Role === 'User') {
-            window.location.href = 'Home.html';
-        } else {
-            // Handle other roles here
+    switch (data.user.Role) {
+        case 'Admin':
+            window.location.href = 'templates/Manager/HomeManager.html';
+            break;
+        case 'Customer':
+            window.location.href = 'templates/Customer/Home.html';
+            break;
+        case 'Installer':
+            window.location.href = 'templates/Installer/Home-Installer.html';
+            break;
+        default:
             alert('Unsupported user role');
-        }
-    } else {
-        alert('User not found');
+            window.location.href = '/';
     }
+} else {
+    alert('User not found');
+}
 } else {
     alert('Invalid username or password');
 }

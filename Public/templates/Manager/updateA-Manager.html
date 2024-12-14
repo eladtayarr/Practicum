@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>practicum</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/src/css/animate.css">
+<link rel="stylesheet" href="/src/css/icomoon.css">
+<link rel="stylesheet" href="/src/css/bootstrap.css">
+<link rel="stylesheet" href="/src/css/superfish.css">
+<link rel="stylesheet" href="/src/css/flexslider.css">
+<link rel="stylesheet" href="/src/css/magnific-popup.css">
+<link rel="stylesheet" href="/src/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/src/css/cs-select.css">
+<link rel="stylesheet" href="/src/css/cs-skin-border.css">
+<link rel="stylesheet" href="/src/css/style.css">
+<script src="js/modernizr-2.6.2.min.js"></script>
+
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        color: #333;
+        background-color: #f8f8f8;
+    }
+    .form-group {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    #sub {
+        display: block;
+        margin: 0 auto;
+        padding: 15px;
+        width: fit-content; 
+    }
+    .property-button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: #d1869b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .property-button:hover {
+        background-color: #d80f48;
+    }
+    #footer #fh5co-header-subscribe button {
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    background: #de6277;
+    border: none;
+}
+</style>
+
+</head>
+<body>
+<div id="fh5co-wrapper">
+<div id="fh5co-page">
+
+    <header id="fh5co-header-section" class="sticky-banner">
+        <div class="container">
+            <div class="nav-header">
+                <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+                <h1 id="fh5co-logo"><a href="HomeManager.html"><i class="icon-home"></i> Trisi Sinai <span> Ltd.</span></a></h1>
+                <nav id="fh5co-menu-wrap" role="navigation">
+                    <ul class="sf-menu" id="fh5co-primary-menu">
+                        <li class="active"><a href="HomeManager.html">Home</a></li>
+                        <li>
+                            <a>Assets</a>
+                            <ul class="fh5co-sub-menu">
+                                <li><a href="all-Manager.html">View</a></li>
+                                <li><a href="addA-Manager.html">Add</a></li>
+                                <li><a href="updateA-Manager.html">Update</a></li>
+                            </ul>
+                        </li>
+                        <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
+                        <li>
+                            <a>Deals</a>
+                            <ul class="fh5co-sub-menu">
+                                <li><a href="addD-Manager.html">Add</a></li>
+                                <li><a href="DealsV-Manager.html">View</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="blog-Manager.html">Blog</a></li>
+
+                        <li>
+                            <a>Manage</a>
+                            <ul class="fh5co-sub-menu">
+                                <li><a href="addC-Manager.html">Customer</a></li>
+                                <li><a href="users-Manager.html">Users</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>Meetings</a>
+                            <ul class="fh5co-sub-menu">
+                                <li><a href="meetingA-Manager.html">Add</a></li>
+                                <li><a href="meetingV-Manager.html">View</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>Reports</a>
+                            <ul class="fh5co-sub-menu">
+                                <li><a href="CustomerR.html">Customers</a></li>
+                                <li><a href="DealR.html">Deals</a></li>
+                                <li><a href="AssetR.html">Assets</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="Dashbord.html">Dashbord</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <aside id="fh5co-hero" class="js-fullheight">
+        <div class="flexslider js-fullheight">
+            <ul class="slides">
+               <li style="background-image: url(images/cov.png);">
+                   <div class="overlay"></div>
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+                               <div class="slider-text-inner">
+                                   <h2 class="heading-title">Asset</h2>
+                                   <p class="fh5co-lead"><i class="icon-heart3"></i> </p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </li>
+             </ul>
+         </div>
+    </aside>
+
+        
+        <div class="container"><br><br><br><br><br>
+            <div id="updatePropertyForm">
+            <form id="propertyFormUpdate" action="/updateProperty" method="POST">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                    <h3>Update Asset Information</h3>
+                </div>
+                <div class="form-group">
+                    <label for="assetID">AssetID:</label>
+                    <input type="text" class="form-control" id="assetID" name="assetID" required>
+                </div>
+                <div class="form-group">
+                    <label for="assetType">Asset Type:</label>
+                    <select class="form-control" id="assetType2" name="assetType">
+                        <option value="sale">Sale</option>
+                        <option value="rent">Rent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="assetPrice">Price:</label>
+                    <input type="text" class="form-control" id="assetPrice2" name="assetPrice" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="sub">Submit</button><br></br>
+                <div id="successMessage2" style="display: none;" class="alert alert-success" role="alert">
+                    Asset updated successfully!
+                </div>
+            </form><br><br><br><br><br>
+        </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div id="footer">
+            <div class="container">
+                <div class="row row-bottom-padded-md">
+                    <div class="col-md-3">
+                        <h3 class="section-title">About Us</h3>
+                        <p>We, Bar Michal and Nofar, information systems management students at the College of Management, own all the exclusive rights to this website <i class="icon-heart3"></i></p>
+                    </div>
+                    
+                    <div class="col-md-3 col-md-push-1">
+                        <h3 class="section-title">Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Assets</a></li>
+                            <li><a href="#">Agent</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h3 class="section-title">Information</h3>
+                        <ul>
+                            <li><a href="#">Terms &amp; Condition</a></li>
+                            <li><a href="#">License</a></li>
+                            <li><a href="#">Privacy &amp; Policy</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h3 class="section-title">Newsletter</h3>
+                        <p>Subscribe for our newsletter</p>
+                        <form class="form-inline" id="fh5co-header-subscribe">
+                            <div class="row">
+                                <div class="col-md-12 col-md-offset-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="email" placeholder="Enter your email">
+                                        <button type="submit" class="btn btn-default"><i class="icon-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="fh5co-social-icons">
+                            <a href="#"><i class="icon-twitter2"></i></a>
+                            <a href="#"><i class="icon-facebook2"></i></a>
+                            <a href="#"><i class="icon-instagram"></i></a>
+                            <a href="#"><i class="icon-dribbble2"></i></a>
+                            <a href="#"><i class="icon-youtube"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var form2 = document.getElementById("propertyFormUpdate");
+        form2.addEventListener("submit", function(event) {
+            event.preventDefault();
+            var formData2 = new FormData(form2);
+            var data2 = {};
+            formData2.forEach(function(value, key) {
+                data2[key] = value;
+            });
+
+    fetch("/updateProperty", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data2)
+    })
+    .then(function(response) {
+        if (response.ok) {
+            document.getElementById("successMessage2").style.display = "block";
+            console.log("Property updated successfully");
+            setTimeout(function() {
+                location.reload();
+            }, 3000); 
+        } else {
+            console.error("Failed to update property");
+        }
+    })
+    .catch(function(error) {
+        console.error("Error:", error);
+    });
+});
+});
+</script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/sticky.js"></script>
+<script src="js/hoverIntent.js"></script>
+<script src="js/superfish.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/selectFx.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
