@@ -1,12 +1,13 @@
-const { MongoClient, ObjectId } = require('mongodb');
+const { MongoClient, ObjectId } = require("mongodb");
 
-const uri = "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
+const uri =
+  "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
 // Password: 9wRHk5BLfmqRrQb3
 
 const client = new MongoClient(uri, {
   serverApi: {
-    version: '1'
-  }
+    version: "1",
+  },
 });
 
 async function run() {
@@ -14,136 +15,139 @@ async function run() {
     await client.connect();
     console.log("Connected to MongoDB");
     await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
   } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
+    console.error("Error connecting to MongoDB:", error);
   }
 }
 
 run();
 
-
 //Login Function
 const loginUser = async (username, password) => {
   try {
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Users');
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Users");
     const user = await collection.findOne({ UserName: username });
     if (user && user.Password === password) {
-      return { message: 'Login successful!', user };
+      return { message: "Login successful!", user };
     } else {
-      throw new Error('Invalid username or password');
+      throw new Error("Invalid username or password");
     }
   } catch (error) {
-    console.error('Error:', error);
-    throw new Error('Failed to authenticate user');
+    console.error("Error:", error);
+    throw new Error("Failed to authenticate user");
   }
-}
+};
 
-//FilterAssets
-const filterAssets = async (AssetType, AssetPriceMin, AssetPriceMax, AssetStreet, AssetStreetNumber, RoomNum, AssetCity) => {
+//FilterProducts
+const filterProducts = async (
+  ProductType,
+  ProductPriceMin,
+  ProductPriceMax,
+  ProductStreet,
+  ProductStreetNumber,
+  RoomNum,
+  ProductCity
+) => {
   const client = new MongoClient(uri);
 
   try {
-    console.log('Connecting to the database...');
+    console.log("Connecting to the database...");
     await client.connect();
-    console.log('Connected to the database.');
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Assets');
-    const filter = { AssetStatus: 'Available' }; // Add condition for AssetStatus
-    if (AssetType) filter.AssetType = AssetType;
-    if (AssetPriceMin || AssetPriceMax) {
+    console.log("Connected to the database.");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products");
+    const filter = { ProductStatus: "Available" }; // Add condition for ProductStatus
+    if (ProductType) filter.ProductType = ProductType;
+    if (ProductPriceMin || ProductPriceMax) {
       // Convert string inputs to numeric values
-      const minPrice = AssetPriceMin ? parseInt(AssetPriceMin, 10) : undefined;
-      const maxPrice = AssetPriceMax ? parseInt(AssetPriceMax, 10) : undefined;
+      const minPrice = ProductPriceMin ? parseInt(ProductPriceMin, 10) : undefined;
+      const maxPrice = ProductPriceMax ? parseInt(ProductPriceMax, 10) : undefined;
 
-      filter.AssetPrice = {};
-      if (minPrice !== undefined) filter.AssetPrice.$gte = minPrice;
-      if (maxPrice !== undefined) filter.AssetPrice.$lte = maxPrice;
+      filter.ProductPrice = {};
+      if (minPrice !== undefined) filter.ProductPrice.$gte = minPrice;
+      if (maxPrice !== undefined) filter.ProductPrice.$lte = maxPrice;
     }
-    if (AssetStreet) filter.AssetStreet = AssetStreet;
-    if (AssetStreetNumber) filter.AssetStreetNumber = AssetStreetNumber;
-    if (RoomNum) filter.RoomNum = RoomNum;
-    if (AssetCity) filter.AssetCity = AssetCity;
 
-    console.log('Filter:', filter);
-    const projection = { "AssetID": 0 }; // Exclude AssetID and AssetImage fields
+    console.log("Filter:", filter);
+    const projection = { ProductID: 0 }; // Exclude ProductID and ProductImage fields
     const result = await collection.find(filter, { projection }).toArray();
-    console.log('Filtered Assets:', result);
+    console.log("Filtered Products:", result);
     return result;
   } catch (error) {
     console.error(error);
-    throw new Error('Failed to fetch filtered assets.');
+    throw new Error("Failed to fetch filtered products.");
   } finally {
     await client.close();
-    console.log('Database connection closed.');
+    console.log("Database connection closed.");
   }
-}
+};
 
-
-const filterAssetsForManager = async (AssetType, AssetPriceMin, AssetPriceMax, AssetStreet, AssetStreetNumber, RoomNum, AssetCity) => {
+const filterProductsForManager = async (
+  ProductType,
+  ProductPriceMin,
+  ProductPriceMax,
+  
+) => {
   const client = new MongoClient(uri);
 
   try {
-    console.log('Connecting to the database...');
+    console.log("Connecting to the database...");
     await client.connect();
-    console.log('Connected to the database.');
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Assets');
+    console.log("Connected to the database.");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products");
     const filter = {};
-    if (AssetType) filter.AssetType = AssetType;
-    if (AssetPriceMin || AssetPriceMax) {
+    if (ProductType) filter.ProductType = ProductType;
+    if (ProductPriceMin || ProductPriceMax) {
       // Convert string inputs to numeric values
-      const minPrice = AssetPriceMin ? parseInt(AssetPriceMin, 10) : undefined;
-      const maxPrice = AssetPriceMax ? parseInt(AssetPriceMax, 10) : undefined;
+      const minPrice = ProductPriceMin ? parseInt(ProductPriceMin, 10) : undefined;
+      const maxPrice = ProductPriceMax ? parseInt(ProductPriceMax, 10) : undefined;
 
       // Construct a price range filter
-      filter.AssetPrice = {};
-      if (minPrice !== undefined) filter.AssetPrice.$gte = minPrice;
-      if (maxPrice !== undefined) filter.AssetPrice.$lte = maxPrice;
+      filter.ProductPrice = {};
+      if (minPrice !== undefined) filter.ProductPrice.$gte = minPrice;
+      if (maxPrice !== undefined) filter.ProductPrice.$lte = maxPrice;
     }
-    if (AssetStreet) filter.AssetStreet = AssetStreet;
-    if (AssetStreetNumber) filter.AssetStreetNumber = AssetStreetNumber;
-    if (RoomNum) filter.RoomNum = RoomNum;
-    if (AssetCity) filter.AssetCity = AssetCity;
 
-    console.log('Filter:', filter);
-    const projection = { "AssetID": 0 }; // Exclude AssetID and AssetImage fields
+    console.log("Filter:", filter);
+    const projection = { ProductID: 0 }; // Exclude ProductID and ProductImage fields
     const result = await collection.find(filter, { projection }).toArray();
-    console.log('Filtered Assets:', result);
+    console.log("Filtered Products:", result);
     return result;
   } catch (error) {
     console.error(error);
-    throw new Error('Failed to fetch filtered assets.');
+    throw new Error("Failed to fetch filtered products.");
   } finally {
     await client.close();
-    console.log('Database connection closed.');
+    console.log("Database connection closed.");
   }
-}
+};
 
-
-//All Assets
-async function getAllAssets() {
+//All Products
+async function getAllProducts() {
   const client = new MongoClient(uri);
 
   try {
-      console.log('Connecting to the database...');
-      await client.connect();
-      console.log('Connected to the database.');
-      const database = client.db('Practicum_Project');
-      const collection = database.collection('Assets');
-      const projection = { "_id": 0 };
-      const assets = await collection.find({}, { projection }).toArray();
-      console.log(assets);
-      return assets;
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to fetch all assets.');
-    } finally {
-      await client.close();
-    }
+    console.log("Connecting to the database...");
+    await client.connect();
+    console.log("Connected to the database.");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products");
+    const projection = { _id: 0 };
+    const products = await collection.find({}, { projection }).toArray();
+    console.log(products);
+    return products;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch all products.");
+  } finally {
+    await client.close();
+  }
 }
-
 
 //Show All Feedback
 const getFeedback = async () => {
@@ -151,146 +155,240 @@ const getFeedback = async () => {
 
   try {
     // Connect to MongoDB
-    client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Connected to MongoDB');
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Feedback');
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Feedback");
     const feedbacks = await collection.find().toArray();
-    console.log('Feedbacks:', feedbacks);
+    console.log("Feedbacks:", feedbacks);
     return feedbacks;
   } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-    throw new Error('Failed to fetch feedback data');
+    console.error("Error connecting to MongoDB:", error);
+    throw new Error("Failed to fetch feedback data");
   } finally {
     if (client) {
       await client.close();
-      console.log('Connection to MongoDB closed');
+      console.log("Connection to MongoDB closed");
     }
   }
 };
 
-
-//Add New Asset
-const addProperty = async (assetType, city, bathrooms, SqrRoot, assetPrice, assetStreet, assetStreetNumber, roomNum, assetImage, assetDescription) => {
+//Add New Product
+const addNewProduct = async (
+  ProductType,
+  ProductPrice,
+  productionDate,
+  productDescription,
+  ProductImage
+) => {
   let client; // Define the client variable
 
   try {
-    client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Connected to MongoDB');
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Assets');
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products");
 
-    // Find the maximum AssetID
-    const maxAssetIdDoc = await collection.find({ AssetID: { $exists: true, $type: 'number' } }).sort({ AssetID: -1 }).limit(1).toArray();
-    let newAssetId = 1; // Default value if collection is empty
+    // Find the maximum ProductID
+    const maxProductIdDoc = await collection
+      .find({ ProductID: { $exists: true, $type: "number" } })
+      .sort({ ProductID: -1 })
+      .limit(1)
+      .toArray();
+    let newProductID = 1; // Default value if collection is empty
 
-    if (maxAssetIdDoc.length > 0) {
-      const maxAssetId = maxAssetIdDoc[0].AssetID;
-      if (!isNaN(maxAssetId)) {
-        newAssetId = parseInt(maxAssetId) + 1; // Increment the maximum AssetID by 1
+    if (maxProductIdDoc.length > 0) {
+      const maxProductID = maxProductIdDoc[0].ProductID;
+      if (!isNaN(maxProductID)) {
+        newProductID = parseInt(maxProductID) + 1; // Increment the maximum ProductID by 1
       }
     }
 
-    // Parse assetPrice to an integer
-    const price = parseInt(assetPrice);
+    // Parse ProductPrice to an integer
+    const ProductPrice = parseInt(ProductPrice);
 
-    // Ensure consistency in assetType case
-    const formattedAssetType = assetType.charAt(0).toUpperCase() + assetType.slice(1).toLowerCase();
+    // Ensure consistency in ProductType case
+    const formattedProductType =
+    ProductType.charAt(0).toUpperCase() + ProductType.slice(1).toLowerCase();
 
-    // Insert the property document into the collection
-    const result = await collection.insertOne({ 
-      AssetID: newAssetId,
-      AssetType: formattedAssetType,
-      AssetCity: city,
-      AssetBathrooms: bathrooms,
-      AssetSquareRoot: SqrRoot,
-      AssetPrice: price,
-      AssetStreet: assetStreet,
-      AssetStreetNumber: assetStreetNumber,
-      RoomNum: roomNum,
-      AssetImage: assetImage,
-      AssetDescription: assetDescription,
-      AssetStatus: 'Available' // New field AssetStatus with value 'Available'
+    // Insert the product document into the collection
+    const result = await collection.insertOne({
+      ProductID: newProductID,
+      ProductType: formattedProductType,
+      ProductPrice: ProductPrice,
+      ProductionDate: ProductionDate,
+      ProductDescription: ProductDescription,
+      ProductImage: ProductImage,
+      ProductStatus: "Available", // New field Product Ststus with value 'Available'
     });
 
-    console.log('Property added successfully');
+    console.log("The Product added successfully");
     return result.insertedId;
   } catch (error) {
-    console.error('Error adding property:', error);
-    throw new Error('Failed to add property');
+    console.error("Error adding Product:", error);
+    throw new Error("Failed to add Product");
   } finally {
     if (client) {
       await client.close();
-      console.log('Connection to MongoDB closed');
+      console.log("Connection to MongoDB closed");
     }
-  }
-}
-
-//Add New Feedback
-const addFeedback = async (Username, feedbackData) => {
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-  try {
-      await client.connect();
-      const database = client.db('Practicum_Project');
-      const customersCollection = database.collection('Customers');
-      const dealsCollection = database.collection('Deals');
-
-      // Find the customer by Username
-      const customer = await customersCollection.findOne({ UserName: Username });
-      if (!customer) {
-          throw new Error('Customer not found. Please register as a customer to add feedback.');
-      }
-
-      // Find the customer ID from the found customer
-      const customerId = customer.CustomerID;
-
-      // Check if the customer has made any deals
-      const dealsCount = await dealsCollection.countDocuments({ customerId: customerId });
-      if (dealsCount === 0) {
-          throw new Error('You still haven\'t made a deal. A feedback hasn\'t been added.');
-      }
-
-      // Add the feedback to the Feedback collection
-      const feedbackCollection = database.collection('Feedback');
-      const result = await feedbackCollection.insertOne(feedbackData);
-      console.log('Feedback added successfully!');
-      console.log('Received feedback data:', feedbackData);
-      return result;
-  } catch (error) {
-      console.error('Error adding feedback:', error);
-      throw new Error('Failed to add feedback');
-  } finally {
-      await client.close();
   }
 };
 
 
+// Update The products
+const updateProduct = async (
+  ProductID,
+  ProductType,
+  ProductPrice,
+  productionDate,
+  productDescription,
+  ProductImage
+) => {
+  let client; // Define the client variable
+
+  try {
+    const capitalizedProductType =
+      ProductType.charAt(0).toUpperCase() + ProductType.slice(1);
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products");
+    const existingProduct = await collection.findOne({
+      ProductID: parseInt(ProductID),
+    });
+    if (!existingProduct) {
+      console.log("Product with ProductID", ProductID, "not found.");
+      return 0; // Return 0 to indicate that no documents were modified
+    }
+
+    const updateQuery = {};
+    if (capitalizedProductType) updateQuery.ProductType = capitalizedProductType;
+    if (ProductPrice) updateQuery.ProductPrice = parseInt(ProductPrice);
+    if (ProductImage) updateQuery.ProductImage = ProductImage;
+    if (productionDate) updateQuery.productionDate = productionDate;
+    if (productDescription) updateQuery.productDescription = productDescription;
+    
+    
+    if (Object.keys(updateQuery).length > 0) {
+      const result = await collection.updateOne(
+        { ProductID: parseInt(ProductID) },
+        { $set: updateQuery }
+      );
+      console.log("Result of updateOne:", result);
+      console.log("Product updated successfully");
+      return result.modifiedCount; // Return the number of modified documents
+    } else {
+      console.log("No fields to update");
+      return 0; // Return 0 to indicate that no documents were modified
+    }
+  } catch (error) {
+    console.error("Error updating product:", error);
+    throw new Error("Failed to update product");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
+
+//Add New Feedback
+const addFeedback = async (Username, feedbackData) => {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  try {
+    await client.connect();
+    const database = client.db("Practicum_Project");
+    const customersCollection = database.collection("Customers");
+    const dealsCollection = database.collection("Deals");
+
+    // Find the customer by Username
+    const customer = await customersCollection.findOne({ UserName: Username });
+    if (!customer) {
+      throw new Error(
+        "Customer not found. Please register as a customer to add feedback."
+      );
+    }
+
+    // Find the customer ID from the found customer
+    const customerId = customer.CustomerID;
+
+    // Check if the customer has made any deals
+    const dealsCount = await dealsCollection.countDocuments({
+      customerId: customerId,
+    });
+    if (dealsCount === 0) {
+      throw new Error(
+        "You still haven't made a deal. A feedback hasn't been added."
+      );
+    }
+
+    // Add the feedback to the Feedback collection
+    const feedbackCollection = database.collection("Feedback");
+    const result = await feedbackCollection.insertOne(feedbackData);
+    console.log("Feedback added successfully!");
+    console.log("Received feedback data:", feedbackData);
+    return result;
+  } catch (error) {
+    console.error("Error adding feedback:", error);
+    throw new Error("Failed to add feedback");
+  } finally {
+    await client.close();
+  }
+};
+
 //Add New Meeting
-const addMeeting = async (customerID, date, time, location, partner, meetingType, assetSelect) => {
+const addMeeting = async (
+  customerID,
+  date,
+  time,
+  location,
+  partner,
+  meetingType,
+  productSelect
+) => {
   let client; // Define client variable
 
   try {
     // Connect to MongoDB database
-    client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Connected to MongoDB');
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
 
     // Access the MongoDB database
-    const database = client.db('Practicum_Project');
-    const meetingsCollection = database.collection('Meetings');
-    const customersCollection = database.collection('Customers');
+    const database = client.db("Practicum_Project");
+    const meetingsCollection = database.collection("Meetings");
+    const customersCollection = database.collection("Customers");
 
     // Check if the provided date has already passed
     const meetingDate = new Date(date);
     const currentDate = new Date();
     if (meetingDate < currentDate) {
-      throw new Error('Date has passed. Please pick a date that is relevant.');
+      throw new Error("Date has passed. Please pick a date that is relevant.");
     }
 
     // Check if the CustomerID exists in the Customers collection
-    const customer = await customersCollection.findOne({ CustomerID: customerID });
+    const customer = await customersCollection.findOne({
+      CustomerID: customerID,
+    });
     if (!customer) {
-      throw new Error('You are not yet a customer. Please sign up as one.');
+      throw new Error("You are not yet a customer. Please sign up as one.");
     }
 
     // Add meeting document to Meetings collection with appropriate details
@@ -300,207 +398,169 @@ const addMeeting = async (customerID, date, time, location, partner, meetingType
       Time: time,
       Location: location,
       Partner: partner,
-      MeetingType: meetingType
+      MeetingType: meetingType,
     };
 
-    // Check if AssetSelect is provided before adding it to the document
-    if (assetSelect && assetSelect.length > 0) {
-      meetingData.AssetSelect = assetSelect;
+    // Check if ProductSelect is provided before adding it to the document
+    if (productSelect && productSelect.length > 0) {
+      meetingData.ProductSelect = productSelect;
     }
 
     const result = await meetingsCollection.insertOne(meetingData);
 
-    console.log('Meeting added successfully');
+    console.log("Meeting added successfully");
     return result.insertedId;
   } catch (error) {
-    console.error('Error adding meeting:', error.message);
+    console.error("Error adding meeting:", error.message);
     throw new Error(error.message);
   } finally {
     // Close connection to MongoDB database
     if (client) {
       await client.close();
-      console.log('Connection to MongoDB closed');
+      console.log("Connection to MongoDB closed");
     }
   }
 };
 
-
-
-
-
 //get All Meetings
 const getAllMeetings = async () => {
   try {
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Meetings');
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Meetings");
     const meetings = await collection.find().toArray();
-    console.log('Meetings:', meetings);
+    console.log("Meetings:", meetings);
     return meetings;
   } catch (error) {
-    console.error('Error fetching meetings:', error);
-    throw new Error('Failed to fetch meetings');
+    console.error("Error fetching meetings:", error);
+    throw new Error("Failed to fetch meetings");
   }
 };
-
 
 const checkCustomerExists = async (customerID) => {
   let client;
 
   try {
-      client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-      console.log('Connected to MongoDB');
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
 
-      const database = client.db('Practicum_Project');
-      const collection = database.collection('Customers');
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Customers");
 
-      // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
-      const customer = await collection.findOne({ CustomerID: customerID });
+    // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
+    const customer = await collection.findOne({ CustomerID: customerID });
 
-      if (customer) {
-          return true; // הלקוח קיים
-      } else {
-          return false; // הלקוח לא קיים
-      }
-  } catch (error) {
-      console.error('Error checking customer:', error);
-      throw new Error('Failed to check customer');
-  } finally {
-      if (client) {
-          await client.close();
-          console.log('Connection to MongoDB closed');
-      }
-  }
-}
-
-
-const updateProperty = async (assetID, assetType, assetPrice, assetStreet, assetStreetNumber, roomNum, assetImage) => {
-  let client; // Define the client variable
-
-  try {
-    const capitalizedAssetType = assetType.charAt(0).toUpperCase() + assetType.slice(1);
-    client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Connected to MongoDB');
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Assets');
-    const existingProperty = await collection.findOne({ AssetID: parseInt(assetID) });
-    if (!existingProperty) {
-      console.log('Property with AssetID', assetID, 'not found.');
-      return 0; // Return 0 to indicate that no documents were modified
-    }
-
-    const updateQuery = {};
-    if (capitalizedAssetType) updateQuery.AssetType = capitalizedAssetType;
-    if (assetPrice) updateQuery.AssetPrice = parseInt(assetPrice);
-    if (assetStreet) updateQuery.AssetStreet = assetStreet;
-    if (assetStreetNumber) updateQuery.AssetStreetNumber = assetStreetNumber;
-    if (roomNum) updateQuery.RoomNum = roomNum;
-    if (assetImage) updateQuery.AssetImage = assetImage;
-    if (Object.keys(updateQuery).length > 0) {
-      const result = await collection.updateOne({ AssetID: parseInt(assetID) }, { $set: updateQuery });
-      console.log('Result of updateOne:', result);
-      console.log('Property updated successfully');
-      return result.modifiedCount; // Return the number of modified documents
+    if (customer) {
+      return true; // הלקוח קיים
     } else {
-      console.log('No fields to update');
-      return 0; // Return 0 to indicate that no documents were modified
+      return false; // הלקוח לא קיים
     }
   } catch (error) {
-    console.error('Error updating property:', error);
-    throw new Error('Failed to update property');
+    console.error("Error checking customer:", error);
+    throw new Error("Failed to check customer");
   } finally {
     if (client) {
       await client.close();
-      console.log('Connection to MongoDB closed');
+      console.log("Connection to MongoDB closed");
     }
   }
-}
+};
+
+
+
 //get All Users
 const getAllUsers = async () => {
   try {
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Users');
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Users");
     const Users = await collection.find().toArray();
-    console.log('Users:', Users);
+    console.log("Users:", Users);
     return Users;
   } catch (error) {
-    console.error('Error fetching users:', error);
-    throw new Error('Failed to fetch users');
+    console.error("Error fetching users:", error);
+    throw new Error("Failed to fetch users");
   }
 };
 
 //delete Users
 async function deleteUserById(UserId) {
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
   try {
-      await client.connect();
-      const db = client.db('Practicum_Project');
-      const usersCollection = db.collection('Users');
-      const userObjectId = new ObjectId(UserId);
-      const result = await usersCollection.deleteOne({ _id: userObjectId });
-      if (result.deletedCount === 1) {
-          console.log('User deleted successfully');
-      } else {
-          console.log('User not found or deletion failed');
-      }
-      const Users = await usersCollection.find().toArray();
-      console.log('Users:', Users);
-      return Users;
-      } catch (err) {
-      console.error('Error deleting user:', err);
-      throw err; 
-      } finally {
-      await client.close();
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const usersCollection = db.collection("Users");
+    const userObjectId = new ObjectId(UserId);
+    const result = await usersCollection.deleteOne({ _id: userObjectId });
+    if (result.deletedCount === 1) {
+      console.log("User deleted successfully");
+    } else {
+      console.log("User not found or deletion failed");
     }
+    const Users = await usersCollection.find().toArray();
+    console.log("Users:", Users);
+    return Users;
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    throw err;
+  } finally {
+    await client.close();
   }
+}
 
 //add User
 async function addUser(userData) {
   try {
-      const db = client.db('Practicum_Project');
-      const usersCollection = db.collection('Users');
+    const db = client.db("Practicum_Project");
+    const usersCollection = db.collection("Users");
 
-      // Check if the username already exists
-      const existingUser = await usersCollection.findOne({ UserName: userData.UserName });
-      if (existingUser) {
-          throw new Error('Username is already existing. Please try again.');
-      }
+    // Check if the username already exists
+    const existingUser = await usersCollection.findOne({
+      UserName: userData.UserName,
+    });
+    if (existingUser) {
+      throw new Error("Username is already existing. Please try again.");
+    }
 
-      // If the username is not taken, proceed to insert the user data
-      const result = await usersCollection.insertOne(userData);
-      console.log('Insert result:', result);
-      
-      if (result && result.insertedCount === 1) {
-          console.log('User added:', userData);
-          return userData;
-      } else {
-          console.error('Error adding user: No inserted document found');
-          return null;
-      }
+    // If the username is not taken, proceed to insert the user data
+    const result = await usersCollection.insertOne(userData);
+    console.log("Insert result:", result);
+
+    if (result && result.insertedCount === 1) {
+      console.log("User added:", userData);
+      return userData;
+    } else {
+      console.error("Error adding user: No inserted document found");
+      return null;
+    }
   } catch (error) {
-      console.error('Error adding user:', error);
-      throw error;
+    console.error("Error adding user:", error);
+    throw error;
   }
 }
-
 
 //add partner
 async function addPartner(partnerData) {
   try {
-      const db = client.db('Practicum_Project');
-      const partnerCollection = db.collection('Partner');
-      const result = await partnerCollection.insertOne(partnerData);
-      console.log('Insert result:', result);
-      if (result && result.insertedCount === 1) {
-          console.log('partner added:', partnerData);
-          return partnerData;
-      } else {
-          console.error('Error adding partner: No inserted document found');
-          return null;
-      }
+    const db = client.db("Practicum_Project");
+    const partnerCollection = db.collection("Partner");
+    const result = await partnerCollection.insertOne(partnerData);
+    console.log("Insert result:", result);
+    if (result && result.insertedCount === 1) {
+      console.log("partner added:", partnerData);
+      return partnerData;
+    } else {
+      console.error("Error adding partner: No inserted document found");
+      return null;
+    }
   } catch (error) {
-      console.error('Error adding partner:', error);
-      throw error;
+    console.error("Error adding partner:", error);
+    throw error;
   }
 }
 
@@ -509,45 +569,60 @@ async function getAllPartners() {
   const client = new MongoClient(uri);
 
   try {
-      console.log('Connecting to the database...');
-      await client.connect();
-      console.log('Connected to the database.');
-      const database = client.db('Practicum_Project');
-      const collection = database.collection('Partner');
-      const projection = { "_id": 0 };
-      const partners = await collection.find({}, { projection }).toArray();
-      console.log(partners);
-      return partners;
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to fetch all Partners.');
-    } finally {
-      await client.close();
-    }
+    console.log("Connecting to the database...");
+    await client.connect();
+    console.log("Connected to the database.");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Partner");
+    const projection = { _id: 0 };
+    const partners = await collection.find({}, { projection }).toArray();
+    console.log(partners);
+    return partners;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch all Partners.");
+  } finally {
+    await client.close();
+  }
 }
 
-//add new Customer 
-const addCustomer = async (customerID, fullName, phone, email,joinDate ,customerType, UserName) => {
+//add new Customer
+const addCustomer = async (
+  customerID,
+  fullName,
+  phone,
+  email,
+  joinDate,
+  customerType,
+  UserName
+) => {
   let client;
 
   try {
-    client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Connected to MongoDB');
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
 
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Customers');
-    const collection2 = database.collection('Users');
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Customers");
+    const collection2 = database.collection("Users");
 
     // Check if customerID already exists
-    const existingCustomer = await collection.findOne({ CustomerID: customerID });
+    const existingCustomer = await collection.findOne({
+      CustomerID: customerID,
+    });
     if (existingCustomer) {
-      throw new Error('The ID you entered already exists');
+      throw new Error("The ID you entered already exists");
     }
 
     // Check if UserName already exists
     const existingUserName = await collection2.findOne({ UserName: UserName });
     if (!existingUserName) {
-      throw new Error("Username doesn't exist. Please make a new account for the future customer before making a new customer file.");
+      throw new Error(
+        "Username doesn't exist. Please make a new account for the future customer before making a new customer file."
+      );
     }
 
     const result = await collection.insertOne({
@@ -557,26 +632,31 @@ const addCustomer = async (customerID, fullName, phone, email,joinDate ,customer
       Email: email,
       joinDate: joinDate,
       CustomerType: customerType,
-      UserName: UserName
+      UserName: UserName,
     });
 
-    console.log('Customer added successfully');
+    console.log("Customer added successfully");
     return result.insertedId;
   } catch (error) {
-    console.error('Error adding Customer:', error);
-    throw new Error('Failed to add Customer: ' + error.message);
+    console.error("Error adding Customer:", error);
+    throw new Error("Failed to add Customer: " + error.message);
   } finally {
     if (client) {
       await client.close();
-      console.log('Connection to MongoDB closed');
-    }
-  }
-}
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
 
-
-async function createDeal(assetId, customer1Id, customer2Id, SignatureDate, partnerUserName) {
+async function createDeal(
+  ProductID,
+  customer1Id,
+  customer2Id,
+  SignatureDate,
+  partnerUserName
+) {
   try {
-    assetId = parseInt(assetId);
+    ProductID = parseInt(ProductID);
 
     if (customer1Id === customer2Id) {
       throw new Error("Customer IDs cannot be the same.");
@@ -585,42 +665,53 @@ async function createDeal(assetId, customer1Id, customer2Id, SignatureDate, part
     const db = client.db("Practicum");
     const dealsCollection = db.collection("Deals");
     const customersCollection = db.collection("Customers");
-    const assetsCollection = db.collection("Assets");
+    const productsCollection = db.collection("Products");
 
-    const customer1 = await customersCollection.findOne({ CustomerID: customer1Id });
-    const customer2 = await customersCollection.findOne({ CustomerID: customer2Id });
+    const customer1 = await customersCollection.findOne({
+      CustomerID: customer1Id,
+    });
+    const customer2 = await customersCollection.findOne({
+      CustomerID: customer2Id,
+    });
 
     if (!customer1 || !customer2) {
       throw new Error("Customer 1 or Customer 2 not found.");
     }
 
-    const asset = await assetsCollection.findOne({ AssetID: assetId });
+    const product = await productsCollection.findOne({ ProductID: ProductID });
 
-    if (!asset) {
-      throw new Error("Asset not found.");
+    if (!product) {
+      throw new Error("Product not found.");
     }
 
-    if (asset.AssetStatus === "Unavailable") {
-      throw new Error("Asset is unavailable.");
+    if (product.ProductStatus === "Unavailable") {
+      throw new Error("Product is unavailable.");
     }
 
     let dealType, customer1Role, customer2Role, dealCommission;
-    if (asset.AssetType.toLowerCase() === "rent") {
+    if (product.ProductType.toLowerCase() === "rent") {
       dealType = "Renting";
       customer1Role = "Rented";
       customer2Role = "Rentee";
-      dealCommission = asset.AssetPrice;
-    } else if (asset.AssetType.toLowerCase() === "sale") {
+      dealCommission = product.ProductPrice;
+    } else if (product.ProductType.toLowerCase() === "sale") {
       dealType = "Buying";
       customer1Role = "Seller";
       customer2Role = "Buyer";
-      dealCommission = asset.AssetPrice * 0.01;
+      dealCommission = product.ProductPrice * 0.01;
     } else {
-      throw new Error("Invalid asset type. Asset type must be 'rent' or 'sale'.");
+      throw new Error(
+        "Invalid product type. Product type must be 'rent' or 'sale'."
+      );
     }
 
-    const highestDeal = await dealsCollection.findOne({}, { sort: { transactionNumber: -1 } });
-    const transactionNumber = highestDeal ? highestDeal.transactionNumber + 1 : 1;
+    const highestDeal = await dealsCollection.findOne(
+      {},
+      { sort: { transactionNumber: -1 } }
+    );
+    const transactionNumber = highestDeal
+      ? highestDeal.transactionNumber + 1
+      : 1;
 
     const currentDate = new Date();
     const hour = currentDate.getHours();
@@ -628,13 +719,13 @@ async function createDeal(assetId, customer1Id, customer2Id, SignatureDate, part
     const deal1 = {
       transactionNumber,
       customerId: customer1Id,
-      assetId,
+      ProductID,
       dealType,
       role: customer1Role,
       dealCommission,
       createdAtHour: hour,
       createdAtDate: SignatureDate,
-      PartnerUserName: partnerUserName
+      PartnerUserName: partnerUserName,
     };
 
     const transactionNumberForSecondDeal = transactionNumber + 1;
@@ -642,18 +733,18 @@ async function createDeal(assetId, customer1Id, customer2Id, SignatureDate, part
     const deal2 = {
       transactionNumber: transactionNumberForSecondDeal,
       customerId: customer2Id,
-      assetId,
-      dealType: (dealType === "Renting") ? "Rented" : "Selling",
+      ProductID,
+      dealType: dealType === "Renting" ? "Rented" : "Selling",
       role: customer2Role,
       dealCommission,
       createdAtHour: hour,
       createdAtDate: SignatureDate,
-      PartnerUserName: partnerUserName
+      PartnerUserName: partnerUserName,
     };
 
-    await assetsCollection.updateOne(
-      { AssetID: assetId },
-      { $set: { AssetStatus: "Unavailable" } }
+    await productsCollection.updateOne(
+      { ProductID: ProductID },
+      { $set: { ProductStatus: "Unavailable" } }
     );
 
     await dealsCollection.insertOne(deal1);
@@ -665,115 +756,130 @@ async function createDeal(assetId, customer1Id, customer2Id, SignatureDate, part
   }
 }
 
-
 //delete meeting
 async function deleteMeetingById(meetingId) {
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
   try {
-      await client.connect();
-      console.log('Connected to MongoDB'); // לוג לקשר הוצאה
-      const db = client.db('Practicum_Project');
-      const MeetingsCollection = db.collection('Meetings');
-      const userObjectId = new ObjectId(meetingId);
-      const result = await MeetingsCollection.deleteOne({ _id: userObjectId });
-      if (result.deletedCount === 1) {
-          console.log('Meeting deleted successfully');
-      } else {
-          console.log('Meetings not found or deletion failed');
-      }
+    await client.connect();
+    console.log("Connected to MongoDB"); // לוג לקשר הוצאה
+    const db = client.db("Practicum_Project");
+    const MeetingsCollection = db.collection("Meetings");
+    const userObjectId = new ObjectId(meetingId);
+    const result = await MeetingsCollection.deleteOne({ _id: userObjectId });
+    if (result.deletedCount === 1) {
+      console.log("Meeting deleted successfully");
+    } else {
+      console.log("Meetings not found or deletion failed");
+    }
   } catch (err) {
-      console.error('Error deleting Meeting:', err);
-      throw err;
+    console.error("Error deleting Meeting:", err);
+    throw err;
   } finally {
-      await client.close();
-      console.log('MongoDB connection closed'); // לוג לסגירת קשר
+    await client.close();
+    console.log("MongoDB connection closed"); // לוג לסגירת קשר
   }
 }
 
-
-const checkMeetingExists = async (date,time,partner) => {
+const checkMeetingExists = async (date, time, partner) => {
   let client;
 
   try {
-      client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-      console.log('Connected to MongoDB');
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
 
-      const database = client.db('Practicum_Project');
-      const collection = database.collection('Meetings');
-      const dateTime = new Date(`${date}T${time}`);
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Meetings");
+    const dateTime = new Date(`${date}T${time}`);
 
-      // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
-      const meeting = await collection.findOne({ DateTime: dateTime ,Partner:partner});
+    // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
+    const meeting = await collection.findOne({
+      DateTime: dateTime,
+      Partner: partner,
+    });
 
-      if (meeting) {
-          return true; // הלקוח קיים
-      } else {
-          return false; // הלקוח לא קיים
-      }
+    if (meeting) {
+      return true; // הלקוח קיים
+    } else {
+      return false; // הלקוח לא קיים
+    }
   } catch (error) {
-      console.error('Error checking meeting:', error);
-      throw new Error('Failed to check meeting');
+    console.error("Error checking meeting:", error);
+    throw new Error("Failed to check meeting");
   } finally {
-      if (client) {
-          await client.close();
-          console.log('Connection to MongoDB closed');
-      }
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
   }
-}
+};
 
 //get All Customers
 const getAllCustomers = async () => {
   try {
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Customers');
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Customers");
     const Customers = await collection.find().toArray();
-    console.log('Customers:', Customers);
+    console.log("Customers:", Customers);
     return Customers;
   } catch (error) {
-    console.error('Error fetching Customers:', error);
-    throw new Error('Failed to fetch Customers');
+    console.error("Error fetching Customers:", error);
+    throw new Error("Failed to fetch Customers");
   }
 };
 
 //getMeetingsbyCustomer(Username)
 async function getMeetingsByUsername(username) {
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
   try {
-      await client.connect();
-      const db = client.db('Practicum_Project');
-      console.log(username);
-      
-      // Step 1: Find the customer document based on the username
-      const customer = await db.collection('Customers').findOne({ UserName: username });
-      if (!customer) {
-          console.log('Customer not found');
-          return [];
-      }
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    console.log(username);
 
-      // Step 2: Find all meetings that match the CustomerID
-      const meetings = await db.collection('Meetings').find({ CustomerID: customer.CustomerID }).toArray();
-      console.log('Meetings:', meetings);
-      return meetings;
+    // Step 1: Find the customer document based on the username
+    const customer = await db
+      .collection("Customers")
+      .findOne({ UserName: username });
+    if (!customer) {
+      console.log("Customer not found");
+      return [];
+    }
+
+    // Step 2: Find all meetings that match the CustomerID
+    const meetings = await db
+      .collection("Meetings")
+      .find({ CustomerID: customer.CustomerID })
+      .toArray();
+    console.log("Meetings:", meetings);
+    return meetings;
   } catch (error) {
-      console.error('Error fetching meetings:', error);
-      throw error;
+    console.error("Error fetching meetings:", error);
+    throw error;
   } finally {
-      // Close the MongoDB connection
-      await client.close();
+    // Close the MongoDB connection
+    await client.close();
   }
 }
 
 const getAllDeals = async () => {
   try {
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Deals');
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Deals");
     const deals = await collection.find().toArray();
-    console.log('deals:', deals);
+    console.log("deals:", deals);
     return deals;
   } catch (error) {
-    console.error('Error fetching deals:', error);
-    throw new Error('Failed to fetch Deals');
+    console.error("Error fetching deals:", error);
+    throw new Error("Failed to fetch Deals");
   }
 };
 
@@ -781,52 +887,77 @@ const getCustomerByID = async (customerID) => {
   let client;
 
   try {
-      client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-      console.log('Connected to MongoDB');
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
 
-      const database = client.db('Practicum_Project');
-      const collection = database.collection('Customers');
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Customers");
 
-      // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
-      const customer = await collection.findOne({ CustomerID: customerID });
+    // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
+    const customer = await collection.findOne({ CustomerID: customerID });
 
-      return customer; // Return the customer object (which may be null if not found)
+    return customer; // Return the customer object (which may be null if not found)
   } catch (error) {
-      console.error('Error fetching customer:', error);
-      throw new Error('Failed to fetch customer');
+    console.error("Error fetching customer:", error);
+    throw new Error("Failed to fetch customer");
   } finally {
-      if (client) {
-          await client.close();
-          console.log('Connection to MongoDB closed');
-      }
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
   }
-}
+};
 
-async function getAvailableAssets() {
+async function getAvailableProducts() {
   const client = new MongoClient(uri);
 
   try {
-    console.log('Connecting to the database...');
+    console.log("Connecting to the database...");
     await client.connect();
-    console.log('Connected to the database.');
-    const database = client.db('Practicum_Project');
-    const collection = database.collection('Assets');
-    const projection = { "_id": 0 };
-    const filter = { "AssetStatus": "Available" };
-    const assets = await collection.find(filter, { projection }).toArray();
-    console.log(assets);
-    return assets;
+    console.log("Connected to the database.");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products");
+    const projection = { _id: 0 };
+    const filter = { ProductStatus: "Available" };
+    const products = await collection.find(filter, { projection }).toArray();
+    console.log(products);
+    return products;
   } catch (error) {
     console.error(error);
-    throw new Error('Failed to fetch available assets.');
+    throw new Error("Failed to fetch available products.");
   } finally {
     await client.close();
   }
 }
 
-
-
-module.exports = { run ,loginUser ,getAllAssets ,filterAssets ,getFeedback, addProperty,addFeedback,addMeeting,
-   updateProperty,getAllUsers, deleteUserById, addUser,addPartner,getAllPartners,addCustomer, filterAssetsForManager, 
-   createDeal,checkCustomerExists,getAllMeetings,deleteMeetingById,checkMeetingExists,getAllCustomers,getMeetingsByUsername,
-    getAllDeals,getCustomerByID, getAvailableAssets};
+module.exports = {
+  run,
+  loginUser,
+  getAllProducts,
+  filterProducts,
+  getFeedback,
+  addNewProduct,
+  addFeedback,
+  addMeeting,
+  updateProduct,
+  getAllUsers,
+  deleteUserById,
+  addUser,
+  addPartner,
+  getAllPartners,
+  addCustomer,
+  filterProductsForManager,
+  createDeal,
+  checkCustomerExists,
+  getAllMeetings,
+  deleteMeetingById,
+  checkMeetingExists,
+  getAllCustomers,
+  getMeetingsByUsername,
+  getAllDeals,
+  getCustomerByID,
+  getAvailableProducts,
+};

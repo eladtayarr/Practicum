@@ -146,7 +146,7 @@
 					<button class="property-button" onclick="toggleUpdatePropertyForm()">Update</button>
 				</div><br><br><br>
 					<div id="addPropertyForm" style="display: none;">
-                    <form id="propertyForm" action="/addProperty" method="POST">
+                    <form id="propertyForm" action="/addNewProduct" method="POST">
 						<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
 							<h3>Add Property Information</h3>
 						</div>
@@ -303,7 +303,7 @@
                 });
 
         
-        fetch("/addProperty", {
+        fetch("/addNewProduct", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
