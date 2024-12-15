@@ -5,7 +5,7 @@ const {
   loginUser,
   filterAssets,
   getFeedback,
-  getAllAssets,
+  getAllProducts,
   addNewProduct,
   addFeedback,
   addMeeting,
@@ -26,7 +26,7 @@ const {
   getMeetingsByUsername,
   getAllDeals,
   getCustomerByID,
-  getAvailableAssets,
+  getAvailableAssets
 } = require("./MongoDB");
 
 app.use(express.static("public"));
@@ -104,38 +104,22 @@ app.get("/feedback", async (req, res) => {
   res.json(feedback);
 });
 
+
 app.post("/addNewProduct", async (req, res) => {
-  const {
-    assetType,
-    city,
-    bathrooms,
-    SqrRoot,
-    assetPrice,
-    assetStreet,
-    assetStreetNumber,
-    roomNum,
-    assetImage,
-    assetDescription,
-  } = req.body;
+  const { ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage } = req.body;
 
   try {
-    const propertyId = await addNewProduct(
-      assetType,
-      city,
-      bathrooms,
-      SqrRoot,
-      assetPrice,
-      assetStreet,
-      assetStreetNumber,
-      roomNum,
-      assetImage,
-      assetDescription
-    );
-    res
-      .status(201)
-      .json({ message: "Property added successfully", propertyId });
+      const productId = await addNewProduct(
+          ProductType,
+          ProductPrice,
+          ProductionDate,
+          ProductDescription,
+          ProductImage
+      );
+      res.status(201).json({ message: "Product added successfully", productId });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+      console.error("Error adding product:", error);
+      res.status(500).json({ error: error.message });
   }
 });
 
@@ -218,8 +202,10 @@ app.post("/addFeedback", async (req, res) => {
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    user: "nofar.shamir7@gmail.com",
-    pass: "shebnouqreidnctk",
+    user: "eladt1010@gmail.com",
+    pass: "password"
+    //user: "nofar.shamir7@gmail.com",
+    //pass: "shebnouqreidnctk",
   },
 });
 
@@ -296,15 +282,16 @@ app.get("/checkCustomerExists", async (req, res) => {
 });
 
 ///////////
-app.get("/Assets", async (req, res) => {
+app.get("/Products", async (req, res) => {
   try {
-    const assets = await getAllAssets(); // Implement this function to fetch all users
-    res.json(assets); // Send the users as a JSON response
+      const products = await getAllProducts();
+      res.json(products);
   } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch users" });
+      console.error("Error:", error);
+      res.status(500).json({ error: "Failed to fetch users" });
   }
 });
+
 
 ////////////////////////////////////////////////////////////////////////
 app.get("/Users", async (req, res) => {

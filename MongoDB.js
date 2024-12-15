@@ -177,69 +177,43 @@ const getFeedback = async () => {
 };
 
 //Add New Product
-const addNewProduct = async (
-  ProductType,
-  ProductPrice,
-  productionDate,
-  productDescription,
-  ProductImage
-) => {
-  let client; // Define the client variable
+async function addNewProduct(ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage) {
+  const client = new MongoClient(uri);
 
   try {
-    client = await MongoClient.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("Connected to MongoDB");
-    const database = client.db("Practicum_Project");
-    const collection = database.collection("Products");
+      await client.connect();
+      const db = client.db("Practicum_Project");
+      const collection = db.collection("Products");
 
-    // Find the maximum ProductID
-    const maxProductIdDoc = await collection
-      .find({ ProductID: { $exists: true, $type: "number" } })
-      .sort({ ProductID: -1 })
-      .limit(1)
-      .toArray();
-    let newProductID = 1; // Default value if collection is empty
+      // Add logic to generate a new ProductID
+      const maxProductIdDoc = await collection.find({}).sort({ ProductID: -1 }).limit(1).toArray();
+      const newProductID = maxProductIdDoc.length > 0 ? maxProductIdDoc[0].ProductID + 1 : 1;
 
-    if (maxProductIdDoc.length > 0) {
-      const maxProductID = maxProductIdDoc[0].ProductID;
-      if (!isNaN(maxProductID)) {
-        newProductID = parseInt(maxProductID) + 1; // Increment the maximum ProductID by 1
-      }
-    }
+      const product = {
+          ProductID: newProductID,
+          ProductType,
+          ProductPrice: parseInt(ProductPrice, 10),
+          ProductionDate,
+          ProductDescription,
+          ProductImage,
+          ProductStatus: "Available",
+      };
 
-    // Parse ProductPrice to an integer
-    const ProductPrice = parseInt(ProductPrice);
-
-    // Ensure consistency in ProductType case
-    const formattedProductType =
-    ProductType.charAt(0).toUpperCase() + ProductType.slice(1).toLowerCase();
-
-    // Insert the product document into the collection
-    const result = await collection.insertOne({
-      ProductID: newProductID,
-      ProductType: formattedProductType,
-      ProductPrice: ProductPrice,
-      ProductionDate: ProductionDate,
-      ProductDescription: ProductDescription,
-      ProductImage: ProductImage,
-      ProductStatus: "Available", // New field Product Ststus with value 'Available'
-    });
-
-    console.log("The Product added successfully");
-    return result.insertedId;
+      const result = await collection.insertOne(product);
+      console.log("Product added successfully:", result.insertedId);
+      return result.insertedId;
   } catch (error) {
-    console.error("Error adding Product:", error);
-    throw new Error("Failed to add Product");
+      console.error("Error adding product:", error);
+      throw error;
   } finally {
-    if (client) {
       await client.close();
-      console.log("Connection to MongoDB closed");
-    }
   }
+}
+
+module.exports = {
+  addNewProduct,
 };
+
 
 
 // Update The products
