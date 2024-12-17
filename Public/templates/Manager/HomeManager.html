@@ -1,257 +1,325 @@
 <!DOCTYPE html>
-<html class="no-js"> 
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Manager || Home</title>
-<link rel="shortcut icon" href="../../src/images/favicon.ico" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="../../src/images/favicon.ico">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="../../src/css/animate.css">
-	<link rel="stylesheet" href="../../src/css/icomoon.css">
-	<link rel="stylesheet" href="../../src/css/bootstrap.css">
-	<link rel="stylesheet" href="../../src/css/superfish.css">
-	<link rel="stylesheet" href="../../src/css/flexslider.css">
-	<link rel="stylesheet" href="../../src/css/magnific-popup.css">
-	<link rel="stylesheet" href="../../src/css/bootstrap-datepicker.css">
-	<link rel="stylesheet" href="../../src/css/cs-select.css">
-	<link rel="stylesheet" href="../../src/css/cs-skin-border.css">
-	<link rel="stylesheet" href="../../src/css/style.css">
+<html class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Manager || Home</title>
+    <link rel="shortcut icon" href="../../src/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="../../src/images/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="../../src/css/animate.css" />
+    <link rel="stylesheet" href="../../src/css/icomoon.css" />
+    <link rel="stylesheet" href="../../src/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../src/css/superfish.css" />
+    <link rel="stylesheet" href="../../src/css/flexslider.css" />
+    <link rel="stylesheet" href="../../src/css/magnific-popup.css" />
+    <link rel="stylesheet" href="../../src/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../src/css/cs-select.css" />
+    <link rel="stylesheet" href="../../src/css/cs-skin-border.css" />
+    <link rel="stylesheet" href="../../src/css/style.css" />
 
-	<script src="../../src/modernizr-2.6.2.min.js"></script>
+    <script src="../../src/modernizr-2.6.2.min.js"></script>
 
-	<style>
-        .form-group {
-            display: flex;
-            align-items: center;
-        }
-    
-        .form-group input[type="text"] {
-            margin-left: -30px; /* Adjust this value as needed */
-        }
+    <style>
+      .form-group {
+        display: flex;
+        align-items: center;
+      }
 
-        .form-group button[type="submit"] {
+      .form-group input[type="text"] {
+        margin-left: -30px; /* Adjust this value as needed */
+      }
+
+      .form-group button[type="submit"] {
         margin-top: 20px; /* Adjust this value to move the button down */
-    }
+      }
     </style>
+  </head>
+  <body>
+    <div id="fh5co-wrapper">
+      <div id="fh5co-page">
+        <!-- רשימה בשורה העליונה - תפריט פעולות -->
+        <header id="fh5co-header-section" class="sticky-banner">
+          <div class="container">
+            <div class="nav-header">
+              <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"
+                ><i></i
+              ></a>
+              <h1 id="fh5co-logo">
+                <a href="HomeManager.html"
+                  ><i class="icon-home"></i> Trisi Sinai <span> Ltd.</span>
+                </a>
+              </h1>
+              <nav id="fh5co-menu-wrap" role="navigation">
+                <ul class="sf-menu" id="fh5co-primary-menu">
+                  <li class="active"><a href="HomeManager.html">Home</a></li>
+                  <li>
+                    <a>Products</a>
+                    <ul class="fh5co-sub-menu">
+                      <li>
+                        <a href="../Products/allProducts-Manager.html">View</a>
+                      </li>
+                      <li>
+                        <a href="../Products/addNewProduct-Manager.html">Add</a>
+                      </li>
+                      <li>
+                        <a href="../Products/updateProducts-Manager.html"
+                          >Update</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
+                  <li>
+                    <a>Deals</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="addD-Manager.html">Add</a></li>
+                      <li><a href="DealsV-Manager.html">View</a></li>
+                    </ul>
+                  </li>
 
+                  <li>
+                    <a>Manage</a>
+                    <ul class="fh5co-sub-menu">
+                      <li>
+                        <a href="../Installer/add-Installer.html">Installer</a>
+                      </li>
+                      <li>
+                        <a href="addNewCustomer-Manager.html">Customer</a>
+                      </li>
+                      <li><a href="users-Manager.html">Users</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>Installations</a>
+                    <ul class="fh5co-sub-menu">
+                      <li>
+                        <a href="../Installer/Add-Installations.html">Add</a>
+                      </li>
+                      <li>
+                        <a href="../InstallerView-Installations.html">View</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>Reports</a>
+                    <ul class="fh5co-sub-menu">
+                      <li>
+                        <a href="../Reports/Reports-Customer.html">Customers</a>
+                      </li>
+                      <li><a href="../Reports/Reports-Deal.html">Deals</a></li>
+                      <li>
+                        <a href="../Reports/Reports-Asset.html">Assets</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a href="../General/Dashbord.html">Dashbord</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </header>
 
-	</head>
-	<body>
-		<div id="fh5co-wrapper">
-		<div id="fh5co-page">
-			<!-- רשימה בשורה העליונה - תפריט פעולות -->
-			<header id="fh5co-header-section" class="sticky-banner">
-				<div class="container">
-					<div class="nav-header">
-						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-						<h1 id="fh5co-logo"><a href="HomeManager.html"><i class="icon-home"></i> Trisi Sinai <span> Ltd.</span> </a></h1>
-						<nav id="fh5co-menu-wrap" role="navigation">
-							<ul class="sf-menu" id="fh5co-primary-menu">
-								<li class="active"><a href="HomeManager.html">Home</a></li>
-								<li>
-									<a>Products</a>
-									<ul class="fh5co-sub-menu">
-										<li><a href="../Products/allProducts-Manager.html">View</a></li>
-										<li><a href="../Products/addNewProduct-Manager.html">Add</a></li>
-										<li><a href="../Products/updateProducts-Manager.html">Update</a></li>
-									</ul>
-								</li>
-								<!-- New "Deals" tab containing "Deal" and "Deals View" links -->
-								<li>
-									<a>Deals</a>
-									<ul class="fh5co-sub-menu">
-										<li><a href="addD-Manager.html">Add</a></li>
-										<li><a href="DealsV-Manager.html">View</a></li>
-									</ul>
-								</li>
+        <!-- פתיח של ברוך הבא למנהל-->
+        <aside id="fh5co-hero" class="js-fullheight">
+          <div class="flexslider js-fullheight">
+            <ul class="slides">
+              <li
+                style="
+                  background-image: url(../../src/images/Background-Manager-1.jpg);
+                "
+              >
+                <div class="container-fluid">
+                  <div class="row">
+                    <div
+                      class="col-md-4 col-md-offset-4 col-md-pull-4 js-fullheight slider-text"
+                    >
+                      <div class="slider-text-inner">
+                        <div class="desc">
+                          <h1>
+                            Hello Avi Sinai!<br />
+                            Have a good day
+                          </h1>
+                          <h2 class="price">Choose the relevant action</h2>
+                          <p class="details">
+                            <span>Meetin Managemen</span>
+                            <span>Client Management</span>
+                            <span>Property Management</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li
+                style="
+                  background-image: url(../../src/images/Background-Manager-2.jpg);
+                "
+              >
+                <div class="container-fluid">
+                  <div class="row">
+                    <div
+                      class="col-md-4 col-md-offset-4 col-md-pull-4 js-fullheight slider-text"
+                    >
+                      <div class="slider-text-inner">
+                        <div class="desc">
+                          <h1>
+                            Hello Avi Sinai!<br />
+                            Have a good day
+                          </h1>
+                          <h2 class="price">Choose the relevant action</h2>
+                          <p class="details">
+                            <span>Graphs of Activity Curves</span>
+                            <span>Recorded Reports</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
 
-								<li>
-									<a>Manage</a>
-									<ul class="fh5co-sub-menu">
-										<li><a href="../Installer/add-Installer.html">Installer</a></li>
-										<li><a href="addC-Manager.html">Customer</a></li>
-										<li><a href="users-Manager.html">Users</a></li>
-									</ul>
-								</li>
-								<li>
-									<a>Installations</a>
-									<ul class="fh5co-sub-menu">
-										<li><a href="../Installer/Add-Installations.html">Add</a></li>
-										<li><a href="../InstallerView-Installations.html">View</a></li>
-									</ul>
-								</li>
-								<li>
-									<a>Reports</a>
-									<ul class="fh5co-sub-menu">
-										<li><a href="../Reports/Reports-Customer.html">Customers</a></li>
-										<li><a href="../Reports/Reports-Deal.html">Deals</a></li>
-										<li><a href="../Reports/Reports-Asset.html">Assets</a></li>
-									</ul>
-								</li>
-								<li><a href="../General/Dashbord.html">Dashbord</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</header>
-			
-			<!-- פתיח של ברוך הבא למנהל-->
-		<aside id="fh5co-hero" class="js-fullheight">
-			<div class="flexslider js-fullheight">
-				<ul class="slides">
-					<li style="background-image: url(../../src/images/Background-Manager-1.jpg);">
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col-md-4 col-md-offset-4 col-md-pull-4 js-fullheight slider-text">
-									<div class="slider-text-inner">
-									 <div class="desc">
-										 <h1>Hello Avi Sinai!<br> Have a good day</h1>
-										  <h2 class="price">Choose the relevant action</h2>
-										  <p class="details">
-											  <span>Meetin Managemen</span>
-											  <span>Client Management</span>
-											  <span>Property Management</span>
-										  </p>
-									 </div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-			   	<li style="background-image: url(../../src/images/Background-Manager-2.jpg);">
-			   		<div class="container-fluid">
-			   			<div class="row">
-				   			<div class="col-md-4 col-md-offset-4 col-md-pull-4 js-fullheight slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<h1>Hello Avi Sinai!<br> Have a good day</h1>
-											<h2 class="price">Choose the relevant action</h2>
-											<p class="details">
-												<span>Graphs of Activity Curves</span>
-												<span>Recorded Reports</span>
-											</p>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   
-			   	<li style="background-image: url(../../src/images/Background-Manager-3.jpg);">
-			   		<div class="container-fluid">
-			   			<div class="row">
-				   			<div class="col-md-4 col-md-offset-4 col-md-pull-4 js-fullheight slider-text">
-				   				<div class="slider-text-inner">
-									<div class="desc">
-										<h1>Hello Avi Sinai!<br> Have a good day</h1>
-										 <h2 class="price">Choose the relevant action</h2>
-										 <p class="details">
-											 <span>Transaction Management</span>
-											 <span>User Management</span>
-											 <span>Feedbacks</span>
-										 </p>
-									</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>		   	
-			  	</ul>
-		  	</div>
-		</aside>
+              <li
+                style="
+                  background-image: url(../../src/images/Background-Manager-3.jpg);
+                "
+              >
+                <div class="container-fluid">
+                  <div class="row">
+                    <div
+                      class="col-md-4 col-md-offset-4 col-md-pull-4 js-fullheight slider-text"
+                    >
+                      <div class="slider-text-inner">
+                        <div class="desc">
+                          <h1>
+                            Hello Avi Sinai!<br />
+                            Have a good day
+                          </h1>
+                          <h2 class="price">Choose the relevant action</h2>
+                          <p class="details">
+                            <span>Transaction Management</span>
+                            <span>User Management</span>
+                            <span>Feedbacks</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </aside>
 
-			<!-- קיצורי דרך לפעולות בסיסיות -->
-		<div id="fh5co-features">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 animate-box">
+        <!-- קיצורי דרך לפעולות בסיסיות -->
+        <div id="fh5co-features">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 animate-box">
+                <div class="feature-left">
+                  <span class="icon">
+                    <i class="icon-map"></i>
+                  </span>
+                  <div class="feature-copy">
+                    <h3>Move House</h3>
+                    <p>
+                      Facilis ipsum reprehenderit nemo molestias. Aut cum
+                      mollitia reprehenderit.
+                    </p>
+                    <p><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
 
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-map"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Move House</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
+              <div class="col-md-4 animate-box">
+                <div class="feature-left">
+                  <span class="icon">
+                    <i class="icon-browser"></i>
+                  </span>
+                  <div class="feature-copy">
+                    <h3>Mortgage</h3>
+                    <p>
+                      Facilis ipsum reprehenderit nemo molestias. Aut cum
+                      mollitia reprehenderit.
+                    </p>
+                    <p><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 animate-box">
+                <div class="feature-left">
+                  <span class="icon">
+                    <i class="icon-wallet"></i>
+                  </span>
+                  <div class="feature-copy">
+                    <h3>Make Money</h3>
+                    <p>
+                      Facilis ipsum reprehenderit nemo molestias. Aut cum
+                      mollitia reprehenderit.
+                    </p>
+                    <p><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 animate-box">
+                <div class="feature-left">
+                  <span class="icon">
+                    <i class="icon-piechart"></i>
+                  </span>
+                  <div class="feature-copy">
+                    <h3>Business Home</h3>
+                    <p>
+                      Facilis ipsum reprehenderit nemo molestias. Aut cum
+                      mollitia reprehenderit.
+                    </p>
+                    <p><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
 
-					</div>
+              <div class="col-md-4 animate-box">
+                <div class="feature-left">
+                  <span class="icon">
+                    <i class="icon-genius"></i>
+                  </span>
+                  <div class="feature-copy">
+                    <h3>Marketing</h3>
+                    <p>
+                      Facilis ipsum reprehenderit nemo molestias. Aut cum
+                      mollitia reprehenderit.
+                    </p>
+                    <p><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 animate-box">
+                <div class="feature-left">
+                  <span class="icon">
+                    <i class="icon-chat"></i>
+                  </span>
+                  <div class="feature-copy">
+                    <h3>Explorer</h3>
+                    <p>
+                      Facilis ipsum reprehenderit nemo molestias. Aut cum
+                      mollitia reprehenderit.
+                    </p>
+                    <p><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-browser"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Mortgage</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-wallet"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Make Money</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 animate-box">
-
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-piechart"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Business Home</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-genius"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Marketing</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-chat"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Explorer</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- <div id="fh5co-popular-properties" class="fh5co-section-gray">
+        <!-- <div id="fh5co-popular-properties" class="fh5co-section-gray">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
@@ -291,250 +359,390 @@
 			</div>
 		</div> -->
 
-		<!-- חוות דעת אחרונות של לקוחות -->
-		<div id="fh5co-testimonial" style="background-image:url(images/mol.png);">
-			<div class="container">
-				<div class="row animate-box">
-					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-						<h2>Happy Clients</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="box-testimony animate-box">
-							<blockquote>
-								<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-								<p>&ldquo;I couldn't be happier with the seamless process of buying our dream home through Heh B'iyar. From start to finish, their team was incredibly attentive and made sure every detail was taken care of.&rdquo;</p>
-							</blockquote>
-							<p class="author">Eric Lieberman</p>
-						</div>
-						
-					</div>
-					<div class="col-md-4">
-						<div class="box-testimony animate-box">
-							<blockquote>
-								<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-								<p>&ldquo;Choosing B'iyar Ltd. was the best decision we made when selling our property. Their strategic approach, attention to detail, and market knowledge resulted in a quick sale at a great price. We couldn't be happier with the outcome!&rdquo;</p>
-							</blockquote>
-							<p class="author">Dean Tzur</p>
-						</div>
-						
-						
-					</div>
-					<div class="col-md-4">
-						<div class="box-testimony animate-box">
-							<blockquote>
-								<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-								<p>&ldquo;B'iyar Ltd. truly cares about their clients. From the first meeting to the closing day, they were there for us every step of the way, providing valuable guidance and support. We're thrilled with our new home and grateful for B'iyar's exceptional service!&rdquo;</p>
-							</blockquote>
-							<p class="author">Shani Bin Nun</p>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
+        <!-- חוות דעת אחרונות של לקוחות -->
+        <div
+          id="fh5co-testimonial"
+          style="background-image: url(images/mol.png)"
+        >
+          <div class="container">
+            <div class="row animate-box">
+              <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                <h2>Happy Clients</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="box-testimony animate-box">
+                  <blockquote>
+                    <span class="quote"
+                      ><span><i class="icon-quotes-right"></i></span
+                    ></span>
+                    <p>
+                      &ldquo;I couldn't be happier with the seamless process of
+                      buying our dream home through Heh B'iyar. From start to
+                      finish, their team was incredibly attentive and made sure
+                      every detail was taken care of.&rdquo;
+                    </p>
+                  </blockquote>
+                  <p class="author">Eric Lieberman</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="box-testimony animate-box">
+                  <blockquote>
+                    <span class="quote"
+                      ><span><i class="icon-quotes-right"></i></span
+                    ></span>
+                    <p>
+                      &ldquo;Choosing B'iyar Ltd. was the best decision we made
+                      when selling our property. Their strategic approach,
+                      attention to detail, and market knowledge resulted in a
+                      quick sale at a great price. We couldn't be happier with
+                      the outcome!&rdquo;
+                    </p>
+                  </blockquote>
+                  <p class="author">Dean Tzur</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="box-testimony animate-box">
+                  <blockquote>
+                    <span class="quote"
+                      ><span><i class="icon-quotes-right"></i></span
+                    ></span>
+                    <p>
+                      &ldquo;B'iyar Ltd. truly cares about their clients. From
+                      the first meeting to the closing day, they were there for
+                      us every step of the way, providing valuable guidance and
+                      support. We're thrilled with our new home and grateful for
+                      B'iyar's exceptional service!&rdquo;
+                    </p>
+                  </blockquote>
+                  <p class="author">Shani Bin Nun</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-		<!-- מוצרים חדשים שנוספו ללוח המוצרים -->
-		<div id="fh5co-properties" class="fh5co-section-gray">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Newest Properties</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 animate-box">
-						<div class="property">
-							<a href="#" class="fh5co-property" style="background-image: url(images/property-1.png);">
-								<span class="status">Sale</span>
-								<ul class="list-details">
-									<li>2000 ft sq<li>
-									<li>5 Bedroom:</li>
-									<li>4 Bathroom:</li>
-									<li>3 Garage:</li>
-								</ul>
-							</a>
-							<div class="property-details">
-								<h3>Properties Near in Beach</h3>
-								<span class="price">$3,000</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores.</p>
-								<span class="address"><i class="icon-map"></i>Thomas Street, St. Louis, MO 8990, USA</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="property">
-							<a href="#" class="fh5co-property" style="background-image: url(images/property-2.png);">
-								<span class="status">Rent</span>
-								<ul class="list-details">
-									<li>2000 ft sq<li>
-									<li>5 Bedroom:</li>
-									<li>4 Bathroom:</li>
-									<li>3 Garage:</li>
-								</ul>
-							</a>
-							<div class="property-details">
-								<h3>Modern House at NZ</h3>
-								<span class="price">$200/mos</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores.</p>
-								<span class="address"><i class="icon-map"></i>Thomas Street, St. Louis, MO 8990, USA</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="property">
-							<a href="#" class="fh5co-property" style="background-image: url(images/property-1.png);">
-								<span class="status">Sale</span>
-								<ul class="list-details">
-									<li>2000 ft sq<li>
-									<li>5 Bedroom:</li>
-									<li>4 Bathroom:</li>
-									<li>3 Garage:</li>
-								</ul>
-							</a>
-							<div class="property-details">
-								<h3>Bonggalo House</h3>
-								<span class="price">$3,000</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores.</p>
-								<span class="address"><i class="icon-map"></i>Thomas Street, St. Louis, MO 8990, USA</span>						
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="property">
-							<a href="#" class="fh5co-property" style="background-image: url(images/property-1.png);">
-								<span class="status">Sale</span>
-								<ul class="list-details">
-									<li>2000 ft sq<li>
-									<li>5 Bedroom:</li>
-									<li>4 Bathroom:</li>
-									<li>3 Garage:</li>
-								</ul>
-							</a>
-							<div class="property-details">
-								<h3>Properties at Alaska</h3>
-								<span class="price">$3,000</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores.</p>
-								<span class="address"><i class="icon-map"></i>Thomas Street, St. Louis, MO 8990, USA</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="property">
-							<a href="#" class="fh5co-property" style="background-image: url(images/property-2.png);">
-								<span class="status">Rent</span>
-								<ul class="list-details">
-									<li>2000 ft sq<li>
-									<li>5 Bedroom:</li>
-									<li>4 Bathroom:</li>
-									<li>3 Garage:</li>
-								</ul>
-							</a>
-							<div class="property-details">
-								<h3>Modern Properties</h3>
-								<span class="price">$200/mos</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores.</p>
-								<span class="address"><i class="icon-map"></i>Thomas Street, St. Louis, MO 8990, USA</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="property">
-							<a href="#" class="fh5co-property" style="background-image: url(images/property-2.png);">
-								<span class="status">Sale</span>
-								<ul class="list-details">
-									<li>2000 ft sq<li>
-									<li>5 Bedroom:</li>
-									<li>4 Bathroom:</li>
-									<li>3 Garage:</li>
-								</ul>
-							</a>
-							<div class="property-details">
-								<h3>House at the Top of Mountain</h3>
-								<span class="price">$3,000</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores.</p>
-								<span class="address"><i class="icon-map"></i>Thomas Street, St. Louis, MO 8990, USA</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+        <!-- מוצרים חדשים שנוספו ללוח המוצרים -->
+        <div id="fh5co-properties" class="fh5co-section-gray">
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-md-8 col-md-offset-2 text-center heading-section animate-box"
+              >
+                <h3>Newest Properties</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Velit est facilis maiores, perspiciatis accusamus asperiores
+                  sint consequuntur debitis.
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 animate-box">
+                <div class="property">
+                  <a
+                    href="#"
+                    class="fh5co-property"
+                    style="background-image: url(images/property-1.png)"
+                  >
+                    <span class="status">Sale</span>
+                    <ul class="list-details">
+                      <li>2000 ft sq</li>
+                      <li></li>
+                      <li>5 Bedroom:</li>
+                      <li>4 Bathroom:</li>
+                      <li>3 Garage:</li>
+                    </ul>
+                  </a>
+                  <div class="property-details">
+                    <h3>Properties Near in Beach</h3>
+                    <span class="price">$3,000</span>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Velit est facilis maiores.
+                    </p>
+                    <span class="address"
+                      ><i class="icon-map"></i>Thomas Street, St. Louis, MO
+                      8990, USA</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 animate-box">
+                <div class="property">
+                  <a
+                    href="#"
+                    class="fh5co-property"
+                    style="background-image: url(images/property-2.png)"
+                  >
+                    <span class="status">Rent</span>
+                    <ul class="list-details">
+                      <li>2000 ft sq</li>
+                      <li></li>
+                      <li>5 Bedroom:</li>
+                      <li>4 Bathroom:</li>
+                      <li>3 Garage:</li>
+                    </ul>
+                  </a>
+                  <div class="property-details">
+                    <h3>Modern House at NZ</h3>
+                    <span class="price">$200/mos</span>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Velit est facilis maiores.
+                    </p>
+                    <span class="address"
+                      ><i class="icon-map"></i>Thomas Street, St. Louis, MO
+                      8990, USA</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 animate-box">
+                <div class="property">
+                  <a
+                    href="#"
+                    class="fh5co-property"
+                    style="background-image: url(images/property-1.png)"
+                  >
+                    <span class="status">Sale</span>
+                    <ul class="list-details">
+                      <li>2000 ft sq</li>
+                      <li></li>
+                      <li>5 Bedroom:</li>
+                      <li>4 Bathroom:</li>
+                      <li>3 Garage:</li>
+                    </ul>
+                  </a>
+                  <div class="property-details">
+                    <h3>Bonggalo House</h3>
+                    <span class="price">$3,000</span>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Velit est facilis maiores.
+                    </p>
+                    <span class="address"
+                      ><i class="icon-map"></i>Thomas Street, St. Louis, MO
+                      8990, USA</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 animate-box">
+                <div class="property">
+                  <a
+                    href="#"
+                    class="fh5co-property"
+                    style="background-image: url(images/property-1.png)"
+                  >
+                    <span class="status">Sale</span>
+                    <ul class="list-details">
+                      <li>2000 ft sq</li>
+                      <li></li>
+                      <li>5 Bedroom:</li>
+                      <li>4 Bathroom:</li>
+                      <li>3 Garage:</li>
+                    </ul>
+                  </a>
+                  <div class="property-details">
+                    <h3>Properties at Alaska</h3>
+                    <span class="price">$3,000</span>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Velit est facilis maiores.
+                    </p>
+                    <span class="address"
+                      ><i class="icon-map"></i>Thomas Street, St. Louis, MO
+                      8990, USA</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 animate-box">
+                <div class="property">
+                  <a
+                    href="#"
+                    class="fh5co-property"
+                    style="background-image: url(images/property-2.png)"
+                  >
+                    <span class="status">Rent</span>
+                    <ul class="list-details">
+                      <li>2000 ft sq</li>
+                      <li></li>
+                      <li>5 Bedroom:</li>
+                      <li>4 Bathroom:</li>
+                      <li>3 Garage:</li>
+                    </ul>
+                  </a>
+                  <div class="property-details">
+                    <h3>Modern Properties</h3>
+                    <span class="price">$200/mos</span>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Velit est facilis maiores.
+                    </p>
+                    <span class="address"
+                      ><i class="icon-map"></i>Thomas Street, St. Louis, MO
+                      8990, USA</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 animate-box">
+                <div class="property">
+                  <a
+                    href="#"
+                    class="fh5co-property"
+                    style="background-image: url(images/property-2.png)"
+                  >
+                    <span class="status">Sale</span>
+                    <ul class="list-details">
+                      <li>2000 ft sq</li>
+                      <li></li>
+                      <li>5 Bedroom:</li>
+                      <li>4 Bathroom:</li>
+                      <li>3 Garage:</li>
+                    </ul>
+                  </a>
+                  <div class="property-details">
+                    <h3>House at the Top of Mountain</h3>
+                    <span class="price">$3,000</span>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Velit est facilis maiores.
+                    </p>
+                    <span class="address"
+                      ><i class="icon-map"></i>Thomas Street, St. Louis, MO
+                      8990, USA</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-		<!-- הצוות הניהולי -->
-		<div id="fh5co-about" class="fh5co-agent">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Our Agents</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3 text-center animate-box" data-animate-effect="fadeIn">
-						<div class="fh5co-staff">
-							<img class="img-responsive" src="images/user-1.png" alt="Free HTML5 Templates by freeHTML5.co">
-							<h3>Jean Smith</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat</p>
-							<p class="fh5co-social-icons">
-								<a href="#"><i class="icon-twitter2"></i></a>
-								<a href="#"><i class="icon-facebook2"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-								<a href="#"><i class="icon-dribbble2"></i></a>
-								<a href="#"><i class="icon-youtube"></i></a>
-							</p>
-						</div>
-					</div>
-					<div class="col-sm-3 text-center animate-box" data-animate-effect="fadeIn">
-						<div class="fh5co-staff">
-							<img class="img-responsive" src="images/user-2.png" alt="Free HTML5 Templates by freeHTML5.co">
-							<h3>Hush Raven</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat</p>
-							<p class="fh5co-social-icons">
-								<a href="#"><i class="icon-twitter2"></i></a>
-								<a href="#"><i class="icon-facebook2"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-								<a href="#"><i class="icon-dribbble2"></i></a>
-								<a href="#"><i class="icon-youtube"></i></a>
-							</p>
-						</div>
-					</div>
-					<div class="col-sm-3 text-center animate-box" data-animate-effect="fadeIn">
-						<div class="fh5co-staff">
-							<img class="img-responsive" src="images/user-3.png" alt="Free HTML5 Templates by freeHTML5.co">
-							<h3>Alex King</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat</p>
-							<p class="fh5co-social-icons">
-								<a href="#"><i class="icon-twitter2"></i></a>
-								<a href="#"><i class="icon-facebook2"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-								<a href="#"><i class="icon-dribbble2"></i></a>
-								<a href="#"><i class="icon-youtube"></i></a>
-							</p>
-						</div>
-					</div>
-					<div class="col-sm-3 text-center animate-box" data-animate-effect="fadeIn">
-						<div class="fh5co-staff">
-							<img class="img-responsive" src="images/user-4.png" alt="Free HTML5 Templates by freeHTML5.co">
-							<h3>Hush Raven</h3>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat</p>
-							<p class="fh5co-social-icons">
-								<a href="#"><i class="icon-twitter2"></i></a>
-								<a href="#"><i class="icon-facebook2"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-								<a href="#"><i class="icon-dribbble2"></i></a>
-								<a href="#"><i class="icon-youtube"></i></a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+        <!-- הצוות הניהולי -->
+        <div id="fh5co-about" class="fh5co-agent">
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-md-8 col-md-offset-2 text-center heading-section animate-box"
+              >
+                <h3>Our Agents</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Velit est facilis maiores, perspiciatis accusamus asperiores
+                  sint consequuntur debitis.
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div
+                class="col-sm-3 text-center animate-box"
+                data-animate-effect="fadeIn"
+              >
+                <div class="fh5co-staff">
+                  <img
+                    class="img-responsive"
+                    src="images/user-1.png"
+                    alt="Free HTML5 Templates by freeHTML5.co"
+                  />
+                  <h3>Jean Smith</h3>
+                  <p>
+                    Quos quia provident consequuntur culpa facere ratione maxime
+                    commodi voluptates id repellat
+                  </p>
+                  <p class="fh5co-social-icons">
+                    <a href="#"><i class="icon-twitter2"></i></a>
+                    <a href="#"><i class="icon-facebook2"></i></a>
+                    <a href="#"><i class="icon-instagram"></i></a>
+                    <a href="#"><i class="icon-dribbble2"></i></a>
+                    <a href="#"><i class="icon-youtube"></i></a>
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-sm-3 text-center animate-box"
+                data-animate-effect="fadeIn"
+              >
+                <div class="fh5co-staff">
+                  <img
+                    class="img-responsive"
+                    src="images/user-2.png"
+                    alt="Free HTML5 Templates by freeHTML5.co"
+                  />
+                  <h3>Hush Raven</h3>
+                  <p>
+                    Quos quia provident consequuntur culpa facere ratione maxime
+                    commodi voluptates id repellat
+                  </p>
+                  <p class="fh5co-social-icons">
+                    <a href="#"><i class="icon-twitter2"></i></a>
+                    <a href="#"><i class="icon-facebook2"></i></a>
+                    <a href="#"><i class="icon-instagram"></i></a>
+                    <a href="#"><i class="icon-dribbble2"></i></a>
+                    <a href="#"><i class="icon-youtube"></i></a>
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-sm-3 text-center animate-box"
+                data-animate-effect="fadeIn"
+              >
+                <div class="fh5co-staff">
+                  <img
+                    class="img-responsive"
+                    src="images/user-3.png"
+                    alt="Free HTML5 Templates by freeHTML5.co"
+                  />
+                  <h3>Alex King</h3>
+                  <p>
+                    Quos quia provident consequuntur culpa facere ratione maxime
+                    commodi voluptates id repellat
+                  </p>
+                  <p class="fh5co-social-icons">
+                    <a href="#"><i class="icon-twitter2"></i></a>
+                    <a href="#"><i class="icon-facebook2"></i></a>
+                    <a href="#"><i class="icon-instagram"></i></a>
+                    <a href="#"><i class="icon-dribbble2"></i></a>
+                    <a href="#"><i class="icon-youtube"></i></a>
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-sm-3 text-center animate-box"
+                data-animate-effect="fadeIn"
+              >
+                <div class="fh5co-staff">
+                  <img
+                    class="img-responsive"
+                    src="images/user-4.png"
+                    alt="Free HTML5 Templates by freeHTML5.co"
+                  />
+                  <h3>Hush Raven</h3>
+                  <p>
+                    Quos quia provident consequuntur culpa facere ratione maxime
+                    commodi voluptates id repellat
+                  </p>
+                  <p class="fh5co-social-icons">
+                    <a href="#"><i class="icon-twitter2"></i></a>
+                    <a href="#"><i class="icon-facebook2"></i></a>
+                    <a href="#"><i class="icon-instagram"></i></a>
+                    <a href="#"><i class="icon-dribbble2"></i></a>
+                    <a href="#"><i class="icon-youtube"></i></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-		<!-- בלוגים של עובדים בחברה הכולל עדכונים שוטפים -->
-		<!-- <div id="fh5co-blog-section" class="fh5co-section-gray">
+        <!-- בלוגים של עובדים בחברה הכולל עדכונים שוטפים -->
+        <!-- <div id="fh5co-blog-section" class="fh5co-section-gray">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
@@ -593,9 +801,8 @@
 			</div>
 		</div> -->
 
-
-		<!-- שליחת הודעה לקבלת עזרה מהעובדים והמחלקות של החברה -->
-		<!-- <div id="fh5co-contact" class="fh5co-contact">
+        <!-- שליחת הודעה לקבלת עזרה מהעובדים והמחלקות של החברה -->
+        <!-- <div id="fh5co-contact" class="fh5co-contact">
 			<div class="half-contact">
 				<div class="container-fluid">
 					<div class="row">
@@ -635,81 +842,85 @@
 			<div class="half-bg" style="background-image: url(images/loc.png);"></div>
 		</div> -->
 
-		<!-- שורה תחתונה של העמוד-->
-		<footer>
-			<div id="footer">
-				<div class="container">
-					<div class="row row-bottom-padded-md">
-						<!-- זכויות יוצרים -->
-						<div class="col-md-3">
-							<h3 class="section-title">About Us</h3>
-							<p>We, Bar Michal and Nofar, information systems management students at the College of Management, own all the exclusive rights to this website <i class="icon-heart3"></i></p>
-						</div>
-						
-						<!-- קיצורי דרך לדפים בתוך האתר -->
-						<div class="col-md-3 col-md-push-1">
-							<h3 class="section-title">Links</h3>
-							<ul>
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Assets</a></li>
-								<li><a href="#">Agent</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">Contact</a></li>
-							</ul>
-						</div>
+        <!-- שורה תחתונה של העמוד-->
+        <footer>
+          <div id="footer">
+            <div class="container">
+              <div class="row row-bottom-padded-md">
+                <!-- זכויות יוצרים -->
+                <div class="col-md-3">
+                  <h3 class="section-title">About Us</h3>
+                  <p>
+                    We, Bar Michal and Nofar, information systems management
+                    students at the College of Management, own all the exclusive
+                    rights to this website <i class="icon-heart3"></i>
+                  </p>
+                </div>
 
-						<!-- הרשמה לעדכונים באימייל -->
-						<div class="col-md-3">
-							<h3 class="section-title">Newsletter</h3>
-							<p>Subscribe for our newsletter</p>
-							<form class="form-inline" id="fh5co-header-subscribe">
-								<div class="row">
-									<div class="col-md-12 col-md-offset-0">
-										<div class="form-group">
-											<input type="text" class="form-control" id="email" placeholder="Enter your email">
-											<button type="submit" class="btn btn-default"><i class="icon-paper-plane"></i></button>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+                <!-- קיצורי דרך לדפים בתוך האתר -->
+                <div class="col-md-3 col-md-push-1">
+                  <h3 class="section-title">Links</h3>
+                  <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Assets</a></li>
+                    <li><a href="#">Agent</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                  </ul>
+                </div>
 
-	
+                <!-- הרשמה לעדכונים באימייל -->
+                <div class="col-md-3">
+                  <h3 class="section-title">Newsletter</h3>
+                  <p>Subscribe for our newsletter</p>
+                  <form class="form-inline" id="fh5co-header-subscribe">
+                    <div class="row">
+                      <div class="col-md-12 col-md-offset-0">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="email"
+                            placeholder="Enter your email"
+                          />
+                          <button type="submit" class="btn btn-default">
+                            <i class="icon-paper-plane"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <!-- END fh5co-page -->
+    </div>
+    <!-- END fh5co-wrapper -->
 
-	</div>
-	<!-- END fh5co-page -->
+    <!-- jQuery -->
 
-	</div>
-	<!-- END fh5co-wrapper -->
-
-	<!-- jQuery -->
-
-
-	<script src="../../src/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="../../src/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="../../src/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="../../src/js/jquery.waypoints.min.js"></script>
-	<script src="../../src/js/sticky.js"></script>
-	<!-- Superfish -->
-	<script src="../../src/js/hoverIntent.js"></script>
-	<script src="../../src/js/superfish.js"></script>
-	<!-- Flexslider -->
-	<script src="../../src/js/jquery.flexslider-min.js"></script>
-	<!-- Date Picker -->
-	<script src="../../src/js/bootstrap-datepicker.min.js"></script>
-	<!-- CS Select -->
-	<script src="../../src/js/classie.js"></script>
-	<script src="../../src/js/selectFx.js"></script>
-	<!-- Main JS -->
-	<script src="../../src/js/main.js"></script>
-
-	</body>
+    <script src="../../src/js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="../../src/js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../src/js/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+    <script src="../../src/js/jquery.waypoints.min.js"></script>
+    <script src="../../src/js/sticky.js"></script>
+    <!-- Superfish -->
+    <script src="../../src/js/hoverIntent.js"></script>
+    <script src="../../src/js/superfish.js"></script>
+    <!-- Flexslider -->
+    <script src="../../src/js/jquery.flexslider-min.js"></script>
+    <!-- Date Picker -->
+    <script src="../../src/js/bootstrap-datepicker.min.js"></script>
+    <!-- CS Select -->
+    <script src="../../src/js/classie.js"></script>
+    <script src="../../src/js/selectFx.js"></script>
+    <!-- Main JS -->
+    <script src="../../src/js/main.js"></script>
+  </body>
 </html>
-
