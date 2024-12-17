@@ -32,10 +32,23 @@ const {
 app.use(express.static("public"));
 app.use(express.json());
 const nodemailer = require("nodemailer");
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: "eladt1010@gmail.com",
+    pass: "password"
+    //user: "nofar.shamir7@gmail.com",
+    //pass: "shebnouqreidnctk",
+  },
+});
+
+///////////////////          דף הבית           //////////////////////////
 app.get("/", (req, res) => {
   res.send("Hello from the root URL!");
 });
+////////////////////////////////////////////////////////////////////////
 
+/////////////////        התחברות למערכת       //////////////////////////
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -47,6 +60,52 @@ app.post("/login", async (req, res) => {
   }
 });
 
+////////////////////////////////////////////////////////////////////////
+//////////////////////        לקוחות       /////////////////////////////
+
+////    הוספת לקוח חדש
+app.post("/addCustomer", async (req, res) => {
+  const {
+    customerID,
+    fullName,
+    phone,
+    email,
+    joinDate,
+    customerType,
+    UserName,
+  } = req.body;
+
+  try {
+    const customerId = await addCustomer(
+      customerID,
+      fullName,
+      phone,
+      email,
+      joinDate,
+      customerType,
+      UserName
+    );
+    res
+      .status(201)
+      .json({ message: "Customer added successfully", customerId });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+////    בדיקה האם הלקוח קיים בבסיס הנתונים
+app.get("/checkCustomerExists", async (req, res) => {
+  const { customerID } = req.query;
+
+  try {
+    const exists = await checkCustomerExists(customerID);
+    res.status(200).json({ exists }); // Return a JSON response
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+////    משהו
 app.get("/CustomerAssets", async (req, res) => {
   const {
     assetType,
@@ -72,6 +131,7 @@ app.get("/CustomerAssets", async (req, res) => {
   }
 });
 
+////    משהו
 app.get("/CustomerAssetsForManager", async (req, res) => {
   const {
     assetType,
@@ -99,12 +159,130 @@ app.get("/CustomerAssetsForManager", async (req, res) => {
   }
 });
 
+////    חוות דעת לקוחות
 app.get("/feedback", async (req, res) => {
   const feedback = await getFeedback();
   res.json(feedback);
 });
 
+////    הוספת חוות דעת
+app.post("/addFeedback", async (req, res) => {
+  const feedbackData = req.body; // Data sent from the form on the client side
 
+  try {
+    const username = feedbackData.Username;
+    const result = await addFeedback(username, feedbackData);
+    res.status(201).json({ message: "Feedback added successfully!" });
+  } catch (error) {
+    if (error.message.includes("Customer not found")) {
+      res
+        .status(404)
+        .json({
+          error:
+            "Your Customer ID is not found. Please register as a customer to add a feedback.",
+        });
+    } else if (error.message.includes("haven't made a deal")) {
+      res
+        .status(404)
+        .json({
+          error: "You still haven't made a deal. A feedback hasn't been added.",
+        });
+    } else {
+      console.error("Error adding feedback to database:", error);
+      res.status(500).json({ error: "Failed to add feedback to the database" });
+    }
+  }
+});
+
+////    פנייה לחברה ע״י האתר
+app.post("/submitMessage", async (req, res) => {
+  const formData = req.body;
+
+  try {
+    const emailContent = `
+          Name: ${formData.Name}
+          Email: ${formData.Email}
+          Phone:${formData.Phone}
+          Message: ${formData.Message}
+      `;
+
+    const mailOptions = {
+      from: "eladt1010@@gmail.com",
+      to: "eladt1010@gmail.com",
+      subject: "New Message Received",
+      text: emailContent,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    console.log("message email sent successfully");
+
+    res.json({ message: "message submitted successfully!" });
+  } catch (error) {
+    console.error("Error sending message email:", error);
+    res.status(500).json({ error: "Failed to send message email" });
+  }
+});
+
+////    משהו
+app.get("/AssetsForCustomer", async (req, res) => {
+  try {
+    const assets = await getAvailableAssets(); // Implement this function to fetch all users
+    res.json(assets); // Send the users as a JSON response
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to fetch users" });
+  }
+});
+
+////    קבלת לקוחות מבסיס הנתונים
+app.get("/getCustomers", async (req, res) => {
+  try {
+    const Customers = await getAllCustomers(); // Implement this function to fetch all users
+    res.json(Customers); // Send the users as a JSON response
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to fetch Customers" });
+  }
+});
+
+////    קבלת מספרי לקוח מבסיס הנתונים
+app.get("/getCustomerID", async (req, res) => {
+  const { customerID } = req.query;
+
+  try {
+    const customer = await getCustomerByID(customerID);
+    if (customer) {
+      res.status(200).json(customer); // Return the customer data if found
+    } else {
+      res.status(404).json({ error: "Customer not found" }); // Return a 404 error if customer not found
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+////    יצירת התקנה לפי לקוחות
+app.get("/meetings-customer", async (req, res) => {
+  try {
+    const username = req.query.username;
+    if (!username) {
+      return res.status(400).json({ error: "Username not provided" });
+    }
+
+    const meetings = await getMeetingsByUsername(username);
+    res.json(meetings);
+  } catch (error) {
+    console.error("Error fetching meetings:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+////////////////////////////////////////////////////////////////////////
+//////////////////////        מוצרים       /////////////////////////////
+
+////    הוספת מוצר חדש
 app.post("/addNewProduct", async (req, res) => {
   const { ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage } = req.body;
 
@@ -123,6 +301,7 @@ app.post("/addNewProduct", async (req, res) => {
   }
 });
 
+////    הוספת מבצע חדש
 app.post("/addDeal", async (req, res) => {
   const { AssetID, Customer1ID, Customer2ID, SignatureDate, PartnerUserName } =
     req.body;
@@ -141,6 +320,7 @@ app.post("/addDeal", async (req, res) => {
   }
 });
 
+////    משהו
 app.post("/updateProperty", async (req, res) => {
   const {
     assetID,
@@ -171,73 +351,32 @@ app.post("/updateProperty", async (req, res) => {
   }
 });
 
-app.post("/addFeedback", async (req, res) => {
-  const feedbackData = req.body; // Data sent from the form on the client side
-
+////    מוצרים
+app.get("/Products", async (req, res) => {
   try {
-    const username = feedbackData.Username;
-    const result = await addFeedback(username, feedbackData);
-    res.status(201).json({ message: "Feedback added successfully!" });
+      const products = await getAllProducts();
+      res.json(products);
   } catch (error) {
-    if (error.message.includes("Customer not found")) {
-      res
-        .status(404)
-        .json({
-          error:
-            "Your Customer ID is not found. Please register as a customer to add a feedback.",
-        });
-    } else if (error.message.includes("haven't made a deal")) {
-      res
-        .status(404)
-        .json({
-          error: "You still haven't made a deal. A feedback hasn't been added.",
-        });
-    } else {
-      console.error("Error adding feedback to database:", error);
-      res.status(500).json({ error: "Failed to add feedback to the database" });
-    }
+      console.error("Error:", error);
+      res.status(500).json({ error: "Failed to fetch users" });
   }
 });
 
-const transporter = nodemailer.createTransport({
-  service: "Gmail",
-  auth: {
-    user: "eladt1010@gmail.com",
-    pass: "password"
-    //user: "nofar.shamir7@gmail.com",
-    //pass: "shebnouqreidnctk",
-  },
-});
-
-app.post("/submitMessage", async (req, res) => {
-  const formData = req.body;
-
+////    מבצעים
+app.get("/deals", async (req, res) => {
   try {
-    const emailContent = `
-          Name: ${formData.Name}
-          Email: ${formData.Email}
-          Phone:${formData.Phone}
-          Message: ${formData.Message}
-      `;
-
-    const mailOptions = {
-      from: "nofar.shamir7@gmail.com",
-      to: "nofar.shamir7@gmail.com",
-      subject: "New Message Received",
-      text: emailContent,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    console.log("message email sent successfully");
-
-    res.json({ message: "message submitted successfully!" });
+    const deals = await getAllDeals();
+    res.json(deals);
   } catch (error) {
-    console.error("Error sending message email:", error);
-    res.status(500).json({ error: "Failed to send message email" });
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to fetch deals" });
   }
 });
 
+////////////////////////////////////////////////////////////////////////
+//////////////////////        מתקינים       ////////////////////////////
+
+////    הוספת התקנה חדשה
 app.post("/addMeeting", async (req, res) => {
   const {
     customerID,
@@ -270,106 +409,7 @@ app.post("/addMeeting", async (req, res) => {
   }
 });
 
-app.get("/checkCustomerExists", async (req, res) => {
-  const { customerID } = req.query;
-
-  try {
-    const exists = await checkCustomerExists(customerID);
-    res.status(200).json({ exists }); // Return a JSON response
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-///////////
-app.get("/Products", async (req, res) => {
-  try {
-      const products = await getAllProducts();
-      res.json(products);
-  } catch (error) {
-      console.error("Error:", error);
-      res.status(500).json({ error: "Failed to fetch users" });
-  }
-});
-
-
-////////////////////////////////////////////////////////////////////////
-app.get("/Users", async (req, res) => {
-  try {
-    const Users = await getAllUsers(); // Implement this function to fetch all users
-    res.json(Users); // Send the users as a JSON response
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch users" });
-  }
-});
-
-app.delete("/Users/:id", async (req, res) => {
-  const UserId = req.params.id;
-  await deleteUserById(UserId);
-  res.sendStatus(204); // Send success status code
-});
-
-app.post("/add-user", async (req, res) => {
-  try {
-    const newUser = await addUser(req.body);
-    res.status(201).json(newUser);
-  } catch (error) {
-    console.error("Error adding user:", error);
-    res.status(500).json({ error: "Failed to add user" });
-  }
-});
-
-app.post("/add-partner", async (req, res) => {
-  try {
-    const newPartner = await addPartner(req.body);
-    res.status(201).json(newPartner);
-  } catch (error) {
-    console.error("Error adding Partner:", error);
-    res.status(500).json({ error: "Failed to add Partner" });
-  }
-});
-
-app.get("/Partners", async (req, res) => {
-  try {
-    const Partners = await getAllPartners(); // Implement this function to fetch all users
-    res.json(Partners); // Send the users as a JSON response
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch Partners" });
-  }
-});
-
-app.post("/addCustomer", async (req, res) => {
-  const {
-    customerID,
-    fullName,
-    phone,
-    email,
-    joinDate,
-    customerType,
-    UserName,
-  } = req.body;
-
-  try {
-    const customerId = await addCustomer(
-      customerID,
-      fullName,
-      phone,
-      email,
-      joinDate,
-      customerType,
-      UserName
-    );
-    res
-      .status(201)
-      .json({ message: "Customer added successfully", customerId });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-////////////////////////////////////////////////////////////////////////
+////    התקנות במערכת
 app.get("/meetings", async (req, res) => {
   try {
     const meetings = await getAllMeetings();
@@ -379,6 +419,8 @@ app.get("/meetings", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch meetings" });
   }
 });
+
+////    שליפת מספר התקנה
 app.delete("/meeting/:id", async (req, res) => {
   const meetingId = req.params.id;
   try {
@@ -389,6 +431,8 @@ app.delete("/meeting/:id", async (req, res) => {
     res.sendStatus(500); // Send internal server error status code
   }
 });
+
+////    בדיקה האם קיימת התקנה במערכת
 app.get("/checkMeetingExists", async (req, res) => {
   const { date, time, partner } = req.query;
 
@@ -400,65 +444,63 @@ app.get("/checkMeetingExists", async (req, res) => {
   }
 });
 
-app.get("/getCustomers", async (req, res) => {
+
+////////////////////////////////////////////////////////////////////////
+//////////////////////        משתמשים       ////////////////////////////
+
+////    כל המשתמשים במערכת
+app.get("/Users", async (req, res) => {
   try {
-    const Customers = await getAllCustomers(); // Implement this function to fetch all users
-    res.json(Customers); // Send the users as a JSON response
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch Customers" });
-  }
-});
-
-app.get("/meetings-customer", async (req, res) => {
-  try {
-    const username = req.query.username;
-    if (!username) {
-      return res.status(400).json({ error: "Username not provided" });
-    }
-
-    const meetings = await getMeetingsByUsername(username);
-    res.json(meetings);
-  } catch (error) {
-    console.error("Error fetching meetings:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-app.get("/deals", async (req, res) => {
-  try {
-    const deals = await getAllDeals();
-    res.json(deals);
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch deals" });
-  }
-});
-
-app.get("/getCustomerID", async (req, res) => {
-  const { customerID } = req.query;
-
-  try {
-    const customer = await getCustomerByID(customerID);
-    if (customer) {
-      res.status(200).json(customer); // Return the customer data if found
-    } else {
-      res.status(404).json({ error: "Customer not found" }); // Return a 404 error if customer not found
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get("/AssetsForCustomer", async (req, res) => {
-  try {
-    const assets = await getAvailableAssets(); // Implement this function to fetch all users
-    res.json(assets); // Send the users as a JSON response
+    const Users = await getAllUsers(); // Implement this function to fetch all users
+    res.json(Users); // Send the users as a JSON response
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Failed to fetch users" });
   }
 });
+
+////    שליפת משתץמשים על ידי מספר מזהה
+app.delete("/Users/:id", async (req, res) => {
+  const UserId = req.params.id;
+  await deleteUserById(UserId);
+  res.sendStatus(204); // Send success status code
+});
+
+////    הסופת משתמשים למערכת
+app.post("/add-user", async (req, res) => {
+  try {
+    const newUser = await addUser(req.body);
+    res.status(201).json(newUser);
+  } catch (error) {
+    console.error("Error adding user:", error);
+    res.status(500).json({ error: "Failed to add user" });
+  }
+});
+
+////    משהו
+app.post("/add-partner", async (req, res) => {
+  try {
+    const newPartner = await addPartner(req.body);
+    res.status(201).json(newPartner);
+  } catch (error) {
+    console.error("Error adding Partner:", error);
+    res.status(500).json({ error: "Failed to add Partner" });
+  }
+});
+
+////    משהו
+app.get("/Partners", async (req, res) => {
+  try {
+    const Partners = await getAllPartners(); // Implement this function to fetch all users
+    res.json(Partners); // Send the users as a JSON response
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to fetch Partners" });
+  }
+});
+
+////////////////////////////////////////////////////////////////////////
+//////////////////////        הרצת אתר        //////////////////////////
 
 // Start the server
 app.listen(port, () => {

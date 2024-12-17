@@ -1,7 +1,6 @@
 const { MongoClient, ObjectId } = require("mongodb");
 
-const uri =
-  "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
+const uri = "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
 // Password: 9wRHk5BLfmqRrQb3
 
 const client = new MongoClient(uri, {
@@ -10,6 +9,11 @@ const client = new MongoClient(uri, {
   },
 });
 
+
+////////////////////////////////////////////////////////////////////////
+//////////////////////        הרצה         /////////////////////////////
+
+////    פונקציית הרצה לחיבור לבסיס נתונים 
 async function run() {
   try {
     await client.connect();
@@ -22,10 +26,13 @@ async function run() {
     console.error("Error connecting to MongoDB:", error);
   }
 }
-
 run();
 
-//Login Function
+
+////////////////////////////////////////////////////////////////////////
+//////////////////////        לקוחות       /////////////////////////////
+
+////    התחברות למערכת 
 const loginUser = async (username, password) => {
   try {
     const database = client.db("Practicum_Project");
@@ -42,7 +49,298 @@ const loginUser = async (username, password) => {
   }
 };
 
-//FilterProducts
+////    קבלת כל הלקוחות
+const getAllCustomers = async () => {
+  try {
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Customers");
+    const Customers = await collection.find().toArray();
+    console.log("Customers:", Customers);
+    return Customers;
+  } catch (error) {
+    console.error("Error fetching Customers:", error);
+    throw new Error("Failed to fetch Customers");
+  }
+};
+
+////    שליפת כל חוות הדעת
+const getFeedback = async () => {
+  let client; // Define the client variable
+
+  try {
+    // Connect to MongoDB
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Feedback");
+    const feedbacks = await collection.find().toArray();
+    console.log("Feedbacks:", feedbacks);
+    return feedbacks;
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+    throw new Error("Failed to fetch feedback data");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
+////    הוספת חוות דעת בבסיס הנתונים
+const addFeedback = async (Username, feedbackData) => {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  try {
+    await client.connect();
+    const database = client.db("Practicum_Project");
+    const customersCollection = database.collection("Customers");
+    const dealsCollection = database.collection("Deals");
+
+    // Find the customer by Username
+    const customer = await customersCollection.findOne({ UserName: Username });
+    if (!customer) {
+      throw new Error(
+        "Customer not found. Please register as a customer to add feedback."
+      );
+    }
+
+    // Find the customer ID from the found customer
+    const customerId = customer.CustomerID;
+
+    // Check if the customer has made any deals
+    const dealsCount = await dealsCollection.countDocuments({
+      customerId: customerId,
+    });
+    if (dealsCount === 0) {
+      throw new Error(
+        "You still haven't made a deal. A feedback hasn't been added."
+      );
+    }
+
+    // Add the feedback to the Feedback collection
+    const feedbackCollection = database.collection("Feedback");
+    const result = await feedbackCollection.insertOne(feedbackData);
+    console.log("Feedback added successfully!");
+    console.log("Received feedback data:", feedbackData);
+    return result;
+  } catch (error) {
+    console.error("Error adding feedback:", error);
+    throw new Error("Failed to add feedback");
+  } finally {
+    await client.close();
+  }
+};
+
+////    בדיקה האם לקוח קיים
+const checkCustomerExists = async (customerID) => {
+  let client;
+
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Customers");
+
+    // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
+    const customer = await collection.findOne({ CustomerID: customerID });
+
+    if (customer) {
+      return true; // הלקוח קיים
+    } else {
+      return false; // הלקוח לא קיים
+    }
+  } catch (error) {
+    console.error("Error checking customer:", error);
+    throw new Error("Failed to check customer");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
+////    שליפת לקוח על ידי קוד לקוח
+const getCustomerByID = async (customerID) => {
+  let client;
+
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Customers");
+
+    // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
+    const customer = await collection.findOne({ CustomerID: customerID });
+
+    return customer; // Return the customer object (which may be null if not found)
+  } catch (error) {
+    console.error("Error fetching customer:", error);
+    throw new Error("Failed to fetch customer");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
+////////////////////////////////////////////////////////////////////////
+/////////////////////        משתמשים       /////////////////////////////
+
+
+////    שליפת כל המשתמשים מהמערכת
+const getAllUsers = async () => {
+  try {
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Users");
+    const Users = await collection.find().toArray();
+    console.log("Users:", Users);
+    return Users;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw new Error("Failed to fetch users");
+  }
+};
+
+////    מחיקת משתמשים
+async function deleteUserById(UserId) {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  try {
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const usersCollection = db.collection("Users");
+    const userObjectId = new ObjectId(UserId);
+    const result = await usersCollection.deleteOne({ _id: userObjectId });
+    if (result.deletedCount === 1) {
+      console.log("User deleted successfully");
+    } else {
+      console.log("User not found or deletion failed");
+    }
+    const Users = await usersCollection.find().toArray();
+    console.log("Users:", Users);
+    return Users;
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    throw err;
+  } finally {
+    await client.close();
+  }
+}
+
+////    הוספת משתמשים
+async function addUser(userData) {
+  try {
+    const db = client.db("Practicum_Project");
+    const usersCollection = db.collection("Users");
+
+    // Check if the username already exists
+    const existingUser = await usersCollection.findOne({
+      UserName: userData.UserName,
+    });
+    if (existingUser) {
+      throw new Error("Username is already existing. Please try again.");
+    }
+
+    // If the username is not taken, proceed to insert the user data
+    const result = await usersCollection.insertOne(userData);
+    console.log("Insert result:", result);
+
+    if (result && result.insertedCount === 1) {
+      console.log("User added:", userData);
+      return userData;
+    } else {
+      console.error("Error adding user: No inserted document found");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error adding user:", error);
+    throw error;
+  }
+}
+
+
+
+////////////////////////////////////////////////////////////////////////
+//////////////////////        מוצרים       /////////////////////////////
+
+
+////    שליפת כל המוצרים
+async function getAllProducts() {
+  const client = new MongoClient(uri);
+
+  try {
+    console.log("Connecting to the database...");
+    await client.connect();
+    console.log("Connected to the database.");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products");
+    const projection = { _id: 0 };
+    const products = await collection.find({}, { projection }).toArray();
+    console.log(products);
+    return products;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch all products.");
+  } finally {
+    await client.close();
+  }
+}
+
+////    הוספת מוצר חדש לבסיס נתונים
+async function addNewProduct(ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage) {
+  const client = new MongoClient(uri);
+
+  try {
+      await client.connect();
+      const db = client.db("Practicum_Project");
+      const collection = db.collection("Products");
+
+      // Add logic to generate a new ProductID
+      const maxProductIdDoc = await collection.find({}).sort({ ProductID: -1 }).limit(1).toArray();
+      const newProductID = maxProductIdDoc.length > 0 ? maxProductIdDoc[0].ProductID + 1 : 1;
+
+      const product = {
+          ProductID: newProductID,
+          ProductType,
+          ProductPrice: parseInt(ProductPrice, 10),
+          ProductionDate,
+          ProductDescription,
+          ProductImage,
+          ProductStatus: "Available",
+      };
+
+      const result = await collection.insertOne(product);
+      console.log("Product added successfully:", result.insertedId);
+      return result.insertedId;
+  } catch (error) {
+      console.error("Error adding product:", error);
+      throw error;
+  } finally {
+      await client.close();
+  }
+}
+
+////    סינון מוצרים
 const filterProducts = async (
   ProductType,
   ProductPriceMin,
@@ -86,6 +384,7 @@ const filterProducts = async (
   }
 };
 
+////    סינון מוצרים למנהלים
 const filterProductsForManager = async (
   ProductType,
   ProductPriceMin,
@@ -127,96 +426,7 @@ const filterProductsForManager = async (
   }
 };
 
-//All Products
-async function getAllProducts() {
-  const client = new MongoClient(uri);
-
-  try {
-    console.log("Connecting to the database...");
-    await client.connect();
-    console.log("Connected to the database.");
-    const database = client.db("Practicum_Project");
-    const collection = database.collection("Products");
-    const projection = { _id: 0 };
-    const products = await collection.find({}, { projection }).toArray();
-    console.log(products);
-    return products;
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch all products.");
-  } finally {
-    await client.close();
-  }
-}
-
-//Show All Feedback
-const getFeedback = async () => {
-  let client; // Define the client variable
-
-  try {
-    // Connect to MongoDB
-    client = await MongoClient.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("Connected to MongoDB");
-    const database = client.db("Practicum_Project");
-    const collection = database.collection("Feedback");
-    const feedbacks = await collection.find().toArray();
-    console.log("Feedbacks:", feedbacks);
-    return feedbacks;
-  } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
-    throw new Error("Failed to fetch feedback data");
-  } finally {
-    if (client) {
-      await client.close();
-      console.log("Connection to MongoDB closed");
-    }
-  }
-};
-
-//Add New Product
-async function addNewProduct(ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage) {
-  const client = new MongoClient(uri);
-
-  try {
-      await client.connect();
-      const db = client.db("Practicum_Project");
-      const collection = db.collection("Products");
-
-      // Add logic to generate a new ProductID
-      const maxProductIdDoc = await collection.find({}).sort({ ProductID: -1 }).limit(1).toArray();
-      const newProductID = maxProductIdDoc.length > 0 ? maxProductIdDoc[0].ProductID + 1 : 1;
-
-      const product = {
-          ProductID: newProductID,
-          ProductType,
-          ProductPrice: parseInt(ProductPrice, 10),
-          ProductionDate,
-          ProductDescription,
-          ProductImage,
-          ProductStatus: "Available",
-      };
-
-      const result = await collection.insertOne(product);
-      console.log("Product added successfully:", result.insertedId);
-      return result.insertedId;
-  } catch (error) {
-      console.error("Error adding product:", error);
-      throw error;
-  } finally {
-      await client.close();
-  }
-}
-
-module.exports = {
-  addNewProduct,
-};
-
-
-
-// Update The products
+////    עדכון מוצרים במערכת
 const updateProduct = async (
   ProductID,
   ProductType,
@@ -277,55 +487,12 @@ const updateProduct = async (
 };
 
 
-//Add New Feedback
-const addFeedback = async (Username, feedbackData) => {
-  const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
 
-  try {
-    await client.connect();
-    const database = client.db("Practicum_Project");
-    const customersCollection = database.collection("Customers");
-    const dealsCollection = database.collection("Deals");
+////////////////////////////////////////////////////////////////////////
+/////////////////////         מתקינים      /////////////////////////////
 
-    // Find the customer by Username
-    const customer = await customersCollection.findOne({ UserName: Username });
-    if (!customer) {
-      throw new Error(
-        "Customer not found. Please register as a customer to add feedback."
-      );
-    }
 
-    // Find the customer ID from the found customer
-    const customerId = customer.CustomerID;
-
-    // Check if the customer has made any deals
-    const dealsCount = await dealsCollection.countDocuments({
-      customerId: customerId,
-    });
-    if (dealsCount === 0) {
-      throw new Error(
-        "You still haven't made a deal. A feedback hasn't been added."
-      );
-    }
-
-    // Add the feedback to the Feedback collection
-    const feedbackCollection = database.collection("Feedback");
-    const result = await feedbackCollection.insertOne(feedbackData);
-    console.log("Feedback added successfully!");
-    console.log("Received feedback data:", feedbackData);
-    return result;
-  } catch (error) {
-    console.error("Error adding feedback:", error);
-    throw new Error("Failed to add feedback");
-  } finally {
-    await client.close();
-  }
-};
-
-//Add New Meeting
+////    הוספת התקנה
 const addMeeting = async (
   customerID,
   date,
@@ -396,7 +563,7 @@ const addMeeting = async (
   }
 };
 
-//get All Meetings
+////    שליפת התקנות  מהמערכת
 const getAllMeetings = async () => {
   try {
     const database = client.db("Practicum_Project");
@@ -410,7 +577,36 @@ const getAllMeetings = async () => {
   }
 };
 
-const checkCustomerExists = async (customerID) => {
+////    מחיקת התקנה
+async function deleteMeetingById(meetingId) {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB"); // לוג לקשר הוצאה
+    const db = client.db("Practicum_Project");
+    const MeetingsCollection = db.collection("Meetings");
+    const userObjectId = new ObjectId(meetingId);
+    const result = await MeetingsCollection.deleteOne({ _id: userObjectId });
+    if (result.deletedCount === 1) {
+      console.log("Meeting deleted successfully");
+    } else {
+      console.log("Meetings not found or deletion failed");
+    }
+  } catch (err) {
+    console.error("Error deleting Meeting:", err);
+    throw err;
+  } finally {
+    await client.close();
+    console.log("MongoDB connection closed"); // לוג לסגירת קשר
+  }
+}
+
+////    בדיקה האם התקנה קיימת במערכת
+const checkMeetingExists = async (date, time, partner) => {
   let client;
 
   try {
@@ -421,19 +617,23 @@ const checkCustomerExists = async (customerID) => {
     console.log("Connected to MongoDB");
 
     const database = client.db("Practicum_Project");
-    const collection = database.collection("Customers");
+    const collection = database.collection("Meetings");
+    const dateTime = new Date(`${date}T${time}`);
 
     // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
-    const customer = await collection.findOne({ CustomerID: customerID });
+    const meeting = await collection.findOne({
+      DateTime: dateTime,
+      Partner: partner,
+    });
 
-    if (customer) {
+    if (meeting) {
       return true; // הלקוח קיים
     } else {
       return false; // הלקוח לא קיים
     }
   } catch (error) {
-    console.error("Error checking customer:", error);
-    throw new Error("Failed to check customer");
+    console.error("Error checking meeting:", error);
+    throw new Error("Failed to check meeting");
   } finally {
     if (client) {
       await client.close();
@@ -442,83 +642,34 @@ const checkCustomerExists = async (customerID) => {
   }
 };
 
-
-
-//get All Users
-const getAllUsers = async () => {
-  try {
-    const database = client.db("Practicum_Project");
-    const collection = database.collection("Users");
-    const Users = await collection.find().toArray();
-    console.log("Users:", Users);
-    return Users;
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    throw new Error("Failed to fetch users");
-  }
-};
-
-//delete Users
-async function deleteUserById(UserId) {
-  const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+////    הצגת מוצרים במלאי בלבד
+async function getAvailableProducts() {
+  const client = new MongoClient(uri);
 
   try {
+    console.log("Connecting to the database...");
     await client.connect();
-    const db = client.db("Practicum_Project");
-    const usersCollection = db.collection("Users");
-    const userObjectId = new ObjectId(UserId);
-    const result = await usersCollection.deleteOne({ _id: userObjectId });
-    if (result.deletedCount === 1) {
-      console.log("User deleted successfully");
-    } else {
-      console.log("User not found or deletion failed");
-    }
-    const Users = await usersCollection.find().toArray();
-    console.log("Users:", Users);
-    return Users;
-  } catch (err) {
-    console.error("Error deleting user:", err);
-    throw err;
+    console.log("Connected to the database.");
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products");
+    const projection = { _id: 0 };
+    const filter = { ProductStatus: "Available" };
+    const products = await collection.find(filter, { projection }).toArray();
+    console.log(products);
+    return products;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch available products.");
   } finally {
     await client.close();
   }
 }
 
-//add User
-async function addUser(userData) {
-  try {
-    const db = client.db("Practicum_Project");
-    const usersCollection = db.collection("Users");
 
-    // Check if the username already exists
-    const existingUser = await usersCollection.findOne({
-      UserName: userData.UserName,
-    });
-    if (existingUser) {
-      throw new Error("Username is already existing. Please try again.");
-    }
+////////////////////////////////////////////////////////////////////////
+/////////////////////         שותפים       /////////////////////////////
 
-    // If the username is not taken, proceed to insert the user data
-    const result = await usersCollection.insertOne(userData);
-    console.log("Insert result:", result);
-
-    if (result && result.insertedCount === 1) {
-      console.log("User added:", userData);
-      return userData;
-    } else {
-      console.error("Error adding user: No inserted document found");
-      return null;
-    }
-  } catch (error) {
-    console.error("Error adding user:", error);
-    throw error;
-  }
-}
-
-//add partner
+////    הוספת שותף
 async function addPartner(partnerData) {
   try {
     const db = client.db("Practicum_Project");
@@ -538,7 +689,7 @@ async function addPartner(partnerData) {
   }
 }
 
-//get all partners
+////    קבלת כל השותפים
 async function getAllPartners() {
   const client = new MongoClient(uri);
 
@@ -560,7 +711,7 @@ async function getAllPartners() {
   }
 }
 
-//add new Customer
+////    הוספת לקוח חדש
 const addCustomer = async (
   customerID,
   fullName,
@@ -622,6 +773,10 @@ const addCustomer = async (
   }
 };
 
+
+////////////////////////////////////////////////////////////////////////
+/////////////////////         מבצעים       /////////////////////////////
+////    יצירת מבצע
 async function createDeal(
   ProductID,
   customer1Id,
@@ -730,85 +885,21 @@ async function createDeal(
   }
 }
 
-//delete meeting
-async function deleteMeetingById(meetingId) {
-  const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
+////    שליפת כל המבצעים
+const getAllDeals = async () => {
   try {
-    await client.connect();
-    console.log("Connected to MongoDB"); // לוג לקשר הוצאה
-    const db = client.db("Practicum_Project");
-    const MeetingsCollection = db.collection("Meetings");
-    const userObjectId = new ObjectId(meetingId);
-    const result = await MeetingsCollection.deleteOne({ _id: userObjectId });
-    if (result.deletedCount === 1) {
-      console.log("Meeting deleted successfully");
-    } else {
-      console.log("Meetings not found or deletion failed");
-    }
-  } catch (err) {
-    console.error("Error deleting Meeting:", err);
-    throw err;
-  } finally {
-    await client.close();
-    console.log("MongoDB connection closed"); // לוג לסגירת קשר
-  }
-}
-
-const checkMeetingExists = async (date, time, partner) => {
-  let client;
-
-  try {
-    client = await MongoClient.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("Connected to MongoDB");
-
     const database = client.db("Practicum_Project");
-    const collection = database.collection("Meetings");
-    const dateTime = new Date(`${date}T${time}`);
-
-    // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
-    const meeting = await collection.findOne({
-      DateTime: dateTime,
-      Partner: partner,
-    });
-
-    if (meeting) {
-      return true; // הלקוח קיים
-    } else {
-      return false; // הלקוח לא קיים
-    }
+    const collection = database.collection("Deals");
+    const deals = await collection.find().toArray();
+    console.log("deals:", deals);
+    return deals;
   } catch (error) {
-    console.error("Error checking meeting:", error);
-    throw new Error("Failed to check meeting");
-  } finally {
-    if (client) {
-      await client.close();
-      console.log("Connection to MongoDB closed");
-    }
+    console.error("Error fetching deals:", error);
+    throw new Error("Failed to fetch Deals");
   }
 };
 
-//get All Customers
-const getAllCustomers = async () => {
-  try {
-    const database = client.db("Practicum_Project");
-    const collection = database.collection("Customers");
-    const Customers = await collection.find().toArray();
-    console.log("Customers:", Customers);
-    return Customers;
-  } catch (error) {
-    console.error("Error fetching Customers:", error);
-    throw new Error("Failed to fetch Customers");
-  }
-};
-
-//getMeetingsbyCustomer(Username)
+////    שליפת התקנות לפי שם משתמש
 async function getMeetingsByUsername(username) {
   const client = new MongoClient(uri, {
     useNewUrlParser: true,
@@ -844,68 +935,9 @@ async function getMeetingsByUsername(username) {
   }
 }
 
-const getAllDeals = async () => {
-  try {
-    const database = client.db("Practicum_Project");
-    const collection = database.collection("Deals");
-    const deals = await collection.find().toArray();
-    console.log("deals:", deals);
-    return deals;
-  } catch (error) {
-    console.error("Error fetching deals:", error);
-    throw new Error("Failed to fetch Deals");
-  }
-};
 
-const getCustomerByID = async (customerID) => {
-  let client;
 
-  try {
-    client = await MongoClient.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("Connected to MongoDB");
-
-    const database = client.db("Practicum_Project");
-    const collection = database.collection("Customers");
-
-    // בדיקה אם הלקוח קיים במסד הנתונים על ידי ID
-    const customer = await collection.findOne({ CustomerID: customerID });
-
-    return customer; // Return the customer object (which may be null if not found)
-  } catch (error) {
-    console.error("Error fetching customer:", error);
-    throw new Error("Failed to fetch customer");
-  } finally {
-    if (client) {
-      await client.close();
-      console.log("Connection to MongoDB closed");
-    }
-  }
-};
-
-async function getAvailableProducts() {
-  const client = new MongoClient(uri);
-
-  try {
-    console.log("Connecting to the database...");
-    await client.connect();
-    console.log("Connected to the database.");
-    const database = client.db("Practicum_Project");
-    const collection = database.collection("Products");
-    const projection = { _id: 0 };
-    const filter = { ProductStatus: "Available" };
-    const products = await collection.find(filter, { projection }).toArray();
-    console.log(products);
-    return products;
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch available products.");
-  } finally {
-    await client.close();
-  }
-}
+////////////////////////////////////////////////////////////////////////
 
 module.exports = {
   run,
