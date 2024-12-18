@@ -400,6 +400,33 @@ app.get("/installations", async (req, res) => {
   }
 });
 
+app.put("/installations/:id", async (req, res) => {
+  const { id } = req.params;
+  const updatedData = req.body;
+
+  try {
+      const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      await client.connect();
+
+      const database = client.db("Practicum_Project");
+      const installationsCollection = database.collection("InstallationMeetings");
+
+      const result = await installationsCollection.updateOne(
+          { _id: new ObjectId(id) },
+          { $set: updatedData }
+      );
+
+      if (result.matchedCount === 0) {
+          return res.status(404).json({ error: "Installation not found." });
+      }
+
+      res.status(200).json({ message: "Installation updated successfully." });
+  } catch (error) {
+      console.error("Error updating installation:", error.message);
+      res.status(500).json({ error: "Failed to update installation." });
+  }
+});
+
 
 ////    הוספת התקנה חדשה
 app.post("/addMeeting", async (req, res) => {
