@@ -113,21 +113,32 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                        <h3>Add New Meeting</h3>
+                        <h3>Add New Installation</h3>
                     </div>
                 </div>
             </div>
 			
 			<div class="container">
-                    <form id="meetingForm" action="/addMeeting" method="POST">
+                    <form id="installationForm" action="/addMeeting" method="POST">
+						<!-- מספר לקוח -->
 						<div class="form-group">
 							<label for="customerID">Customer ID:</label>
 							<input type="text" class="form-control" id="customerID" name="customerID" required>
 						</div>
+
+						<!-- מספר מתקין -->
+						<div class="form-group">
+							<label for="installerID">Installer ID:</label>
+							<input type="text" class="form-control" id="installerID" name="installerID" required>
+						</div>
+
+						<!-- תאריך התקנה -->
 						<div class="form-group">
 							<label for="date">Date:</label>
 							<input type="date" class="form-control" id="date" name="date" required>
 						</div>
+
+						<!-- שעת התקנה -->
 						<div class="form-group">
 							<label for="time">Time:</label>
 							<select class="form-control" id="time" name="time" required>
@@ -139,24 +150,26 @@
 								<option value="19:00">19:00</option>
 							</select>
 						</div>
+
+						<!-- מיקום ההתקנה -->
 						<div class="form-group">
 							<label for="location">Location:</label>
 							<input type="text" class="form-control" id="location" name="location" required>
 						</div> 
+
+						<!-- סוג ההתקנה/הפגישה -->
 						<div class="form-group">
 						<label for="meetingType">Meeting Type:</label>
 							<select class="form-control" id="meetingType" name="meetingType" required>
 								<option value="">Select Meeting Type</option>
-								<option value="Introduction Meeting">Introduction Meeting</option>
-								<option value="Asset Search Meeting">Asset Search Meeting</option>
-								<option value="Asset Visit Meeting">Asset Visit Meeting</option>
-								<option value="Negotiation Meeting">Negotiation Meeting</option>
-								<option value="Contract Signing Meeting">Contract Signing Meeting</option>
+								<option value="Taking measurements">Taking measurements</option>
+								<option value="Installing a new product">Installing a new product</option>
+								<option value="Repairing an existing product">Repairing an existing product</option>
+								<option value="Laundries">Laundries</option>
 							</select>
 						</div>
-                        <input type="hidden" id="partner" name="partner" value="">
 						
-						
+						<!-- כפתור הוספת ההתקנה -->
 						<button type="submit" class="btn btn-primary" id="sub">Add Meeting</button><br></br>
 						<div id="successMessage" style="display: none;" class="alert alert-success" role="alert">
 							Meeting added successfully!
@@ -227,107 +240,50 @@
 	</div>
 	</div>
 
-    <script>
- 
- document.addEventListener("DOMContentLoaded", function () {
-    const username = sessionStorage.getItem('username');
-    const partnerField = document.getElementById('partner');
-    if (username) {
-        partnerField.value = username;
-    } else {
-        console.error('Username not found in session storage');
-    }
-
-    fetch('/Assets')
-    .then(response => response.json())
-    .then(data => {
-        const assetSelect = document.getElementById('assetSelect');
-        data.forEach(asset => {
-            const option = document.createElement('option');
-            option.value = 'Street: '+asset.AssetStreet +' , Street Number: ' +asset.AssetStreetNumber +', Price: ' + asset.AssetPrice + ', Type: ' + asset.AssetType;
-            option.textContent = option.value;
-            assetSelect.appendChild(option);
-        });
-    })
-    .catch(error => console.error('Error fetching assets:', error));
-
-    var form = document.getElementById("meetingForm");
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        var partnerField = document.getElementById("partner");
-        var partner = partnerField.value;
-
-        var customerID = document.getElementById("customerID").value;
-
-        fetch(`/checkCustomerExists?customerID=${customerID}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.exists) {
-                    sendMeetingData(partner);
-                } else {
-                    alert("The user does not exist in the system. Please go to the add customer page to fill in details and then schedule a meeting again.");
-                }
-            })
-            .catch(error => console.error('Error checking customer:', error));
-    });
-
-    function sendMeetingData(partner) {
-        var form = document.getElementById("meetingForm");
-        var assetSelect = form.querySelector("#assetSelect");
-        var selectedAssets = [];
-        var meetingType = form.querySelector("#meetingType").value;
-
-        for (var i = 0; i < assetSelect.options.length; i++) {
-            if (assetSelect.options[i].selected) {
-                selectedAssets.push({
-                    AssetID: assetSelect.options[i].value,
-                    AssetStreet: assetSelect.options[i].dataset.street,
-                    AssetStreetNumber: assetSelect.options[i].dataset.streetNumber,
-                    AssetPrice: assetSelect.options[i].dataset.price,
-                    AssetType: assetSelect.options[i].dataset.type
-                });
-            }
-        }
-
-        var formData = new FormData(form);
-        var data = {};
-        formData.forEach(function (value, key) {
-            data[key] = value;
-        });
-
-        data["partner"] = partner;
-        data["selectedAssets"] = selectedAssets;
-        data["meetingType"] = meetingType;
-
-        fetch("/addMeeting", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(function (response) {
-                if (response.ok) {
-                    document.getElementById("successMessage").style.display = "block";
-                    console.log("Meeting added successfully");
-                    setTimeout(function () {
-                        location.reload();
-                    }, 3000);
-                } else {
-                    console.error("Failed to add meeting");
-                }
-            })
-            .catch(function (error) {
-                console.error("Error:", error);
-            });
-    }
-});
-
-
-
-
-    </script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("installationForm").addEventListener("submit", function (event) {
+				event.preventDefault();
+		
+				// Ensure Date Format YYYY-MM-DD
+				const dateInput = document.getElementById("date").value;
+				const dateRegex = /^\d{4}-\d{2}-\d{2}$/; // Regular expression for YYYY-MM-DD
+		
+				if (!dateRegex.test(dateInput)) {
+					alert("Please enter the date in YYYY-MM-DD format.");
+					return;
+				}
+		
+				// Collect form data
+				const formData = new FormData(this);
+				const data = {};
+				formData.forEach((value, key) => {
+					data[key] = value;
+				});
+		
+				// Debugging: Log the data being sent
+				console.log("Form Data:", data);
+		
+				// Send to backend
+				fetch("/addInstallationMeeting", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(data),
+				})
+				.then(response => response.json())
+				.then(result => {
+					if (result.error) {
+						alert("Error: " + result.error);
+					} else {
+						alert("Installation added successfully!");
+						location.reload();
+					}
+				})
+				.catch(error => console.error("Error:", error));
+			});
+		});
+		</script>
+		
 
 
 

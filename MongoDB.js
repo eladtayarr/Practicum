@@ -491,6 +491,41 @@ const updateProduct = async (
 ////////////////////////////////////////////////////////////////////////
 /////////////////////         מתקינים      /////////////////////////////
 
+// Add Installation Meeting
+const addInstallationMeeting = async (customerID, installerID, date, time, location, meetingType) => {
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+  try {
+      await client.connect();
+      const database = client.db("Practicum_Project");
+      const installationsCollection = database.collection("InstallationMeetings");
+
+      // Validate Date
+      const parsedDate = new Date(date);
+      if (isNaN(parsedDate)) {
+          throw new Error("Invalid date format. Ensure the format is YYYY-MM-DD.");
+      }
+
+      // Insert the installation meeting
+      const result = await installationsCollection.insertOne({
+          CustomerID: customerID,
+          InstallerID: installerID,
+          Date: parsedDate.toISOString().split("T")[0], // Store date in ISO format
+          Time: time,
+          Location: location,
+          MeetingType: meetingType,
+          CreatedAt: new Date(),
+      });
+
+      console.log("Installation meeting added successfully:", result.insertedId);
+      return result.insertedId;
+  } catch (error) {
+      console.error("Error adding installation meeting:", error.message);
+      throw new Error(error.message);
+  } finally {
+      await client.close();
+  }
+};
 
 ////    הוספת התקנה
 const addMeeting = async (
@@ -514,8 +549,9 @@ const addMeeting = async (
 
     // Access the MongoDB database
     const database = client.db("Practicum_Project");
-    const meetingsCollection = database.collection("Meetings");
+    const meetingsCollection = database.collection("InstallationMeetings");
     const customersCollection = database.collection("Customers");
+    const installersCollection = database.collection("Installers");
 
     // Check if the provided date has already passed
     const meetingDate = new Date(date);
@@ -525,12 +561,12 @@ const addMeeting = async (
     }
 
     // Check if the CustomerID exists in the Customers collection
-    const customer = await customersCollection.findOne({
-      CustomerID: customerID,
-    });
-    if (!customer) {
-      throw new Error("You are not yet a customer. Please sign up as one.");
-    }
+    // const customer = await customersCollection.findOne({
+    // CustomerID: customerID,
+    // });
+    // if (!customer) {
+    //  throw new Error("You are not yet a customer. Please sign up as one.");
+    // }
 
     // Add meeting document to Meetings collection with appropriate details
     const meetingData = {
@@ -966,4 +1002,5 @@ module.exports = {
   getAllDeals,
   getCustomerByID,
   getAvailableProducts,
+  addInstallationMeeting,
 };

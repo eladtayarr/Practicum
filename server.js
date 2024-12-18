@@ -1,4 +1,6 @@
 const express = require("express");
+const { MongoClient, ObjectId } = require("mongodb");
+const uri = "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
 const app = express();
 const port = 4000;
 const {
@@ -26,7 +28,8 @@ const {
   getMeetingsByUsername,
   getAllDeals,
   getCustomerByID,
-  getAvailableAssets
+  getAvailableAssets,
+  addInstallationMeeting,
 } = require("./MongoDB");
 
 app.use(express.static("public"));
@@ -376,6 +379,28 @@ app.get("/deals", async (req, res) => {
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        מתקינים       ////////////////////////////
 
+app.get("/installations", async (req, res) => {
+  let client; // Declare client outside the try block
+  try {
+      client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      await client.connect();
+
+      const database = client.db("Practicum_Project");
+      const installationsCollection = database.collection("InstallationMeetings");
+
+      // Fetch all installations
+      const installations = await installationsCollection.find({}).toArray();
+      console.log("Installations fetched successfully:", installations);
+      res.status(200).json(installations); // Send data as JSON
+  } catch (error) {
+      console.error("Error fetching installations:", error.message);
+      res.status(500).json({ error: "Failed to fetch installations." });
+  } finally {
+      if (client) await client.close(); // Safely close the client
+  }
+});
+
+
 ////    הוספת התקנה חדשה
 app.post("/addMeeting", async (req, res) => {
   const {
@@ -443,6 +468,56 @@ app.get("/checkMeetingExists", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+app.post("/addInstallationMeeting", async (req, res) => {
+  console.log("Request Body:", req.body); // Log incoming data for debugging
+
+  const { customerID, installerID, date, time, location, meetingType } = req.body;
+
+  try {
+      const installationID = await addInstallationMeeting(
+          customerID,
+          installerID,
+          date,
+          time,
+          location,
+          meetingType
+      );
+      res.status(201).json({ message: "Installation added successfully", installationID });
+  } catch (error) {
+      console.error("Error:", error.message);
+      res.status(400).json({ error: error.message });
+  }
+});
+
+////    מחיקת התקנות שבוצעו
+app.delete("/installations/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      await client.connect();
+
+      const database = client.db("Practicum_Project");
+      const installationsCollection = database.collection("InstallationMeetings");
+
+      const result = await installationsCollection.deleteOne({ _id: new ObjectId(id) });
+      if (result.deletedCount === 0) {
+          return res.status(404).json({ error: "Installation not found." });
+      }
+
+      res.status(200).json({ message: "Installation deleted successfully." });
+  } catch (error) {
+      console.error("Error deleting installation:", error.message);
+      res.status(500).json({ error: "Failed to delete installation." });
+  }
+});
+
+
+
+
+
+
 
 
 ////////////////////////////////////////////////////////////////////////
