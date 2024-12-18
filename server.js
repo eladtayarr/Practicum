@@ -365,6 +365,29 @@ app.get("/Products", async (req, res) => {
   }
 });
 
+app.put("/Products/:id", async (req, res) => {
+  try {
+    const { ProductID, ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage } = req.body;
+    const updatedCount = await updateProduct(
+      req.params.id,
+      ProductID,
+      ProductType,
+      ProductPrice,
+      ProductionDate,
+      ProductDescription,
+      ProductImage
+    );
+
+    if (updatedCount > 0) {
+      res.status(200).send({ message: "Product updated successfully!" });
+    } else {
+      res.status(404).send({ message: "Product not found or no updates were made." });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
 ////    מבצעים
 app.get("/deals", async (req, res) => {
   try {

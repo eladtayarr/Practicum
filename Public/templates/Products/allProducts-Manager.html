@@ -189,20 +189,6 @@
                             <li><a href="#">Contact</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
-                        <h3 class="section-title">Newsletter</h3>
-                        <p>Subscribe for our newsletter</p>
-                        <form class="form-inline" id="fh5co-header-subscribe">
-                            <div class="row">
-                                <div class="col-md-12 col-md-offset-0">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="email" placeholder="Enter your email">
-                                        <button type="submit" class="btn btn-default"><i class="icon-paper-plane"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
@@ -249,7 +235,8 @@
                 productDiv.innerHTML = `
                     <div class="property-details">
                         <h3 class="${product.ProductStatus === 'Available' ? '' : 'Not-Available'}">
-                            ${product.ProductType || "Unknown Type"}
+                            ${product.ProductID || "Unknown Type"} &nbsp;(${product.ProductType || "Unknown Type"})
+
                         </h3>
                         <img src="${product.ProductImage || 'default.jpg'}" alt="${product.ProductType}" class="img-responsive">
                         <p>${product.ProductDescription || "No description available"}</p>

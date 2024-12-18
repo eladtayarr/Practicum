@@ -431,60 +431,56 @@ const updateProduct = async (
   ProductID,
   ProductType,
   ProductPrice,
-  productionDate,
-  productDescription,
+  ProductionDate,
+  ProductDescription,
   ProductImage
 ) => {
-  let client; // Define the client variable
+  let client;
 
   try {
-    const capitalizedProductType =
-      ProductType.charAt(0).toUpperCase() + ProductType.slice(1);
-    client = await MongoClient.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    client = await MongoClient.connect(uri);
+
     console.log("Connected to MongoDB");
+
     const database = client.db("Practicum_Project");
     const collection = database.collection("Products");
-    const existingProduct = await collection.findOne({
-      ProductID: parseInt(ProductID),
-    });
-    if (!existingProduct) {
-      console.log("Product with ProductID", ProductID, "not found.");
-      return 0; // Return 0 to indicate that no documents were modified
-    }
 
+    // Query based on ProductID as an integer
+    const query = { ProductID: parseInt(ProductID) };
+
+    // Build the update query
     const updateQuery = {};
-    if (capitalizedProductType) updateQuery.ProductType = capitalizedProductType;
+    if (ProductType)
+      updateQuery.ProductType =
+        ProductType.charAt(0).toUpperCase() +
+        ProductType.slice(1).toLowerCase();
     if (ProductPrice) updateQuery.ProductPrice = parseInt(ProductPrice);
+    if (ProductionDate) updateQuery.ProductionDate = ProductionDate;
+    if (ProductDescription) updateQuery.ProductDescription = ProductDescription;
     if (ProductImage) updateQuery.ProductImage = ProductImage;
-    if (productionDate) updateQuery.productionDate = productionDate;
-    if (productDescription) updateQuery.productDescription = productDescription;
-    
-    
-    if (Object.keys(updateQuery).length > 0) {
-      const result = await collection.updateOne(
-        { ProductID: parseInt(ProductID) },
-        { $set: updateQuery }
-      );
-      console.log("Result of updateOne:", result);
+
+    console.log("Update Query:", updateQuery);
+
+    // Perform the update operation
+    const result = await collection.updateOne(query, { $set: updateQuery });
+
+    console.log("Update Result:", result);
+    if (result.modifiedCount > 0) {
       console.log("Product updated successfully");
-      return result.modifiedCount; // Return the number of modified documents
+      return result.modifiedCount;
     } else {
-      console.log("No fields to update");
-      return 0; // Return 0 to indicate that no documents were modified
+      console.log("No matching product found or no changes made.");
+      return 0;
     }
   } catch (error) {
-    console.error("Error updating product:", error);
-    throw new Error("Failed to update product");
+    console.error("Error updating product:", error.message);
+    throw new Error("Failed to update product: " + error.message);
   } finally {
-    if (client) {
-      await client.close();
-      console.log("Connection to MongoDB closed");
-    }
+    if (client) await client.close();
+    console.log("Connection to MongoDB closed");
   }
 };
+
 
 
 
