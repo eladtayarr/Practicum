@@ -22,6 +22,7 @@
 <script src="../../js/modernizr-2.6.2.min.js"></script>
 
 <style>
+    
     body {
         font-family: 'Open Sans', sans-serif;
         color: #333;
@@ -165,6 +166,7 @@
                 <tbody>
                 </tbody>
             </table>
+
             <div id="updateFormProducts" style="display: none;">
                 <form>
                     <label for="updateProductID">Product ID:</label>
@@ -177,11 +179,10 @@
                         <option value="frame">Frame</option>
                         <option value="accessories">Accessories</option>
                         <option value="others">Others</option>
-
                     </select>
             
                     <label for="updateProductPrice">Product Price:</label>
-                    <input id="updateProductPrice" type="number" />
+                    <input id="updateProductPrice" type="text" />
             
                     <label for="updateProductionDate">Production Date:</label>
                     <input id="updateProductionDate" type="date" />
@@ -276,6 +277,8 @@
                     noDataRow.innerHTML = `<td colspan="6">No Products available.</td>`;
                     return;
                 }
+
+            
     
                 // Insert rows into the table
                 data.forEach(Products => {
@@ -287,10 +290,8 @@
                         <td>${Products.ProductionDate || "N/A"}</td>
                         <td>${Products.ProductDescription || "N/A"}</td>
                         <td>${Products.ProductStatus || "N/A"}</td>
-                        <td><button class="btn1 btn1-primary" 
-                            onclick="updateFormProducts('${Products.ProductID}', '${Products.ProductType}', '${Products.ProductPrice}', '${Products.ProductionDate}', '${Products.ProductDescription}', '${Products.ProductStatus}')">
-                            Update Product</button></td>
-                    `;
+                        <td><button class="btn1 btn1-primary" onclick="updateFormProducts('${Products.ProductID}', '${Products.ProductType}', '${Products.ProductPrice}', '${Products.ProductionDate}', '${Products.ProductDescription}', '${Products.ProductStatus}')">Update Product</button></td>
+                        `;
 
                 });
             })
@@ -318,36 +319,45 @@
     function updateProducts() {
         // Get updated values from the form
         const updatedData = {
-            ProductID: document.getElementById("updateProductID").value,
+            ProductID: parseInt(document.getElementById("updateProductID").value), // Parse as integer
             ProductType: document.getElementById("updateProductType").value,
-            ProductPrice: document.getElementById("updateProductPrice").value,
+            ProductPrice: parseInt(document.getElementById("updateProductPrice").value), // Ensure it's an integer
             ProductionDate: document.getElementById("updateProductionDate").value,
             ProductDescription: document.getElementById("updateProductDescription").value,
             ProductStatus: document.getElementById("updateProductStatus").value
         };
-
+    
         // Validate input before sending to the server
         if (!updatedData.ProductID || !updatedData.ProductType || !updatedData.ProductPrice) {
             alert("Please fill in all required fields!");
             return;
         }
-        
+    
         // Send PUT request to update the product
+        console.log("Updating product with ID:", currentProductId);
+        console.log("Payload being sent:", updatedData);
+
         fetch(`/Products/${currentProductId}`, {                    
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedData)
         })
         .then(response => {
-            if (!response.ok) throw new Error("Failed to update product");
+            console.log("Response status:", response.status);
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text || "Failed to update product"); });
+            }
+            console.log("Product updated successfully!");
             alert("Product updated successfully!");
             location.reload(); // Reload the page to fetch updated data
         })
         .catch(error => {
-            console.error("Error updating product:", error);
+            console.error("Error updating product:", error.message);
             alert("Failed to update product. Please try again later.");
         });
+
     }
+    
 
 
     function closeUpdateForm() {

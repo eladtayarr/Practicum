@@ -439,48 +439,41 @@ const updateProduct = async (
 
   try {
     client = await MongoClient.connect(uri);
-
     console.log("Connected to MongoDB");
 
     const database = client.db("Practicum_Project");
     const collection = database.collection("Products");
 
-    // Query based on ProductID as an integer
     const query = { ProductID: parseInt(ProductID) };
+    console.log("Query to find product:", query);
 
-    // Build the update query
     const updateQuery = {};
-    if (ProductType)
-      updateQuery.ProductType =
-        ProductType.charAt(0).toUpperCase() +
-        ProductType.slice(1).toLowerCase();
+    if (ProductType) updateQuery.ProductType = ProductType;
     if (ProductPrice) updateQuery.ProductPrice = parseInt(ProductPrice);
     if (ProductionDate) updateQuery.ProductionDate = ProductionDate;
     if (ProductDescription) updateQuery.ProductDescription = ProductDescription;
     if (ProductImage) updateQuery.ProductImage = ProductImage;
+    console.log("Update fields:", updateQuery);
 
-    console.log("Update Query:", updateQuery);
+    if (Object.keys(updateQuery).length > 0) {
+      const result = await collection.updateOne(query, { $set: updateQuery });
+      console.log("Update operation result:", result);
 
-    // Perform the update operation
-    const result = await collection.updateOne(query, { $set: updateQuery });
-
-    console.log("Update Result:", result);
-    if (result.modifiedCount > 0) {
-      console.log("Product updated successfully");
       return result.modifiedCount;
     } else {
-      console.log("No matching product found or no changes made.");
+      console.log("No fields to update.");
       return 0;
     }
   } catch (error) {
-    console.error("Error updating product:", error.message);
-    throw new Error("Failed to update product: " + error.message);
+    console.error("Error in updateProduct:", error.message);
+    throw new Error(error.message);
   } finally {
-    if (client) await client.close();
-    console.log("Connection to MongoDB closed");
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed.");
+    }
   }
 };
-
 
 
 

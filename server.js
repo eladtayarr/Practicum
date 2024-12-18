@@ -16,6 +16,7 @@ const {
   deleteUserById,
   addUser,
   addPartner,
+  updateProduct,
   getAllPartners,
   addCustomer,
   filterAssetsForManager,
@@ -366,6 +367,10 @@ app.get("/Products", async (req, res) => {
 });
 
 app.put("/Products/:id", async (req, res) => {
+  console.log("Received PUT request to update product");
+  console.log("Params ID:", req.params.id);
+  console.log("Request body:", req.body);
+
   try {
     const { ProductID, ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage } = req.body;
     const updatedCount = await updateProduct(
@@ -378,15 +383,20 @@ app.put("/Products/:id", async (req, res) => {
       ProductImage
     );
 
+    console.log("Updated count:", updatedCount);
+
     if (updatedCount > 0) {
       res.status(200).send({ message: "Product updated successfully!" });
     } else {
       res.status(404).send({ message: "Product not found or no updates were made." });
     }
   } catch (error) {
+    console.error("Error in PUT /Products/:id:", error.message);
     res.status(500).send({ error: error.message });
   }
 });
+
+
 
 ////    מבצעים
 app.get("/deals", async (req, res) => {
