@@ -1471,3 +1471,4 @@ rating-stars input[type="radio"] {
 .rating-stars input:checked ~ label:before {
   color: gold;
 }
+

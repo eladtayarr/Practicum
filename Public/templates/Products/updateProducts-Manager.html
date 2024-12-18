@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html class="no-js">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Trisi Sinai || Practicum</title>
-<link rel="shortcut icon" href="../../src/images/favicon.ico" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Trisi Sinai || Practicum</title>
+    <link rel="shortcut icon" href="../../src/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="shortcut icon" href="../../src/images/favicon.ico">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="../../src/css/animate.css">
-<link rel="stylesheet" href="../../src/css/icomoon.css">
-<link rel="stylesheet" href="../../src/css/bootstrap.css">
-<link rel="stylesheet" href="../../src/css/superfish.css">
-<link rel="stylesheet" href="../../src/css/flexslider.css">
-<link rel="stylesheet" href="../../src/css/magnific-popup.css">
-<link rel="stylesheet" href="../../src/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="../../src/css/cs-select.css">
-<link rel="stylesheet" href="../../src/css/cs-skin-border.css">
-<link rel="stylesheet" href="../../src/css/style.css">
-<script src="../../js/modernizr-2.6.2.min.js"></script>
+    <link rel="shortcut icon" href="../../src/images/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="../../src/css/animate.css" />
+    <link rel="stylesheet" href="../../src/css/icomoon.css" />
+    <link rel="stylesheet" href="../../src/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../src/css/superfish.css" />
+    <link rel="stylesheet" href="../../src/css/flexslider.css" />
+    <link rel="stylesheet" href="../../src/css/magnific-popup.css" />
+    <link rel="stylesheet" href="../../src/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../src/css/cs-select.css" />
+    <link rel="stylesheet" href="../../src/css/cs-skin-border.css" />
+    <link rel="stylesheet" href="../../src/css/style.css" />
+    <script src="../../js/modernizr-2.6.2.min.js"></script>
 
-<style>
-    
-    body {
-        font-family: 'Open Sans', sans-serif;
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
         color: #333;
         background-color: #f8f8f8;
-    }
-    .form-group {
+      }
+      .form-group {
         max-width: 500px;
         margin: 0 auto;
         padding: 20px;
-    }
-    #sub {
+      }
+      #sub {
         display: block;
         margin: 0 auto;
         padding: 15px;
-        width: fit-content; 
-    }
-    .property-button {
+        width: fit-content;
+      }
+      .property-button {
         margin: 0 10px;
         padding: 10px 20px;
         background-color: #d1869b;
@@ -48,260 +51,397 @@
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s;
-    }
-    .property-button:hover {
+      }
+      .property-button:hover {
         background-color: #d80f48;
-    }
-    #footer #fh5co-header-subscribe button {
-    position: absolute;
-    top: 20px;
-    right: -20px;
-    border-top-left-radius: 0px !important;
-    border-bottom-left-radius: 0px !important;
-    background: #de6277;
-    border: none;
-    }
-</style>
+      }
+      #footer #fh5co-header-subscribe button {
+        position: absolute;
+        top: 20px;
+        right: -20px;
+        border-top-left-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+        background: #de6277;
+        border: none;
+      }
 
-</head>
-<body>
-<div id="fh5co-wrapper">
-<div id="fh5co-page">
-
-    <header id="fh5co-header-section" class="sticky-banner">
-        <div class="container">
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+      th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+      }
+      td {
+        background-color: #fff;
+      }
+      .Products-table button {
+        background-color: #d1869b;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      .Products-table button:hover {
+        background-color: #d80f48;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="fh5co-wrapper">
+      <div id="fh5co-page">
+        <header id="fh5co-header-section" class="sticky-banner">
+          <div class="container">
             <div class="nav-header">
-                <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-                <h1 id="fh5co-logo"><a href="../../templates/Manager/HomeManager.html"><i class="icon-home"></i> Trisi Sinai <span> Ltd.</span></a></h1>
-                <nav id="fh5co-menu-wrap" role="navigation">
-                    <ul class="sf-menu" id="fh5co-primary-menu">
-                        <li class="active"><a href="../../templates/Manager/HomeManager.html">Home</a></li>
-                        <li>
-                            <a>Products</a>
-                            <ul class="fh5co-sub-menu">
-                                <li><a href="../../templates/Products/allProducts-Manager.html">View All Products</a></li>
-                                <li><a href="../../templates/Products/addNewProduct-Manager.html">Add New Product</a></li>
-                                <li><a href="../../templates/Products/updateProducts-Manager.html">Update Product</a></li>
-                            </ul>
-                        </li>
-                        <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
-                        <li>
-                            <a>Deals</a>
-                            <ul class="fh5co-sub-menu">
-                                <li><a href="/../../templates/Manager/DealsV-Manager.html">View All Deals</a></li>
-                                <li><a href="../../templates/Manager/addD-Manager.html">Add New Deal</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a>Manage</a>
-                            <ul class="fh5co-sub-menu">
-                                <li><a href="../../templates/Manager/addNewCustomer-Manager.html">Add New Customer</a></li>
-                                <li><a href="../../templates/Manager/Add_ViewUsers-Manager.html">Add New Users</a></li>
-                                <li><a href="../../templates/Installer/Add-Products.html">Add New Installer</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a>Products</a>
-                              <ul class="fh5co-sub-menu">
-                                  <li><a href="../../templates/Installer/View-Products.html">View All Products</a></li>
-                                  <li><a href="../../templates/Installer/Add-Products.html">Add New Products</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                            <a>Reports</a>
-                            <ul class="fh5co-sub-menu">
-                                <li><a href="../../templates/Reports/Reports-Customer.html">Customers Reports</a></li>
-                                <li><a href="../../templates/Reports/Reports-Deal.html">Deals Reports</a></li>
-                                <li><a href="../../templates/Reports/Reports-Products.html">Products Reports</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="../../templates/General/Dashbord.html">Manager Dashbord</a></li>
+              <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"
+                ><i></i
+              ></a>
+              <h1 id="fh5co-logo">
+                <a href="../../templates/Manager/HomeManager.html"
+                  ><i class="icon-home"></i> Trisi Sinai <span> Ltd.</span></a
+                >
+              </h1>
+              <nav id="fh5co-menu-wrap" role="navigation">
+                <ul class="sf-menu" id="fh5co-primary-menu">
+                  <li class="active">
+                    <a href="../../templates/Manager/HomeManager.html">Home</a>
+                  </li>
+                  <li>
+                    <a>Products</a>
+                    <ul class="fh5co-sub-menu">
+                      <li>
+                        <a
+                          href="../../templates/Products/allProducts-Manager.html"
+                          >View All Products</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="../../templates/Products/addNewProduct-Manager.html"
+                          >Add New Product</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="../../templates/Products/updateProducts-Manager.html"
+                          >Update Product</a
+                        >
+                      </li>
                     </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+                  </li>
+                  <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
+                  <li>
+                    <a>Deals</a>
+                    <ul class="fh5co-sub-menu">
+                      <li>
+                        <a href="/../../templates/Manager/DealsV-Manager.html"
+                          >View All Deals</a
+                        >
+                      </li>
+                      <li>
+                        <a href="../../templates/Manager/addD-Manager.html"
+                          >Add New Deal</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
 
-    <aside id="fh5co-hero" class="js-fullheight">
-        <div class="flexslider js-fullheight">
+                  <li>
+                    <a>Manage</a>
+                    <ul class="fh5co-sub-menu">
+                      <li>
+                        <a
+                          href="../../templates/Manager/addNewCustomer-Manager.html"
+                          >Add New Customer</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="../../templates/Manager/Add_ViewUsers-Manager.html"
+                          >Add New Users</a
+                        >
+                      </li>
+                      <li>
+                        <a href="../../templates/Installer/Add-Products.html"
+                          >Add New Installer</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>Products</a>
+                    <ul class="fh5co-sub-menu">
+                      <li>
+                        <a href="../../templates/Installer/View-Products.html"
+                          >View All Products</a
+                        >
+                      </li>
+                      <li>
+                        <a href="../../templates/Installer/Add-Products.html"
+                          >Add New Products</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>Reports</a>
+                    <ul class="fh5co-sub-menu">
+                      <li>
+                        <a href="../../templates/Reports/Reports-Customer.html"
+                          >Customers Reports</a
+                        >
+                      </li>
+                      <li>
+                        <a href="../../templates/Reports/Reports-Deal.html"
+                          >Deals Reports</a
+                        >
+                      </li>
+                      <li>
+                        <a href="../../templates/Reports/Reports-Products.html"
+                          >Products Reports</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="../../templates/Dashbord/Dashbord-Manager.html"
+                      >Manager Dashbord</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </header>
+
+        <aside id="fh5co-hero" class="js-fullheight">
+          <div class="flexslider js-fullheight">
             <ul class="slides">
-               <li style="background-image: url(images/cov.png);">
-                   <div class="overlay"></div>
-                   <div class="container-fluid">
-                       <div class="row">
-                           <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
-                               <div class="slider-text-inner">
-                                   <h2 class="heading-title">Update Products Informations</h2>
-                                   <p class="fh5co-lead"><i class="icon-heart3"></i> </p>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </li>
-             </ul>
-         </div>
-    </aside>
-
-        
-    <div id="fh5co-blog-section" class="fh5co-section-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>View Product Details</h3>
+              <li style="background-image: url(images/cov.png)">
+                <div class="overlay"></div>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div
+                      class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text"
+                    >
+                      <div class="slider-text-inner">
+                        <h2 class="heading-title">
+                          Update Products Informations
+                        </h2>
+                        <p class="fh5co-lead"><i class="icon-heart3"></i></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <div id="fh5co-blog-section" class="fh5co-section-gray">
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-md-8 col-md-offset-2 text-center heading-section animate-box"
+              >
+                <h3>View Product Details</h3>
+              </div>
             </div>
-            <table id="productsTable" class="Products-table" border="1" style="width:100%; text-align: center;">
-                <thead>
-                    <tr>
-                        <th>Product ID</th>
-                        <th>Product Type</th>
-                        <th>Product Price</th>
-                        <th>Production Date</th>
-                        <th>Product Discription</th>
-                        <th>Product status</th>
-                        <th>Update Product</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
+            <table
+              id="productsTable"
+              class="Products-table"
+              border="1"
+              style="width: 100%; text-align: center"
+            >
+              <thead>
+                <tr>
+                  <th>Product ID</th>
+                  <th>Product Type</th>
+                  <th>Product Price</th>
+                  <th>Production Date</th>
+                  <th>Product Discription</th>
+                  <th>Product status</th>
+                  <th>Update Product</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
             </table>
 
-            <div id="updateFormProducts" style="display: none;">
-                <form>
-                    <label for="updateProductID">Product ID:</label>
-                    <input id="updateProductID" type="text" readonly />
-            
-                    <label for="updateProductType">Product Type:</label>
-                    <select id="updateProductType" type="text">
-                        <option value="curtain">Curtain</option>
-                        <option value="shutter">Shutter</option>
-                        <option value="frame">Frame</option>
-                        <option value="accessories">Accessories</option>
-                        <option value="others">Others</option>
-                    </select>
-            
-                    <label for="updateProductPrice">Product Price:</label>
-                    <input id="updateProductPrice" type="text" />
-            
-                    <label for="updateProductionDate">Production Date:</label>
-                    <input id="updateProductionDate" type="date" />
-            
-                    <label for="updateProductDescription">Product Description:</label>
-                    <input id="updateProductDescription" type="text" />
-            
-                    <label for="updateProductStatus">Product Status:</label>
-                    <select id="updateProductStatus" type="text">
-                        <option value="Available">Available</option>
-                        <option value="Not-Available">Unavailable</option>
-                    </select>
-            
-                    <button type="button" onclick="updateProducts()">Save Changes</button>
-                    <button type="button" onclick="closeUpdateForm()">Close</button>
-                </form>
+            <div id="updateFormProducts" style="display: none">
+              <form>
+                <label for="updateProductID">Product ID:</label>
+                <input id="updateProductID" type="text" readonly />
+                <br />
+                <label for="updateProductType">Product Type:</label>
+                <select id="updateProductType" type="text" value="Curtain">
+                  <option value="curtain">Curtain</option>
+                  <option value="shutter">Shutter</option>
+                  <option value="frame">Frame</option>
+                  <option value="accessories">Accessories</option>
+                  <option value="others">Others</option>
+                </select>
+                <br /><br />
+                <label for="updateProductPrice">Product Price:</label>
+                <input id="updateProductPrice" type="integer" />
+                <br /><br />
+                <label for="updateProductionDate">Production Date:</label>
+                <input id="updateProductionDate" type="date" />
+                <br /><br />
+                <label for="updateProductDescription"
+                  >Product Description:</label
+                >
+                <input id="updateProductDescription" type="text" />
+                <br /><br />
+                <label for="updateProductStatus">Product Status:</label>
+                <select id="updateProductStatus" type="text">
+                  <option value="Available">Available</option>
+                  <option value="Not-Available">Unavailable</option>
+                </select>
+                <br /><br />
+                <button type="button" onclick="updateProducts()">
+                  Save Changes
+                </button>
+                <button type="button" onclick="closeUpdateForm()">Close</button>
+              </form>
             </div>
-            
-            <div class="calendar" id="meetingList">
+
+            <div class="calendar" id="meetingList"></div>
+          </div>
         </div>
-    </div>
-</div>
 
-
-    <footer>
-        <div id="footer">
+        <footer>
+          <div id="footer">
             <div class="container">
-                <div class="row row-bottom-padded-md">
-                    <div class="col-md-3">
-                        <h3 class="section-title">About Us</h3>
-                        <p>We, Bar Michal and Nofar, information systems management students at the College of Management, own all the exclusive rights to this website <i class="icon-heart3"></i></p>
-                    </div>
-                    
-                    <div class="col-md-3 col-md-push-1">
-                        <h3 class="section-title">Links</h3>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Assets</a></li>
-                            <li><a href="#">Agent</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-md-3">
-                        <h3 class="section-title">Information</h3>
-                        <ul>
-                            <li><a href="#">Terms &amp; Condition</a></li>
-                            <li><a href="#">License</a></li>
-                            <li><a href="#">Privacy &amp; Policy</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <h3 class="section-title">Newsletter</h3>
-                        <p>Subscribe for our newsletter</p>
-                        <form class="form-inline" id="fh5co-header-subscribe">
-                            <div class="row">
-                                <div class="col-md-12 col-md-offset-0">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="email" placeholder="Enter your email">
-                                        <button type="submit" class="btn btn-default"><i class="icon-paper-plane"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+              <div class="row row-bottom-padded-md">
+                <div class="col-md-3">
+                  <h3 class="section-title">About Us</h3>
+                  <p>
+                    We, Bar Michal and Nofar, information systems management
+                    students at the College of Management, own all the exclusive
+                    rights to this website <i class="icon-heart3"></i>
+                  </p>
                 </div>
+
+                <div class="col-md-3 col-md-push-1">
+                  <h3 class="section-title">Links</h3>
+                  <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Assets</a></li>
+                    <li><a href="#">Agent</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                  </ul>
+                </div>
+
+                <div class="col-md-3">
+                  <h3 class="section-title">Information</h3>
+                  <ul>
+                    <li><a href="#">Terms &amp; Condition</a></li>
+                    <li><a href="#">License</a></li>
+                    <li><a href="#">Privacy &amp; Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-3">
+                  <h3 class="section-title">Newsletter</h3>
+                  <p>Subscribe for our newsletter</p>
+                  <form class="form-inline" id="fh5co-header-subscribe">
+                    <div class="row">
+                      <div class="col-md-12 col-md-offset-0">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="email"
+                            placeholder="Enter your email"
+                          />
+                          <button type="submit" class="btn btn-default">
+                            <i class="icon-paper-plane"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-        </div>
-    </footer>
-</div>
-</div>
+          </div>
+        </footer>
+      </div>
+    </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
         fetch("/Products")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Fetched Products:", data); // Debugging line to inspect fetched data
-                const productsTable = document.getElementById("productsTable");
-                const tbody = productsTable.querySelector("tbody");
-                tbody.innerHTML = ""; // Clear the table body before adding new rows
-    
-                if (data.length === 0) {
-                    const noDataRow = tbody.insertRow();
-                    noDataRow.innerHTML = `<td colspan="6">No Products available.</td>`;
-                    return;
-                }
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Fetched Products:", data); // Debugging line to inspect fetched data
+            const productsTable = document.getElementById("productsTable");
+            const tbody = productsTable.querySelector("tbody");
+            tbody.innerHTML = ""; // Clear the table body before adding new rows
 
-            
-    
-                // Insert rows into the table
-                data.forEach(Products => {
-                    const row = tbody.insertRow();
-                    row.innerHTML = `
+            if (data.length === 0) {
+              const noDataRow = tbody.insertRow();
+              noDataRow.innerHTML = `<td colspan="6">No Products available.</td>`;
+              return;
+            }
+
+            // Insert rows into the table
+            data.forEach((Products) => {
+              const row = tbody.insertRow();
+              row.innerHTML = `
                         <td>${Products.ProductID || "N/A"}</td>
                         <td>${Products.ProductType || "N/A"}</td>
                         <td>${Products.ProductPrice || "N/A"}</td>
                         <td>${Products.ProductionDate || "N/A"}</td>
                         <td>${Products.ProductDescription || "N/A"}</td>
                         <td>${Products.ProductStatus || "N/A"}</td>
-                        <td><button class="btn1 btn1-primary" onclick="updateFormProducts('${Products.ProductID}', '${Products.ProductType}', '${Products.ProductPrice}', '${Products.ProductionDate}', '${Products.ProductDescription}', '${Products.ProductStatus}')">Update Product</button></td>
-                        `;
-
-                });
-            })
-            .catch(error => {
-                console.error("Error fetching Products:", error);
-                document.getElementById("errorMessage").textContent = "Error loading Products. Please try again later.";
+                        <td>
+                            <button class="btn1 btn1-primary" 
+                                onclick="updateFormProducts('${
+                                  Products.ProductID
+                                }', '${Products.ProductType}', 
+                                '${Products.ProductPrice}', '${
+                Products.ProductionDate
+              }', 
+                                '${Products.ProductDescription}', '${
+                Products.ProductStatus
+              }')">
+                                Update Product
+                            </button>
+                        </td>
+                    `;
             });
-    });
-    
-    function updateFormProducts(id, ProductType, ProductPrice, ProductionDate, ProductDescription, ProductStatus) {
+          })
+          .catch((error) => {
+            console.error("Error fetching Products:", error);
+            document.getElementById("errorMessage").textContent =
+              "Error loading Products. Please try again later.";
+          });
+      });
+
+      function updateFormProducts(
+        id,
+        ProductType,
+        ProductPrice,
+        ProductionDate,
+        ProductDescription,
+        ProductStatus
+      ) {
         currentProductId = id; // Store the current product ID
 
         // Fill the form with the current values
@@ -309,75 +449,81 @@
         document.getElementById("updateProductType").value = ProductType;
         document.getElementById("updateProductPrice").value = ProductPrice;
         document.getElementById("updateProductionDate").value = ProductionDate;
-        document.getElementById("updateProductDescription").value = ProductDescription;
+        document.getElementById("updateProductDescription").value =
+          ProductDescription;
         document.getElementById("updateProductStatus").value = ProductStatus;
 
         // Show the form
         document.getElementById("updateFormProducts").style.display = "block";
-    }
+      }
 
-    function updateProducts() {
+      function updateProducts() {
         // Get updated values from the form
         const updatedData = {
-            ProductID: parseInt(document.getElementById("updateProductID").value), // Parse as integer
-            ProductType: document.getElementById("updateProductType").value,
-            ProductPrice: parseInt(document.getElementById("updateProductPrice").value), // Ensure it's an integer
-            ProductionDate: document.getElementById("updateProductionDate").value,
-            ProductDescription: document.getElementById("updateProductDescription").value,
-            ProductStatus: document.getElementById("updateProductStatus").value
+          ProductID: parseInt(document.getElementById("updateProductID").value), // Parse as integer
+          ProductType: document.getElementById("updateProductType").value,
+          ProductPrice: parseInt(
+            document.getElementById("updateProductPrice").value
+          ), // Ensure it's an integer
+          ProductionDate: document.getElementById("updateProductionDate").value,
+          ProductDescription: document.getElementById(
+            "updateProductDescription"
+          ).value,
+          ProductStatus: document.getElementById("updateProductStatus").value,
         };
-    
+
         // Validate input before sending to the server
-        if (!updatedData.ProductID || !updatedData.ProductType || !updatedData.ProductPrice) {
-            alert("Please fill in all required fields!");
-            return;
+        if (
+          !updatedData.ProductID ||
+          !updatedData.ProductType ||
+          !updatedData.ProductPrice
+        ) {
+          alert("Please fill in all required fields!");
+          return;
         }
-    
+
         // Send PUT request to update the product
         console.log("Updating product with ID:", currentProductId);
         console.log("Payload being sent:", updatedData);
 
-        fetch(`/Products/${currentProductId}`, {                    
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedData)
+        fetch(`/Products/${currentProductId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedData),
         })
-        .then(response => {
+          .then((response) => {
             console.log("Response status:", response.status);
             if (!response.ok) {
-                return response.text().then(text => { throw new Error(text || "Failed to update product"); });
+              return response.text().then((text) => {
+                throw new Error(text || "Failed to update product");
+              });
             }
             console.log("Product updated successfully!");
             alert("Product updated successfully!");
             location.reload(); // Reload the page to fetch updated data
-        })
-        .catch(error => {
+          })
+          .catch((error) => {
             console.error("Error updating product:", error.message);
             alert("Failed to update product. Please try again later.");
-        });
+          });
+      }
 
-    }
-    
-
-
-    function closeUpdateForm() {
+      function closeUpdateForm() {
         // Hide the form
         document.getElementById("updateFormProducts").style.display = "none";
-    }
-
-    
-</script>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.waypoints.min.js"></script>
-<script src="js/sticky.js"></script>
-<script src="js/hoverIntent.js"></script>
-<script src="js/superfish.js"></script>
-<script src="js/jquery.flexslider-min.js"></script>
-<script src="js/bootstrap-datepicker.min.js"></script>
-<script src="js/classie.js"></script>
-<script src="js/selectFx.js"></script>
-<script src="js/main.js"></script>
-</body>
+      }
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/sticky.js"></script>
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.js"></script>
+    <script src="js/jquery.flexslider-min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/selectFx.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>

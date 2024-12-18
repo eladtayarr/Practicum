@@ -358,8 +358,8 @@ app.post("/updateProperty", async (req, res) => {
 ////    מוצרים
 app.get("/Products", async (req, res) => {
   try {
-      const products = await getAllProducts();
-      res.json(products);
+      const Products = await getAllProducts();
+      res.json(Products);
   } catch (error) {
       console.error("Error:", error);
       res.status(500).json({ error: "Failed to fetch users" });

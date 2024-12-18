@@ -26,6 +26,13 @@
     margin-bottom: 20px;
     }
 
+    .square-image {
+        width: 300px; /* גודל המרובע */
+        height: 300px; /* גודל המרובע */
+        object-fit: cover; /* חיתוך התמונה כך שתתאים למסגרת */
+        border-radius: 0; /* להסיר פינות מעוגלות אם יש */
+    }
+
     .search-container input[type=text] {
         width: 60%;
         padding: 12px;
@@ -127,7 +134,7 @@
                             <li><a href="../../templates/Reports/Reports-Products.html">Products Reports</a></li>
                         </ul>
                     </li>
-                    <li><a href="../../templates/General/Dashbord.html">Manager Dashbord</a></li>
+                    <li><a href="../../templates/Dashbord/Dashbord-Manager.html">Manager Dashbord</a></li>
                 </ul>
             </nav>
         </div>
@@ -238,7 +245,7 @@
                             ${product.ProductID || "Unknown Type"} &nbsp;(${product.ProductType || "Unknown Type"})
 
                         </h3>
-                        <img src="${product.ProductImage || 'default.jpg'}" alt="${product.ProductType}" class="img-responsive">
+                        <img class="square-image" src="${product.ProductImage || 'default.jpg'}" alt="${product.ProductType}" class="img-responsive">
                         <p>${product.ProductDescription || "No description available"}</p>
                         <p>${product.ProductPrice ? `Price: $${product.ProductPrice}` : 'Price not available'}</p>
                         <p>Status: ${product.ProductStatus || "Unknown"}</p>
