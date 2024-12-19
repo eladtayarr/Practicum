@@ -1,8 +1,11 @@
 const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
+
 const uri = "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
+
 const app = express();
 const port = 4000;
+
 const {
   loginUser,
   filterAssets,
@@ -33,9 +36,13 @@ const {
   addInstallationMeeting,
 } = require("./MongoDB");
 
+
 app.use(express.static("public"));
+
 app.use(express.json());
+
 const nodemailer = require("nodemailer");
+
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
@@ -48,8 +55,7 @@ const transporter = nodemailer.createTransport({
 
 ///////////////////          דף הבית           //////////////////////////
 app.get("/", (req, res) => {
-  //res.send("Hello from the root URL!");
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.send("Hello from the root URL!");
 });
 ////////////////////////////////////////////////////////////////////////
 
