@@ -48,7 +48,8 @@ const transporter = nodemailer.createTransport({
 
 ///////////////////          דף הבית           //////////////////////////
 app.get("/", (req, res) => {
-  res.send("Hello from the root URL!");
+  //res.send("Hello from the root URL!");
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 ////////////////////////////////////////////////////////////////////////
 
