@@ -644,6 +644,44 @@ app.get("/Partners", async (req, res) => {
   }
 });
 
+
+const { countCustomers, countProducts, countInstallers} = require("./MongoDB.js");
+
+// נתיב שמחזיר את כמות הלקוחות
+app.get("/dashboard-data/customers", async (req, res) => {
+  try {
+    const customersCount = await countCustomers();
+    res.status(200).json({ customersCount });
+  } catch (error) {
+    console.error("Error fetching customer data:", error);
+    res.status(500).json({ error: "Failed to fetch customer data" });
+  }
+});
+
+// נתיב שמחזיר את כמות המוצרים
+app.get("/dashboard-data/products", async (req, res) => {
+  try {
+    const productsCount = await countProducts();
+    res.status(200).json({ productsCount });
+  } catch (error) {
+    console.error("Error fetching product data:", error);
+    res.status(500).json({ error: "Failed to fetch product data" });
+  }
+});
+
+// נתיב שמחזיר את כמות המתקינים
+app.get("/dashboard-data/installers", async (req, res) => {
+  try {
+    const installersCount = await countInstallers();
+    res.status(200).json({ installersCount });
+  } catch (error) {
+    console.error("Error fetching installers data:", error);
+    res.status(500).json({ error: "Failed to fetch installers data" });
+  }
+});
+
+
+
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצת אתר        //////////////////////////
 

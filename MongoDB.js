@@ -63,6 +63,34 @@ const getAllCustomers = async () => {
   }
 };
 
+const countCustomers = async () => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Customers");
+
+    const count = await collection.countDocuments();
+    console.log("Total customers:", count);
+    return count;
+  } catch (error) {
+    console.error("Error counting customers:", error);
+    throw new Error("Failed to count customers");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
+
+
 ////    שליפת כל חוות הדעת
 const getFeedback = async () => {
   let client; // Define the client variable
@@ -305,6 +333,62 @@ async function getAllProducts() {
     await client.close();
   }
 }
+
+const countProducts = async () => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products"); // שם הקולקציה של המוצרים
+
+    const count = await collection.countDocuments();
+    console.log("Total products:", count);
+    return count;
+  } catch (error) {
+    console.error("Error counting products:", error);
+    throw new Error("Failed to count products");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
+
+////// סופר את כמות המתקינים
+const countInstallers = async () => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Installers"); // שם הקולקציה של המוצרים
+
+    const count = await collection.countDocuments();
+    console.log("Total Installers:", count);
+    return count;
+  } catch (error) {
+    console.error("Error counting Installers:", error);
+    throw new Error("Failed to count Installers");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
+
 
 ////    הוספת מוצר חדש לבסיס נתונים
 async function addNewProduct(ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage) {
@@ -983,4 +1067,7 @@ module.exports = {
   getCustomerByID,
   getAvailableProducts,
   addInstallationMeeting,
+  countCustomers,
+  countProducts,
+  countInstallers,
 };
