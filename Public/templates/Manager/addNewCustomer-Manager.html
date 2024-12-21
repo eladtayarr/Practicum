@@ -424,10 +424,10 @@
                     required
                   >
                     <option value="">Select Customer Type</option>
-                    <option value="Buyer">Buyer</option>
-                    <option value="Seller">Seller</option>
-                    <option value="Renter">Renter</option>
-                    <option value="Renting">Renting</option>
+                    <option value="Health Fund">Health Fund</option>
+                    <option value="Public Hospital">Public Hospital</option>
+                    <option value="Private Hospital">Private Hospital</option>
+                    <option value="Private Client">Private Client</option>
                   </select>
                 </div>
                 <button type="submit" class="btn btn-primary" id="sub">
@@ -617,7 +617,7 @@
                     <p>Name: ${customer.FullName}</p>
                     <p>Phone: ${customer.Phone}</p>
                     <p>Email: ${customer.Email}</p>
-					<p>Type: ${customer.CustomerType}</p>
+					          <p>Type: ${customer.CustomerType}</p>
                     <hr>
                 `;
               customersList.appendChild(customerElement);

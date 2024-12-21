@@ -87,6 +87,7 @@ app.post("/addCustomer", async (req, res) => {
   } = req.body;
 
   try {
+    // קריאה לפונקציה להוספת הלקוח
     const customerId = await addCustomer(
       customerID,
       fullName,
@@ -100,9 +101,11 @@ app.post("/addCustomer", async (req, res) => {
       .status(201)
       .json({ message: "Customer added successfully", customerId });
   } catch (error) {
+    console.error("Error adding customer:", error.message);
     res.status(500).json({ error: error.message });
   }
 });
+
 
 ////    בדיקה האם הלקוח קיים בבסיס הנתונים
 app.get("/checkCustomerExists", async (req, res) => {

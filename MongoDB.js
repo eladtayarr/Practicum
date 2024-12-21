@@ -757,22 +757,12 @@ const addCustomer = async (
 
     const database = client.db("Practicum_Project");
     const collection = database.collection("Customers");
-    const collection2 = database.collection("Users");
 
-    // Check if customerID already exists
     const existingCustomer = await collection.findOne({
       CustomerID: customerID,
     });
     if (existingCustomer) {
       throw new Error("The ID you entered already exists");
-    }
-
-    // Check if UserName already exists
-    const existingUserName = await collection2.findOne({ UserName: UserName });
-    if (!existingUserName) {
-      throw new Error(
-        "Username doesn't exist. Please make a new account for the future customer before making a new customer file."
-      );
     }
 
     const result = await collection.insertOne({
@@ -797,6 +787,7 @@ const addCustomer = async (
     }
   }
 };
+
 
 
 ////////////////////////////////////////////////////////////////////////
