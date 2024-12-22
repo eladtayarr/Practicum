@@ -70,7 +70,7 @@ npm start
 ## Widows - Public folder:
 
 ### Login:
-![alt text](Public/src/images/ReadmeImages/Signin.png "Title")
+![alt text](Public/src/images/ReadmeImages/Signin.png "SignIn Page")
 ### Manager:
 
 ### Installers:
