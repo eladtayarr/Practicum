@@ -67,13 +67,16 @@ npm start
 |                      | `/dashboard-data`     | Displays dashboard data (customers, products, etc.).|
 
 
-### Public folder:
+## Widows - Public folder:
 
+### Login:
+![alt text](src="Public/src/images/ReadmeImages/Signin.png" "Title")
+### Manager:
 
-* Item 1
-* Item 2
-  - Subitem 2.1
-  - Subitem 2.2
+### Installers:
+
+### Customers:
+
 
 ## 
 ## 
