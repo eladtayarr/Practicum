@@ -74,6 +74,7 @@ figure {
 .header-top {
   padding: 10px 0;
   background:  #de6277; }
+  
 .header-top .fh5co-link a {
   margin-left: 10px;
   font-size: 13px;
@@ -256,8 +257,9 @@ figure {
   font-size: 16px;
   border-bottom: none !important;
   font-weight: bold; }
+  
 .sf-menu a:hover, .sf-menu a:focus {
-  color: #de6277 !important; }
+  color: #62de89 !important; }
 
 .sf-menu li.active a:hover, .sf-menu li.active a:focus {
   color: #de6277; }
@@ -329,6 +331,7 @@ figure {
   font-weight: 700;
   float: left;
   padding-left: 40px; }
+
 #fh5co-logo i {
   position: absolute;
   top: 0;
@@ -341,8 +344,10 @@ figure {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   border-radius: 50%; }
+
 #fh5co-logo a {
   color: #de6277; }
+
 #fh5co-logo a:hover, #fh5co-logo a:focus {
   color:  #de6277 important; }
 #fh5co-logo span {
@@ -367,6 +372,7 @@ figure {
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
