@@ -1,620 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <link rel="stylesheet" href="/src/css/animate.css" />
-    <link rel="stylesheet" href="/src/css/icomoon.css" />
-    <link rel="stylesheet" href="/src/css/bootstrap.css" />
-    <link rel="stylesheet" href="/src/css/superfish.css" />
-    <link rel="stylesheet" href="/src/css/flexslider.css" />
-    <link rel="stylesheet" href="/src/css/magnific-popup.css" />
-    <link rel="stylesheet" href="/src/css/bootstrap-datepicker.css" />
-    <link rel="stylesheet" href="/src/css/cs-select.css" />
-    <link rel="stylesheet" href="/src/css/cs-skin-border.css" />
-    <link rel="stylesheet" href="/src/css/style.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/framework.css">
+    <link rel="icon" href="Image/dashboard.png">
+    <title>Dashbord</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/824a87a2e1.js" crossorigin="anonymous"></script>
 
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
-    <title>Trisi Sinai || Practicum</title>
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,800" rel="stylesheet"/>
-    <!-- Nucleo Icons -->
-    <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-icons.css" rel="stylesheet"/>
-    <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css" rel="stylesheet"/>
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <!-- CSS Files -->
-    <link id="pagestyle" href="assets/css/soft-ui-dashboard.css?v=1.1.0" rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  
-  <header id="fh5co-header-section" class="sticky-banner">
-    <div class="container">
-      <div class="nav-header">
-        <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-        <h1 id="fh5co-logo">
-          <a href="HomeManager.html"
-            ><i class="icon-home"></i> Trisi Sinai <span> Ltd.</span></a
-          >
-        </h1>
-        <nav id="fh5co-menu-wrap" role="navigation">
-          <ul class="sf-menu" id="fh5co-primary-menu">
-            <li class="active">
-              <a href="../../templates/Manager/HomeManager.html">Home</a>
-            </li>
-            <li>
-              <a>Products</a>
-              <ul class="fh5co-sub-menu">
-                <li>
-                  <a
-                    href="../../templates/Products/allProducts-Manager.html"
-                    >View All Products</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="../../templates/Products/addNewProduct-Manager.html"
-                    >Add New Product</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="../../templates/Products/updateProducts-Manager.html"
-                    >Update Product</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
-            <li>
-              <a>Deals</a>
-              <ul class="fh5co-sub-menu">
-                <li>
-                  <a href="/../../templates/Manager/DealsV-Manager.html"
-                    >View All Deals</a
-                  >
-                </li>
-                <li>
-                  <a href="../../templates/Manager/addD-Manager.html"
-                    >Add New Deal</a
-                  >
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a>Manage</a>
-              <ul class="fh5co-sub-menu">
-                <li>
-                  <a
-                    href="../../templates/Manager/addNewCustomer-Manager.html"
-                    >Add New Customer</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="../../templates/Manager/Add_ViewUsers-Manager.html"
-                    >Add New Users</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="../../templates/Installer/Add-Installations.html"
-                    >Add New Installer</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Installations</a>
-              <ul class="fh5co-sub-menu">
-                <li>
-                  <a
-                    href="../../templates/Installer/View-Installations.html"
-                    >View All Installations</a
-                  >
-                </li>
-                <li>
-                  <a href="../../templates/Installer/add-Installer.html"
-                    >Add New Installation</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Reports</a>
-              <ul class="fh5co-sub-menu">
-                <li>
-                  <a href="../../templates/Reports/Reports-Customer.html"
-                    >Customers Reports</a
-                  >
-                </li>
-                <li>
-                  <a href="../../templates/Reports/Reports-Deal.html"
-                    >Deals Reports</a
-                  >
-                </li>
-                <li>
-                  <a href="../../templates/Reports/Reports-Products.html"
-                    >Products Reports</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a
-                href="../../templates/Dashbords/Manager/Dashbord-Manager.html"
-                >Manager Dashbord</a
-              >
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
-  /* Declaration de variables en CSS */
-  :root
-  {
-      --color-white: white;
-      --color-black: black;
-      --color-grey: #CECECE;
-      --color-primary: #7385F2;
-  }
-
-  *
-  {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-  }
-
-  body
-  {
-      font-family: 'Roboto', sans-serif;
-  }
-
-  /* CSS of Side Barre */
-
-  .sideBarre
-  {
-      width: 260px;
-      height: 120vh;
-      background-color:var(--color-white);
-      border: 1px solid var(--color-grey);
-      position: fixed;
-  }
-
-  .sideBarre__logo
-  {
-      display: flex;
-      height: 70px;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid var(--color-grey);
-  }
-
-  .sideBarre__cercle
-  {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: var(--color-primary);
-      margin-right: 8px;
-  }
-
-  .sideBarre__logo h1
-  {
-      color: var(--color-primary);
-  }
-
-  .sideBarre__menu ul li
-  {
-      list-style: none;
-      padding: 18px;
-      transition: all .3s
-  }
-
-  .sideBarre__menu ul li:hover
-  {
-      border-right: 4px solid var(--color-primary);
-      background-color: aliceblue;
-  }
-
-  .sideBarre__menu ul li a
-  {
-      text-decoration: none;
-      color: var(--color-black);
-  }
-
-  .sideBarre__menu ul li:hover a
-  {
-      color: var(--color-primary);
-  }
-
-  /* CSS of Main Content */
-
-  .mainContent
-  {
-      background-color:#F4F4FA;;
-  }
-
-  /* CSS of NavBar */
-
-  .mainContent nav
-  {
-      height: 70px;
-      background-color: var(--color-white);
-      padding: 0 30px;
-  }
-
-  nav .user
-  {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: var(--color-primary);
-      float: right;
-      margin-top: 10px;
-  }
-
-  /* CSS of Box Content */
-
-  .boxContent
-  {
-      padding: 70px 30px;
-  }
-
-  /* CSS of First Row */
-
-  .firstRow, .secondRow
-  {
-      display: flex;
-  }
-
-  .cardOne, .cardTwo, .cardThree, .cardFour
-  {
-      flex: 1;
-      height: 180px;
-      border-radius: 7px;
-      margin-right: 15px;
-      position: relative;
-  }
-
-  .cardOne
-  {
-      background: linear-gradient(90deg,rgb(96, 111, 208),rgb(138, 215, 254));
-  }
-
-  .cardTwo
-  {
-      background: linear-gradient(90deg,rgb(138, 215, 254), #FF749C);
-  }
-
-  .cardThree
-  {
-      background: linear-gradient(90deg,rgb(138, 215, 254), #FF914E);
-  }
-
-  .cardFour
-  {
-      background: linear-gradient(90deg,rgb(138, 215, 254), #729FFE);
-  }
-
-  .description
-  {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: var(--color-white);
-  }
-
-  .description h3
-  {
-      font-size: 40px;
-  }
-
-
-  /* CSS of Second Row */
-
-  .secondRow
-  {
-      margin-top: 50px;
-  }
-
-  .cardChart
-  {
-      flex: 1;
-      margin-right: 15px;
-      background-color: var(--color-white);
-      padding:70px 50px 40px;
-      height: 340px;
-      border-radius: 7px;
-      box-shadow: 0px 0px 30px -18px rgba(0, 0, 0, 0.55);
-  }
-
-  /* CSS of Third Row */
-
-  .thirdRow
-  {
-      height: 120px;
-      width: 100%;
-      background-color: var(--color-white);
-      box-shadow: 0px 0px 30px -18px rgba(0, 0, 0, 0.55);
-      margin-top: 50px;
-      border-radius: 7px;
-      margin-right: 15px;
-  }
-  .canvas {
-    max-width: 100%;
-    height: auto;
-  }
-  .fourthRow {
-    display: flex; /* שימוש ב-Flexbox */
-    justify-content: space-between; /* הפרדה בין התחומים */
-    height: 500px; /* גובה כולל */
-    background-color: var(--color-white);
-    box-shadow: 0px 0px 30px -18px rgba(0, 0, 0, 0.55);
-    margin-top: 50px;
-    border-radius: 7px;
-    padding: 10px; /* רווח פנימי */
-  }
-  
-  .fourthRow > .half {
-    flex: 1; /* כל תחום תופס חצי מהשטח */
-    margin: 0 10px; /* רווח בין התחומים */
-    background-color: #f9f9f9; /* צבע רקע שונה לכל חלק */
-    border: 1px solid #ddd; /* גבול להדגשה */
-    border-radius: 8px; /* עיגול פינות */
-    display: flex;
-    justify-content: center; /* מרכז תוכן אופקית */
-    align-items: center; /* מרכז תוכן אנכית */
-  }
-
-</style>
 
 <body>
+    <div class="page d-flex">
 
-    <!-- My Side Barre -->
-    <!-- My Main Content -->
-    <div class="mainContent">
-        <div>
-          
+        <div class="slider bg-w   p-relative ">
+            <h3 class="p-relative txt-c">Admin</h3>
+            <ul class="list-none p-0">
+                <li>
+                    <a class="active d-flex align-center fs-14 red-6 p-10 c-black" href="Dashbord-Manager.html">
+                        <i class="fa fa-chart-line fa-fw"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex align-center fs-14 red-6 p-10 c-black" href="settings.html">
+                        <i class="fa fa-gear"></i>
+                        <!-- <i class="fa-solid fa-thumbs-up fa-5x"></i> -->
+
+                        <span>Setting</span>
+                    </a>
+                </li>
+                <li>
+                    <a class=" d-flex align-center fs-14 red-6 p-10 c-black" href="Profile.html">
+                        <i class="fa-regular fa-user"></i> <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex align-center fs-14 red-6 p-10 c-black" href="project.html">
+                        <i class="fa fa-diagram-project"></i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a class=" d-flex align-center fs-14 red-6 p-10 c-black" href="courses.html">
+                        <i class="fa-solid fa-address-book"></i>
+                        <span>Courses</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex  align-center fs-14 red-6 p-10 c-black" href="customers.html">
+                        <i class="fa-solid fa-user-group"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex  align-center fs-14 red-6 p-10 c-black" href="Files.html">
+                        <i class="fa-regular fa-file"></i>
+                        <span>Files</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex  align-center fs-14 red-6 p-10 c-black" href="Plans.html">
+                        <i class="fa fa-holly-berry"></i>
+                        <span>Plans</span>
+                    </a>
+                </li>
+
+            </ul>
         </div>
 
-        <!-- My Box Content -->
-        <div class="boxContent">
-            <div class="firstRow">
-                <div class="cardOne">
-                    <div class="description">
-                        <h4 style="font-size:30px; font-weight:900; color:white;">Total Customers</h4>
-                        <h3 id="totalCustomers">Loading...</h3>
+        <div class="content w-full">
+            <div class="head bg-w p-15 flex-between">
+
+            </div>
+            <h1 class="p-relative ">Dashbord</h1>
+            <div class="wrapper d-grid gap-20">
+                <div>
+                    <!-- ברוך הבא -->
+                    <div class="welcome p-20 shadow-1 bg-w red-6 txt-c-sm block-sm">
+                        <div class="intro p-20 flex-between bg-eee">
+                            <div>
+                                <h2 class="m-0 mb-10 pt-15">welcome</h2>
+                                <p class="c-gray mt-5">Shazloka</p>
+                            </div>
+                            <img class="sm-hide" src="Image/welcome.png" width="150px" alt="" srcset="">
+                        </div>
+                        <img src="Image/avatar.png" class="avatar" alt="">
+                        <div class=" block-sm body    txt-c   py-20 mt-20 mb-20  ">
+                            <div>Ahmed Elshazly <span class="d-block c-gray fs-14 mt-10 ">Developer</span> </div>
+                            <div>80 <span class="d-block c-gray fs-14 mt-10 ">Developer</span> </div>
+                            <div>8500$ <span class="d-block c-gray fs-14 mt-10 ">Earned</span> </div>
+                        </div>
+                        <a href="profile.html" class="visit d-block fs-14 red-6 bg-blue c-w w-fit ">Profile</a>
+                    
+                    </div>
+                    <br>
+
+                    <!-- ייעדים שנתיים -->
+                    <div class="targets p-20 bg-w red-6 shadow-1">
+                        <h2 class="mt-0 pt-15 mb-10 ">Yearly Targets</h2>
+                        <p class="mt-0  c-gray fs-14">Targets Of the Year</p>
+                        <div class="target-row mb-20 blue d-flex align-center ">
+                            <div class="icon flex-center">
+                                <i class="fas fa-dollar-sign c-blue fa-lg    "></i>
+                            </div>
+                            <div class="details">
+                                <span class="fs-14 c-gray ">Money</span>
+                                <span class="d-block mt-5 mb-10 fw-bold ">20.000</span>
+                                <div class="progress p-relative">
+                                    <span class=" progress-bar bg-blue  blue" style="width: 80%">
+                                        <span class="bg-blue">80%</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="target-row mb-20 orange d-flex align-center ">
+                            <div class="icon flex-center">
+                                <i class="fas fa-code c-orange fa-lg    "></i>
+                            </div>
+                            <div class="details">
+                                <span class="fs-14 c-gray ">Projects</span>
+                                <span class="d-block mt-5 mb-10 fw-bold ">30</span>
+                                <div class="progress p-relative">
+                                    <span class=" progress-bar bg-orange  orange" style="width: 55%">
+                                        <span class="bg-orange">55%</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="target-row mb-20 green d-flex align-center ">
+                            <div class="icon flex-center">
+                                <i class="fas fa-users  c-green fa-lg    "></i>
+                            </div>
+                            <div class="details">
+                                <span class="fs-14 c-gray ">Team</span>
+                                <span class="d-block mt-5 mb-10 fw-bold ">12</span>
+                                <div class="progress p-relative">
+                                    <span class=" progress-bar bg-green  green" style="width: 75%">
+                                        <span class="bg-green">75%</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    <br>
+                    </div>
+
+                    <br>
+                    <!-- סטטיסטיקות -->
+                    <div class="tickets p-20 shadow-1 mb-20 bg-w red-6 txt-c-sm block-sm">
+                        <h2 class="mt-0 mb-10 pt-15 ">Tickets Statistice</h2>
+                        <p class="mt-0 mb-20 c-gray fs-14">Everything About Support Tickets</p>
+                        <div class="d-flex txt-c gap-20 f-wrap">
+                            <div class="box shadow-1-c-ddd border-1 p-20 red-10 fs-14 c-gray">
+                                <i class="fa-regular fa-rectangle-list fa-2x mb-10 c-orange"></i>
+                                <span class="mb-10 d-block fs-15 fw-bold c-black">2500</span>
+                                <span>Total</span>
+                            </div>
+                            <div class="box shadow-1-c-ddd border-1 p-20 red-10 fs-14 c-gray">
+                                <i class="fa fa-spinner fa-2x mb-10 c-blue"></i>
+                                <span class="mb-5 fs-15 d-block fw-bold c-black">500</span>
+                                <span>Pending</span>
+                            </div>
+                            <div class="box shadow-1-c-ddd border-1 p-20 red-10 fs-14 c-gray">
+                                <i class="fa-regular fa-circle-check fa-2x m-10 c-green"></i>
+                                <span class="mb-5 d-block fw-bold c-black">2500</span>
+                                <span>Closed</span>
+                            </div>
+                            <div class="box shadow-1-c-ddd border-1 p-20 red-10 fs-14 c-gray">
+                                <i class="fa-regular fa-rectangle-xmark fa-2x mb-10 c-red"></i>
+                                <span class="mb-5 d-block fw-bold c-black">2500</span>
+                                <span>Closed</span>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-
-                <div class="cardTwo">
-                    <div class="description">
-                      <h4 style="font-size:30px; font-weight:900; color:white;">Total Products</h4>
-                      <h3 id="totalProducts">Loading...</h3>
-                  </div>
-                </div>
-
-                <div class="cardThree">
-                  <div class="description">
-                    <h4 style="font-size:30px; font-weight:900; color:white;">Total Installers</h4>
-                    <h3 id="totalInstallers">Loading...</h3>
-                  </div>
-                </div>
-
-                <div class="cardFour">
-                    <div class="description">
-                        <h4 style="font-size:30px; font-weight:900; color:white;">Products Sold</h4>
-                        <h5 style="font-size:20px; color:white;">(This month)</h5>
-                        <h3>500</h3>
+                
+                <div>
+                    <!-- חיפושים אחרונים -->
+                    <div class="search-items  mb-20 p-20 bg-w red-6 txt-c-sm  ">
+                        <h2 class="mt-0 pt-15 mb-5">Top Search Items </h2>
+                        <div class="flex-between bg">
+                            <p class="c-gray">Keyword</p>
+                            <span class="c-gray">Search Count</span>
+                        </div>
+                        <div class="flex-between bg">
+                            <p style="font-size: 0.8rem;">JavaScript</p>
+                            <span class="bg-gray2 c-black item">220</span>
+                        </div>
+                        <div class="flex-between bg">
+                            <p style="font-size: 0.8rem;">Angular+2</p>
+                            <span class="bg-gray2 c-black item">180</span>
+                        </div>
+                        <div class="flex-between bg">
+                            <p style="font-size: 0.8rem;">React.Js </p>
+                            <span class="bg-gray2 c-black item">220</span>
+                        </div>
+                        <div class="flex-between bg">
+                            <p style="font-size: 0.8rem;">Next.JS</p>
+                            <span class="bg-gray2 c-black item">200</span>
+                        </div>
+                        <div class="flex-between bg">
+                            <p style="font-size: 0.8rem;">Design</p>
+                            <span class="bg-gray2 c-black item">125</span>
+                        </div>
+                        <div class="flex-between bg">
+                            <p style="font-size: 0.8rem;">Python</p>
+                            <span class="bg-gray2 c-black item">220</span>
+                        </div>
+                        <div class="flex-between bg">
+                            <p style="font-size: 0.8rem;">Frontend </p>
+                            <span class="bg-gray2 c-black item">220</span>
+                        </div>
                     </div>
+
+                    <!-- פרויקטים בתהליך אחרונים -->
+                    <div class="last-project mb-20 p-20 bg-w red-6 txt-c-sm d-flex p-relative   ">
+                        <h2 class="mt-0 pt-15 mb-20">Last Project Process</h2>
+                        <ul class="list-none m-0 p-relative">
+                            <li class=" d-flex align-center done">Got the Project</li>
+                            <li class="mt-25 mr-25  d-flex align-center done">Started The Project</li>
+                            <li class="mt-25 d-flex align-center done">The Project About To Finish</li>
+                            <li class="mt-25 d-flex align-center done">The Project About To Finish</li>
+                            <li class="mt-25 d-flex align-center current">Test the project</li>
+                            <li class="mt-25 d-flex align-center ">finsh the project & Get Money</li>
+                            <li class="mt-25 d-flex align-center ">finsh the project & Get Money</li>
+
+                            
+                        </ul>
+                        <img class="launch-icon opacity-3 sm-hide" src="Image/project.png" alt="">
+                    </div>
+
+                    <!-- תזכורות -->
+                    <div class="reminder pb-25 mb-20 p-20 bg-w red-6  txt-c-sm  p-relative   ">
+                        <h2 class="mt-0  pt-15 mb-20">Reminders </h2>
+                        <ul class="list-none p-0 m-0 pb-20">
+                            <li class="d-flex align-center mt-15">
+                                <span class="key bg-blue mr-15 d-block red-circle"></span>
+                                <div class="pl-15 blue">
+                                    <p class="fs-14 fw-bold mt-0 mb-5">Check My Tasks List </p>
+                                    <span class="fs-13 c-gray">26/09/2022 - 12:00am</span>
+                                </div>
+                            </li>
+                            <li class="d-flex mt-20 align-center mt-15">
+                                <span class="key bg-orange mr-15 d-block red-circle"></span>
+                                <div class="pl-15 orange">
+                                    <p class="fs-14 fw-bold mt-0 mb-5">Check My Project </p>
+                                    <span class="fs-13 c-gray">24/10/2022 - 12:00am</span>
+                                </div>
+                            </li>
+                            <li class="d-flex mt-20 align-center mt-15">
+                                <span class="key bg-green mr-15 d-block red-circle"></span>
+                                <div class="pl-15 green">
+                                    <p class="fs-14 fw-bold mt-0 mb-5">Call All my Client </p>
+                                    <span class="fs-13 c-gray">05/11/2022 - 12:00am</span>
+                                </div>
+                            </li>
+                            <li class="d-flex mt-20 align-center mt-15">
+                                <span class="key bg-red mr-15 d-block red-circle"></span>
+                                <div class="pl-15 red">
+                                    <p class="fs-14 fw-bold mt-0 mb-5">Finish The Development Workshop </p>
+                                    <span class="fs-13 c-gray">20/12/2022 - 12:00am</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+
                 </div>
+
             </div>
-            <div class="secondRow">
-                <div class="cardChart">
-                  <h4 style="margin-top:-50px; font-size:30px; text-align: center;">Total New Products</h4>
-                  <canvas id="productChart"></canvas>
-                    <script>
-                      // נתוני הדוגמה
-                      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                      const productCounts = [12, 8, 15, 10, 20, 18, 22, 19, 16, 14, 17, 21];
-              
-                      // יצירת הגרף
-                      const ctx = document.getElementById('productChart').getContext('2d');
-                      const productChart = new Chart(ctx, {
-                          type: 'bar',
-                          data: {
-                              labels: months,
-                              datasets: [{
-                                  label: 'Total new products',
-                                  data: productCounts,
-                                  backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                                  borderColor: 'rgba(75, 192, 192, 1)',
-                                  borderWidth: 1
-                              }]
-                          },
-                          options: {
-                              responsive: true,
-                              maintainAspectRatio: false, 
-                              plugins: {
-                                  legend: {
-                                      display: false,
-                                      labels: {
-                                          font: {
-                                              size: 18
-                                          }
-                                      }
-                                  },
-                                  tooltip: {
-                                      enabled: true
-                                  }
-                              },
-                              scales: {
-                                  x: {
-                                      ticks: {
-                                          font: {
-                                              size: 18
-                                          }
-                                      }
-                                  },
-                                  y: {
-                                      beginAtZero: true,
-                                      ticks: {
-                                          font: {
-                                              size: 18
-                                          }
-                                      }
-                                  }
-                              }
-                          }
-                      });
-                  </script>
+
+            <!-- סה״כ פרויקטים -->
+            <div class="projects p-20 bg-w red-10 m-20">
+                <h2 class="m-0 mb-20 pt-20 ">Project List</h2>
+                <div class="responsive-table">
+                    <table class="fs-15 w-full">
+                        <thead> 
+                            <tr>
+                                <td>Name</td>
+                                <td>Finish Date</td>
+                                <td>Client</td>
+                                <td>Price</td>
+                                <td>Team</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ministry Wikipedia </td>
+                                <td>10 May 2022</td>
+                                <td>Ministry </td>
+                                <td>$3000 </td>
+                                <td>
+                                    <img src="Image/team-01.png" alt="" srcset="">
+                                    <img src="Image/team-02.png" alt="" srcset="">
+                                    <img src="Image/team-03.png" alt="" srcset="">
+                                    <img src="Image/team-04.png" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <span class="label bg-orange c-w btn pointer">Pending</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>My Shop </td>
+                                <td>10 Oct 2021</td>
+                                <td>H&S </td>
+                                <td>$5000 </td>
+                                <td>
+                                    <img src="Image/team-02.png" alt="" srcset="">   
+                                    <img src="Image/team-04.png" alt="" srcset="">
+
+                                </td>
+                                <td>
+                                    <span class="label bg-blue c-w btn pointer">In Progress</span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Portfolio </td>
+                                <td>15 Agu 2022</td>
+                                <td>Void</td>
+                                <td>$1000</td>
+                                <td>
+                                    <img src="Image/team-02.png" alt="" srcset="">
+                                    <img src="Image/team-01.png" alt="" srcset="">
+                                    <img src="Image/team-03.png" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <span class="label bg-green btn  c-w">Complete</span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Shazly Store</td>
+                                <td>9 sep 2022</td>
+                                <td>H-Dev </td>
+                                <td>$1500</td>
+                                <td>
+                                    <img src="Image/team-01.png" alt="" srcset="">
+                                    <img src="Image/team-02.png" alt="" srcset="">
+                                    <img src="Image/team-03.png" alt="" srcset="">
+                                    <img src="Image/team-04.png" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <span class="label  btn bg-red c-w">Rejected</span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Bouba App</td>
+                                <td>10 Mar 2022</td>
+                                <td>Ministry </td>
+                                <td>$1200</td>
+                                <td>
+                                    <img src="Image/team-01.png" alt="" srcset="">
+                                    <img src="Image/team-02.png" alt="" srcset="">
+                                    <img src="Image/team-03.png" alt="" srcset="">
+                                    <img src="Image/team-04.png" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <span class="label  btn bg-red c-w">Rejected</span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Ministry Wikipedia </td>
+                                <td>19 mar 2022</td>
+                                <td>Arena Company </td>
+                                <td>$9000</td>
+                                <td>
+                                    <img src="Image/team-01.png" alt="" srcset="">
+                                    <img src="Image/team-02.png" alt="" srcset="">
+                                    <img src="Image/team-03.png" alt="" srcset="">
+                                    <img src="Image/team-04.png" alt="" srcset="">
+                                    <img src="Image/team-01.png" alt="" srcset="">
+                                    <img src="Image/team-02.png" alt="" srcset="">
+                                    <img src="Image/team-03.png" alt="" srcset="">
+                                    <img src="Image/team-04.png" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <span class="label  btn bg-green c-w">Complete</span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Arena Application </td>
+                                <td>01 May 2021</td>
+                                <td>Ministry </td>
+                                <td>$6000</td>
+                                <td>
+                                    <img src="Image/team-01.png" alt="" srcset="">
+                                    <img src="Image/team-02.png" alt="" srcset="">
+                                    <img src="Image/team-03.png" alt="" srcset="">
+                                    <img src="Image/team-04.png" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <span class="label  btn bg-green c-w">Complete</span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Glods Gym</td>
+                                <td>10 May 2022</td>
+                                <td>ShazlyDiv </td>
+                                <td>$3000 </td>
+                                <td>
+                                    <img src="Image/team-01.png" alt="" srcset="">
+                                    <img src="Image/team-04.png" alt="" srcset="">
+                                </td>
+                                <td>
+                                    <span class="label bg-orange c-w btn pointer">Pending</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
-
-            <div class="thirdRow">
-              
-            </div>
-
-            <div class="fourthRow">
-              
-              <div class="half" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <h4 style="margin-bottom: -50px; font-size:30px;">Product Types</h4>
-                <canvas id="installationChart"></canvas>
-                <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                            const installationTypes = [
-                                "Taking Measurements",
-                                "New Installing",
-                                "Repairing Product",
-                                "Laundries"
-                            ];
-                            const installationCounts = [15, 25, 10, 5];
-            
-                            const ctx = document
-                                .getElementById("installationChart")
-                                .getContext("2d");
-                            new Chart(ctx, {
-                                type: "pie",
-                                data: {
-                                    labels: installationTypes,
-                                    datasets: [
-                                        {
-                                            label: "Types Of Installations",
-                                            data: installationCounts,
-                                            backgroundColor: [
-                                                "#ff9999",
-                                                "#66b3ff",
-                                                "#99ff99",
-                                                "#ffcc99"
-                                            ],
-                                            borderColor: "#000",
-                                            borderWidth: 1
-                                        }
-                                    ]
-                                },
-                                options: {
-                                    responsive: true,
-                                    
-                                    plugins: {
-                                        legend: {
-                                            display: true,
-                                            position: "right",
-                                            labels: {
-                                              font: {
-                                                  size: 18 // מגדיר את גודל הטקסט של המקראה
-                                              }
-                                          }
-                              
-                                        },
-                                        tooltip: {
-                                            enabled: true
-                                        },
-                                        
-                                    }
-                                }
-                            });
-                        });
-                </script>
-                  
-              </div>
-
-
-              <div class="half">
-                  <h4 style="text-align: center;">
-                    תחום 2
-                  </h4>
-              </div>
-          </div>
-          
-          
-
-
         </div>
-    </div>
-</body>
-
-
-
-  <script>
-    document.addEventListener("DOMContentLoaded", async function () {
-      try {
-        // Fetch customer data
-        const customerResponse = await fetch("/dashboard-data/customers");
-        if (!customerResponse.ok) {
-          throw new Error("Failed to fetch customer data");
-        }
-        const customerData = await customerResponse.json();
-        document.getElementById("totalCustomers").textContent =
-          customerData.customersCount || "No data";
-
-        // Fetch product data
-        const productResponse = await fetch("/dashboard-data/products");
-        if (!productResponse.ok) {
-          throw new Error("Failed to fetch product data");
-        }
-        const productData = await productResponse.json();
-        document.getElementById("totalProducts").textContent =
-          productData.productsCount || "No data";
-      
-        const installerResponse = await fetch("/dashboard-data/installers");
-        if (!installerResponse.ok) {
-          throw new Error("Failed to fetch installer data");
-        }
-        const installerData = await installerResponse.json();
-        document.getElementById("totalInstallers").textContent =
-        installerData.installersCount || "No data";
-        }
-      
-      catch (error) {
-        console.error("Error loading data:", error);
-        document.getElementById("totalCustomers").textContent = "Error loading customers";
-        document.getElementById("totalProducts").textContent = "Error loading products";
-        document.getElementById("totalInstallers").textContent = "Error loading products";
-        
-      }
-
-      
-    });
-  </script>
-  
-
 
 </body>
 
-  
-  
-  </html>
+</html>
