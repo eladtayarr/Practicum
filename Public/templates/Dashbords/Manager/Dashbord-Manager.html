@@ -10,6 +10,7 @@
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
@@ -18,61 +19,207 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 
+
+    <link rel="shortcut icon" href="../../../../src/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="../../../../src/images/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../../../src/css/animate.css" />
+    <link rel="stylesheet" href="../../../../src/css/icomoon.css" />
+    <link rel="stylesheet" href="../../../../src/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../../../src/css/superfish.css" />
+    <link rel="stylesheet" href="../../../../src/css/flexslider.css" />
+    <link rel="stylesheet" href="../../../../src/css/magnific-popup.css" />
+    <link rel="stylesheet" href="../../../../src/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../../../src/css/cs-select.css" />
+    <link rel="stylesheet" href="../../../../src/css/cs-skin-border.css" />
+    <link rel="stylesheet" href="../../../../src/css/style.css" />
+
+    <script src="../../../../src/modernizr-2.6.2.min.js"></script>
+
+
   </head>
   <body>
     <div class="grid-container">
 
       <!-- Header -->
+      <header id="fh5co-header-section" class="sticky-banner">
+        <div class="container">
+          <div class="nav-header">
+            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"
+              ><i></i
+            ></a>
+            <h1 id="fh5co-logo">
+              <a href="HomeManager.html"
+                ><i class="icon-home"></i> Trisi Sinai <span> Ltd.</span>
+              </a>
+            </h1>
+            <nav id="fh5co-menu-wrap" role="navigation">
+              <ul class="sf-menu" id="fh5co-primary-menu">
+                <li class="active">
+                  <a href="../../templates/Manager/HomeManager.html">Home</a>
+                </li>
+                <li>
+                  <a>Products</a>
+                  <ul class="fh5co-sub-menu">
+                    <li>
+                      <a
+                        href="../../templates/Products/allProducts-Manager.html"
+                        >View All Products</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="../../templates/Products/addNewProduct-Manager.html"
+                        >Add New Product</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="../../templates/Products/updateProducts-Manager.html"
+                        >Update Product</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
+                <li>
+                  <a>Deals</a>
+                  <ul class="fh5co-sub-menu">
+                    <li>
+                      <a href="/../../templates/Manager/DealsV-Manager.html"
+                        >View All Deals</a
+                      >
+                    </li>
+                    <li>
+                      <a href="../../templates/Manager/addD-Manager.html"
+                        >Add New Deal</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a>Manage</a>
+                  <ul class="fh5co-sub-menu">
+                    <li>
+                      <a
+                        href="../../templates/Manager/addNewCustomer-Manager.html"
+                        >Add New Customer</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="../../templates/Manager/Add_ViewUsers-Manager.html"
+                        >Add New Users</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="../../templates/Installer/Add-Installations.html"
+                        >Add New Installer</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>Installations</a>
+                  <ul class="fh5co-sub-menu">
+                    <li>
+                      <a
+                        href="../../templates/Installer/View-Installations.html"
+                        >View All Installations</a
+                      >
+                    </li>
+                    <li>
+                      <a href="../../templates/Installer/add-Installer.html"
+                        >Add New Installation</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>Reports</a>
+                  <ul class="fh5co-sub-menu">
+                    <li>
+                      <a href="../../templates/Reports/Reports-Customer.html"
+                        >Customers Reports</a
+                      >
+                    </li>
+                    <li>
+                      <a href="../../templates/Reports/Reports-Deal.html"
+                        >Deals Reports</a
+                      >
+                    </li>
+                    <li>
+                      <a href="../../templates/Reports/Reports-Products.html"
+                        >Products Reports</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="../../templates/Dashbords/Manager/Dashbord-Manager.html">
+                    Manager Dashbord
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
       <!-- End Header -->
 
       <!-- Sidebar -->
       <aside id="sidebar">
         <div class="sidebar-title">
           <div class="sidebar-brand">
-            <span class="material-icons-outlined">inventory</span> Avi's Dashboard
+            Avi's Dashboard
           </div>
           <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
         </div>
 
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="#" target="_blank">
-              <span class="material-icons-outlined">dashboard</span> Dashboard
+            <a href="#" target="_blank"><span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank"><span class="material-icons-outlined">inventory_2</span> Products
             </a>
           </li>
 
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-              <span class="material-icons-outlined">inventory_2</span> 
-              Products
+                <span class="material-symbols-outlined">interactive_space</span> Installations
             </a>
           </li>
 
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-              <span class="material-icons-outlined">fact_check</span> Inventory
+                <span class="material-symbols-outlined">contacts_product</span> Customers
             </a>
           </li>
+
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-              <span class="material-icons-outlined">add_shopping_cart</span> Purchase Orders
+              <span class="material-icons-outlined">currency_exchange</span> Profit and loss
             </a>
           </li>
+
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-              <span class="material-icons-outlined">shopping_cart</span> Sales Orders
+              <span class="material-symbols-outlined">lab_profile</span> Reports
             </a>
           </li>
+
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-              <span class="material-icons-outlined">poll</span> Reports
+              <span class="material-icons-outlined">archive</span> Archive
             </a>
           </li>
-          <li class="sidebar-list-item">
-            <a href="#" target="_blank">
-              <span class="material-icons-outlined">settings</span> Settings
-            </a>
-          </li>
+
         </ul>
       </aside>
       <!-- End Sidebar -->
@@ -87,7 +234,7 @@
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">PRODUCTS</p>
+              <p class="text-primary">PRODUCTS <br>(total)</p>
               <span class="material-icons-outlined text-blue">inventory_2</span>
             </div>
             <span class="text-primary font-weight-bold">249</span>
@@ -95,7 +242,7 @@
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">PURCHASE ORDERS</p>
+              <p class="text-primary">TOTAL SALES <br>(annual)</p>
               <span class="material-icons-outlined text-orange">add_shopping_cart</span>
             </div>
             <span class="text-primary font-weight-bold">83</span>
@@ -103,15 +250,15 @@
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">SALES ORDERS</p>
+              <p class="text-primary">SALES REVENUE <br> (NIS)</p>
               <span class="material-icons-outlined text-green">shopping_cart</span>
             </div>
-            <span class="text-primary font-weight-bold">79</span>
+            <span class="text-primary font-weight-bold">250,000</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">INVENTORY ALERTS</p>
+              <p class="text-primary">OPEN ORDERS <br> (in progress)</p>
               <span class="material-icons-outlined text-red">notification_important</span>
             </div>
             <span class="text-primary font-weight-bold">56</span>
@@ -135,9 +282,14 @@
             <div id="pie-chart"></div>
         </div>
 
-        <div class="charts-card">
-            <p class="chart-title">Speedometer</p>
-            <div id="speedometer-chart"></div>
+        <div class="dubble-charts">
+
+            <div class="charts-card-half">
+                <p class="chart-title">Speedometer</p>
+                <div id="speedometer-chart"></div>
+                <p>Total revenue</p>
+                <p class="chart-title-inside">Annual target 500,000 (NIS)</p>
+            </div>
         </div>
         
         <div class="charts-card">
@@ -150,8 +302,38 @@
                 <button onclick="addTask()">Add Task</button>
             </div>
         </div>
-
+        
+        <div class="charts-card">
+            <p class="chart-title">Contacts List</p>
+            <table id="employee-list">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Field of Activity</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Employee data will be inserted here -->
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Marketing</td>
+                        <td>555-0100</td>
+                        <td>johndoe@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Development</td>
+                        <td>555-0101</td>
+                        <td>janesmith@example.com</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        
+        </div>
+        
       </main>
       <!-- End Main -->
 

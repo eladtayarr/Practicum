@@ -164,15 +164,15 @@ const speedometerChartOptions = {
     series: [76], // Example value to display
     chart: {
         type: 'radialBar',
-        height: 350
+        height: 300
     },
     plotOptions: {
         radialBar: {
             startAngle: -135,
             endAngle: 135,
             hollow: {
-                margin: 15,
-                size: '70%',
+                margin: 10,
+                size: '50%',
                 background: 'transparent',
             },
             dataLabels: {
@@ -233,3 +233,31 @@ function toggleTaskCompleted(checkbox) {
       checkbox.parentNode.style.textDecoration = 'none';
   }
 }
+
+
+
+// CALENDAR
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      events: [
+          {
+              title: 'Meeting',
+              start: new Date().toISOString().split('T')[0],
+              allDay: true
+          },
+          {
+              title: 'Conference',
+              start: '2024-01-28',
+              end: '2024-01-29'
+          }
+      ]
+  });
+  calendar.render();
+});

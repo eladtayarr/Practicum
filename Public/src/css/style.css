@@ -22,13 +22,13 @@ body.fh5co-offcanvas {
   overflow: hidden; }
 
 a {
-  color: #de6277;
+  color: #0077b6;
   -webkit-transition: 0.5s, ease;
   -o-transition: 0.5s, ease;
   transition: 0.5s, ease; }
 a:hover {
   text-decoration: none;
-  color:  #de6277; }
+  color:  #00b4d8; }
 
 p, ul, ol {
   margin-bottom: 1.5em;
@@ -184,11 +184,11 @@ figure {
   padding: 5px 12px;
   display: inline-block;
   margin-bottom: 20px;
-  background:  #de6277;
+  background:  #89c2d9;
   color: #fff;
   font-weight: 400; }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner .price {
-  color: #de6277; }
+  color: #61a5c2; }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner p {
   font-size: 18px;
   color: rgba(255, 255, 255, 0.9); }
@@ -200,7 +200,7 @@ figure {
   border: none !important;
   font-size: 18px; }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner .btn:hover {
-  background:  #de6277 !important;
+  background:  #89c2d9 !important;
   -webkit-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
   -moz-box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
   box-shadow: 0px 14px 30px -15px rgba(0, 0, 0, 0.75) !important; }
@@ -259,10 +259,10 @@ figure {
   font-weight: bold; }
   
 .sf-menu a:hover, .sf-menu a:focus {
-  color: #62de89 !important; }
+  color: #1976d2 !important; }
 
 .sf-menu li.active a:hover, .sf-menu li.active a:focus {
-  color: #de6277; }
+  color: #1f7a8c; }
 
 .sf-menu li, .sf-menu ul li, .sf-menu ul ul li, .sf-menu li:hover, .sf-menu li.sfHover {
   background: transparent; }
@@ -274,7 +274,7 @@ figure {
   font-size: 14px !important; }
 
 .sf-menu li:hover a, .sf-menu li.sfHover a, .sf-menu ul li:hover a, .sf-menu ul li.sfHover a, .sf-menu li.active a {
-  color:  #de6277; }
+  color:  #014f86; }
 
 .sf-menu ul li:hover, .sf-menu ul li.sfHover {
   background: transparent; }
@@ -337,7 +337,7 @@ figure {
   top: 0;
   left: 0;
   font-size: 16px;
-  color:  #de6277;
+  color:  #1b4965;
   background: rgba(0, 0, 0, 0.06);
   padding: 10px;
   -webkit-border-radius: 50%;
@@ -346,10 +346,10 @@ figure {
   border-radius: 50%; }
 
 #fh5co-logo a {
-  color: #de6277; }
+  color: #1b4965; }
 
 #fh5co-logo a:hover, #fh5co-logo a:focus {
-  color:  #de6277 important; }
+  color:  #468faf important; }
 #fh5co-logo span {
   font-weight: 300; }
 
@@ -363,7 +363,8 @@ figure {
   padding: 1em .75em; }
 
 #fh5co-primary-menu > li > ul li.active > a {
-  color:  #de6277 important; }
+  color:  #2a6f97 important; }
+
 #fh5co-primary-menu > li > .sf-with-ul:after {
   border: none !important;
   font-family: 'icomoon';
@@ -469,7 +470,7 @@ figure {
   text-transform: none;
   background: none; }
 #fh5co-primary-menu .fh5co-sub-menu a:hover {
-  color: #de6277 !important; }
+  color: #2a6f97 !important; }
 
 #fh5co-search-map {
   width: 100%;
@@ -588,7 +589,7 @@ div.cs-select span {
 
 .cs-skin-border.cs-active > span {
   background: rgba(0, 0, 0, 0.05) !important;
-  color:  #de6277; }
+  color:  #2c7da0; }
 
 .cs-select .cs-options {
   -webkit-box-shadow: 0px 10px 20px -12px rgba(0, 0, 0, 0.18);
@@ -612,9 +613,11 @@ div.cs-select span {
   margin-bottom: 4em; }
 .heading-section h3 {
   font-size: 40px;
-  font-weight: 400;
+  font-weight: 550;
   position: relative;
-  color:  #de6277; }
+  color:  #2a6f97; 
+  
+}
 .heading-section p {
   font-size: 20px; }
 
@@ -646,7 +649,7 @@ div.cs-select span {
   top: 12px;
   left: -7px;
   color: #fff;
-  background:  #de6277;
+  background:  #34a0a4;
   padding: 10px 12px;
   font-weight: bold;
   font-size: 12px; }
@@ -659,7 +662,7 @@ div.cs-select span {
   height: 0;
   border-style: solid;
   border-width: 0px 0px 5px 7px;
-  border-color: transparent transparent  #de6277 transparent; }
+  border-color: transparent transparent  #1a759f transparent; }
 .fh5co-property .prop-details {
   width: 90%;
   margin: 0 auto;
@@ -676,7 +679,7 @@ div.cs-select span {
   display: inline-block;
   font-weight: 400;
   color: #fff;
-  background:  #de6277;
+  background:  #2a6f97;
   padding: 5px 10px;
   margin-bottom: 10px; }
 
@@ -691,7 +694,7 @@ div.cs-select span {
   display: inline-block;
   font-weight: 400;
   margin-bottom: 10px;
-  color:  #de6277; }
+  color:  #1a759f; }
 .property .property-details .address {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   display: block;
@@ -748,7 +751,7 @@ div.cs-select span {
 .fh5co-agent {
   background:  #de6277; }
 .fh5co-agent h3, .fh5co-agent p {
-  color: #fff !important; }
+  color: #013a63 !important; }
 .fh5co-agent .fh5co-staff {
   margin-bottom: 30px; }
 .fh5co-agent .fh5co-staff img {
@@ -790,7 +793,7 @@ div.cs-select span {
   display: table-cell;
   vertical-align: middle;
   font-size: 40px;
-  color:  #de6277; }
+  color:  #00b4d8; }
 .feature-left .feature-copy {
   float: right;
   width: 80%; }
@@ -814,7 +817,7 @@ div.cs-select span {
 
 #fh5co-testimonial {
   position: relative;
-  background:  #de6277; }
+  background:  #a9d6e5; }
 #fh5co-testimonial .fh5co-heading {
   margin-bottom: 4em; }
 #fh5co-testimonial .fh5co-heading h2 {
@@ -859,7 +862,7 @@ div.cs-select span {
   width: 56px;
   height: 56px;
   margin-top: -30px;
-  background:  #de6277;
+  background:  #a9d6e5;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
