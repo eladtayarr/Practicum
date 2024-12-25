@@ -1,3 +1,22 @@
+/* =======================================================
+   colors to save:
+  1) 0077b6 - blue
+  2) aec3b0 - gray-green
+  3) 598392 - gray-blue
+  4) 124559 - dark-gray-blue
+  5) 2a6f97 - blue-main
+  6) 2c7da0 - blue-main-ligher
+  7) 468faf - blue-main-very-ligher
+  8) a9d6e5 - light-blue
+  9) 84a98c - light-green
+  10) cad2c5 - baige
+  11) 354f52 - blue-green
+  12) 415d43 - olive-green
+
+* ======================================================= */
+
+
+
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon/icomoon.eot?srf3rx");
@@ -486,7 +505,7 @@ figure {
 #fh5co-search-map .search-property {
   width: 33.5%;
   float: right;
-  background: #de6277; }
+  background: #0e6ba8; }
 @media screen and (max-width: 768px) {
   #fh5co-search-map .search-property {
     width: 100%;
@@ -1127,7 +1146,7 @@ div.cs-select span {
   right: 10px;
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
-  background:  #de6277;
+  background:  #0e6ba8;
   border: none; }
 #footer #fh5co-header-subscribe button i {
   color: #fff;
@@ -1145,16 +1164,16 @@ div.cs-select span {
   -o-transition: 0.3s;
   transition: 0.3s; }
 .btn.btn-primary {
-  background:  #de6277;
+  background:  #598392;
   color: #fff;
   border: none !important;
   border: 2px solid transparent !important; }
 .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
   box-shadow: none;
-  background:  #de6277;
+  background:  #a6e1fa;
   color: #fff !important; }
 .btn:hover, .btn:active, .btn:focus {
-  background: #393e46 !important;
+  background: #aec3b0 !important;
   color: #fff;
   outline: none !important; }
 .btn.btn-default:hover, .btn.btn-default:focus, .btn.btn-default:active {
@@ -1480,4 +1499,3 @@ rating-stars input[type="radio"] {
 .rating-stars input:checked ~ label:before {
   color: gold;
 }
-

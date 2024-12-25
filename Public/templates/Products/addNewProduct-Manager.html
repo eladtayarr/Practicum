@@ -63,6 +63,22 @@
     border-bottom-left-radius: 0px !important;
     background: #de6277;
     border: none;
+
+    .form-group .select {
+        width: 100%;        /* Makes the select box take full width of its parent container */
+        padding: 12px 20px; /* Adds substantial padding for easier interaction */
+        font-size: 18px;    /* Increases the font size for better readability */
+        border: 2px solid #ccc; /* Subtle border styling */
+        border-radius: 5px; /* Rounds the corners */
+        background-color: white; /* Ensures the background is white */
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.1); /* Optional: adds a shadow for a slight depth effect */
+        cursor: pointer;    /* Changes cursor to indicate it’s clickable */
+    }
+    
+    .form-group .select:focus {
+        border-color: #0056b3; /* Dark blue border on focus */
+        outline: none; /* Removes the default focus outline */
+    }
 }
 
 
@@ -202,38 +218,21 @@
 
     <footer>
         <div id="footer">
-            <div class="container">
-                <div class="row row-bottom-padded-md">
-                    <div class="col-md-3">
-                        <h3 class="section-title">About Us</h3>
-                        <p>We, Bar Michal and Nofar, information systems management students at the College of Management, own all the exclusive rights to this website <i class="icon-heart3"></i></p>
-                    </div>
-                    
-                    <div class="col-md-3 col-md-push-1">
-                        <h3 class="section-title">Links</h3>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Assets</a></li>
-                            <li><a href="#">Agent</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-md-3">
-                        <h3 class="section-title">Information</h3>
-                        <ul>
-                            <li><a href="#">Terms &amp; Condition</a></li>
-                            <li><a href="#">License</a></li>
-                            <li><a href="#">Privacy &amp; Policy</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
+          <div class="container">
+            <div class="row row-bottom-padded-md">
+              <!-- זכויות יוצרים -->
+              <p style="font-size:20px;">
+                &copy; <span id="year"></span>All rights reserved to Trisi Sinai Ltd.<br/>
+                <p style="font-size:18px;">The site was built and managed by:<br> 
+                  Elad Tayar | Lior Sinai | Or Menachem | Tair Malca</p>
+                <a style="color: #0077b6; text-decoration: none; font-weight:500 ">Terms of Use</a>|<a style="color: #0077b6; text-decoration: none; font-weight:500">Privacy Policy</a>
+              </p>
+              
             </div>
+            
+          </div>
         </div>
-    </footer>
+      </footer>
 </div>
 </div>
 <script>
