@@ -72,6 +72,11 @@ npm start
 ### Login:
 ![alt text](Public/src/images/ReadmeImages/Signin.png "SignIn Page")
 ### Manager:
+1. Products
+2. Installations
+3. Customers
+4. Economic
+5. Archive
 
 ### Installers:
 

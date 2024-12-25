@@ -1,431 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/master.css">
-    <link rel="stylesheet" href="css/framework.css">
-    <link rel="icon" href="Image/dashboard.png">
-    <title>Dashbord</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/824a87a2e1.js" crossorigin="anonymous"></script>
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 
-<body>
-    <div class="page d-flex">
+  </head>
+  <body>
+    <div class="grid-container">
 
-        <div class="slider bg-w   p-relative ">
-            <h3 class="p-relative txt-c">Admin</h3>
-            <ul class="list-none p-0">
-                <li>
-                    <a class="active d-flex align-center fs-14 red-6 p-10 c-black" href="Dashbord-Manager.html">
-                        <i class="fa fa-chart-line fa-fw"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="d-flex align-center fs-14 red-6 p-10 c-black" href="settings.html">
-                        <i class="fa fa-gear"></i>
-                        <!-- <i class="fa-solid fa-thumbs-up fa-5x"></i> -->
+      <!-- Header -->
+      <!-- End Header -->
 
-                        <span>Setting</span>
-                    </a>
-                </li>
-                <li>
-                    <a class=" d-flex align-center fs-14 red-6 p-10 c-black" href="Profile.html">
-                        <i class="fa-regular fa-user"></i> <span>Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="d-flex align-center fs-14 red-6 p-10 c-black" href="project.html">
-                        <i class="fa fa-diagram-project"></i>
-                        <span>Projects</span>
-                    </a>
-                </li>
-                <li>
-                    <a class=" d-flex align-center fs-14 red-6 p-10 c-black" href="courses.html">
-                        <i class="fa-solid fa-address-book"></i>
-                        <span>Courses</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="d-flex  align-center fs-14 red-6 p-10 c-black" href="customers.html">
-                        <i class="fa-solid fa-user-group"></i>
-                        <span>Customers</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="d-flex  align-center fs-14 red-6 p-10 c-black" href="Files.html">
-                        <i class="fa-regular fa-file"></i>
-                        <span>Files</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="d-flex  align-center fs-14 red-6 p-10 c-black" href="Plans.html">
-                        <i class="fa fa-holly-berry"></i>
-                        <span>Plans</span>
-                    </a>
-                </li>
-
-            </ul>
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">inventory</span> Avi's Dashboard
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
         </div>
 
-        <div class="content w-full">
-            <div class="head bg-w p-15 flex-between">
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
 
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">inventory_2</span> 
+              Products
+            </a>
+          </li>
+
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">fact_check</span> Inventory
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">add_shopping_cart</span> Purchase Orders
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">shopping_cart</span> Sales Orders
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">poll</span> Reports
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">settings</span> Settings
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <p class="font-weight-bold">DASHBOARD</p>
+        </div>
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">PRODUCTS</p>
+              <span class="material-icons-outlined text-blue">inventory_2</span>
             </div>
-            <h1 class="p-relative ">Dashbord</h1>
-            <div class="wrapper d-grid gap-20">
-                <div>
-                    <!-- ברוך הבא -->
-                    <div class="welcome p-20 shadow-1 bg-w red-6 txt-c-sm block-sm">
-                        <div class="intro p-20 flex-between bg-eee">
-                            <div>
-                                <h2 class="m-0 mb-10 pt-15">welcome</h2>
-                                <p class="c-gray mt-5">Shazloka</p>
-                            </div>
-                            <img class="sm-hide" src="Image/welcome.png" width="150px" alt="" srcset="">
-                        </div>
-                        <img src="Image/avatar.png" class="avatar" alt="">
-                        <div class=" block-sm body    txt-c   py-20 mt-20 mb-20  ">
-                            <div>Ahmed Elshazly <span class="d-block c-gray fs-14 mt-10 ">Developer</span> </div>
-                            <div>80 <span class="d-block c-gray fs-14 mt-10 ">Developer</span> </div>
-                            <div>8500$ <span class="d-block c-gray fs-14 mt-10 ">Earned</span> </div>
-                        </div>
-                        <a href="profile.html" class="visit d-block fs-14 red-6 bg-blue c-w w-fit ">Profile</a>
-                    
-                    </div>
-                    <br>
+            <span class="text-primary font-weight-bold">249</span>
+          </div>
 
-                    <!-- ייעדים שנתיים -->
-                    <div class="targets p-20 bg-w red-6 shadow-1">
-                        <h2 class="mt-0 pt-15 mb-10 ">Yearly Targets</h2>
-                        <p class="mt-0  c-gray fs-14">Targets Of the Year</p>
-                        <div class="target-row mb-20 blue d-flex align-center ">
-                            <div class="icon flex-center">
-                                <i class="fas fa-dollar-sign c-blue fa-lg    "></i>
-                            </div>
-                            <div class="details">
-                                <span class="fs-14 c-gray ">Money</span>
-                                <span class="d-block mt-5 mb-10 fw-bold ">20.000</span>
-                                <div class="progress p-relative">
-                                    <span class=" progress-bar bg-blue  blue" style="width: 80%">
-                                        <span class="bg-blue">80%</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="target-row mb-20 orange d-flex align-center ">
-                            <div class="icon flex-center">
-                                <i class="fas fa-code c-orange fa-lg    "></i>
-                            </div>
-                            <div class="details">
-                                <span class="fs-14 c-gray ">Projects</span>
-                                <span class="d-block mt-5 mb-10 fw-bold ">30</span>
-                                <div class="progress p-relative">
-                                    <span class=" progress-bar bg-orange  orange" style="width: 55%">
-                                        <span class="bg-orange">55%</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="target-row mb-20 green d-flex align-center ">
-                            <div class="icon flex-center">
-                                <i class="fas fa-users  c-green fa-lg    "></i>
-                            </div>
-                            <div class="details">
-                                <span class="fs-14 c-gray ">Team</span>
-                                <span class="d-block mt-5 mb-10 fw-bold ">12</span>
-                                <div class="progress p-relative">
-                                    <span class=" progress-bar bg-green  green" style="width: 75%">
-                                        <span class="bg-green">75%</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    <br>
-                    </div>
-
-                    <br>
-                    <!-- סטטיסטיקות -->
-                    <div class="tickets p-20 shadow-1 mb-20 bg-w red-6 txt-c-sm block-sm">
-                        <h2 class="mt-0 mb-10 pt-15 ">Tickets Statistice</h2>
-                        <p class="mt-0 mb-20 c-gray fs-14">Everything About Support Tickets</p>
-                        <div class="d-flex txt-c gap-20 f-wrap">
-                            <div class="box shadow-1-c-ddd border-1 p-20 red-10 fs-14 c-gray">
-                                <i class="fa-regular fa-rectangle-list fa-2x mb-10 c-orange"></i>
-                                <span class="mb-10 d-block fs-15 fw-bold c-black">2500</span>
-                                <span>Total</span>
-                            </div>
-                            <div class="box shadow-1-c-ddd border-1 p-20 red-10 fs-14 c-gray">
-                                <i class="fa fa-spinner fa-2x mb-10 c-blue"></i>
-                                <span class="mb-5 fs-15 d-block fw-bold c-black">500</span>
-                                <span>Pending</span>
-                            </div>
-                            <div class="box shadow-1-c-ddd border-1 p-20 red-10 fs-14 c-gray">
-                                <i class="fa-regular fa-circle-check fa-2x m-10 c-green"></i>
-                                <span class="mb-5 d-block fw-bold c-black">2500</span>
-                                <span>Closed</span>
-                            </div>
-                            <div class="box shadow-1-c-ddd border-1 p-20 red-10 fs-14 c-gray">
-                                <i class="fa-regular fa-rectangle-xmark fa-2x mb-10 c-red"></i>
-                                <span class="mb-5 d-block fw-bold c-black">2500</span>
-                                <span>Closed</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <!-- חיפושים אחרונים -->
-                    <div class="search-items  mb-20 p-20 bg-w red-6 txt-c-sm  ">
-                        <h2 class="mt-0 pt-15 mb-5">Top Search Items </h2>
-                        <div class="flex-between bg">
-                            <p class="c-gray">Keyword</p>
-                            <span class="c-gray">Search Count</span>
-                        </div>
-                        <div class="flex-between bg">
-                            <p style="font-size: 0.8rem;">JavaScript</p>
-                            <span class="bg-gray2 c-black item">220</span>
-                        </div>
-                        <div class="flex-between bg">
-                            <p style="font-size: 0.8rem;">Angular+2</p>
-                            <span class="bg-gray2 c-black item">180</span>
-                        </div>
-                        <div class="flex-between bg">
-                            <p style="font-size: 0.8rem;">React.Js </p>
-                            <span class="bg-gray2 c-black item">220</span>
-                        </div>
-                        <div class="flex-between bg">
-                            <p style="font-size: 0.8rem;">Next.JS</p>
-                            <span class="bg-gray2 c-black item">200</span>
-                        </div>
-                        <div class="flex-between bg">
-                            <p style="font-size: 0.8rem;">Design</p>
-                            <span class="bg-gray2 c-black item">125</span>
-                        </div>
-                        <div class="flex-between bg">
-                            <p style="font-size: 0.8rem;">Python</p>
-                            <span class="bg-gray2 c-black item">220</span>
-                        </div>
-                        <div class="flex-between bg">
-                            <p style="font-size: 0.8rem;">Frontend </p>
-                            <span class="bg-gray2 c-black item">220</span>
-                        </div>
-                    </div>
-
-                    <!-- פרויקטים בתהליך אחרונים -->
-                    <div class="last-project mb-20 p-20 bg-w red-6 txt-c-sm d-flex p-relative   ">
-                        <h2 class="mt-0 pt-15 mb-20">Last Project Process</h2>
-                        <ul class="list-none m-0 p-relative">
-                            <li class=" d-flex align-center done">Got the Project</li>
-                            <li class="mt-25 mr-25  d-flex align-center done">Started The Project</li>
-                            <li class="mt-25 d-flex align-center done">The Project About To Finish</li>
-                            <li class="mt-25 d-flex align-center done">The Project About To Finish</li>
-                            <li class="mt-25 d-flex align-center current">Test the project</li>
-                            <li class="mt-25 d-flex align-center ">finsh the project & Get Money</li>
-                            <li class="mt-25 d-flex align-center ">finsh the project & Get Money</li>
-
-                            
-                        </ul>
-                        <img class="launch-icon opacity-3 sm-hide" src="Image/project.png" alt="">
-                    </div>
-
-                    <!-- תזכורות -->
-                    <div class="reminder pb-25 mb-20 p-20 bg-w red-6  txt-c-sm  p-relative   ">
-                        <h2 class="mt-0  pt-15 mb-20">Reminders </h2>
-                        <ul class="list-none p-0 m-0 pb-20">
-                            <li class="d-flex align-center mt-15">
-                                <span class="key bg-blue mr-15 d-block red-circle"></span>
-                                <div class="pl-15 blue">
-                                    <p class="fs-14 fw-bold mt-0 mb-5">Check My Tasks List </p>
-                                    <span class="fs-13 c-gray">26/09/2022 - 12:00am</span>
-                                </div>
-                            </li>
-                            <li class="d-flex mt-20 align-center mt-15">
-                                <span class="key bg-orange mr-15 d-block red-circle"></span>
-                                <div class="pl-15 orange">
-                                    <p class="fs-14 fw-bold mt-0 mb-5">Check My Project </p>
-                                    <span class="fs-13 c-gray">24/10/2022 - 12:00am</span>
-                                </div>
-                            </li>
-                            <li class="d-flex mt-20 align-center mt-15">
-                                <span class="key bg-green mr-15 d-block red-circle"></span>
-                                <div class="pl-15 green">
-                                    <p class="fs-14 fw-bold mt-0 mb-5">Call All my Client </p>
-                                    <span class="fs-13 c-gray">05/11/2022 - 12:00am</span>
-                                </div>
-                            </li>
-                            <li class="d-flex mt-20 align-center mt-15">
-                                <span class="key bg-red mr-15 d-block red-circle"></span>
-                                <div class="pl-15 red">
-                                    <p class="fs-14 fw-bold mt-0 mb-5">Finish The Development Workshop </p>
-                                    <span class="fs-13 c-gray">20/12/2022 - 12:00am</span>
-                                </div>
-                            </li>
-                        </ul>
-
-                    </div>
-
-                </div>
-
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">PURCHASE ORDERS</p>
+              <span class="material-icons-outlined text-orange">add_shopping_cart</span>
             </div>
+            <span class="text-primary font-weight-bold">83</span>
+          </div>
 
-            <!-- סה״כ פרויקטים -->
-            <div class="projects p-20 bg-w red-10 m-20">
-                <h2 class="m-0 mb-20 pt-20 ">Project List</h2>
-                <div class="responsive-table">
-                    <table class="fs-15 w-full">
-                        <thead> 
-                            <tr>
-                                <td>Name</td>
-                                <td>Finish Date</td>
-                                <td>Client</td>
-                                <td>Price</td>
-                                <td>Team</td>
-                                <td>Status</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Ministry Wikipedia </td>
-                                <td>10 May 2022</td>
-                                <td>Ministry </td>
-                                <td>$3000 </td>
-                                <td>
-                                    <img src="Image/team-01.png" alt="" srcset="">
-                                    <img src="Image/team-02.png" alt="" srcset="">
-                                    <img src="Image/team-03.png" alt="" srcset="">
-                                    <img src="Image/team-04.png" alt="" srcset="">
-                                </td>
-                                <td>
-                                    <span class="label bg-orange c-w btn pointer">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>My Shop </td>
-                                <td>10 Oct 2021</td>
-                                <td>H&S </td>
-                                <td>$5000 </td>
-                                <td>
-                                    <img src="Image/team-02.png" alt="" srcset="">   
-                                    <img src="Image/team-04.png" alt="" srcset="">
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">SALES ORDERS</p>
+              <span class="material-icons-outlined text-green">shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold">79</span>
+          </div>
 
-                                </td>
-                                <td>
-                                    <span class="label bg-blue c-w btn pointer">In Progress</span>
-                                </td>
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">INVENTORY ALERTS</p>
+              <span class="material-icons-outlined text-red">notification_important</span>
+            </div>
+            <span class="text-primary font-weight-bold">56</span>
+          </div>
 
-                            </tr>
-                            <tr>
-                                <td>Portfolio </td>
-                                <td>15 Agu 2022</td>
-                                <td>Void</td>
-                                <td>$1000</td>
-                                <td>
-                                    <img src="Image/team-02.png" alt="" srcset="">
-                                    <img src="Image/team-01.png" alt="" srcset="">
-                                    <img src="Image/team-03.png" alt="" srcset="">
-                                </td>
-                                <td>
-                                    <span class="label bg-green btn  c-w">Complete</span>
-                                </td>
+        </div>
 
-                            </tr>
-                            <tr>
-                                <td>Shazly Store</td>
-                                <td>9 sep 2022</td>
-                                <td>H-Dev </td>
-                                <td>$1500</td>
-                                <td>
-                                    <img src="Image/team-01.png" alt="" srcset="">
-                                    <img src="Image/team-02.png" alt="" srcset="">
-                                    <img src="Image/team-03.png" alt="" srcset="">
-                                    <img src="Image/team-04.png" alt="" srcset="">
-                                </td>
-                                <td>
-                                    <span class="label  btn bg-red c-w">Rejected</span>
-                                </td>
+        <div class="charts">
+            <div class="charts-card">
+                <p class="chart-title">Top 5 Products</p>
+                <div id="bar-chart"></div>
+        </div>
+        
+        <div class="charts-card">
+            <p class="chart-title">Purchase and Sales Orders</p>
+            <div id="area-chart"></div>
+        </div>
 
-                            </tr>
-                            <tr>
-                                <td>Bouba App</td>
-                                <td>10 Mar 2022</td>
-                                <td>Ministry </td>
-                                <td>$1200</td>
-                                <td>
-                                    <img src="Image/team-01.png" alt="" srcset="">
-                                    <img src="Image/team-02.png" alt="" srcset="">
-                                    <img src="Image/team-03.png" alt="" srcset="">
-                                    <img src="Image/team-04.png" alt="" srcset="">
-                                </td>
-                                <td>
-                                    <span class="label  btn bg-red c-w">Rejected</span>
-                                </td>
+        <div class="charts-card">
+            <p class="chart-title">Purchase and Sales Orders</p>
+            <div id="pie-chart"></div>
+        </div>
 
-                            </tr>
-                            <tr>
-                                <td>Ministry Wikipedia </td>
-                                <td>19 mar 2022</td>
-                                <td>Arena Company </td>
-                                <td>$9000</td>
-                                <td>
-                                    <img src="Image/team-01.png" alt="" srcset="">
-                                    <img src="Image/team-02.png" alt="" srcset="">
-                                    <img src="Image/team-03.png" alt="" srcset="">
-                                    <img src="Image/team-04.png" alt="" srcset="">
-                                    <img src="Image/team-01.png" alt="" srcset="">
-                                    <img src="Image/team-02.png" alt="" srcset="">
-                                    <img src="Image/team-03.png" alt="" srcset="">
-                                    <img src="Image/team-04.png" alt="" srcset="">
-                                </td>
-                                <td>
-                                    <span class="label  btn bg-green c-w">Complete</span>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>Arena Application </td>
-                                <td>01 May 2021</td>
-                                <td>Ministry </td>
-                                <td>$6000</td>
-                                <td>
-                                    <img src="Image/team-01.png" alt="" srcset="">
-                                    <img src="Image/team-02.png" alt="" srcset="">
-                                    <img src="Image/team-03.png" alt="" srcset="">
-                                    <img src="Image/team-04.png" alt="" srcset="">
-                                </td>
-                                <td>
-                                    <span class="label  btn bg-green c-w">Complete</span>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>Glods Gym</td>
-                                <td>10 May 2022</td>
-                                <td>ShazlyDiv </td>
-                                <td>$3000 </td>
-                                <td>
-                                    <img src="Image/team-01.png" alt="" srcset="">
-                                    <img src="Image/team-04.png" alt="" srcset="">
-                                </td>
-                                <td>
-                                    <span class="label bg-orange c-w btn pointer">Pending</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
+        <div class="charts-card">
+            <p class="chart-title">Speedometer</p>
+            <div id="speedometer-chart"></div>
+        </div>
+        
+        <div class="charts-card">
+            <p class="chart-title">To-Do List</p>
+            <div id="todo-list">
+                <ul id="todo-items">
+                    <!-- List items added here by JavaScript -->
+                </ul>
+                <input type="text" id="new-task" placeholder="Add new task" />
+                <button onclick="addTask()">Add Task</button>
             </div>
         </div>
 
-</body>
+        </div>
+      </main>
+      <!-- End Main -->
 
+    </div>
+
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/scripts.js"></script>
+  </body>
 </html>
