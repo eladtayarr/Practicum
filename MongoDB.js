@@ -1061,6 +1061,162 @@ async function getMeetingsByUsername(username) {
 }
 
 
+////    קבלת כל השותפים
+const getInstallers = async () => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Installers"); // שם הקולקציה של המתקינים
+
+    const installers = await collection.find().toArray(); // שליפת כל המתקינים
+    console.log("Installers:", installers);
+    return installers;
+  } catch (error) {
+    console.error("Error fetching installers:", error);
+    throw new Error("Failed to fetch installers");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
+const getCollectionCounts = async () => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+
+    const database = client.db("Practicum_Project");
+
+    // שליפת כמות המסמכים מכל קולקציה
+    const customersCount = await database.collection("Customers").countDocuments();
+    const installersCount = await database.collection("Installers").countDocuments();
+    const productsCount = await database.collection("Products").countDocuments();
+
+    return {
+      customersCount,
+      installersCount,
+      productsCount,
+    };
+  } catch (error) {
+    console.error("Error fetching collection counts:", error);
+    throw new Error("Failed to fetch collection counts");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
+
+const updateProductUnits = async (productId, units) => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Products");
+
+    // עדכון כמות היחידות למוצר לפי ה-ID
+    const result = await collection.updateOne(
+      { _id: new MongoClient.ObjectId(productId) },
+      { $set: { totalUnits: units } }
+    );
+
+    return result.modifiedCount > 0;
+  } catch (error) {
+    console.error("Error updating product units:", error);
+    throw new Error("Failed to update product units");
+  } finally {
+    if (client) {
+      await client.close();
+    }
+  }
+};
+
+
+
+
+////// TO Do List
+const addTodoItem = async (todoItem) => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    const database = client.db("TodoApp");
+    const collection = database.collection("Todos");
+
+    const result = await collection.insertOne(todoItem);
+    return result.insertedId; // Return the ID of the inserted item
+  } catch (error) {
+    console.error("Error adding TODO item:", error);
+    throw new Error("Failed to add TODO item");
+  } finally {
+    if (client) {
+      await client.close();
+    }
+  }
+};
+
+const getTodoItems = async () => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    const database = client.db("TodoApp");
+    const collection = database.collection("Todos");
+
+    return await collection.find().toArray();
+  } catch (error) {
+    console.error("Error fetching TODO items:", error);
+    throw new Error("Failed to fetch TODO items");
+  } finally {
+    if (client) {
+      await client.close();
+    }
+  }
+};
+
+const deleteTodoItem = async (id) => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    const database = client.db("TodoApp"); // Replace with your database name
+    const collection = database.collection("Todos"); // Replace with your collection name
+
+    // Delete the TODO item by its ID
+    const result = await collection.deleteOne({ _id: new ObjectId(id) });
+    return result.deletedCount > 0; // Return true if an item was deleted
+  } catch (error) {
+    console.error("Error deleting TODO item:", error);
+    throw new Error("Failed to delete TODO item");
+  } finally {
+    if (client) {
+      await client.close();
+    }
+  }
+};
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -1075,6 +1231,7 @@ module.exports = {
   addMeeting,
   updateProduct,
   getAllUsers,
+  getInstallers,
   deleteUserById,
   addUser,
   addPartner,
@@ -1096,4 +1253,9 @@ module.exports = {
   countProducts,
   countInstallers,
   countMeetings,
+  getCollectionCounts,
+  updateProductUnits,
+  addTodoItem,
+  getTodoItems,
+  deleteTodoItem,
 };

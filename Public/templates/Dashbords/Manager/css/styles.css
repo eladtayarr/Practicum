@@ -3,7 +3,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     background-color: #e6e8ed;
-    color: #666666;
+    color: #124559;
     font-family: "Montserrat", sans-serif;
   }
   
@@ -13,27 +13,28 @@ body {
   }
   
   .text-primary {
-    color: #666666;
+    color: #124559;
   }
   
   .text-blue {
-    color: #246dec;
+    color: #99c1de;
   }
   
   .text-red {
-    color: #cc3c43;
+    color: #d4a373;
   }
   
   .text-green {
-    color: #367952;
+    color: #fcd5ce;
   }
   
   .text-orange {
-    color: #f5b74f;
+    color: #ccd5ae;
   }
   
   .font-weight-bold {
     font-weight: 600;
+    color: #124559;
   }
   
   .grid-container {
@@ -71,8 +72,8 @@ body {
     grid-area: sidebar;
     width: 100%;  /* רוחב קטן יותר */
     height: 100%;
-    background-color: #21232d;
-    color: #9799ab;
+    background-color: #124559;
+    color:rgb(255, 255, 255);
     overflow-y: auto;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -113,7 +114,7 @@ body {
   
   .sidebar-list-item > a {
     text-decoration: none;
-    color: #9799ab;
+    color:rgb(255, 255, 255);
   }
   
   .sidebar-responsive {
@@ -166,19 +167,19 @@ body {
   }
   
   .card:first-child {
-    border-left: 7px solid #246dec;
+    border-left: 7px solid #99c1de;
   }
   
   .card:nth-child(2) {
-    border-left: 7px solid #f5b74f;
+    border-left: 7px solid #ccd5ae;
   }
   
   .card:nth-child(3) {
-    border-left: 7px solid #367952;
+    border-left: 7px solid #fcd5ce;
   }
   
   .card:nth-child(4) {
-    border-left: 7px solid #cc3c43;
+    border-left: 7px solid #d4a373;
   }
   
   .card > span {
@@ -379,4 +380,75 @@ button:hover {
   background-color: #f5f5f5;
 }
 
+
+
+
+.todo-container {
+  margin: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.todo-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-form input {
+  width: 75%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.add-btn {
+  width: 20%;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+
+.todo-list {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.todo-list li {
+  background: #f8f9fa;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-list li span {
+  flex-grow: 1;
+}
+
+.todo-list li button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.todo-list li button:hover {
+  background-color: #c82333;
+}
 

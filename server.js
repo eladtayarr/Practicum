@@ -21,6 +21,8 @@ const {
   addPartner,
   updateProduct,
   getAllPartners,
+  getAllInstallers,
+  getCollectionCounts,
   addCustomer,
   filterAssetsForManager,
   createDeal,
@@ -34,6 +36,10 @@ const {
   getCustomerByID,
   getAvailableAssets,
   addInstallationMeeting,
+  updateProductUnits,
+  getTodoItems,
+  addTodoItem,
+  deleteTodoItem,
 } = require("./MongoDB");
 
 
@@ -644,6 +650,17 @@ app.get("/Partners", async (req, res) => {
   }
 });
 
+app.get("/installers", async (req, res) => {
+  try {
+    const installers = await getInstallers(); // קריאה לפונקציה שמחזירה את נתוני המתקינים
+    res.status(200).json(installers); // החזרת הנתונים כ-JSON
+  } catch (error) {
+    console.error("Error fetching installers data:", error);
+    res.status(500).json({ error: "Failed to fetch installers data" });
+  }
+});
+
+
 
 const { countCustomers, countProducts, countMeetings} = require("./MongoDB.js");
 
@@ -692,6 +709,81 @@ app.get("/dashboard-data/Meetings", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch meetings data" });
   }
 });
+
+app.get("/dashboard-data/collections", async (req, res) => {
+  try {
+    const counts = await getCollectionCounts(); // קריאה לפונקציה שמחזירה את הנתונים
+    res.status(200).json(counts); // החזרת הנתונים כ-JSON
+  } catch (error) {
+    console.error("Error fetching collection counts:", error);
+    res.status(500).json({ error: "Failed to fetch collection counts" });
+  }
+});
+
+
+app.put("/Products/:id/units", async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const { units } = req.body;
+
+    if (typeof units !== "number" || units < 0) {
+      return res.status(400).json({ error: "Invalid units value" });
+    }
+
+    const success = await updateProductUnits(productId, units);
+    if (success) {
+      res.status(200).json({ message: "Product units updated successfully" });
+    } else {
+      res.status(404).json({ error: "Product not found" });
+    }
+  } catch (error) {
+    console.error("Error updating product units:", error);
+    res.status(500).json({ error: "Failed to update product units" });
+  }
+});
+
+
+
+//// To Do List
+// Route to add a new TODO item
+app.post("/api/todos", async (req, res) => {
+  try {
+    const todoItem = req.body;
+    const id = await addTodoItem(todoItem);
+    res.status(201).json({ id, message: "TODO item added successfully!" });
+  } catch (error) {
+    console.error("Error adding TODO item:", error);
+    res.status(500).json({ error: "Failed to add TODO item" });
+  }
+});
+
+// Route to get all TODO items
+app.get("/api/todos", async (req, res) => {
+  try {
+    const todoItems = await getTodoItems();
+    res.status(200).json(todoItems);
+  } catch (error) {
+    console.error("Error fetching TODO items:", error);
+    res.status(500).json({ error: "Failed to fetch TODO items" });
+  }
+});
+
+app.delete("/api/todos/:id", async (req, res) => {
+  try {
+    const todoId = req.params.id; // Extract the ID from the URL
+    const success = await deleteTodoItem(todoId); // Call the delete function
+
+    if (success) {
+      res.status(200).json({ message: "TODO item deleted successfully!" });
+    } else {
+      res.status(404).json({ error: "TODO item not found" });
+    }
+  } catch (error) {
+    console.error("Error deleting TODO item:", error);
+    res.status(500).json({ error: "Failed to delete TODO item" });
+  }
+});
+
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצת אתר        //////////////////////////

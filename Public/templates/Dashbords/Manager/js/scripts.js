@@ -23,7 +23,7 @@ function closeSidebar() {
 const barChartOptions = {
   series: [
     {
-      data: [10, 8, 6, 4, 2],
+      data: [30, 14, 20, 4, 2],
     },
   ],
   chart: {
@@ -33,7 +33,7 @@ const barChartOptions = {
       show: false,
     },
   },
-  colors: ['#246dec', '#cc3c43', '#367952', '#f5b74f', '#4f35a1'],
+  colors: ['#ccd5ae', '#e9edc9', '#fcefb4', '#faedcd', '#d4a373'],
   plotOptions: {
     bar: {
       distributed: true,
@@ -49,7 +49,7 @@ const barChartOptions = {
     show: false,
   },
   xaxis: {
-    categories: ['Laptop', 'Phone', 'Monitor', 'Headphones', 'Camera'],
+    categories: ['Curtain', 'Shutter', 'Frame', 'Accessories', 'Others'],
   },
   yaxis: {
     title: {
@@ -88,7 +88,7 @@ const areaChartOptions = {
       show: false,
     },
   },
-  colors: ['#4f35a1', '#246dec'],
+  colors: ['#a5a58d', '#cb997e'],
   dataLabels: {
     enabled: false,
   },
@@ -127,7 +127,7 @@ areaChart.render();
 
 // PIE CHART
 const pieChartOptions = {
-  series: [12, 9, 6, 3, 1],
+  series: [12, 9, 6, 3],
   chart: {
       type: 'pie',
       height: 350,
@@ -135,8 +135,8 @@ const pieChartOptions = {
           show: true
       }
   },
-  labels: ['Laptop', 'Phone', 'Monitor', 'Headphones', 'Camera'],
-  colors: ['#007bff', '#dc3545', '#28a745', '#ffc107', '#6f42c1'],
+  labels: ['Taking measurements', 'Installing a new product', 'Repairing an existing product', 'Laundries'], 
+  colors: ['#95b8d1', '#a5a58d', '#faedcd', '#ddbea9'],
   legend: {
       position: 'bottom'
   },
@@ -160,50 +160,6 @@ const pieChart = new ApexCharts(
 pieChart.render();
 
 // SPEEDOMETER CHART
-const speedometerChartOptions = {
-    series: [76], // Example value to display
-    chart: {
-        type: 'radialBar',
-        height: 300
-    },
-    plotOptions: {
-        radialBar: {
-            startAngle: -135,
-            endAngle: 135,
-            hollow: {
-                margin: 10,
-                size: '50%',
-                background: 'transparent',
-            },
-            dataLabels: {
-                name: {
-                    show: false,
-                },
-                value: {
-                    offsetY: 10,
-                    fontSize: '22px',
-                    color: 'black',
-                    formatter: function (val) {
-                        return val + "%";
-                    }
-                }
-            },
-            track: {
-                background: '#e0e0e0',
-                strokeWidth: '97%',
-                margin: 5, // margin is in pixels
-            },
-        }
-    },
-    colors: ['#20E647'],
-    stroke: {
-        lineCap: 'round'
-    },
-    labels: ['Progress']
-};
-
-const speedometerChart = new ApexCharts(document.querySelector("#speedometer-chart"), speedometerChartOptions);
-speedometerChart.render();
 
 
 
