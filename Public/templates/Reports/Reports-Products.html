@@ -12,18 +12,18 @@
 
     <link rel="shortcut icon" href="images/favicon.ico">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="Public/src/css/animate.css">
-    <link rel="stylesheet" href="/src/css/icomoon.css">
-    <link rel="stylesheet" href="/src/css/bootstrap.css">
-    <link rel="stylesheet" href="/src/css/superfish.css">
-    <link rel="stylesheet" href="/src/css/flexslider.css">
-    <link rel="stylesheet" href="/src/css/magnific-popup.css">
-    <link rel="stylesheet" href="/src/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/src/css/cs-select.css">
-    <link rel="stylesheet" href="/src/css/cs-skin-border.css">
-    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="../../src/css/animate.css">
+    <link rel="stylesheet" href="../../src/css/icomoon.css">
+    <link rel="stylesheet" href="../../src/css/bootstrap.css">
+    <link rel="stylesheet" href="../../src/css/superfish.css">
+    <link rel="stylesheet" href="../../src/css/flexslider.css">
+    <link rel="stylesheet" href="../../src/css/magnific-popup.css">
+    <link rel="stylesheet" href="../../src/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../../src/css/cs-select.css">
+    <link rel="stylesheet" href="../../src/css/cs-skin-border.css">
+    <link rel="stylesheet" href="../../src/css/style.css">
 
-    <script src="/src/js/modernizr-2.6.2.min.js"></script>
+    <script src="/src/../../src/js/modernizr-2.6.2.min.js"></script>
     <style>   
         #footer #fh5co-header-subscribe button {
             position: absolute;
@@ -62,8 +62,7 @@
             background-color: #468faf; /* צבע רקע בזמן ריחוף */
             color: white;
         }
-
-                /* עיגול פינות */
+        /* עיגול פינות */
         .my-table th:first-child {
             border-top-left-radius: 10px;
         }
@@ -155,14 +154,13 @@
     <aside id="fh5co-hero" class="js-fullheight">
         <div class="flexslider js-fullheight">
             <ul class="slides">
-                <li style="background-image: url(images/cov.png);">
+                <li style="background-image: url(https://images.unsplash.com/photo-1534639077088-d702bcf685e7?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                     <div class="overlay"></div>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
-                                    <h2 class="heading-title">Assets</h2>
-                                    <p class="fh5co-lead"><i class="icon-heart3"></i> </p>
+                                    <h2 class="heading-title">Products</h2>
                                 </div>
                             </div>
                         </div>
@@ -178,20 +176,19 @@
         <div class="container"><br><br><br><br><br>
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>View Assets</h3>
+                    <h3>View Products Reports</h3>
                 </div>
             </div>
-            <div id="assetList" class="my-table"> 
+            <div id="productTable" class="my-table"> 
                 <table>
                     <thead>
                         <tr>
-                            <th>Asset ID</th>
-                            <th>Asset Type</th>
-                            <th>Asset Price</th>
-                            <th>Asset Status</th>
-                            <th>Asset Street</th>
-                            <th>Asset Street Number</th>
-                            <th>Asset City</th>
+                            <th>Product ID</th>
+                            <th>Product Type</th>
+                            <th>Product Price</th>
+                            <th>Production date</th>
+                            <th>Description</th>
+                            <th>Product Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -235,7 +232,7 @@
 
     <script>
          document.addEventListener("DOMContentLoaded", function () {
-            fetch("/Assets")
+            fetch("/Products")
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
@@ -244,21 +241,21 @@
                 })
                 .then(data => {
                     console.log(data); // Add this line to inspect the data returned from the server
-                    const assetList = document.getElementById("assetList");
-                    const tbody = assetList.querySelector("tbody");
+                    const productTable = document.getElementById("productTable");
+                    const tbody = productTable.querySelector("tbody");
                     tbody.innerHTML = ""; // Clear the table body before adding new rows
-                    data.forEach(asset => {
+                    data.forEach(product => {
                         const row = tbody.insertRow();
                         row.innerHTML = `
-                        <td>${asset.AssetID}</td>
-                        <td>${asset.AssetType}</td>
-                        <td>${asset.AssetPrice}</td>
-                        <td>${asset.AssetStatus}</td>
-                        <td>${asset.AssetStreet}</td>
-                        <td>${asset.AssetStreetNumber}</td>
-                        <td>${asset.AssetCity}</td>
-                     
-                    `;
+                        <td>${product.ProductID}</td>
+                        <td>${product.ProductType}</td>
+                        <td>${product.ProductPrice}</td>
+                        <td>${product.ProductionDate}</td>
+                        <td>${product.ProductDescription}</td>
+                        <td>${product.ProductStatus}</td>
+                        
+
+                        `;
                     });
                 })
                 .catch(error => console.error("Error:", error));
@@ -292,18 +289,18 @@
     }
     </script>
     
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/sticky.js"></script>
-    <script src="js/hoverIntent.js"></script>
-    <script src="js/superfish.js"></script>
-    <script src="js/jquery.flexslider-min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/selectFx.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../../src/js/jquery.min.js"></script>
+    <script src="../../src/js/jquery.easing.1.3.js"></script>
+    <script src="../../src/js/bootstrap.min.js"></script>
+    <script src="../../src/js/jquery.waypoints.min.js"></script>
+    <script src="../../src/js/sticky.js"></script>
+    <script src="../../src/js/hoverIntent.js"></script>
+    <script src="../../src/js/superfish.js"></script>
+    <script src="../../src/js/jquery.flexslider-min.js"></script>
+    <script src="../../src/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../src/js/classie.js"></script>
+    <script src="../../src/js/selectFx.js"></script>
+    <script src="../../src/js/main.js"></script>
     </body>
 
 </html>

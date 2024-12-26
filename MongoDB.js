@@ -89,8 +89,6 @@ const countCustomers = async () => {
   }
 };
 
-
-
 ////    שליפת כל חוות הדעת
 const getFeedback = async () => {
   let client; // Define the client variable
