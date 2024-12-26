@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="../../../../src/css/cs-skin-border.css" />
     <link rel="stylesheet" href="../../../../src/css/style.css" />
 
-    <script src="../../../../src/modernizr-2.6.2.min.js"></script>
+    <script src="../../../../src/js/modernizr-2.6.2.min.js"></script>
 
 
   </head>
@@ -237,7 +237,7 @@
               <p class="text-primary">PRODUCTS <br>(total)</p>
               <span class="material-icons-outlined text-blue">inventory_2</span>
             </div>
-            <span class="text-primary font-weight-bold">249</span>
+            <span id="totalProducts" class="text-primary font-weight-bold">Loading...</span>
           </div>
 
           <div class="card">
@@ -261,7 +261,7 @@
               <p class="text-primary">OPEN ORDERS <br> (in progress)</p>
               <span class="material-icons-outlined text-red">notification_important</span>
             </div>
-            <span class="text-primary font-weight-bold">56</span>
+            <span id="totalMeetings" class="text-primary font-weight-bold">Loading...</span>
           </div>
 
         </div>
@@ -344,5 +344,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
     <!-- Custom JS -->
     <script src="js/scripts.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        try {
+          // Fetch product data
+          const productResponse = await fetch("/dashboard-data/products");
+          if (!productResponse.ok) {
+            throw new Error("Failed to fetch product data");
+          }
+          const productData = await productResponse.json();
+          document.getElementById("totalProducts").textContent =
+            productData.productsCount || "No data";
+
+            
+          // Fetch product data
+          const meetingsResponse = await fetch("/dashboard-data/Meetings");
+          if (!meetingsResponse.ok) {
+            throw new Error("Failed to fetch meeting data");
+          }
+          const meetingsData = await meetingsResponse.json();
+          document.getElementById("totalMeetings").textContent =
+          meetingsData.meetingCount || "No data";
+          } 
+        
+        catch (error) {
+          console.error("Error loading data:", error);
+          document.getElementById("totalCustomers").textContent = "Error loading customers";
+          document.getElementById("totalMeetings").textContent = "Error loading products";
+        }
+      });
+    
+    </script>
   </body>
 </html>

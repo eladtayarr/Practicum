@@ -386,6 +386,33 @@ const countInstallers = async () => {
   }
 };
 
+////// סופר את כמות ההתקנות
+const countMeetings = async () => {
+  let client;
+  try {
+    client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("InstallationMeetings"); // שם הקולקציה של המוצרים
+
+    const count = await collection.countDocuments();
+    console.log("Total Meetings:", count);
+    return count;
+  } catch (error) {
+    console.error("Error counting Meetings:", error);
+    throw new Error("Failed to count Meetings");
+  } finally {
+    if (client) {
+      await client.close();
+      console.log("Connection to MongoDB closed");
+    }
+  }
+};
+
 
 
 ////    הוספת מוצר חדש לבסיס נתונים
@@ -1068,4 +1095,5 @@ module.exports = {
   countCustomers,
   countProducts,
   countInstallers,
+  countMeetings,
 };

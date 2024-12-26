@@ -645,7 +645,7 @@ app.get("/Partners", async (req, res) => {
 });
 
 
-const { countCustomers, countProducts, countInstallers} = require("./MongoDB.js");
+const { countCustomers, countProducts, countMeetings} = require("./MongoDB.js");
 
 // נתיב שמחזיר את כמות הלקוחות
 app.get("/dashboard-data/customers", async (req, res) => {
@@ -681,6 +681,17 @@ app.get("/dashboard-data/installers", async (req, res) => {
 });
 
 
+
+// נתיב שמחזיר את כמות ההתקנות
+app.get("/dashboard-data/Meetings", async (req, res) => {
+  try {
+    const meetingCount = await countMeetings();
+    res.status(200).json({ meetingCount });
+  } catch (error) {
+    console.error("Error fetching meetings data:", error);
+    res.status(500).json({ error: "Failed to fetch meetings data" });
+  }
+});
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצת אתר        //////////////////////////
