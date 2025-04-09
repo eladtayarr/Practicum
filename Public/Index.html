@@ -321,53 +321,53 @@
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form id="signUpForm" action="#">
-                <h1>Create Account</h1>
+                <h1>צור חשבון חדש</h1>
                 <br><br><br>
                 <div class="input-container">
                     <!-- Username input with icon -->
-                    <input type="text" id="username1" name="username" placeholder="Name" required>
+                    <input type="text" id="username1" name="username" placeholder="שם משתמש" required>
                     <i class="fa fa-user icon"></i>
                 </div>
     
                 <!-- Password input with icon -->
                 <div class="input-container">
-                    <input type="password" id="password1" name="password" placeholder="Password" required>
+                    <input type="password" id="password1" name="password" placeholder="סיסמה" required>
                     <i class="fa fa-key icon"></i>
                 </div>
-                <button id="signUpButton" type="submit">Sign Up</button>
+                <button id="signUpButton" type="submit">הרשמה</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
             <form id="loginForm" action="#">
-                <h1>Sign in</h1>
+                <h1>התחבר לאיזור האישי</h1>
                 <br><br><br>
                 <div class="input-container">
                     <!-- Username input with icon -->
-                    <input type="text" id="username2" name="username" placeholder="Name" required>
+                    <input type="text" id="username2" name="username" placeholder="שם משתמש" required>
                     <i class="fa fa-user icon"></i>
                 </div>
         
                 <!-- Password input with icon -->
                 <div class="input-container">
-                    <input type="password" id="password2" name="password" placeholder="Password" required>
+                    <input type="password" id="password2" name="password" placeholder="סיסמה" required>
                     <i class="fa fa-key icon"></i>
                 </div>
-                <a href="#">Forgot your password?</a>
-                <button id="signInButton" type="submit">Sign In</button>
+                <a href="#"> ? שחכת את הסיסמה שלך</a>
+                <button id="signInButton" type="submit">התחברות</button>
             </form>
         </div>
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn">Sign In</button>
+                    <h1>!ברוך שובך</h1>
+                    <p>בכדי להישאר מחובר לאזור האישי שלך, אנא התחבר באמצעות שם המשתמש וסיסמה שברשותך</p>
+                    <button class="ghost" id="signIn">התחברות למערכת</button>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <img class="logo" src="/src/images/logo1.png" alt="Logo">
-                    <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <h1>!היי חבר חדש</h1>
+                    <p>במידה ואתה מעוניין להירשם למערכת אנא הכנס את הפרטים האישיים שלך</p>
+                    <button class="ghost" id="signUp">הרשמה למערכת</button>
                 </div>
             </div>
         </div>
@@ -414,14 +414,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (response.ok) {
-                alert('Account created successfully! You can now sign in.');
+                alert('.החשבון נוצר בהצלחה! עכשיו אתה יכול להיכנס');
                 signUpForm.reset();
             } else {
-                alert('Error creating account. Please try again later.');
+                alert('.שגיאה ביצירת חשבון. אנא נסה שוב מאוחר יותר');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('An unexpected error occurred. Please try again later.');
+            alert('.אירעה שגיאה בלתי צפויה. אנא נסה שוב מאוחר יותר');
         }
     });
 
@@ -462,14 +462,14 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = '/';
     }
 } else {
-    alert('User not found');
+    alert('המשתמש לא נמצא');
 }
 } else {
-    alert('Invalid username or password');
+    alert('שם משתמש או סיסמה לא חוקיים');
 }
         } catch (error) {
             console.error('Error logging in:', error);
-            alert('An error occurred while logging in');
+            alert('אירעה שגיאה בעת הכניסה');
         }
     });
 });
