@@ -1,23 +1,11 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="he" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
     <title>Trisi Sinai || Practicum</title>
 <link rel="shortcut icon" href="images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     <link rel="shortcut icon" href="images/favicon.ico">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
@@ -35,156 +23,156 @@
     <script src="js/modernizr-2.6.2.min.js"></script>
     <style>
 
-#filter-form-container select#asset-type-select,
-#filter-form-container input#from-place,
-#filter-form-container input#asset-price-min,
-#filter-form-container input#asset-price-max,
-#filter-form-container input#room-number,
-#filter-form-container input#asset-street-number {
-    width: 100%;
-    height: 40px; /* Adjust the height as needed */
-    border-radius: 0px; /* Ensure rounded corners */
-    border: 1px solid #fffdfd; /* Add border for clarity */
-    padding: 8px; /* Add padding for spacing */
-    box-sizing: border-box; /* Ensure padding and border are included
-in the width */
-}
-
-#fh5co-search-map {
-    position: relative;
-}
-
-
-#search-property {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 30%;
-    height: auto; /* Change height to auto to allow content to
-determine height */
-    max-height: 100%; /* Limit height to the viewport height */
-    overflow-y: auto; /* Add scrollbars if content exceeds height */
-    background-color: #de6277;
-    z-index: 1000;
-    transition: right 0.3s ease-in-out;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-#search-property.show {
-    right: 0;
-}
-
-#filter-wrapper {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-}
-
-#filter-mobile-button, #all-assets-button {
-    background-color: #de6277;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: 10px; /* Adjust spacing between buttons */
-}
-
-#filter-mobile-button:hover, #all-assets-button:hover {
-    background-color: #e91e63; /* Darker pink on hover */
-}
-
-#all-assets-button {
-    /* display: none; */ /* Initially hidden */
-    position: fixed;
-    bottom: 20px;
-    right: calc(20px + 160px); /* Adjust based on the width of the filter button */
-    z-index: 999;
-    background-color:#de6277;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 150px;
-}
-
-#empty-assets-message {
-    font-family: 'calibri', cursive;
-    font-size: 30px;
-    color: #fff;
-    background-color:#de6277;
-    border: none;
-    padding: 20px;
-    border-radius: 15px; /* Reduce border-radius for a smaller frame */
-    text-align: center;
-    margin-bottom: 30px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    white-space: nowrap;
-    width: 0;
-    animation: typing 1.5s steps(40, end) forwards, fadeInDown 1s ease;
-    position: relative;
-}
-
-@keyframes typing {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 100%;
-    }
-}
-
-@keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-#empty-assets-message::before,
-#empty-assets-message::after {
-    content: '';
-    position: abso
-}
-
-.form-group {
-            display: flex;
-            align-items: center;
-        }
-    
-        .form-group input[type="text"] {
-            margin-left: -30px; /* Adjust this value as needed */
+        #filter-form-container select#asset-type-select,
+        #filter-form-container input#from-place,
+        #filter-form-container input#asset-price-min,
+        #filter-form-container input#asset-price-max,
+        #filter-form-container input#room-number,
+        #filter-form-container input#asset-street-number {
+            width: 100%;
+            height: 40px; /* Adjust the height as needed */
+            border-radius: 0px; /* Ensure rounded corners */
+            border: 1px solid #fffdfd; /* Add border for clarity */
+            padding: 8px; /* Add padding for spacing */
+            box-sizing: border-box; /* Ensure padding and border are included
+        in the width */
         }
 
-        .form-group button[type="submit"] {
-        margin-top: 20px; /* Adjust this value to move the button down */
-    }
+        #fh5co-search-map {
+            position: relative;
+        }
 
-    @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 
-#filter-mobile-button {
-  animation: pulse 2s infinite; /* הפעלת האנימציה pulse באורך של 2 שניות ובחזרה אינסופית */
-}
+        #search-property {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 30%;
+            height: auto; /* Change height to auto to allow content to
+        determine height */
+            max-height: 100%; /* Limit height to the viewport height */
+            overflow-y: auto; /* Add scrollbars if content exceeds height */
+            background-color: #de6277;
+            z-index: 1000;
+            transition: right 0.3s ease-in-out;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #search-property.show {
+            right: 0;
+        }
+
+        #filter-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        #filter-mobile-button, #all-assets-button {
+            background-color: #de6277;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px; /* Adjust spacing between buttons */
+        }
+
+        #filter-mobile-button:hover, #all-assets-button:hover {
+            background-color: #e91e63; /* Darker pink on hover */
+        }
+
+        #all-assets-button {
+            /* display: none; */ /* Initially hidden */
+            position: fixed;
+            bottom: 20px;
+            right: calc(20px + 160px); /* Adjust based on the width of the filter button */
+            z-index: 999;
+            background-color:#de6277;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 150px;
+        }
+
+        #empty-assets-message {
+            font-family: 'calibri', cursive;
+            font-size: 30px;
+            color: #fff;
+            background-color:#de6277;
+            border: none;
+            padding: 20px;
+            border-radius: 15px; /* Reduce border-radius for a smaller frame */
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            animation: typing 1.5s steps(40, end) forwards, fadeInDown 1s ease;
+            position: relative;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #empty-assets-message::before,
+        #empty-assets-message::after {
+            content: '';
+            position: abso
+        }
+
+        .form-group {
+                    display: flex;
+                    align-items: center;
+                }
+            
+                .form-group input[type="text"] {
+                    margin-left: -30px; /* Adjust this value as needed */
+                }
+
+                .form-group button[type="submit"] {
+                margin-top: 20px; /* Adjust this value to move the button down */
+            }
+
+            @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+        }
+
+        #filter-mobile-button {
+        animation: pulse 2s infinite; /* הפעלת האנימציה pulse באורך של 2 שניות ובחזרה אינסופית */
+        }
 
 
 
@@ -198,10 +186,10 @@ determine height */
 				<div class="container">
 					<div class="nav-header">
 						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-						<h1 id="fh5co-logo"><a href="Home.html"><i class="icon-home"></i> Trisi Sinai <span> Ltd.</span></a></h1>
+						<h1 id="fh5co-logo"><a href="Home.html"><i class="icon-home"></i> תריסי סיני <span> בע״מ.</span></a></h1>
 						<nav id="fh5co-menu-wrap" role="navigation">
 							<ul class="sf-menu" id="fh5co-primary-menu">
-								<li class="active"><a href="Home.html">Home</a></li>
+								<li class="active"><a href="Home.html">דף הבית</a></li>
 								<li>
 									<a>Assets</a>
 									<ul class="fh5co-sub-menu">
@@ -346,9 +334,9 @@ determine height */
                 <div class="row row-bottom-padded-md">
                   <!-- זכויות יוצרים -->
                   <p style="font-size:20px;">
-                    &copy; <span id="year"></span>All rights reserved to Trisi Sinai Ltd.<br/>
-                    <p style="font-size:18px;">The site was built and managed by:<br> 
-                      Elad Tayar | Lior Sinai | Or Menachem | Tair Malca</p>
+                    &copy; <span id="year"></span>כל הזכויות שמורות לתריסי סיני בע״מ.<br/>
+                    <p style="font-size:18px;">האתר נבנה ומנוהל על ידי:<br> 
+                      אלעד טייר | ליאור סיני | אור מנחם | תאיר מלכה</p>
                     <a style="color: #0077b6; text-decoration: none; font-weight:500 ">Terms of Use</a>|<a style="color: #0077b6; text-decoration: none; font-weight:500">Privacy Policy</a>
                   </p>
                   
