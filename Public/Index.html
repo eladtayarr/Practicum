@@ -375,7 +375,7 @@
 
   
 
-    <script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
@@ -402,79 +402,128 @@ document.addEventListener('DOMContentLoaded', function () {
             UserName: username,
             Password: password,
             Role: 'User'
-        };
-
-        try {
-            const response = await fetch('/add-user', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userData)
-            });
-
-            if (response.ok) {
-                alert('.החשבון נוצר בהצלחה! עכשיו אתה יכול להיכנס');
-                signUpForm.reset();
-            } else {
-                alert('.שגיאה ביצירת חשבון. אנא נסה שוב מאוחר יותר');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('.אירעה שגיאה בלתי צפויה. אנא נסה שוב מאוחר יותר');
+    };
+    try {
+        const response = await fetch('/add-user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
+        
+        if (response.ok) {
+            alert('.החשבון נוצר בהצלחה! עכשיו אתה יכול להיכנס');
+            signUpForm.reset();
+        } else {
+            alert('.שגיאה ביצירת חשבון. אנא נסה שוב מאוחר יותר');
         }
-    });
-
-    const signInButtonForm = document.getElementById("signInButton");
-    signInButtonForm.addEventListener('click', async function (event) {
-        event.preventDefault();
-
-        const username = document.getElementById('username2').value;
-        const password = document.getElementById('password2').value;
-
-        try {
-            const response = await fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, password })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-    if (data.user) {
-    sessionStorage.setItem('username', username);
-
-    switch (data.user.Role) {
-        case 'Admin':
-            window.location.href = 'templates/Manager/HomeManager.html';
-            break;
-        case 'Customer':
-            window.location.href = 'templates/Customer/Home.html';
-            break;
-        case 'Installer':
-            window.location.href = 'templates/Installer/Home-Installer.html';
-            break;
-        default:
-            alert('Unsupported user role');
-            window.location.href = '/';
+    } catch (error) {
+        console.error('Error:', error);
+        alert('.אירעה שגיאה בלתי צפויה. אנא נסה שוב מאוחר יותר');
     }
-} else {
-    alert('המשתמש לא נמצא');
-}
-} else {
-    alert('שם משתמש או סיסמה לא חוקיים');
-}
-        } catch (error) {
-            console.error('Error logging in:', error);
-            alert('אירעה שגיאה בעת הכניסה');
-        }
-    });
 });
 
-    </script>
+const signInButtonForm = document.getElementById("signInButton");
+signInButtonForm.addEventListener('click', async function (event) {
+    event.preventDefault();
     
+    const username = document.getElementById('username2').value;
+    const password = document.getElementById('password2').value;
+    
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        
+        if (response.ok) {
+            if (data.user) {
+                sessionStorage.setItem('username', username);
+                
+                switch (data.user.Role) {
+                    case 'Admin':
+                    window.location.href = 'templates/Manager/HomeManager.html';
+                    break;
+                    
+                    case 'Customer':
+                    window.location.href = 'templates/Customer/Home.html';
+                    break;
+                    
+                    case 'Installer':
+                    window.location.href = 'templates/Installer/Home-Installer.html';
+                    break;
+                    
+                    default:
+                    alert('Unsupported user role');
+                    window.location.href = '/';
+                }
+            } else {
+                alert('המשתמש לא נמצא');
+                document.getElementById('popup').style.display = 'block';
+                document.getElementById('overlay').style.display = 'block';
+            }
+        } else {
+            alert('שם משתמש או סיסמה לא חוקיים');
+        }
+    } catch (error) {
+        console.error('Error logging in:', error);
+        alert('אירעה שגיאה בעת הכניסה');
+    }
+});
+});
+</script>
 </body>
+
+<head>
+    <title>Custom Popup Example</title>
+    <style>
+      #popup {
+        display: none;
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 30px;
+        background: white;
+        border: 2px solid black;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        z-index: 999;
+      }
+      #overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 998;
+      }
+    </style>
+  </head>
+  <body>
+  
+  
+  <div id="overlay"></div>
+  
+  <div id="popup">
+    <h2>Hello!</h2>
+    <p>This is your popup message!</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function openPopup() {
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+    
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+    </script>
+
 </html>
