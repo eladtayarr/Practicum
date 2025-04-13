@@ -62,19 +62,7 @@
             background-color: #468faf; /* צבע רקע בזמן ריחוף */
             color: white;
         }
-        /* עיגול פינות */
-        .my-table th:first-child {
-            border-top-left-radius: 10px;
-        }
-        .my-table th:last-child {
-            border-top-right-radius: 10px;
-        }
-        .my-table td:first-child {
-            border-bottom-left-radius: 10px;
-        }
-        .my-table td:last-child {
-            border-bottom-right-radius: 10px;
-        }
+
 
         .fh5co-section-gray {
                 background: rgba(0, 0, 0, 0);
@@ -160,7 +148,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
-                                    <h2 class="heading-title">Products</h2>
+                                    <h2 class="heading-title">מוצרים</h2>
                                 </div>
                             </div>
                         </div>
@@ -176,19 +164,19 @@
         <div class="container"><br><br><br><br><br>
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>View Products Reports</h3>
+                    <h3>צפייה בכל המוצרים</h3>
                 </div>
             </div>
             <div id="productTable" class="my-table"> 
                 <table>
                     <thead>
                         <tr>
-                            <th>Product ID</th>
-                            <th>Product Type</th>
-                            <th>Product Price</th>
-                            <th>Production date</th>
-                            <th>Description</th>
-                            <th>Product Status</th>
+                            <th>קוד מוצר</th>
+                            <th>סוג מוצר</th>
+                            <th>מחיר</th>
+                            <th>תאריך ייצור</th>
+                            <th>תיאור</th>
+                            <th>סטטוס</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -204,7 +192,7 @@
     
     <div class="button-container">
         <div id="filter-wrapper">
-            <button id="all-assets-button" onclick="window.print()" class="btn btn-primary" id="printButton">&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            <button id="all-assets-button" onclick="window.print()" class="btn btn-primary" id="printButton">&nbsp;&nbsp;&nbsp;&nbsp;הדפסה&nbsp;&nbsp;&nbsp;&nbsp;</button>
             <button id="filter-mobile-button" onclick="exportToExcel()" class="btn btn-primary" id="excelButton">&nbsp;&nbsp;&nbsp;&nbsp;Excel&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div><br><br><br><br>
