@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,51 +93,51 @@
         <div class="container">
             <div class="nav-header">
                 <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-                <h1 id="fh5co-logo"><a href="../../templates/Manager/HomeManager.html"><i class="icon-home"></i> Trisi Sinai <span> Ltd.</span></a></h1>
+                <h1 id="fh5co-logo"><a href="../../templates/Manager/HomeManager.html"><i class="icon-home"></i> תריסי סיני <span> בע״מ.</span></a></h1>
                 <nav id="fh5co-menu-wrap" role="navigation">
                     <ul class="sf-menu" id="fh5co-primary-menu">
-                        <li class="active"><a href="../../templates/Manager/HomeManager.html">Home</a></li>
+                        <li class="active"><a href="../../templates/Manager/HomeManager.html">דף הבית</a></li>
                         <li>
-                            <a>Products</a>
+                            <a>מוצרים</a>
                             <ul class="fh5co-sub-menu">
-                                <li><a href="../../templates/Products/allProducts-Manager.html">View All Products</a></li>
-                                <li><a href="../../templates/Products/addNewProduct-Manager.html">Add New Product</a></li>
-                                <li><a href="../../templates/Products/updateProducts-Manager.html">Update Product</a></li>
+                                <li><a href="../../templates/Products/allProducts-Manager.html">צפייה בכל המוצרים</a></li>
+                                <li><a href="../../templates/Products/addNewProduct-Manager.html">הוספת מוצר חדש</a></li>
+                                <li><a href="../../templates/Products/updateProducts-Manager.html">עכדון מוצר</a></li>
                             </ul>
                         </li>
                         <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
                         <li>
-                            <a>Deals</a>
+                            <a>מכירות</a>
                             <ul class="fh5co-sub-menu">
-                                <li><a href="/../../templates/Manager/DealsV-Manager.html">View All Deals</a></li>
-                                <li><a href="../../templates/Manager/addD-Manager.html">Add New Deal</a></li>
+                                <li><a href="/../../templates/Manager/DealsV-Manager.html">צפייה בכל המכירות</a></li>
+                                <li><a href="../../templates/Manager/addD-Manager.html">הוספת מכירה חדשה</a></li>
                             </ul>
                         </li>
 
                         <li>
-                            <a>Manage</a>
+                            <a>ניהול</a>
                             <ul class="fh5co-sub-menu">
-                                <li><a href="../../templates/Manager/addNewCustomer-Manager.html">Add New Customer</a></li>
-                                <li><a href="../../templates/Manager/Add_ViewUsers-Manager.html">Add New Users</a></li>
-                                <li><a href="../../templates/Installer/Add-Installations.html">Add New Installer</a></li>
+                                <li><a href="../../templates/Manager/addNewCustomer-Manager.html">הוסף לקוח חדש</a></li>
+                                <li><a href="../../templates/Manager/Add_ViewUsers-Manager.html">הוסף משתמש חדש</a></li>
+                                <li><a href="../../templates/Installer/Add-Installations.html">הוסף מתקין חדש</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a>Installations</a>
+                            <a>התקנות</a>
                               <ul class="fh5co-sub-menu">
-                                  <li><a href="../../templates/Installer/View-Installations.html">View All Installations</a></li>
-                                  <li><a href="../../templates/Installer/Add-Installations.html">Add New Installation</a></li>
+                                  <li><a href="../../templates/Installer/View-Installations.html">צפייה בכל ההתקנות</a></li>
+                                  <li><a href="../../templates/Installer/Add-Installations.html">הוספת התקנה חדשה</a></li>
                               </ul>
                         </li>
                         <li>
-                            <a>Reports</a>
+                            <a>דוחות</a>
                             <ul class="fh5co-sub-menu">
-                                <li><a href="../../templates/Reports/Reports-Customer.html">Customers Reports</a></li>
-                                <li><a href="../../templates/Reports/Reports-Deal.html">Deals Reports</a></li>
-                                <li><a href="../../templates/Reports/Reports-Products.html">Products Reports</a></li>
+                                <li><a href="../../templates/Reports/Reports-Customer.html">דוח לקוחות</a></li>
+                                <li><a href="../../templates/Reports/Reports-Deal.html">דוח מבצעים</a></li>
+                                <li><a href="../../templates/Reports/Reports-Products.html">דוח מוצרים</a></li>
                             </ul>
                         </li>
-                        <li><a href="../../templates/Dashbords/Manager/Dashbord-Manager.html">Manager Dashbord</a></li>
+                        <li><a href="../../templates/Dashbords/Manager/Dashbord-Manager.html">Dashbord</a></li>
                     </ul>
                 </nav>
             </div>
@@ -153,7 +153,7 @@
                        <div class="row">
                            <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                <div class="slider-text-inner">
-                                   <h2 class="heading-title">Add New Products</h2>
+                                   <h2 class="heading-title">הוספת מוצרים חדשים</h2>
                                </div>
                            </div>
                        </div>
@@ -167,47 +167,47 @@
         <div class="container"><br><br><br><br><br>
             <form id="propertyForm" action="/addNewProduct" method="POST">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>Add New Product Information</h3>
+                    <h3>הוסף מידע על המוצר החדש</h3>
                 </div>
 
                 <div class="form-group">
-                    <label for="ProductType">Product Type:</label>
+                    <label for="ProductType">סוג המוצר:</label>
                     <select type="text" id="ProductType" name="ProductType">
-                        <option value="">Select Product Type</option>
-                        <option value="curtain">Curtain</option>
-                        <option value="shutter">Shutter</option>
-                        <option value="frame">Frame</option>
-                        <option value="accessories">Accessories</option>
-                        <option value="others">Others</option>
+                        <option value="">אנא בחר את סוג המוצר</option>
+                        <option value="וילונות">וילונות</option>
+                        <option value="תריסים">תריסים</option>
+                        <option value="מסגרות">מסגרות</option>
+                        <option value="אביזרים">אביזרים</option>
+                        <option value="אחר">אחר</option>
 
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="ProductPrice">Price:</label>
+                    <label for="ProductPrice">מחיר מהמוצר ליחידה/למטר:</label>
                     <input type="number" class="form-control" id="ProductPrice" name="ProductPrice" required>
                 </div>
                 
                 <div class="form-group">
-                <label for="ProductionDate">Production date:</label>
-							<input type="date" class="form-control" id="ProductionDate" name="ProductionDate" required>
+                <label for="ProductionDate">תאריך הגעת המוצר:</label>
+							<input dir="auto" type="date" class="form-control" id="ProductionDate" name="ProductionDate" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="ProductDescription">Description of the Product:</label>
+                    <label for="ProductDescription">תיאור המוצר:</label>
                     <input type="text" class="form-control" id="ProductDescription" name="ProductDescription" required>
                 </div>
                 
                 
                 <div class="form-group">
-                    <label for="ProductImage">Image URL:</label>
+                    <label for="ProductImage">הוסף קישור לתמונה:</label>
                     <input type="text" class="form-control" id="ProductImage" name="ProductImage" required>
                 </div> 
                 
                 <br>
                 
-                <button type="submit" class="btn btn-primary" id="sub">Submit</button>
+                <button type="submit" class="btn btn-primary" id="sub">אישור והוספה למלאי המוצרים</button>
                 <br><br>
-                <div id="successMessage" style="display: none;" class="alert alert-success" role="alert">Asset added successfully!</div>
+                <div id="successMessage" style="display: none;" class="alert alert-success" role="alert">המוצר התווסף לרשימת המוצרים!</div>
             </form>
             
             <br><br><br><br>
@@ -222,11 +222,11 @@
             <div class="row row-bottom-padded-md">
               <!-- זכויות יוצרים -->
               <p style="font-size:20px;">
-                &copy; <span id="year"></span>All rights reserved to Trisi Sinai Ltd.<br/>
-                <p style="font-size:18px;">The site was built and managed by:<br> 
-                  Elad Tayar | Lior Sinai | Or Menachem | Tair Malca</p>
-                <a style="color: #0077b6; text-decoration: none; font-weight:500 ">Terms of Use</a>|<a style="color: #0077b6; text-decoration: none; font-weight:500">Privacy Policy</a>
-              </p>
+                &copy; <span id="year"></span>כל הזכויות שמורות לתריסי סיני בע״מ.<br/>
+                <p style="font-size:18px;">באתר נבנה ומנוהל על ידי:<br> 
+                  אלעד טייר | ליאור סיני | אור מנחם | תאיר מלכה</p>
+                <a style="color: #0077b6; text-decoration: none; font-weight:500 ">תקנון תנאי השימוש</a><a style="color: white">||</a><a style="color: #0077b6; text-decoration: none; font-weight:500">מדיניות פרטיות</a>
+            </p>
               
             </div>
             

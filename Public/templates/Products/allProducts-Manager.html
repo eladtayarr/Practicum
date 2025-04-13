@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="he" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -149,7 +149,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
-                                    <h2 class="heading-title">View Products</h2>
+                                    <h2 class="heading-title">צפייה במלאי המוצרים</h2>
                                 </div>
                             </div>
                         </div>
@@ -164,10 +164,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>View All Products</h3>
+                    <h3>צפייה בכל המוצרים</h3>
                     <div class="search-container">
-                    <input type="text" id="property-id-input" placeholder="Enter Product ID">
-                    <button style="background-color:#0e6ba8" onclick="">Search</button>
+                    <input type="text" id="property-id-input" placeholder="הכנס קוד מוצר">
+                    <button style="background-color:#0e6ba8" onclick="">חיפוש</button>
                 </div>
             </div>
             </div>
@@ -178,17 +178,18 @@
     </div>
 
 
+    
     <footer>
         <div id="footer">
           <div class="container">
             <div class="row row-bottom-padded-md">
               <!-- זכויות יוצרים -->
-              <p style="font-size:20px;">
-                &copy; <span id="year"></span>All rights reserved to Trisi Sinai Ltd.<br/>
-                <p style="font-size:18px;">The site was built and managed by:<br> 
-                  Elad Tayar | Lior Sinai | Or Menachem | Tair Malca</p>
-                <a style="color: #0077b6; text-decoration: none; font-weight:500 ">Terms of Use</a>|<a style="color: #0077b6; text-decoration: none; font-weight:500">Privacy Policy</a>
-              </p>
+				  <p style="font-size:20px;">
+					&copy; <span id="year"></span>כל הזכויות שמורות לתריסי סיני בע״מ.<br/>
+					<p style="font-size:18px;">באתר נבנה ומנוהל על ידי:<br> 
+					  אלעד טייר | ליאור סיני | אור מנחם | תאיר מלכה</p>
+					<a style="color: #0077b6; text-decoration: none; font-weight:500 ">תקנון תנאי השימוש</a><a style="color: white">||</a><a style="color: #0077b6; text-decoration: none; font-weight:500">מדיניות פרטיות</a>
+                </p>
               
             </div>
             
@@ -227,7 +228,7 @@
     
     async function displayProducts(products) {
         const productsContainer = document.getElementById('products-container');
-        productsContainer.innerHTML = ''; // Clear previous content
+        productsContainer.innerHTML = '';
     
         products.forEach((product) => {
             try {
@@ -236,14 +237,14 @@
     
                 productDiv.innerHTML = `
                     <div class="property-details">
-                        <h3 class="${product.ProductStatus === 'Available' ? '' : 'Not-Available'}">
+                        <h3 class="${product.ProductStatus === 'זמין' ? '' : 'לא זמין'}">
                             ${product.ProductID || "Unknown Type"} &nbsp;(${product.ProductType || "Unknown Type"})
 
                         </h3>
                         <img class="square-image" src="${product.ProductImage || 'default.jpg'}" alt="${product.ProductType}" class="img-responsive">
                         <p>${product.ProductDescription || "No description available"}</p>
-                        <p>${product.ProductPrice ? `Price: $${product.ProductPrice}` : 'Price not available'}</p>
-                        <p>Status: ${product.ProductStatus || "Unknown"}</p>
+                        <p>${product.ProductPrice ? `מחיר: ₪${product.ProductPrice}` : 'Price not available'}</p>
+                        <p>סטטוס: ${product.ProductStatus || "Unknown"}</p>
                     </div>
                 `;
     
