@@ -462,10 +462,10 @@ signInButtonForm.addEventListener('click', async function (event) {
                     window.location.href = '/';
                 }
             } else {
-                document.getElementById('popupWarning').style.display = 'block';
+                alert('שם המשתמש או הסיסמה שגויים');
             }
         } else {
-            document.getElementById('popupError').style.display = 'block';
+            alert('אירעה שגיאה בעת הכניסה');
         }
     } catch (error) {
         console.error('Error logging in:', error);
