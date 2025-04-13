@@ -542,7 +542,8 @@ const updateProduct = async (
   ProductPrice,
   ProductionDate,
   ProductDescription,
-  ProductImage
+  ProductImage,
+  ProductStatus
 ) => {
   let client;
 
@@ -562,6 +563,7 @@ const updateProduct = async (
     if (ProductionDate) updateQuery.ProductionDate = ProductionDate;
     if (ProductDescription) updateQuery.ProductDescription = ProductDescription;
     if (ProductImage) updateQuery.ProductImage = ProductImage;
+    if (ProductStatus) updateQuery.ProductStatus = ProductStatus;
     console.log("Update fields:", updateQuery);
 
     if (Object.keys(updateQuery).length > 0) {

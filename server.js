@@ -391,7 +391,6 @@ app.put("/Products/:id", async (req, res) => {
     const { ProductID, ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage } = req.body;
     const updatedCount = await updateProduct(
       req.params.id,
-      ProductID,
       ProductType,
       ProductPrice,
       ProductionDate,
@@ -402,7 +401,7 @@ app.put("/Products/:id", async (req, res) => {
     console.log("Updated count:", updatedCount);
 
     if (updatedCount > 0) {
-      res.status(200).send({ message: "Product updated successfully!" });
+      res.status(200).send({ message: "מוצר עודכן בהצלחה!" });
     } else {
       res.status(404).send({ message: "Product not found or no updates were made." });
     }

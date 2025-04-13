@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" dir="rtl" lang="he">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -264,13 +264,13 @@
             >
               <thead>
                 <tr>
-                  <th>Product ID</th>
-                  <th>Product Type</th>
-                  <th>Product Price</th>
-                  <th>Production Date</th>
-                  <th>Product Discription</th>
-                  <th>Product status</th>
-                  <th>Update Product</th>
+                  <th>קוד מוצר</th>
+                  <th>סוג מוצר</th>
+                  <th>מחיר</th>
+                  <th>תאריך ייצור</th>
+                  <th>תיאור</th>
+                  <th>סטטוס</th>
+                  <th>עדכון המוצר</th>
                 </tr>
               </thead>
               <tbody></tbody>
@@ -278,39 +278,39 @@
 
             <div id="updateFormProducts" style="display: none">
               <form>
-                <label for="updateProductID">Product ID:</label>
+                <label for="updateProductID">קוד מוצר:</label>
                 <input id="updateProductID" type="text" readonly />
                 <br />
-                <label for="updateProductType">Product Type:</label>
-                <select id="updateProductType" type="text" value="Curtain">
-                  <option value="curtain">Curtain</option>
-                  <option value="shutter">Shutter</option>
-                  <option value="frame">Frame</option>
-                  <option value="accessories">Accessories</option>
-                  <option value="others">Others</option>
+                <label for="updateProductType">סוג מוצר:</label>
+                <select id="updateProductType" type="text" value="וילונות">
+                  <option value="וילונות">וילונות</option>
+                  <option value="תריסים">תריסים</option>
+                  <option value="מסגרות">מסגרות</option>
+                  <option value="אביזרים">אביזרים</option>
+                  <option value="אחר">אחר</option>
                 </select>
                 <br /><br />
-                <label for="updateProductPrice">Product Price:</label>
+                <label for="updateProductPrice">מחיר המוצר:</label>
                 <input id="updateProductPrice" type="integer" />
                 <br /><br />
-                <label for="updateProductionDate">Production Date:</label>
+                <label for="updateProductionDate">תאריך ייצור:</label>
                 <input id="updateProductionDate" type="date" />
                 <br /><br />
                 <label for="updateProductDescription"
-                  >Product Description:</label
+                  >תיאור המוצר:</label
                 >
                 <input id="updateProductDescription" type="text" />
                 <br /><br />
-                <label for="updateProductStatus">Product Status:</label>
+                <label for="updateProductStatus">סטטוס:</label>
                 <select id="updateProductStatus" type="text">
-                  <option value="Available">Available</option>
-                  <option value="Not-Available">Unavailable</option>
+                  <option value="זמין">זמין</option>
+                  <option value="לא זמין">לא זמין</option>
                 </select>
                 <br /><br />
                 <button type="button" class="btn btn-primary" onclick="updateProducts()">
-                  Save Changes
+                  שמור שינויים
                 </button>
-                <button type="button" class="btn btn-primary" onclick="closeUpdateForm()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="closeUpdateForm()">סגור</button>
               </form>
             </div>
 
@@ -380,7 +380,7 @@
                                 '${Products.ProductDescription}', '${
                 Products.ProductStatus
               }')">
-                                Update Product
+                                עדכן מוצר זה
                             </button>
                         </td>
                     `;
@@ -454,16 +454,16 @@
             console.log("Response status:", response.status);
             if (!response.ok) {
               return response.text().then((text) => {
-                throw new Error(text || "Failed to update product");
+                throw new Error(text || "שגיאה בעדכון המוצר");
               });
             }
             console.log("Product updated successfully!");
-            alert("Product updated successfully!");
+            alert("המוצר עודכן בהצלחה!");
             location.reload(); // Reload the page to fetch updated data
           })
           .catch((error) => {
             console.error("Error updating product:", error.message);
-            alert("Failed to update product. Please try again later.");
+            alert("שגיאה בעדכון המוצר. אנא נסה שוב מאוחר יותר.");
           });
       }
 
