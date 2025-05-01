@@ -227,7 +227,7 @@
 
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="#" target="_blank"><span class="material-icons-outlined">dashboard</span> לוח בקרה
+            <a href="#" target="_blank"><span class="material-icons-outlined">dashboard</span> ראשי
             </a>
           </li>
 
@@ -374,7 +374,7 @@
             <script>
               document.addEventListener("DOMContentLoaded", async function () {
                 try {
-                  const response = await fetch("/installers"); // קריאה לנתיב בשרת
+                  const response = await fetch("/viewInstaller"); // קריאה לנתיב בשרת
                   if (!response.ok) {
                     throw new Error("Failed to fetch installers data");
                   }
