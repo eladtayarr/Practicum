@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -40,7 +40,7 @@
 
     <style>
       .my-table {
-        width: 50%;
+        width: 90%;
         margin: auto;
         border-collapse: collapse;
         font-size: 14px;            
@@ -66,20 +66,20 @@
         .my-table tbody tr:hover {
             background-color: #468faf; /* צבע רקע בזמן ריחוף */
             color: white;
-        }
-
-                /* עיגול פינות */
+          }
+        
+          /* עיגול פינות */
         .my-table th:first-child {
-            border-top-left-radius: 10px;
+            border-top-left-radius: 0px;
         }
         .my-table th:last-child {
-            border-top-right-radius: 10px;
+            border-top-right-radius: 0px;
         }
         .my-table td:first-child {
-            border-bottom-left-radius: 10px;
+            border-bottom-left-radius: 0px;
         }
         .my-table td:last-child {
-            border-bottom-right-radius: 10px;
+            border-bottom-right-radius: 0px;
         }
 
 
@@ -206,7 +206,7 @@
                 </li>
                 <li>
                   <a href="../../../templates/Dashbords/Manager/Dashbord-Manager.html">
-                    Manager Dashbord
+                    לוח בקרה
                   </a>
                 </li>
               </ul>
@@ -220,49 +220,49 @@
       <aside id="sidebar">
         <div class="sidebar-title">
           <div class="sidebar-brand">
-            Avi's Dashboard
+            לוח בקרה
           </div>
-          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+          <span class="material-icons-outlined" onclick="closeSidebar()">סגירה</span>
         </div>
 
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="#" target="_blank"><span class="material-icons-outlined">dashboard</span> Dashboard
+            <a href="#" target="_blank"><span class="material-icons-outlined">dashboard</span> לוח בקרה
             </a>
           </li>
 
           <li class="sidebar-list-item">
-            <a href="#" target="_blank"><span class="material-icons-outlined">inventory_2</span> Products
-            </a>
-          </li>
-
-          <li class="sidebar-list-item">
-            <a href="#" target="_blank">
-                <span class="material-symbols-outlined">interactive_space</span> Installations
+            <a href="#" target="_blank"><span class="material-icons-outlined">inventory_2</span> מוצרים
             </a>
           </li>
 
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-                <span class="material-symbols-outlined">contacts_product</span> Customers
+                <span class="material-symbols-outlined">interactive_space</span> מתקינים
             </a>
           </li>
 
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-              <span class="material-icons-outlined">currency_exchange</span> Profit and loss
+                <span class="material-symbols-outlined">contacts_product</span> לקוחות
             </a>
           </li>
 
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-              <span class="material-symbols-outlined">lab_profile</span> Reports
+              <span class="material-icons-outlined">currency_exchange</span> רווח והפסד
             </a>
           </li>
 
           <li class="sidebar-list-item">
             <a href="#" target="_blank">
-              <span class="material-icons-outlined">archive</span> Archive
+              <span class="material-symbols-outlined">lab_profile</span> דוחות
+            </a>
+          </li>
+
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">archive</span> ארכיון
             </a>
           </li>
 
@@ -273,38 +273,38 @@
       <!-- Main -->
       <main class="main-container">
         <div class="main-title">
-          <p class="font-weight-bold">DASHBOARD</p>
+          <p class="font-weight-bold">לוח בקרה ראשי</p>
         </div>
 
         <div class="main-cards">
-
+          <!-- סה״כ מוצרים -->
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">PRODUCTS <br>(total)</p>
+              <p class="text-primary">מוצרים <br>(סה״כ)</p>
               <span class="material-icons-outlined text-blue">inventory_2</span>
             </div>
             <span id="totalProducts" class="text-primary font-weight-bold">Loading...</span>
           </div>
-
+          <!-- סה״כ מכירות -->
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">TOTAL SALES <br>(annual)</p>
+              <p class="text-primary">סה״כ מכירות <br>(שנתי)</p>
               <span class="material-icons-outlined text-orange">add_shopping_cart</span>
             </div>
             <span class="text-primary font-weight-bold">83</span>
           </div>
-
+          <!-- הכנסות ממכירות -->
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">SALES REVENUE <br> (NIS)</p>
+              <p class="text-primary">הכנסות ממכירות <br> (ב-ש״ח)</p>
               <span class="material-icons-outlined text-green">shopping_cart</span>
             </div>
             <span class="text-primary font-weight-bold">250,000</span>
           </div>
-
+          <!-- הזמנות פתוחות -->
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">OPEN ORDERS <br> (in progress)</p>
+              <p class="text-primary">הזמנות פתוחות <br> (בתהליך)</p>
               <span class="material-icons-outlined text-red">notification_important</span>
             </div>
             <span id="totalMeetings" class="text-primary font-weight-bold">Loading...</span>
@@ -312,54 +312,59 @@
 
         </div>
 
+        <!-- כמות מוצרים לפי סוג -->
         <div class="charts">
             <div class="charts-card">
-                <p class="chart-title">Quantity Of Products by Type</p>
+                <p class="chart-title">כמות מוצרים לפי סוג</p>
                 <div id="bar-chart"></div>
         </div>
         
+        <!-- הזמנות רכש ומכירה -->
         <div class="charts-card">
-            <p class="chart-title">Purchase and Sales Orders</p>
+            <p class="chart-title">הזמנות רכש ומכירה</p>
             <div id="area-chart"></div>
         </div>
 
+        <!-- הזמנות רכש ומכירה -->
         <div class="charts-card">
-            <p class="chart-title">Purchase and Sales Orders</p>
+            <p class="chart-title">הזמנות רכש ומכירה</p>
             <div id="pie-chart"></div>
         </div>
 
+        <!-- לקוחות מול יעד -->
         <div class="dubble-charts">
           <div class="charts-card-half">
-            <p class="chart-title">Customers vs Target</p>
+            <p class="chart-title">לקוחות מול יעד</p>
             <div id="speedometer-chart"></div>
-            <p>Total customers</p>
-            <p class="chart-title-inside"> The Target is 50 customers</p>
+            <p>סה״כ לקוחות</p>
+            <p class="chart-title-inside"> היעד הוא 50 לקוחות</p>
           </div>
         </div>
         
+        <!-- רשימת משימות לביצוע -->
         <div class="charts-card">
           <div class="todo-container">
-            <p class="chart-title">My TODO List</p>
+            <p class="chart-title">רשימת משימות לביצוע</p>
             <form id="todoForm" class="todo-form">
-              <input type="text" id="todoInput" placeholder="Add a new task..." required />
-              <button type="submit" class="add-btn">Add</button>
+              <input type="text" id="todoInput" placeholder="הוספת משימה חדשה..." required />
+              <button type="submit" class="add-btn">הוספה</button>
             </form>
             <ul id="todoList" class="todo-list"></ul>
-            <p id="todoError" style="color: red; display: none;">Error loading TODO items.</p>
+            <p id="todoError" style="color: #e5383b; display: none;">Error loading TODO items.</p>
           </div>
         </div>
         
-        
+        <!-- רשימת אנשי קשר - מתקינים -->
         <div class="charts-card">
-            <p class="chart-title">Installers Contact List</p>
+            <p class="chart-title">רשימת אנשי קשר - מתקינים</p>
             <table id="installersTable" class="my-table" style="width=100%">
               <thead>
                 <tr>
-                  <th>Installer ID</th>
-                  <th>Full Name</th>
-                  <th>Phone Number</th>
-                  <th>Email</th>
-                  <th>Working Area</th>
+                  <th>קוד מתקין</th>
+                  <th>שם מלא</th>
+                  <th>מספר טלפון</th>
+                  <th>אימייל</th>
+                  <th>אזור פעילות</th>
                 </tr>
               </thead>
               <tbody>
@@ -478,7 +483,7 @@
               },
             },
             series: [(customersCount / target) * 100], // אחוז מהיעד
-            labels: ["Customers"],
+            labels: ["לקוחות"],
           };
     
           const chart = new ApexCharts(

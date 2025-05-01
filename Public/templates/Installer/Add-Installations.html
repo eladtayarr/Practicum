@@ -98,7 +98,7 @@
 			   			<div class="row">
 				   			<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
 			   				<div class="slider-text-inner">
-		   						<h2 class="heading-title">Meeting</h2>
+		   						<h2 class="heading-title">פגישות</h2>
 		   						<p class="fh5co-lead"><i class="icon-heart3"></i> </p>
 			   				</div>
 			   			</div>
@@ -122,27 +122,27 @@
                     <form id="installationForm" action="/addMeeting" method="POST">
 						<!-- מספר לקוח -->
 						<div class="form-group">
-							<label for="customerID">Customer ID:</label>
+							<label for="customerID">קוד לקוח:</label>
 							<input type="text" class="form-control" id="customerID" name="customerID" required>
 						</div>
 
 						<!-- מספר מתקין -->
 						<div class="form-group">
-							<label for="installerID">Installer ID:</label>
+							<label for="installerID">קוד מתקין:</label>
 							<input type="text" class="form-control" id="installerID" name="installerID" required>
 						</div>
 
 						<!-- תאריך התקנה -->
 						<div class="form-group">
-							<label for="date">Date:</label>
+							<label for="date">תאריך התקנה:</label>
 							<input type="date" class="form-control" id="date" name="date" required>
 						</div>
 
 						<!-- שעת התקנה -->
 						<div class="form-group">
-							<label for="time">Time:</label>
+							<label for="time">שעת התקנה:</label>
 							<select class="form-control" id="time" name="time" required>
-								<option value="">Select Time</option>
+								<option value="">בחר שעה</option>
 								<option value="09:00">09:00</option>
 								<option value="12:00">11:00</option>
 								<option value="15:00">15:00</option>
@@ -153,26 +153,26 @@
 
 						<!-- מיקום ההתקנה -->
 						<div class="form-group">
-							<label for="location">Location:</label>
+							<label for="location">מיקום ההתקנה:</label>
 							<input type="text" class="form-control" id="location" name="location" required>
 						</div> 
 
 						<!-- סוג ההתקנה/הפגישה -->
 						<div class="form-group">
-						<label for="meetingType">Meeting Type:</label>
+						<label for="meetingType">סוג ההתקנה/הפגישה:</label>
 							<select class="form-control" id="meetingType" name="meetingType" required>
-								<option value="">Select Meeting Type</option>
-								<option value="Taking measurements">Taking measurements</option>
-								<option value="Installing a new product">Installing a new product</option>
-								<option value="Repairing an existing product">Repairing an existing product</option>
-								<option value="Laundries">Laundries</option>
+								<option value="">בחר את סוג ההתקנה/הפגישה</option>
+								<option value="לקיחת מידות">לקיחת מידות</option>
+								<option value="התקנת מוצר חדש">התקנת מוצר חדש</option>
+								<option value="החלפת מוצר קיים">החלפת מוצר קיים</option>
+								<option value="כביסות">כביסות</option>
 							</select>
 						</div>
 						
 						<!-- כפתור הוספת ההתקנה -->
-						<button type="submit" class="btn btn-primary" id="sub">Add Meeting</button><br></br>
+						<button type="submit" class="btn btn-primary" id="sub">הוסף פגישה</button><br></br>
 						<div id="successMessage" style="display: none;" class="alert alert-success" role="alert">
-							Meeting added successfully!
+							הפגישה התווספה בהצלחה!
 						</div>
 					</form>
                 </div>
@@ -209,7 +209,7 @@
 				const dateRegex = /^\d{4}-\d{2}-\d{2}$/; // Regular expression for YYYY-MM-DD
 		
 				if (!dateRegex.test(dateInput)) {
-					alert("Please enter the date in YYYY-MM-DD format.");
+					alert("אנא הכנס את תאריך ההתקנה בפורמט YYYY-MM-DD.");
 					return;
 				}
 		

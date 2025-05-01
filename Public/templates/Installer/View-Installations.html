@@ -200,12 +200,12 @@
         .my-table td {
             padding: 15px; /* ריווח פנימי */
             text-align: center; /* מיקום הטקסט במרכז */
-            /*border: 1px solid rgba(89, 131, 146, 0.5);  גבולות בין תאים */
+            /*border: 1px solid rgba(150, 155, 158, 0.5);  גבולות בין תאים */
         }
 
         
         .my-table th {
-            background-color: #2c7da0; /* צבע רקע לכותרת */
+            background-color:rgb(154, 184, 195); /* צבע רקע לכותרת */
             color: white; /* צבע טקסט */
             font-weight: bold; /* טקסט מודגש */
         }
@@ -215,22 +215,10 @@
         }
         
         .my-table tbody tr:hover {
-            background-color: #468faf; /* צבע רקע בזמן ריחוף */
+            background-color:rgba(57, 113, 137, 0.52); /* צבע רקע בזמן ריחוף */
             color: white;
         }
-        /* עיגול פינות */
-        .my-table th:first-child {
-            border-top-left-radius: 10px;
-        }
-        .my-table th:last-child {
-            border-top-right-radius: 10px;
-        }
-        .my-table td:first-child {
-            border-bottom-left-radius: 10px;
-        }
-        .my-table td:last-child {
-            border-bottom-right-radius: 10px;
-        }
+
 
         .fh5co-section-gray {
                 background: rgba(0, 0, 0, 0);
@@ -314,7 +302,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
-                                    <h2 class="heading-title">Meeting</h2>
+                                    <h2 class="heading-title">התקנות</h2>
                                     <p class="fh5co-lead"><i class="icon-heart3"></i> </p>
                                 </div>
                             </div>
@@ -332,18 +320,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>View Meeting</h3>
+                    <h3>צפייה בהתקנות</h3>
                 </div>
             </div>
             <table id="installationsTable" class="my-table" style="width:100%;" >
                 <thead>
                     <tr>
-                        <th>Customer ID</th>
-                        <th>Installer ID</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Location</th>
-                        <th>Meeting Type</th>
+                        <th>קוד לקוח</th>
+                        <th>קוד מתקין</th>
+                        <th>תאריך התקנה</th>
+                        <th>שעת התקנה</th>
+                        <th>מיקום</th>
+                        <th>סוג התקנה</th>
                     </tr>
                 </thead>
                 <tbody>

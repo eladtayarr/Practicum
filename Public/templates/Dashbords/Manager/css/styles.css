@@ -406,7 +406,7 @@ button:hover {
 
 .add-btn {
   width: 20%;
-  background-color: #28a745;
+  background-color: #708d81;
   color: white;
   border: none;
   border-radius: 5px;
@@ -415,7 +415,8 @@ button:hover {
 }
 
 .add-btn:hover {
-  background-color: #218838;
+  background-color: #d3dfce;
+  color: black;
 }
 
 .todo-list {
@@ -439,7 +440,7 @@ button:hover {
 }
 
 .todo-list li button {
-  background-color: #dc3545;
+  background-color: #bf0603;
   color: white;
   border: none;
   border-radius: 5px;
@@ -449,6 +450,7 @@ button:hover {
 }
 
 .todo-list li button:hover {
-  background-color: #c82333;
+  background-color: #ffada5;
+  color: black;
 }
 

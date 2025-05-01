@@ -56,8 +56,8 @@
 
       #customerID:focus {
         outline: none;
-        border-color: #dfb4c6;
-        box-shadow: 0 0 5px rgba(227, 139, 208, 0.5);
+        border-color: #1a759f;
+        box-shadow: 0 0 5px #1a759f;
       }
 
       .customer-card:hover {
@@ -108,7 +108,7 @@
       }
 
       .search-container button {
-        background-color: #de6277;
+        background-color: #1a759f;
         color: white;
         padding: 12px 20px;
         border: none;
@@ -133,7 +133,7 @@
         right: -20px;
         border-top-left-radius: 0px !important;
         border-bottom-left-radius: 0px !important;
-        background: #de6277;
+        background: #1a759f;
         border: none;
       }
     </style>
@@ -280,7 +280,7 @@
                       class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text"
                     >
                       <div class="slider-text-inner">
-                        <h2 class="heading-title">Customer</h2>
+                        <h2 class="heading-title">לקוחות</h2>
                         <p class="fh5co-lead"><i class="icon-heart3"></i></p>
                       </div>
                     </div>
@@ -298,7 +298,7 @@
                 class="col-md-8 col-md-offset-2 text-center heading-section animate-box"
               >
                 <br /><br /><br /><br />
-                <h3>View All Customers</h3>
+                <h3>צפייה בכל הלקוחות הקיימים</h3>
                 <br />
                 <div class="search-container">
                   <input
@@ -307,7 +307,7 @@
                     placeholder="Enter Customer ID"
                   />
                   <button type="button" id="filterBtn" class="btn btn-primary">
-                    Filter
+                    סינון
                   </button>
                 </div>
               </div>
@@ -347,7 +347,7 @@
                   class="col-md-8 col-md-offset-2 text-center heading-section animate-box"
                 >
                   <br /><br /><br /><br />
-                  <h3>Add New Customer</h3>
+                  <h3>הוספת לקוח חדש</h3>
                 </div>
               </div>
             </div>
@@ -355,7 +355,7 @@
             <div class="container">
               <form id="customerForm" action="/addCustomer" method="POST">
                 <div class="form-group">
-                  <label for="customerID">Customer ID:</label>
+                  <label for="customerID">קוד לקוח:</label>
                   <input
                     type="text"
                     class="form-control"
@@ -365,7 +365,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="UserName">Customer's User Name:</label>
+                  <label for="UserName">שם המשתמש של הלקוח:</label>
                   <input
                     type="text"
                     class="form-control"
@@ -375,7 +375,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="fullName">Full Name:</label>
+                  <label for="fullName">שם מלא:</label>
                   <input
                     type="text"
                     class="form-control"
@@ -385,7 +385,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="phone">Phone:</label>
+                  <label for="phone">מספר טלפון:</label>
                   <input
                     type="tel"
                     class="form-control"
@@ -395,7 +395,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="email">Email:</label>
+                  <label for="email">אימייל:</label>
                   <input
                     type="email"
                     class="form-control"
@@ -405,7 +405,7 @@
                   />
                 </div>
                 <div class="form-group" style="display: none">
-                  <label for="joinDate">Join Date:</label>
+                  <label for="joinDate">תאריך הצטרפות:</label>
                   <input
                     type="text"
                     class="form-control"
@@ -416,18 +416,18 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="customerType">Customer Type:</label>
+                  <label for="customerType">סוג לקוח:</label>
                   <select
                     class="form-control"
                     id="customerType"
                     name="customerType"
                     required
                   >
-                    <option value="">Select Customer Type</option>
-                    <option value="Health Fund">Health Fund</option>
-                    <option value="Public Hospital">Public Hospital</option>
-                    <option value="Private Hospital">Private Hospital</option>
-                    <option value="Private Client">Private Client</option>
+                    <option value="">אנא בחר את סוג הלקוח</option>
+                    <option value="קופת חולים">קופת חולים</option>
+                    <option value="בית חולים ציבורי">בית חולים ציבורי</option>
+                    <option value="בית חולים פרטי">בית חולים פרטי</option>
+                    <option value="לקוח פרטי">לקוח פרטי</option>
                   </select>
                 </div>
                 <button type="submit" class="btn btn-primary" id="sub">
@@ -439,7 +439,7 @@
                   class="alert alert-success"
                   role="alert"
                 >
-                  Customer added successfully!
+                  הלקוח התווסף למערכת בהצלחה!
                 </div>
                 <div
                   id="errorMessage"
@@ -447,7 +447,7 @@
                   class="alert alert-danger"
                   role="alert"
                 >
-                  Failed to add customer. The ID you entered already exists.
+                  כשלון בהוספת הלקוח. קוד הלקוח שהוזן קיים במערכת.
                 </div>
                 <br /><br /><br /><br />
               </form>
@@ -561,11 +561,11 @@
               customerElement.innerHTML = `
    				 <div class="customer-card">
 				<img src="https://as1.ftcdn.net/jpg/05/53/79/60/220_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="User Avatar">
-                    <p>Customer ID: ${customer.CustomerID}</p>
-                    <p>Name: ${customer.FullName}</p>
-                    <p>Phone: ${customer.Phone}</p>
-                    <p>Email: ${customer.Email}</p>
-					          <p>Type: ${customer.CustomerType}</p>
+                    <p>קוד לקוח: ${customer.CustomerID}</p>
+                    <p>שם מלא: ${customer.FullName}</p>
+                    <p>מספר טלפון: ${customer.Phone}</p>
+                    <p>אימייל: ${customer.Email}</p>
+					          <p>סוג לקוח: ${customer.CustomerType}</p>
                     <hr>
                 `;
               customersList.appendChild(customerElement);
@@ -622,11 +622,11 @@
               customerElement.innerHTML = `
                 <div class="customer-card">
                     <img src="https://as1.ftcdn.net/jpg/05/53/79/60/220_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="User Avatar">
-                    <p>Customer ID: ${data.CustomerID}</p>
-                    <p>Name: ${data.FullName}</p>
-                    <p>Phone: ${data.Phone}</p>
-                    <p>Email: ${data.Email}</p>
-                    <p>Type: ${data.CustomerType}</p>
+                    <p>קוד לקוח: ${data.CustomerID}</p>
+                    <p>שם מלא: ${data.FullName}</p>
+                    <p>מספר טלפון: ${data.Phone}</p>
+                    <p>אימייל: ${data.Email}</p>
+                    <p>סוג לקוח: ${data.CustomerType}</p>
                     <hr>
                 </div>
             `;
@@ -646,11 +646,11 @@
             customerElement.innerHTML = `
                 <div class="customer-card">
                     <img src="https://as1.ftcdn.net/jpg/05/53/79/60/220_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="User Avatar">
-                    <p>Customer ID: ${customer.CustomerID}</p>
-                    <p>Name: ${customer.FullName}</p>
-                    <p>Phone: ${customer.Phone}</p>
-                    <p>Email: ${customer.Email}</p>
-                    <p>Type: ${customer.CustomerType}</p>
+                    <p>קוד לקוח: ${customer.CustomerID}</p>
+                    <p>שם מלא: ${customer.FullName}</p>
+                    <p>מספר טלפון: ${customer.Phone}</p>
+                    <p>אימייל: ${customer.Email}</p>
+                    <p>סוג לקוח: ${customer.CustomerType}</p>
                     <hr>
                 </div>
             `;

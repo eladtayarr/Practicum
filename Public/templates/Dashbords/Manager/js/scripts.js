@@ -49,11 +49,14 @@ const barChartOptions = {
     show: false,
   },
   xaxis: {
-    categories: ['Curtain', 'Shutter', 'Frame', 'Accessories', 'Others'],
+    title: {
+      text: 'סוג מוצר',
+    },
+    categories: ['וילון', 'תריס', 'מסגרת', 'אביזרים', 'אחר'],
   },
   yaxis: {
     title: {
-      text: 'Count',
+      text: 'כמות',
     },
   },
 };
@@ -73,11 +76,11 @@ barChart.render();
 const areaChartOptions = {
   series: [
     {
-      name: 'Purchase Orders',
+      name: 'הזמנות רכש',
       data: [31, 40, 28, 51, 42, 109, 100],
     },
     {
-      name: 'Sales Orders',
+      name: 'מכירות',
       data: [11, 32, 45, 32, 34, 52, 41],
     },
   ],
@@ -95,20 +98,20 @@ const areaChartOptions = {
   stroke: {
     curve: 'smooth',
   },
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  labels: ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי'],
   markers: {
     size: 0,
   },
   yaxis: [
     {
       title: {
-        text: 'Purchase Orders',
+        text: 'הזמנות רכש',
       },
     },
     {
       opposite: true,
       title: {
-        text: 'Sales Orders',
+        text: 'מכירות',
       },
     },
   ],
@@ -135,7 +138,7 @@ const pieChartOptions = {
           show: true
       }
   },
-  labels: ['Taking measurements', 'Installing a new product', 'Repairing an existing product', 'Laundries'], 
+  labels: ['לקיחת מידות', 'התקנת מוצר חדש', 'תיקון מוצר קיים', 'כביסות'], 
   colors: ['#95b8d1', '#a5a58d', '#faedcd', '#ddbea9'],
   legend: {
       position: 'bottom'
