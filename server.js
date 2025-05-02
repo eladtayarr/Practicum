@@ -609,10 +609,10 @@ app.get("/Tenders", async (req, res) => {
 
 // הוספת מכרז חדש
 app.post("/addTender", async (req, res) => {
-  const { tenderID, tenderName, tenderDescription, tenderDate } = req.body;
+  const { tenderID,customerID, customerName, tenderDate, productCategory, productID,productPrice,discription  } = req.body;
 
   try {
-    const tenderId = await addTender(tenderID, tenderName, tenderDescription, tenderDate);
+    const tenderId = await addTender(tenderID,customerID, customerName, tenderDate, productCategory, productID,productPrice,discription );
     res.status(201).json({ message: "Tender added successfully", tenderId });
   } catch (error) {
     console.error("Error adding tender:", error);

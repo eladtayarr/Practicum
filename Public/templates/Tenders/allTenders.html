@@ -88,7 +88,7 @@
         }
 
         .btn1.btn1-primary {
-            background: #de6277;
+            background: rgb(15, 156, 216);
             color: #fff;
             border: none;
             border: 2px solid transparent;
@@ -98,7 +98,7 @@
         .btn1.btn1-primary:active,
         .btn1.btn1-primary:focus {
             box-shadow: none;
-            background: #de6277;
+            background: rgb(15, 156, 216);
             color: #fff;
         }
 
@@ -118,14 +118,14 @@
 
         .btn1.btn1-outline {
             background: transparent;
-            color: #de6277;
-            border: 2px solid #de6277;
+            color: rgb(15, 156, 216);
+            border: 2px solid rgb(15, 156, 216);
         }
 
         .btn1.btn1-outline:hover,
         .btn1.btn1-outline:focus,
         .btn1.btn1-outline:active {
-            background: #de6277;
+            background: rgb(15, 156, 216);
             color: #fff;
         }
 
@@ -147,7 +147,7 @@
         .btn1.btn1-primary:active,
         .btn1.btn1-primary:focus {
             box-shadow: none;
-            background: #de6277;
+            background:rgb(98, 170, 222);
             color: #fff !important;
         }
 
@@ -202,7 +202,7 @@
 
         
         .my-table th {
-            background-color:rgb(154, 184, 195); /* צבע רקע לכותרת */
+            background-color:rgb(61, 94, 106); /* צבע רקע לכותרת */
             color: white; /* צבע טקסט */
             font-weight: bold; /* טקסט מודגש */
         }
@@ -259,7 +259,7 @@
         }
 
         .search-container button {
-            background-color:  #de6277;;
+            background-color:rgb(98, 164, 222);;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -269,7 +269,7 @@
         }
 
         .search-container button:hover {
-            background-color:  #d80f48;
+            background-color:rgb(15, 156, 216);
         }
 
         @media (max-width: 768px) {
@@ -380,9 +380,6 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
                     <h3>צפייה בכל המכרזים</h3>
-                    <div class="search-container">
-                    <input type="text" id="property-id-input" placeholder="הכנס קוד מכרז">
-                    <button style="background-color:#0e6ba8" onclick="">חיפוש</button>
                 </div>
             </div>
         </div>
@@ -413,7 +410,7 @@
                 </div>
             </div>
         </div>
-
+    </div>
     <footer>
         <div id="footer">
           <div class="container">
@@ -427,12 +424,8 @@
                 </p>
               
             </div>
-            
-          </div>
         </div>
-      </footer>
-
-</div>
+    </footer>
 </div>
 
 <script src="../../../src/js/jquery.min.js"></script>
@@ -479,7 +472,7 @@
                         <td>${tender.tenderDate || "N/A"}</td>
                         <td>${tender.productCategory || "N/A"}</td>
                         <td>${tender.productID || "N/A"}</td>
-                        <td>${tender.productPrice || "N/A"}</td>
+                        <td>${tender.productPrice || "N/A"}₪</td>
                         <td>${tender.discription || "N/A"}</td>
                     `;
                     tableBody.appendChild(row);

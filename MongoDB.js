@@ -1238,16 +1238,20 @@ const getAllTenders = async () => {
 };
 
 // הוספת מכרז חדש
-const addTender = async (tenderID, tenderName, tenderDescription, tenderDate) => {
+const addTender = async (tenderID,customerID, customerName, tenderDate, productCategory, productID,productPrice,discription) => {
   try {
     const database = client.db("Practicum_Project");
     const collection = database.collection("Tenders");
 
     const tender = {
       tenderID,
-      tenderName,
-      tenderDescription,
+      customerID,
+      customerName,
       tenderDate,
+      productCategory,
+      productID,
+      productPrice,
+      discription,
     };
 
     const result = await collection.insertOne(tender);

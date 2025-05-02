@@ -1,266 +1,311 @@
 <!DOCTYPE html>
 <html class="no-js" lang="he" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Trisi Sinai || Practicum</title>
-    <link rel="shortcut icon" href="../../src/images/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="../../../src/images/favicon.ico">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../../../src/css/animate.css">
-    <link rel="stylesheet" href="../../../src/css/icomoon.css">
-    <link rel="stylesheet" href="../../../src/css/bootstrap.css">
-    <link rel="stylesheet" href="../../../src/css/superfish.css">
-    <link rel="stylesheet" href="../../../src/css/flexslider.css">
-    <link rel="stylesheet" href="../../../src/css/magnific-popup.css">
-    <link rel="stylesheet" href="../../../src/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="../../../src/css/cs-select.css">
-    <link rel="stylesheet" href="../../../src/css/cs-skin-border.css">
-    <link rel="stylesheet" href="../../../src/css/style.css">
-    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Trisi Sinai || Practicum</title>
+<link rel="shortcut icon" href="../../images/favicon.ico" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        .search-container {
+<link rel="shortcut icon" href="../../images/favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../../src/css/animate.css">
+<link rel="stylesheet" href="../../src/css/icomoon.css">
+<link rel="stylesheet" href="../../src/css/bootstrap.css">
+<link rel="stylesheet" href="../../src/css/superfish.css">
+<link rel="stylesheet" href="../../src/css/flexslider.css">
+<link rel="stylesheet" href="../../src/css/magnific-popup.css">
+<link rel="stylesheet" href="../../src/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="../../src/css/cs-select.css">
+<link rel="stylesheet" href="../../src/css/cs-skin-border.css">
+<link rel="stylesheet" href="../../src/css/style.css">
+<script src="../../src/js/modernizr-2.6.2.min.js"></script>
+
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        color: #333;
+        background-color: #f8f8f8;
+    }
+    .form-group {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    #sub {
+        display: block;
+        margin: 0 auto;
+        padding: 15px;
+        width: fit-content; 
+    }
+    .button-container {
         text-align: center;
-        margin-bottom: 20px;
-        }
+        margin-top: 20px;
+    }
+    .property-button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: #d1869b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .property-button:hover {
+        background-color: #d80f48;
+    }
+    #footer #fh5co-header-subscribe button {
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    background: #de6277;
+    border: none;
 
-        .square-image {
-            width: 300px; /* גודל המרובע */
-            height: 300px; /* גודל המרובע */
-            object-fit: cover; /* חיתוך התמונה כך שתתאים למסגרת */
-            border-radius: 0; /* להסיר פינות מעוגלות אם יש */
-        }
+    .form-group .select {
+        width: 100%;        /* Makes the select box take full width of its parent container */
+        padding: 12px 20px; /* Adds substantial padding for easier interaction */
+        font-size: 18px;    /* Increases the font size for better readability */
+        border: 2px solid #ccc; /* Subtle border styling */
+        border-radius: 5px; /* Rounds the corners */
+        background-color: white; /* Ensures the background is white */
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.1); /* Optional: adds a shadow for a slight depth effect */
+        cursor: pointer;    /* Changes cursor to indicate it’s clickable */
+    }
+    
+    .form-group .select:focus {
+        border-color: #0056b3; /* Dark blue border on focus */
+        outline: none; /* Removes the default focus outline */
+    }
+}
 
-        .search-container input[type=text] {
-            width: 60%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-right: 10px;
-            font-size: 16px;
-        }
 
-        .search-container button {
-            background-color:  #de6277;;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+</style>
 
-        .search-container button:hover {
-            background-color:  #d80f48;
-        }
+</head>
+<body>
+<div id="fh5co-wrapper">
+<div id="fh5co-page">
 
-        @media (max-width: 768px) {
-            .search-container input[type=text] {
-                width: 100%;
-                margin-right: 0;
-            }
-        }
-        .property-details h3 {
-                color: green;
-                font-weight: bold;
-            }
+    <header id="fh5co-header-section" class="sticky-banner">
+        <div class="container">
+            <div class="nav-header">
+                <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+                <h1 id="fh5co-logo"><a href="../../templates/Manager/HomeManager.html"><i class="icon-home"></i> תריסי סיני <span> בע״מ.</span></a></h1>
+                <nav id="fh5co-menu-wrap" role="navigation">
+                    <ul class="sf-menu" id="fh5co-primary-menu">
+                        <li class="active"><a href="../../templates/Manager/HomeManager.html">דף הבית</a></li>
+                        <li>
+                            <a>מוצרים</a>
+                            <ul class="fh5co-sub-menu">
+                                <li><a href="../../templates/Products/allProducts-Manager.html">צפייה בכל המוצרים</a></li>
+                                <li><a href="../../templates/Products/addNewProduct-Manager.html">הוספת מוצר חדש</a></li>
+                                <li><a href="../../templates/Products/updateProducts-Manager.html">עכדון מוצר</a></li>
+                            </ul>
+                        </li>
+                        <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
+                        <li>
+                            <a>מכירות</a>
+                            <ul class="fh5co-sub-menu">
+                                <li><a href="/../../templates/Manager/DealsV-Manager.html">צפייה בכל המכירות</a></li>
+                                <li><a href="../../templates/Manager/addD-Manager.html">הוספת מכירה חדשה</a></li>
+                            </ul>
+                        </li>
 
-            .property-details h3.Not-Available {
-                color: red;
-                font-weight: bold;
-            }
-            .form-group {
-                display: flex;
-                align-items: center;
-            }
-        
-            .form-group input[type="text"] {
-                margin-left: -30px; /* Adjust this value as needed */
-            }
-
-            .form-group button[type="submit"] {
-            margin-top: 20px; /* Adjust this value to move the button down */
-        }
-    </style>
-
-<header id="fh5co-header-section" class="sticky-banner">
-    <div class="container">
-        <div class="nav-header">
-            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-            <h1 id="fh5co-logo"><a href="../../templates/Manager/HomeManager.html"><i class="icon-home"></i> תריסי סיני <span> בע״מ.</span></a></h1>
-            <nav id="fh5co-menu-wrap" role="navigation">
-                <ul class="sf-menu" id="fh5co-primary-menu">
-                    <li class="active"><a href="../../templates/Manager/HomeManager.html">דף הבית</a></li>
-                    <li>
-                        <a>מוצרים</a>
-                        <ul class="fh5co-sub-menu">
-                            <li><a href="../../templates/Products/allProducts-Manager.html">צפייה בכל המוצרים</a></li>
-                            <li><a href="../../templates/Products/addNewProduct-Manager.html">הוספת מוצר חדש</a></li>
-                            <li><a href="../../templates/Products/updateProducts-Manager.html">עדכון מוצרים</a></li>
-                        </ul>
-                    </li>
-                    <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
-                    <li>
-                        <a>מכירות</a>
-                        <ul class="fh5co-sub-menu">
-                            <li><a href="/../../templates/Manager/DealsV-Manager.html">צפייה בכל המכירות</a></li>
-                            <li><a href="../../templates/Manager/addD-Manager.html">הוספת מכירה חדשה</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a>ניהול</a>
-                        <ul class="fh5co-sub-menu">
-                            <li><a href="../../templates/Manager/addNewCustomer-Manager.html">הוספת לקוח חדש</a></li>
-                            <li><a href="../../templates/Manager/Add_ViewUsers-Manager.html">הוספת משתמש חדש</a></li>
-                            <li><a href="../../templates/Installer/Add-Installations.html">הוספת מתקין חדש</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>התקנות</a>
-                        <ul class="fh5co-sub-menu">
-                            <li><a href="../../templates/Installer/View-Installations.html">צפייה בכל ההתקנות</a></li>
-                            <li><a href="../../templates/Installer/add-Installer.html">הוספת התקנה חדשה</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>דוחות</a>
-                        <ul class="fh5co-sub-menu">
-                            <li><a href="../../templates/Reports/Reports-Customer.html">דוח לקוחות</a></li>
-                            <li><a href="../../templates/Reports/Reports-Deal.html">דוח מכירות</a></li>
-                            <li><a href="../../templates/Reports/Reports-Products.html">דוח מוצרים</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="../../templates/Dashbords/Manager/Dashbord-Manager.html">Dashbord</a></li>
-                </ul>
-            </nav>
+                        <li>
+                            <a>ניהול</a>
+                            <ul class="fh5co-sub-menu">
+                                <li><a href="../../templates/Manager/addNewCustomer-Manager.html">הוסף לקוח חדש</a></li>
+                                <li><a href="../../templates/Manager/Add_ViewUsers-Manager.html">הוסף משתמש חדש</a></li>
+                                <li><a href="../../templates/Installer/Add-Installations.html">הוסף מתקין חדש</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a>התקנות</a>
+                              <ul class="fh5co-sub-menu">
+                                  <li><a href="../../templates/Installer/View-Installations.html">צפייה בכל ההתקנות</a></li>
+                                  <li><a href="../../templates/Installer/Add-Installations.html">הוספת התקנה חדשה</a></li>
+                              </ul>
+                        </li>
+                        <li>
+                            <a>דוחות</a>
+                            <ul class="fh5co-sub-menu">
+                                <li><a href="../../templates/Reports/Reports-Customer.html">דוח לקוחות</a></li>
+                                <li><a href="../../templates/Reports/Reports-Deal.html">דוח מבצעים</a></li>
+                                <li><a href="../../templates/Reports/Reports-Products.html">דוח מוצרים</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../../templates/Dashbords/Manager/Dashbord-Manager.html">Dashbord</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
+
     <aside id="fh5co-hero" class="js-fullheight">
         <div class="flexslider js-fullheight">
             <ul class="slides">
-                <li style="background-image: url(../../src/images/ViewProducts.png);">
-                    <div class="overlay">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
-                                <div class="slider-text-inner">
-                                    <h2 class="heading-title">מוצרים</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-            </ul>
-        </div>
+               <li style="background-image: url(../../src/images/AddProducts.jpg);">
+                   <div class="overlay"></div>
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+                               <div class="slider-text-inner">
+                                   <h2 class="heading-title">הוספת מכרז חדש</h2>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </li>
+             </ul>
+         </div>
     </aside>
 
-    <div id="fh5co-properties" class="fh5co-section-gray">
-        <div class="container">
-            <div class="row">
+        
+        <div class="container"><br><br><br><br><br>
+            <form id="propertyForm" action="/addNewProduct" method="POST">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>צפייה בכל המוצרים</h3>
-                    <div class="search-container">
-                    <input type="text" id="property-id-input" placeholder="הכנס קוד מוצר">
-                    <button style="background-color:#0e6ba8" onclick="">חיפוש</button>
-                </div>
-            </div>
-            </div>
+                    <h3>הוסף מידע על מכרז חדש</h3>
+                    <p>אנא מלא את כל השדות הנדרשים למילוי</p>
+                    <!--     קוד המכרז     -->
+                    <div class="form-group">
+                        <label for="tenderID">קוד המכרז:</label>
+                        <input type="text" class="form-control" id="tenderID" name="tenderID" required>
+                    </div>
 
-            <div class="row" id="products-container">
-            </div>
+                    <!--     קוד הלקוח     -->
+                    <div class="form-group">
+                        <label for="customerID">קוד הלקוח:</label>
+                        <input type="text" class="form-control" id="customerID" name="customerID" required>
+                    </div>
+
+                    <!--     שם הלקוח     -->
+                    <div class="form-group">
+                        <label for="customerName">שם הלקוח:</label>
+                        <input type="text" class="form-control" id="customerName" name="customerName" required>
+                    </div>
+
+                    <!--     תאריך מכרז     -->
+                    <div class="form-group">
+                        <label for="tenderDate">תאריך המכרז:</label>
+                        <input dir="auto" type="date" class="form-control" id="tenderDate" name="tenderDate" required>
+                    </div>
+
+                    <!--     סוג מוצר     -->
+                    <div class="form-group">
+                        <label for="productCategory">סוג המוצר:</label>
+                        <select type="text" id="productCategory" name="productCategory">
+                            <option value="">אנא בחר את סוג המוצר</option>
+                            <option value="וילונות">וילונות</option>
+                            <option value="תריסים">תריסים</option>
+                            <option value="מסגרות">מסגרות</option>
+                            <option value="אביזרים">אביזרים</option>
+                            <option value="אחר">אחר</option>
+                        </select>
+                    </div>
+
+                    <!--     קוד מוצר     -->
+                    <div class="form-group">
+                        <label for="productID">קוד מוצר:</label>
+                        <input type="text" class="form-control" id="productID" name="productID" required>
+                    </div>
+                
+                    <!--     מחיר המוצר     -->
+                    <div class="form-group">
+                        <label for="productPrice">מחיר מהמוצר:</label>
+                        <input type="text" class="form-control" id="productPrice" name="productPrice" required>
+                    </div>
+
+                    <!--     הסברים     -->
+                    <div class="form-group">
+                        <label for="discription">הסברים:</label>
+                        <input type="text" class="form-control" id="discription" name="discription" required>
+                    </div>
+
+                </div>
+
+                <br>
+                <!--     הוספת המכרז למערכת     -->
+                <button type="submit" class="btn btn-primary" id="sub">אישור והוספה למלאי המוצרים</button>
+                <br><br>
+                <div id="successMessage" style="display: none;" class="alert alert-success" role="alert">המוצר התווסף לרשימת המוצרים!</div>
+            </form>
+            
+            <br><br><br><br>
+
         </div>
     </div>
+   
 
-
-    
     <footer>
         <div id="footer">
           <div class="container">
             <div class="row row-bottom-padded-md">
               <!-- זכויות יוצרים -->
-				  <p style="font-size:20px;">
-					&copy; <span id="year"></span>כל הזכויות שמורות לתריסי סיני בע״מ.<br/>
-					<p style="font-size:18px;">באתר נבנה ומנוהל על ידי:<br> 
-					  אלעד טייר | ליאור סיני | אור מנחם | תאיר מלכה</p>
-					<a style="color: #0077b6; text-decoration: none; font-weight:500 ">תקנון תנאי השימוש</a><a style="color: white">||</a><a style="color: #0077b6; text-decoration: none; font-weight:500">מדיניות פרטיות</a>
-                </p>
+              <p style="font-size:20px;">
+                &copy; <span id="year"></span>כל הזכויות שמורות לתריסי סיני בע״מ.<br/>
+                <p style="font-size:18px;">באתר נבנה ומנוהל על ידי:<br> 
+                  אלעד טייר | ליאור סיני | אור מנחם | תאיר מלכה</p>
+                <a style="color: #0077b6; text-decoration: none; font-weight:500 ">תקנון תנאי השימוש</a><a style="color: white">||</a><a style="color: #0077b6; text-decoration: none; font-weight:500">מדיניות פרטיות</a>
+            </p>
               
             </div>
             
           </div>
         </div>
       </footer>
-
 </div>
 </div>
-
-<script src="../../../src/js/jquery.min.js"></script>
-<script src="../../../src/js/jquery.easing.1.3.js"></script>
-<script src="../../../src/js/bootstrap.min.js"></script>
-<script src="../../../src/js/jquery.waypoints.min.js"></script>
-<script src="../../../src/js/sticky.js"></script>
-<script src="../../../src/js/hoverIntent.js"></script>
-<script src="../../../src/js/superfish.js"></script>
-<script src="../../../src/js/jquery.flexslider-min.js"></script>
-<script src="../../../src/js/bootstrap-datepicker.min.js"></script>
-<script src="../../../src/js/classie.js"></script>
-<script src="../../../src/js/selectFx.js"></script>
-<script src="../../../src/js/main.js"></script>
-
 <script>
-    
-    async function fetchProducts() {
-        try {
-            const response = await fetch('http://localhost:4000/Products'); // Use full URL
-            const products = await response.json();
-            return products;
-        } catch (error) {
-            console.error(error);
-            throw new Error('Failed to fetch products');
-        }
-    }
-    
-    async function displayProducts(products) {
-        const productsContainer = document.getElementById('products-container');
-        productsContainer.innerHTML = '';
-    
-        products.forEach((product) => {
-            try {
-                const productDiv = document.createElement('div');
-                productDiv.classList.add('col-md-4', 'product-item');
-    
-                productDiv.innerHTML = `
-                    <div class="property-details">
-                        <h3 class="${product.ProductStatus === 'זמין' ? '' : 'לא זמין'}">
-                            ${product.ProductID || "Unknown Type"} &nbsp;(${product.ProductType || "Unknown Type"})
+    document.addEventListener("DOMContentLoaded", function() {
+        var form = document.getElementById("propertyForm");
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            var formData = new FormData(form);
+            var data = {};
+            formData.forEach(function(value, key) {
+                data[key] = value;
+            });
 
-                        </h3>
-                        <img class="square-image" src="${product.ProductImage || 'default.jpg'}" alt="${product.ProductType}" class="img-responsive">
-                        <p>${product.ProductDescription || "No description available"}</p>
-                        <p>${product.ProductPrice ? `מחיר: ₪${product.ProductPrice}` : 'Price not available'}</p>
-                        <p>סטטוס: ${product.ProductStatus || "Unknown"}</p>
-                    </div>
-                `;
-    
-                productsContainer.appendChild(productDiv);
-            } catch (error) {
-                console.error("Error displaying product:", product, error);
-            }
+            fetch("/addTender", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById("successMessage").style.display = "block";
+                    console.log("Property added successfully");
+                    setTimeout(function() {
+                        location.reload();
+                    }, 3000); 
+                } else {
+                    console.error("Failed to add property");
+                }
+            })
+            .catch(function(error) {
+                console.error("Error:", error);
+            });
         });
-    }
-
-    window.onload = async function() {
-        const products = await fetchProducts();
-        displayProducts(products);
-    };
-    
+    });
 </script>
+<script src="../../src/js/jquery.min.js"></script>
+<script src="../../src/js/jquery.easing.1.3.js"></script>
+<script src="../../src/js/bootstrap.min.js"></script>
+<script src="../../src/js/jquery.waypoints.min.js"></script>
+<script src="../../src/js/sticky.js"></script>
+<script src="../../src/js/hoverIntent.js"></script>
+<script src="../../src/js/superfish.js"></script>
+<script src="../../src/js/jquery.flexslider-min.js"></script>
+<script src="../../src/js/bootstrap-datepicker.min.js"></script>
+<script src="../../src/js/classie.js"></script>
+<script src="../../src/js/selectFx.js"></script>
+<script src="../../src/js/main.js"></script>
 
 </body>
 </html>
