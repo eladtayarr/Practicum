@@ -137,6 +137,14 @@
                                 <li><a href="../../templates/Reports/Reports-Products.html">דוח מוצרים</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a>מכרזים</a>
+                            <ul class="fh5co-sub-menu">
+                              <li><a href="../../templates/Tenders/allTenders.html">צפייה במכרזים</a></li>
+                              <li><a href="../../templates/Tenders/addTenders.html">הוספת מכרז חדש</a></li>
+                              <li><a href="../../templates/Tenders/updateTenders.html">עדכון/מחיקת מכרז</a></li>
+                            </ul>
+                        </li>
                         <li><a href="../../templates/Dashbords/Manager/Dashbord-Manager.html">Dashbord</a></li>
                     </ul>
                 </nav>
@@ -163,58 +171,32 @@
          </div>
     </aside>
 
-        
-        <div class="container"><br><br><br><br><br>
-            <form id="propertyForm" action="/addNewProduct" method="POST">
-                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>הוסף מידע על המוצר החדש</h3>
-                </div>
-
-                <div class="form-group">
-                    <label for="ProductType">סוג המוצר:</label>
-                    <select type="text" id="ProductType" name="ProductType">
-                        <option value="">אנא בחר את סוג המוצר</option>
-                        <option value="וילונות">וילונות</option>
-                        <option value="תריסים">תריסים</option>
-                        <option value="מסגרות">מסגרות</option>
-                        <option value="אביזרים">אביזרים</option>
-                        <option value="אחר">אחר</option>
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="ProductPrice">מחיר מהמוצר ליחידה/למטר:</label>
-                    <input type="number" class="form-control" id="ProductPrice" name="ProductPrice" required>
-                </div>
-                
-                <div class="form-group">
-                <label for="ProductionDate">תאריך הגעת המוצר:</label>
-							<input dir="auto" type="date" class="form-control" id="ProductionDate" name="ProductionDate" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="ProductDescription">תיאור המוצר:</label>
-                    <input type="text" class="form-control" id="ProductDescription" name="ProductDescription" required>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label for="ProductImage">הוסף קישור לתמונה:</label>
-                    <input type="text" class="form-control" id="ProductImage" name="ProductImage" required>
-                </div> 
-                
-                <br>
-                
-                <button type="submit" class="btn btn-primary" id="sub">אישור והוספה למלאי המוצרים</button>
-                <br><br>
-                <div id="successMessage" style="display: none;" class="alert alert-success" role="alert">המוצר התווסף לרשימת המוצרים!</div>
-            </form>
-            
-            <br><br><br><br>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                <h3>עדכון מכרזים</h3>
+                <p>כאן תוכל לעדכן או למחוק מכרזים קיימים.</p>
+            </div>
         </div>
+        <table id="tendersTable" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>קוד מכרז</th>
+                    <th>קוד לקוח</th>
+                    <th>שם לקוח</th>
+                    <th>תאריך הזנת המכרז</th>
+                    <th>קוד מוצר</th>
+                    <th>עלות ליחידת מוצר</th>
+                    <th>הסברים</th>
+                    <th>עריכה</th>
+                    <th>מחיקה</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- שורות יתווספו דינמית -->
+            </tbody>
+        </table>
     </div>
-   
 
     <footer>
         <div id="footer">
@@ -232,45 +214,85 @@
             
           </div>
         </div>
-      </footer>
+    </footer>
 </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var form = document.getElementById("propertyForm");
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-            var formData = new FormData(form);
-            var data = {};
-            formData.forEach(function(value, key) {
-                data[key] = value;
-            });
 
-            fetch("/addNewProduct", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tableBody = document.querySelector("#tendersTable tbody");
+
+        // שליפת כל המכרזים
+        fetch("/Tenders")
+            .then(response => response.json())
+            .then(tenders => {
+                tableBody.innerHTML = ""; // ניקוי טבלה קיימת
+                tenders.forEach(tender => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${tender.tenderID || "N/A"}</td>
+                        <td>${tender.customerID || "N/A"}</td>
+                        <td>${tender.customerName || "N/A"}</td>
+                        <td>${tender.tenderDate || "N/A"}</td>
+                        <td>${tender.productID || "N/A"}</td>
+                        <td>${tender.productPrice || "N/A"}₪</td>
+                        <td>${tender.discription || "N/A"}</td>
+                        <td><button class="btn btn-primary btn-sm" onclick="editTender('${tender._id}')">ערוך</button></td>
+                        <td><button class="btn btn-danger btn-sm" onclick="deleteTender('${tender._id}')">מחק</button></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
             })
-            .then(function(response) {
-                if (response.ok) {
-                    // Show success message
-                    document.getElementById("successMessage").style.display = "block";
-                    console.log("Property added successfully");
-                    setTimeout(function() {
-                        location.reload();
-                    }, 3000); 
-                } else {
-                    console.error("Failed to add property");
-                }
-            })
-            .catch(function(error) {
-                console.error("Error:", error);
-            });
-        });
+            .catch(error => console.error("Error fetching tenders:", error));
     });
+
+    // פונקציה למחיקת מכרז
+    function deleteTender(tenderId) {
+        if (confirm("האם אתה בטוח שברצונך למחוק את המכרז?")) {
+            fetch(`/Tenders/${tenderId}`, { method: "DELETE" })
+                .then(response => {
+                    if (response.ok) {
+                        alert("המכרז נמחק בהצלחה!");
+                        location.reload(); // רענון הדף
+                    } else {
+                        alert("שגיאה במחיקת המכרז.");
+                    }
+                })
+                .catch(error => console.error("Error deleting tender:", error));
+        }
+    }
+
+    // פונקציה לעריכת מכרז
+    function editTender(tenderId, currentProductID, currentPrice, currentDescription) {
+        const newPrice = prompt("הכנס מחיר חדש למוצר:", currentPrice);
+        const newDescription = prompt("הכנס הסבר חדש:", currentDescription);
+
+        if (newPrice && newDescription) {
+            const updatedData = {
+                productPrice: newPrice,
+                discription: newDescription,
+                tenderDate: new Date().toISOString().split("T")[0] // תאריך עדכני
+            };
+
+            fetch(`/Tenders/${tenderId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("המכרז עודכן בהצלחה!");
+                        location.reload(); // רענון הדף
+                    } else {
+                        alert("שגיאה בעדכון המכרז.");
+                    }
+                })
+                .catch(error => console.error("Error updating tender:", error));
+        }
+    }
 </script>
+
+
 <script src="../../src/js/jquery.min.js"></script>
 <script src="../../src/js/jquery.easing.1.3.js"></script>
 <script src="../../src/js/bootstrap.min.js"></script>
