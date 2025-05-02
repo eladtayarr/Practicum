@@ -40,6 +40,10 @@ const {
   getTodoItems,
   addTodoItem,
   deleteTodoItem,
+  getAllTenders,
+  addTender,
+  updateTender,
+  deleteTender,
 } = require("./MongoDB");
 
 
@@ -588,6 +592,66 @@ app.delete("/installations/:id", async (req, res) => {
   }
 });
 
+
+////////////////////////////////////////////////////////////////////////
+//////////////////////        מכרזים       ////////////////////////////
+
+// קבלת כל המכרזים
+app.get("/Tenders", async (req, res) => {
+  try {
+    const tenders = await getAllTenders();
+    res.json(tenders);
+  } catch (error) {
+    console.error("Error fetching tenders:", error);
+    res.status(500).json({ error: "Failed to fetch tenders" });
+  }
+});
+
+// הוספת מכרז חדש
+app.post("/addTender", async (req, res) => {
+  const { tenderID, tenderName, tenderDescription, tenderDate } = req.body;
+
+  try {
+    const tenderId = await addTender(tenderID, tenderName, tenderDescription, tenderDate);
+    res.status(201).json({ message: "Tender added successfully", tenderId });
+  } catch (error) {
+    console.error("Error adding tender:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// עדכון מכרז
+app.put("/Tenders/:id", async (req, res) => {
+  const { id } = req.params;
+  const updatedData = req.body;
+
+  try {
+    const updatedCount = await updateTender(id, updatedData);
+    if (updatedCount > 0) {
+      res.status(200).json({ message: "Tender updated successfully" });
+    } else {
+      res.status(404).json({ error: "Tender not found" });
+    }
+  } catch (error) {
+    console.error("Error updating tender:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// מחיקת מכרז
+app.delete("/Tenders/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await deleteTender(id);
+    res.status(200).json({ message: "Tender deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting tender:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+////////////////////////////////////////////////////////////////////////
 
 
 

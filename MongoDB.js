@@ -1221,6 +1221,87 @@ const deleteTodoItem = async (id) => {
 };
 
 ////////////////////////////////////////////////////////////////////////
+/////////////////////      מכרזים     //////////////////////////////////
+
+// קבלת כל המכרזים
+const getAllTenders = async () => {
+  try {
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Tenders");
+    const tenders = await collection.find().toArray();
+    console.log("Tenders:", tenders);
+    return tenders;
+  } catch (error) {
+    console.error("Error fetching tenders:", error);
+    throw new Error("Failed to fetch tenders");
+  }
+};
+
+// הוספת מכרז חדש
+const addTender = async (tenderID, tenderName, tenderDescription, tenderDate) => {
+  try {
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Tenders");
+
+    const tender = {
+      tenderID,
+      tenderName,
+      tenderDescription,
+      tenderDate,
+    };
+
+    const result = await collection.insertOne(tender);
+    console.log("Tender added successfully:", result.insertedId);
+    return result.insertedId;
+  } catch (error) {
+    console.error("Error adding tender:", error);
+    throw new Error("Failed to add tender");
+  }
+};
+
+// עדכון מכרז
+const updateTender = async (id, updatedData) => {
+  try {
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Tenders");
+
+    const result = await collection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: updatedData }
+    );
+
+    if (result.matchedCount === 0) {
+      throw new Error("Tender not found");
+    }
+
+    console.log("Tender updated successfully");
+    return result.modifiedCount;
+  } catch (error) {
+    console.error("Error updating tender:", error);
+    throw new Error("Failed to update tender");
+  }
+};
+
+// מחיקת מכרז
+const deleteTender = async (id) => {
+  try {
+    const database = client.db("Practicum_Project");
+    const collection = database.collection("Tenders");
+
+    const result = await collection.deleteOne({ _id: new ObjectId(id) });
+    if (result.deletedCount === 0) {
+      throw new Error("Tender not found");
+    }
+
+    console.log("Tender deleted successfully");
+    return true;
+  } catch (error) {
+    console.error("Error deleting tender:", error);
+    throw new Error("Failed to delete tender");
+  }
+};
+
+////////////////////////////////////////////////////////////////////////
 
 module.exports = {
   run,
@@ -1260,4 +1341,8 @@ module.exports = {
   addTodoItem,
   getTodoItems,
   deleteTodoItem,
+  getAllTenders,
+  addTender,
+  updateTender,
+  deleteTender,
 };
