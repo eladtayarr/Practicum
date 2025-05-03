@@ -66,15 +66,15 @@ figure {
 
 ::-webkit-selection {
   color: #fcfcfc;
-  background:  #de6277; }
+  background:  #2a6f97; }
 
 ::-moz-selection {
   color: #fcfcfc;
-  background:  #de6277; }
+  background:  #2a6f97; }
 
 ::selection {
   color: #fcfcfc;
-  background:  #de6277; }
+  background:  #2a6f97; }
 
 #fh5co-header {
   position: relative;
@@ -92,7 +92,7 @@ figure {
 
 .header-top {
   padding: 10px 0;
-  background:  #de6277; }
+  background:  #2a6f97; }
   
 .header-top .fh5co-link a {
   margin-left: 10px;
@@ -535,16 +535,16 @@ figure {
   font-size: 12px; }
 #fh5co-search-map .s-holder input[type="text"]::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: #de6277 !important; }
+  color: #2a6f97 !important; }
 #fh5co-search-map .s-holder input[type="text"]::-moz-placeholder {
   /* Firefox 19+ */
-  color:  #de6277 !important; }
+  color:  #2a6f97 !important; }
 #fh5co-search-map .s-holder input[type="text"]:-ms-input-placeholder {
   /* IE 10+ */
-  color:  #de6277 !important; }
+  color:  #2a6f97 !important; }
 #fh5co-search-map .s-holder input[type="text"]:-moz-placeholder {
   /* Firefox 18- */
-  color:  #de6277 !important; }
+  color:  #2a6f97 !important; }
 #fh5co-search-map .s-holder input[type="text"], #fh5co-search-map .s-holder .cs-select {
   width: 60% !important;
   float: right;
@@ -597,7 +597,7 @@ div.cs-select span {
 .cs-skin-border > span {
   border: transparent;
   background: white;
-  color:  #de6277;
+  color:  #2a6f97;
   padding: 14px 10px !important; }
 .cs-skin-border > span::after {
   font-size: 14px !important;
@@ -764,7 +764,7 @@ div.cs-select span {
 #fh5co-about .fh5co-staff .list-prop {
   display: block;
   margin-bottom: 50px;
-  color:  #de6277;
+  color:  #2a6f97;
   font-weight: 400; }
 
 .fh5co-agent {
@@ -1040,7 +1040,7 @@ div.cs-select span {
 .fh5co-testimonial > div h3, .fh5co-team > div h3 {
   margin-bottom: 0;
   font-size: 20px;
-  color:  #de6277 }
+  color:  #2a6f97 }
 .fh5co-testimonial > div .position, .fh5co-team > div .position {
   color: #d9d9d9;
   margin-bottom: 30px; }
@@ -1086,7 +1086,7 @@ div.cs-select span {
 .fh5co-blog .blog-text span.comment a {
   color: rgba(0, 0, 0, 0.3); }
 .fh5co-blog .blog-text span.comment a i {
-  color:  #de6277;
+  color:  #2a6f97;
   padding-left: 7px; }
 .fh5co-blog .blog-text h3 {
   font-size: 20px;
@@ -1106,7 +1106,7 @@ div.cs-select span {
 
 .fh5co-social-icons > a {
   padding: 4px 10px;
-  color:  #de6277; }
+  color:  #2a6f97; }
 .fh5co-social-icons > a i {
   font-size: 20px; }
 .fh5co-social-icons > a:hover, .fh5co-social-icons > a:focus, .fh5co-social-icons > a:active {
@@ -1180,10 +1180,10 @@ div.cs-select span {
   border-color: transparent; }
 .btn.btn-outline {
   background: transparent;
-  color:  #de6277;
-  border: 2px solid  #de6277 !important; }
+  color:  #2a6f97;
+  border: 2px solid  #2a6f97 !important; }
 .btn.btn-outline:hover, .btn.btn-outline:focus, .btn.btn-outline:active {
-  background:  #de6277 !important;
+  background:  #2a6f97 !important;
   color: #fff !important; }
 
 .tab-content .btn {
@@ -1245,12 +1245,12 @@ div.cs-select span {
   font-size: 18px;
   color: rgba(255, 255, 255, 0.4); }
 #offcanvas-menu ul li a:hover {
-  color:  #de6277; }
+  color:  #2a6f97; }
 #offcanvas-menu ul li > .fh5co-sub-menu {
   margin-top: 9px;
   padding-left: 20px; }
 #offcanvas-menu ul li.active > a {
-  color:  #de6277; }
+  color:  #2a6f97; }
 #offcanvas-menu ul .fh5co-sub-menu {
   display: block !important; }
 
