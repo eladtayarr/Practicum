@@ -1,7 +1,8 @@
 const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 
-const uri = "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
+const uri =
+  "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
 
 const app = express();
 const port = 4000;
@@ -46,7 +47,6 @@ const {
   deleteTender,
 } = require("./MongoDB");
 
-
 app.use(express.static("public"));
 
 app.use(express.json());
@@ -57,7 +57,7 @@ const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
     user: "eladt1010@gmail.com",
-    pass: "password"
+    pass: "password",
     //user: "nofar.shamir7@gmail.com",
     //pass: "shebnouqreidnctk",
   },
@@ -80,7 +80,6 @@ app.post("/login", async (req, res) => {
     res.status(401).json({ error: error.message });
   }
 });
-
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        לקוחות       /////////////////////////////
@@ -106,7 +105,7 @@ app.post("/addCustomer", async (req, res) => {
       email,
       joinDate,
       customerType,
-      UserName
+      UserName,
     );
     res
       .status(201)
@@ -116,7 +115,6 @@ app.post("/addCustomer", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 
 ////    בדיקה האם הלקוח קיים בבסיס הנתונים
 app.get("/checkCustomerExists", async (req, res) => {
@@ -148,7 +146,7 @@ app.get("/CustomerAssets", async (req, res) => {
       assetPriceMax,
       assetStreet,
       assetStreetNumber,
-      roomNumber
+      roomNumber,
     );
     res.json(filteredAssets);
   } catch (error) {
@@ -176,7 +174,7 @@ app.get("/CustomerAssetsForManager", async (req, res) => {
       assetPriceMax,
       assetStreet,
       assetStreetNumber,
-      roomNumber
+      roomNumber,
     );
     res.json(filteredAssets); // Return filtered assets as JSON response
   } catch (error) {
@@ -200,18 +198,14 @@ app.post("/addFeedback", async (req, res) => {
     res.status(201).json({ message: "Feedback added successfully!" });
   } catch (error) {
     if (error.message.includes("Customer not found")) {
-      res
-        .status(404)
-        .json({
-          error:
-            "Your Customer ID is not found. Please register as a customer to add a feedback.",
-        });
+      res.status(404).json({
+        error:
+          "Your Customer ID is not found. Please register as a customer to add a feedback.",
+      });
     } else if (error.message.includes("haven't made a deal")) {
-      res
-        .status(404)
-        .json({
-          error: "You still haven't made a deal. A feedback hasn't been added.",
-        });
+      res.status(404).json({
+        error: "You still haven't made a deal. A feedback hasn't been added.",
+      });
     } else {
       console.error("Error adding feedback to database:", error);
       res.status(500).json({ error: "Failed to add feedback to the database" });
@@ -303,26 +297,31 @@ app.get("/meetings-customer", async (req, res) => {
   }
 });
 
-
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        מוצרים       /////////////////////////////
 
 ////    הוספת מוצר חדש
 app.post("/addNewProduct", async (req, res) => {
-  const { ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage } = req.body;
+  const {
+    ProductType,
+    ProductPrice,
+    ProductionDate,
+    ProductDescription,
+    ProductImage,
+  } = req.body;
 
   try {
-      const productId = await addNewProduct(
-          ProductType,
-          ProductPrice,
-          ProductionDate,
-          ProductDescription,
-          ProductImage
-      );
-      res.status(201).json({ message: "Product added successfully", productId });
+    const productId = await addNewProduct(
+      ProductType,
+      ProductPrice,
+      ProductionDate,
+      ProductDescription,
+      ProductImage,
+    );
+    res.status(201).json({ message: "Product added successfully", productId });
   } catch (error) {
-      console.error("Error adding product:", error);
-      res.status(500).json({ error: error.message });
+    console.error("Error adding product:", error);
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -337,7 +336,7 @@ app.post("/addDeal", async (req, res) => {
       Customer1ID,
       Customer2ID,
       SignatureDate,
-      PartnerUserName
+      PartnerUserName,
     );
     res.status(201).json({ message: "Deals added successfully", deal });
   } catch (error) {
@@ -366,7 +365,7 @@ app.post("/updateProperty", async (req, res) => {
       assetStreet,
       assetStreetNumber,
       roomNum,
-      assetImage
+      assetImage,
     );
     res
       .status(201)
@@ -379,11 +378,11 @@ app.post("/updateProperty", async (req, res) => {
 ////    מוצרים
 app.get("/Products", async (req, res) => {
   try {
-      const Products = await getAllProducts();
-      res.json(Products);
+    const Products = await getAllProducts();
+    res.json(Products);
   } catch (error) {
-      console.error("Error:", error);
-      res.status(500).json({ error: "Failed to fetch users" });
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to fetch users" });
   }
 });
 
@@ -393,14 +392,21 @@ app.put("/Products/:id", async (req, res) => {
   console.log("Request body:", req.body);
 
   try {
-    const { ProductID, ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage } = req.body;
+    const {
+      ProductID,
+      ProductType,
+      ProductPrice,
+      ProductionDate,
+      ProductDescription,
+      ProductImage,
+    } = req.body;
     const updatedCount = await updateProduct(
       req.params.id,
       ProductType,
       ProductPrice,
       ProductionDate,
       ProductDescription,
-      ProductImage
+      ProductImage,
     );
 
     console.log("Updated count:", updatedCount);
@@ -408,15 +414,15 @@ app.put("/Products/:id", async (req, res) => {
     if (updatedCount > 0) {
       res.status(200).send({ message: "מוצר עודכן בהצלחה!" });
     } else {
-      res.status(404).send({ message: "Product not found or no updates were made." });
+      res
+        .status(404)
+        .send({ message: "Product not found or no updates were made." });
     }
   } catch (error) {
     console.error("Error in PUT /Products/:id:", error.message);
     res.status(500).send({ error: error.message });
   }
 });
-
-
 
 ////    מבצעים
 app.get("/deals", async (req, res) => {
@@ -435,21 +441,24 @@ app.get("/deals", async (req, res) => {
 app.get("/installations", async (req, res) => {
   let client; // Declare client outside the try block
   try {
-      client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-      await client.connect();
+    client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    await client.connect();
 
-      const database = client.db("Practicum_Project");
-      const installationsCollection = database.collection("InstallationMeetings");
+    const database = client.db("Practicum_Project");
+    const installationsCollection = database.collection("InstallationMeetings");
 
-      // Fetch all installations
-      const installations = await installationsCollection.find({}).toArray();
-      console.log("Installations fetched successfully:", installations);
-      res.status(200).json(installations); // Send data as JSON
+    // Fetch all installations
+    const installations = await installationsCollection.find({}).toArray();
+    console.log("Installations fetched successfully:", installations);
+    res.status(200).json(installations); // Send data as JSON
   } catch (error) {
-      console.error("Error fetching installations:", error.message);
-      res.status(500).json({ error: "Failed to fetch installations." });
+    console.error("Error fetching installations:", error.message);
+    res.status(500).json({ error: "Failed to fetch installations." });
   } finally {
-      if (client) await client.close(); // Safely close the client
+    if (client) await client.close(); // Safely close the client
   }
 });
 
@@ -458,28 +467,30 @@ app.put("/installations/:id", async (req, res) => {
   const updatedData = req.body;
 
   try {
-      const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-      await client.connect();
+    const client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    await client.connect();
 
-      const database = client.db("Practicum_Project");
-      const installationsCollection = database.collection("InstallationMeetings");
+    const database = client.db("Practicum_Project");
+    const installationsCollection = database.collection("InstallationMeetings");
 
-      const result = await installationsCollection.updateOne(
-          { _id: new ObjectId(id) },
-          { $set: updatedData }
-      );
+    const result = await installationsCollection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: updatedData },
+    );
 
-      if (result.matchedCount === 0) {
-          return res.status(404).json({ error: "Installation not found." });
-      }
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ error: "Installation not found." });
+    }
 
-      res.status(200).json({ message: "Installation updated successfully." });
+    res.status(200).json({ message: "Installation updated successfully." });
   } catch (error) {
-      console.error("Error updating installation:", error.message);
-      res.status(500).json({ error: "Failed to update installation." });
+    console.error("Error updating installation:", error.message);
+    res.status(500).json({ error: "Failed to update installation." });
   }
 });
-
 
 ////    הוספת התקנה חדשה
 app.post("/addMeeting", async (req, res) => {
@@ -506,7 +517,7 @@ app.post("/addMeeting", async (req, res) => {
       location,
       partner,
       meetingType,
-      assetSelect
+      assetSelect,
     );
     res.status(201).json({ message: "Meeting added successfully", meetingId });
   } catch (error) {
@@ -552,21 +563,24 @@ app.get("/checkMeetingExists", async (req, res) => {
 app.post("/addInstallationMeeting", async (req, res) => {
   console.log("Request Body:", req.body); // Log incoming data for debugging
 
-  const { customerID, installerID, date, time, location, meetingType } = req.body;
+  const { customerID, installerID, date, time, location, meetingType } =
+    req.body;
 
   try {
-      const installationID = await addInstallationMeeting(
-          customerID,
-          installerID,
-          date,
-          time,
-          location,
-          meetingType
-      );
-      res.status(201).json({ message: "Installation added successfully", installationID });
+    const installationID = await addInstallationMeeting(
+      customerID,
+      installerID,
+      date,
+      time,
+      location,
+      meetingType,
+    );
+    res
+      .status(201)
+      .json({ message: "Installation added successfully", installationID });
   } catch (error) {
-      console.error("Error:", error.message);
-      res.status(400).json({ error: error.message });
+    console.error("Error:", error.message);
+    res.status(400).json({ error: error.message });
   }
 });
 
@@ -575,24 +589,28 @@ app.delete("/installations/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-      const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-      await client.connect();
+    const client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    await client.connect();
 
-      const database = client.db("Practicum_Project");
-      const installationsCollection = database.collection("InstallationMeetings");
+    const database = client.db("Practicum_Project");
+    const installationsCollection = database.collection("InstallationMeetings");
 
-      const result = await installationsCollection.deleteOne({ _id: new ObjectId(id) });
-      if (result.deletedCount === 0) {
-          return res.status(404).json({ error: "Installation not found." });
-      }
+    const result = await installationsCollection.deleteOne({
+      _id: new ObjectId(id),
+    });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: "Installation not found." });
+    }
 
-      res.status(200).json({ message: "Installation deleted successfully." });
+    res.status(200).json({ message: "Installation deleted successfully." });
   } catch (error) {
-      console.error("Error deleting installation:", error.message);
-      res.status(500).json({ error: "Failed to delete installation." });
+    console.error("Error deleting installation:", error.message);
+    res.status(500).json({ error: "Failed to delete installation." });
   }
 });
-
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        מכרזים       ////////////////////////////
@@ -610,10 +628,28 @@ app.get("/Tenders", async (req, res) => {
 
 // הוספת מכרז חדש
 app.post("/addTender", async (req, res) => {
-  const { tenderID,customerID, customerName, tenderDate, productCategory, productID,productPrice,discription  } = req.body;
+  const {
+    tenderID,
+    customerID,
+    customerName,
+    tenderDate,
+    productCategory,
+    productID,
+    productPrice,
+    discription,
+  } = req.body;
 
   try {
-    const tenderId = await addTender(tenderID,customerID, customerName, tenderDate, productCategory, productID,productPrice,discription );
+    const tenderId = await addTender(
+      tenderID,
+      customerID,
+      customerName,
+      tenderDate,
+      productCategory,
+      productID,
+      productPrice,
+      discription,
+    );
     res.status(201).json({ message: "Tender added successfully", tenderId });
   } catch (error) {
     console.error("Error adding tender:", error);
@@ -653,12 +689,6 @@ app.delete("/Tenders/:id", async (req, res) => {
 });
 
 ////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        משתמשים       ////////////////////////////
@@ -724,9 +754,11 @@ app.get("/installers", async (req, res) => {
   }
 });
 
-
-
-const { countCustomers, countProducts, countMeetings} = require("./MongoDB.js");
+const {
+  countCustomers,
+  countProducts,
+  countMeetings,
+} = require("./MongoDB.js");
 
 // נתיב שמחזיר את כמות הלקוחות
 app.get("/dashboard-data/customers", async (req, res) => {
@@ -761,8 +793,6 @@ app.get("/dashboard-data/installers", async (req, res) => {
   }
 });
 
-
-
 // נתיב שמחזיר את כמות ההתקנות
 app.get("/dashboard-data/Meetings", async (req, res) => {
   try {
@@ -784,7 +814,6 @@ app.get("/dashboard-data/collections", async (req, res) => {
   }
 });
 
-
 app.put("/Products/:id/units", async (req, res) => {
   try {
     const productId = req.params.id;
@@ -805,8 +834,6 @@ app.put("/Products/:id/units", async (req, res) => {
     res.status(500).json({ error: "Failed to update product units" });
   }
 });
-
-
 
 //// To Do List
 // Route to add a new TODO item
@@ -847,7 +874,6 @@ app.delete("/api/todos/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to delete TODO item" });
   }
 });
-
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצת אתר        //////////////////////////

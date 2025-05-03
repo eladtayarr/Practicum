@@ -1,6 +1,7 @@
 const { MongoClient, ObjectId } = require("mongodb");
 
-const uri = "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
+const uri =
+  "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
 // Password: 9wRHk5BLfmqRrQb3
 
 const client = new MongoClient(uri, {
@@ -9,18 +10,17 @@ const client = new MongoClient(uri, {
   },
 });
 
-
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצה         /////////////////////////////
 
-////    פונקציית הרצה לחיבור לבסיס נתונים 
+////    פונקציית הרצה לחיבור לבסיס נתונים
 async function run() {
   try {
     await client.connect();
     console.log("Connected to MongoDB");
     await client.db("admin").command({ ping: 1 });
     console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
+      "Pinged your deployment. You successfully connected to MongoDB!",
     );
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
@@ -28,11 +28,10 @@ async function run() {
 }
 run();
 
-
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        לקוחות       /////////////////////////////
 
-////    התחברות למערכת 
+////    התחברות למערכת
 const loginUser = async (username, password) => {
   try {
     const database = client.db("Practicum_Project");
@@ -133,7 +132,7 @@ const addFeedback = async (Username, feedbackData) => {
     const customer = await customersCollection.findOne({ UserName: Username });
     if (!customer) {
       throw new Error(
-        "Customer not found. Please register as a customer to add feedback."
+        "Customer not found. Please register as a customer to add feedback.",
       );
     }
 
@@ -146,7 +145,7 @@ const addFeedback = async (Username, feedbackData) => {
     });
     if (dealsCount === 0) {
       throw new Error(
-        "You still haven't made a deal. A feedback hasn't been added."
+        "You still haven't made a deal. A feedback hasn't been added.",
       );
     }
 
@@ -229,7 +228,6 @@ const getCustomerByID = async (customerID) => {
 ////////////////////////////////////////////////////////////////////////
 /////////////////////        משתמשים       /////////////////////////////
 
-
 ////    שליפת כל המשתמשים מהמערכת
 const getAllUsers = async () => {
   try {
@@ -304,11 +302,8 @@ async function addUser(userData) {
   }
 }
 
-
-
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        מוצרים       /////////////////////////////
-
 
 ////    שליפת כל המוצרים
 async function getAllProducts() {
@@ -357,7 +352,6 @@ const countProducts = async () => {
     }
   }
 };
-
 
 ////// סופר את כמות המתקינים
 const countInstallers = async () => {
@@ -413,39 +407,48 @@ const countMeetings = async () => {
   }
 };
 
-
-
 ////    הוספת מוצר חדש לבסיס נתונים
-async function addNewProduct(ProductType, ProductPrice, ProductionDate, ProductDescription, ProductImage) {
+async function addNewProduct(
+  ProductType,
+  ProductPrice,
+  ProductionDate,
+  ProductDescription,
+  ProductImage,
+) {
   const client = new MongoClient(uri);
 
   try {
-      await client.connect();
-      const db = client.db("Practicum_Project");
-      const collection = db.collection("Products");
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const collection = db.collection("Products");
 
-      // Add logic to generate a new ProductID
-      const maxProductIdDoc = await collection.find({}).sort({ ProductID: -1 }).limit(1).toArray();
-      const newProductID = maxProductIdDoc.length > 0 ? maxProductIdDoc[0].ProductID + 1 : 1;
+    // Add logic to generate a new ProductID
+    const maxProductIdDoc = await collection
+      .find({})
+      .sort({ ProductID: -1 })
+      .limit(1)
+      .toArray();
+    const newProductID =
+      maxProductIdDoc.length > 0 ? maxProductIdDoc[0].ProductID + 1 : 1;
 
-      const product = {
-          ProductID: newProductID,
-          ProductType,
-          ProductPrice: parseInt(ProductPrice, 10),
-          ProductionDate,
-          ProductDescription,
-          ProductImage,
-          ProductStatus: "Available",
-      };
+    const product = {
+      ProductID: newProductID,
+      ProductType,
+      ProductPrice: parseInt(ProductPrice, 10),
+      ProductionDate,
+      ProductDescription,
+      ProductImage,
+      ProductStatus: "Available",
+    };
 
-      const result = await collection.insertOne(product);
-      console.log("Product added successfully:", result.insertedId);
-      return result.insertedId;
+    const result = await collection.insertOne(product);
+    console.log("Product added successfully:", result.insertedId);
+    return result.insertedId;
   } catch (error) {
-      console.error("Error adding product:", error);
-      throw error;
+    console.error("Error adding product:", error);
+    throw error;
   } finally {
-      await client.close();
+    await client.close();
   }
 }
 
@@ -457,7 +460,7 @@ const filterProducts = async (
   ProductStreet,
   ProductStreetNumber,
   RoomNum,
-  ProductCity
+  ProductCity,
 ) => {
   const client = new MongoClient(uri);
 
@@ -471,8 +474,12 @@ const filterProducts = async (
     if (ProductType) filter.ProductType = ProductType;
     if (ProductPriceMin || ProductPriceMax) {
       // Convert string inputs to numeric values
-      const minPrice = ProductPriceMin ? parseInt(ProductPriceMin, 10) : undefined;
-      const maxPrice = ProductPriceMax ? parseInt(ProductPriceMax, 10) : undefined;
+      const minPrice = ProductPriceMin
+        ? parseInt(ProductPriceMin, 10)
+        : undefined;
+      const maxPrice = ProductPriceMax
+        ? parseInt(ProductPriceMax, 10)
+        : undefined;
 
       filter.ProductPrice = {};
       if (minPrice !== undefined) filter.ProductPrice.$gte = minPrice;
@@ -498,7 +505,6 @@ const filterProductsForManager = async (
   ProductType,
   ProductPriceMin,
   ProductPriceMax,
-  
 ) => {
   const client = new MongoClient(uri);
 
@@ -512,8 +518,12 @@ const filterProductsForManager = async (
     if (ProductType) filter.ProductType = ProductType;
     if (ProductPriceMin || ProductPriceMax) {
       // Convert string inputs to numeric values
-      const minPrice = ProductPriceMin ? parseInt(ProductPriceMin, 10) : undefined;
-      const maxPrice = ProductPriceMax ? parseInt(ProductPriceMax, 10) : undefined;
+      const minPrice = ProductPriceMin
+        ? parseInt(ProductPriceMin, 10)
+        : undefined;
+      const maxPrice = ProductPriceMax
+        ? parseInt(ProductPriceMax, 10)
+        : undefined;
 
       // Construct a price range filter
       filter.ProductPrice = {};
@@ -543,7 +553,7 @@ const updateProduct = async (
   ProductionDate,
   ProductDescription,
   ProductImage,
-  ProductStatus
+  ProductStatus,
 ) => {
   let client;
 
@@ -586,44 +596,52 @@ const updateProduct = async (
   }
 };
 
-
-
 ////////////////////////////////////////////////////////////////////////
 /////////////////////         מתקינים      /////////////////////////////
 
 // Add Installation Meeting
-const addInstallationMeeting = async (customerID, installerID, date, time, location, meetingType) => {
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const addInstallationMeeting = async (
+  customerID,
+  installerID,
+  date,
+  time,
+  location,
+  meetingType,
+) => {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
   try {
-      await client.connect();
-      const database = client.db("Practicum_Project");
-      const installationsCollection = database.collection("InstallationMeetings");
+    await client.connect();
+    const database = client.db("Practicum_Project");
+    const installationsCollection = database.collection("InstallationMeetings");
 
-      // Validate Date
-      const parsedDate = new Date(date);
-      if (isNaN(parsedDate)) {
-          throw new Error("Invalid date format. Ensure the format is YYYY-MM-DD.");
-      }
+    // Validate Date
+    const parsedDate = new Date(date);
+    if (isNaN(parsedDate)) {
+      throw new Error("Invalid date format. Ensure the format is YYYY-MM-DD.");
+    }
 
-      // Insert the installation meeting
-      const result = await installationsCollection.insertOne({
-          CustomerID: customerID,
-          InstallerID: installerID,
-          Date: parsedDate.toISOString().split("T")[0], // Store date in ISO format
-          Time: time,
-          Location: location,
-          MeetingType: meetingType,
-          CreatedAt: new Date(),
-      });
+    // Insert the installation meeting
+    const result = await installationsCollection.insertOne({
+      CustomerID: customerID,
+      InstallerID: installerID,
+      Date: parsedDate.toISOString().split("T")[0], // Store date in ISO format
+      Time: time,
+      Location: location,
+      MeetingType: meetingType,
+      CreatedAt: new Date(),
+    });
 
-      console.log("Installation meeting added successfully:", result.insertedId);
-      return result.insertedId;
+    console.log("Installation meeting added successfully:", result.insertedId);
+    return result.insertedId;
   } catch (error) {
-      console.error("Error adding installation meeting:", error.message);
-      throw new Error(error.message);
+    console.error("Error adding installation meeting:", error.message);
+    throw new Error(error.message);
   } finally {
-      await client.close();
+    await client.close();
   }
 };
 
@@ -635,7 +653,7 @@ const addMeeting = async (
   location,
   partner,
   meetingType,
-  productSelect
+  productSelect,
 ) => {
   let client; // Define client variable
 
@@ -801,7 +819,6 @@ async function getAvailableProducts() {
   }
 }
 
-
 ////////////////////////////////////////////////////////////////////////
 /////////////////////         שותפים       /////////////////////////////
 
@@ -855,7 +872,7 @@ const addCustomer = async (
   email,
   joinDate,
   customerType,
-  UserName
+  UserName,
 ) => {
   let client;
 
@@ -899,8 +916,6 @@ const addCustomer = async (
   }
 };
 
-
-
 ////////////////////////////////////////////////////////////////////////
 /////////////////////         מבצעים       /////////////////////////////
 ////    יצירת מבצע
@@ -909,7 +924,7 @@ async function createDeal(
   customer1Id,
   customer2Id,
   SignatureDate,
-  partnerUserName
+  partnerUserName,
 ) {
   try {
     ProductID = parseInt(ProductID);
@@ -957,13 +972,13 @@ async function createDeal(
       dealCommission = product.ProductPrice * 0.01;
     } else {
       throw new Error(
-        "Invalid product type. Product type must be 'rent' or 'sale'."
+        "Invalid product type. Product type must be 'rent' or 'sale'.",
       );
     }
 
     const highestDeal = await dealsCollection.findOne(
       {},
-      { sort: { transactionNumber: -1 } }
+      { sort: { transactionNumber: -1 } },
     );
     const transactionNumber = highestDeal
       ? highestDeal.transactionNumber + 1
@@ -1000,7 +1015,7 @@ async function createDeal(
 
     await productsCollection.updateOne(
       { ProductID: ProductID },
-      { $set: { ProductStatus: "Unavailable" } }
+      { $set: { ProductStatus: "Unavailable" } },
     );
 
     await dealsCollection.insertOne(deal1);
@@ -1062,7 +1077,6 @@ async function getMeetingsByUsername(username) {
   }
 }
 
-
 ////    קבלת כל השותפים
 const getInstallers = async () => {
   let client;
@@ -1102,9 +1116,15 @@ const getCollectionCounts = async () => {
     const database = client.db("Practicum_Project");
 
     // שליפת כמות המסמכים מכל קולקציה
-    const customersCount = await database.collection("Customers").countDocuments();
-    const installersCount = await database.collection("Installers").countDocuments();
-    const productsCount = await database.collection("Products").countDocuments();
+    const customersCount = await database
+      .collection("Customers")
+      .countDocuments();
+    const installersCount = await database
+      .collection("Installers")
+      .countDocuments();
+    const productsCount = await database
+      .collection("Products")
+      .countDocuments();
 
     return {
       customersCount,
@@ -1122,7 +1142,6 @@ const getCollectionCounts = async () => {
   }
 };
 
-
 const updateProductUnits = async (productId, units) => {
   let client;
   try {
@@ -1136,7 +1155,7 @@ const updateProductUnits = async (productId, units) => {
     // עדכון כמות היחידות למוצר לפי ה-ID
     const result = await collection.updateOne(
       { _id: new MongoClient.ObjectId(productId) },
-      { $set: { totalUnits: units } }
+      { $set: { totalUnits: units } },
     );
 
     return result.modifiedCount > 0;
@@ -1149,9 +1168,6 @@ const updateProductUnits = async (productId, units) => {
     }
   }
 };
-
-
-
 
 ////// TO Do List
 const addTodoItem = async (todoItem) => {
@@ -1238,7 +1254,16 @@ const getAllTenders = async () => {
 };
 
 // הוספת מכרז חדש
-const addTender = async (tenderID,customerID, customerName, tenderDate, productCategory, productID,productPrice,discription) => {
+const addTender = async (
+  tenderID,
+  customerID,
+  customerName,
+  tenderDate,
+  productCategory,
+  productID,
+  productPrice,
+  discription,
+) => {
   try {
     const database = client.db("Practicum_Project");
     const collection = database.collection("Tenders");
@@ -1271,7 +1296,7 @@ const updateTender = async (id, updatedData) => {
 
     const result = await collection.updateOne(
       { _id: new ObjectId(id) },
-      { $set: updatedData }
+      { $set: updatedData },
     );
 
     if (result.matchedCount === 0) {

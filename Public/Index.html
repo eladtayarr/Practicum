@@ -1,748 +1,813 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Practicum || Trisi Sinai Ltd.</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet">
-    <link rel="shortcut icon" href="src/images/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,800"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="src/images/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <style>
-        /* Add your CSS styles here */
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+      /* Add your CSS styles here */
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
 
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        body {
-            background: #f6f5f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            font-family: 'Montserrat', sans-serif;
-            height: 100vh;
-            margin: -20px 0 50px;
-        }
+      body {
+        background: #f6f5f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: "Montserrat", sans-serif;
+        height: 100vh;
+        margin: -20px 0 50px;
+      }
 
-        h1 {
-            font-weight: bold;
-            margin: 0;
-        }
+      h1 {
+        font-weight: bold;
+        margin: 0;
+      }
 
-        h2 {
-            text-align: center;
-        }
+      h2 {
+        text-align: center;
+      }
 
-        p {
-            font-size: 14px;
-            font-weight: 100;
-            line-height: 20px;
-            letter-spacing: 0.5px;
-            margin: 20px 0 30px;
-        }
+      p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        margin: 20px 0 30px;
+      }
 
-        span {
-            font-size: 12px;
-        }
+      span {
+        font-size: 12px;
+      }
 
-        a {
-            color: #333;
-            font-size: 14px;
-            text-decoration: none;
-            margin: 15px 0;
-        }
+      a {
+        color: #333;
+        font-size: 14px;
+        text-decoration: none;
+        margin: 15px 0;
+      }
 
-        button {
-            border-radius: 30px;
-            border: 1px solid #000000;
-            background-color:  #00bfff;
-            color: #FFFFFF;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 12px 45px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: transform 80ms ease-in;
-        }
+      button {
+        border-radius: 30px;
+        border: 1px solid #000000;
+        background-color: #00bfff;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+      }
 
-        button:active {
-            transform: scale(0.95);
-        }
+      button:active {
+        transform: scale(0.95);
+      }
 
-        button:focus {
-            outline: none;
-        }
+      button:focus {
+        outline: none;
+      }
 
-        button.ghost {
-            background-color: transparent;
-            border-color: #FFFFFF;
-        }
+      button.ghost {
+        background-color: transparent;
+        border-color: #ffffff;
+      }
 
-        form {
-            background-color: #FFFFFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 0 50px;
-            height: 100%;
-            text-align: center;
-        }
+      form {
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 50px;
+        height: 100%;
+        text-align: center;
+      }
 
-        input {
-            background-color: #eee;
-            border: none;
-            padding: 12px 15px;
-            margin: 8px 0;
-            width: 100%;
-        }
+      input {
+        background-color: #eee;
+        border: none;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 100%;
+      }
 
-        .container {
-            background-color: #fff;
-            border-radius: 100px;
-            box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-                    0 10px 10px rgba(0,0,0,0.22);
-            position: relative;
-            overflow: hidden;
-            width: 600px;
-            height: 300px;
-            max-width: 100%;
-            min-height: 500px;
-        }
+      .container {
+        background-color: #fff;
+        border-radius: 100px;
+        box-shadow:
+          0 14px 28px rgba(0, 0, 0, 0.25),
+          0 10px 10px rgba(0, 0, 0, 0.22);
+        position: relative;
+        overflow: hidden;
+        width: 600px;
+        height: 300px;
+        max-width: 100%;
+        min-height: 500px;
+      }
 
-        .form-container {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            transition: all 0.6s ease-in-out;
-        }
+      .form-container {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: all 0.6s ease-in-out;
+      }
 
-        .sign-in-container {
-            left: 0;
-            width: 50%;
-            z-index: 2;
-        }
+      .sign-in-container {
+        left: 0;
+        width: 50%;
+        z-index: 2;
+      }
 
-        .container.right-panel-active .sign-in-container {
-            transform: translateX(100%);
-        }
+      .container.right-panel-active .sign-in-container {
+        transform: translateX(100%);
+      }
 
-        .sign-up-container {
-            left: 0;
-            width: 50%;
-            opacity: 0;
-            z-index: 1;
-        }
+      .sign-up-container {
+        left: 0;
+        width: 50%;
+        opacity: 0;
+        z-index: 1;
+      }
 
-        .container.right-panel-active .sign-up-container {
-            transform: translateX(100%);
-            opacity: 1;
-            z-index: 5;
-            animation: show 0.6s;
-        }
+      .container.right-panel-active .sign-up-container {
+        transform: translateX(100%);
+        opacity: 1;
+        z-index: 5;
+        animation: show 0.6s;
+      }
 
-        @keyframes show {
-            0%, 49.99% {
-                opacity: 0;
-                z-index: 1;
-            }
-
-            50%, 100% {
-                opacity: 1;
-                z-index: 5;
-            }
+      @keyframes show {
+        0%,
+        49.99% {
+          opacity: 0;
+          z-index: 1;
         }
 
-        .overlay-container {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            transition: transform 0.6s ease-in-out;
-            z-index: 100;
+        50%,
+        100% {
+          opacity: 1;
+          z-index: 5;
         }
+      }
 
-        .container.right-panel-active .overlay-container{
-            transform: translateX(-100%);
-        }
+      .overlay-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        transition: transform 0.6s ease-in-out;
+        z-index: 100;
+      }
 
-        .overlay {
-            background: #000000;
-            background: -webkit-linear-gradient(to right, #000000, #000000);
-            background: linear-gradient(to right, #08a3eb, #032434);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: 0 0;
-            color: #FFFFFF;
-            position: relative;
-            left: -100%;
-            height: 100%;
-            width: 200%;
-            transform: translateX(0);
-            transition: transform 0.6s ease-in-out;
-        }
+      .container.right-panel-active .overlay-container {
+        transform: translateX(-100%);
+      }
 
-        .container.right-panel-active .overlay {
-            transform: translateX(50%);
-        }
+      .overlay {
+        background: #000000;
+        background: -webkit-linear-gradient(to right, #000000, #000000);
+        background: linear-gradient(to right, #08a3eb, #032434);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 0;
+        color: #ffffff;
+        position: relative;
+        left: -100%;
+        height: 100%;
+        width: 200%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+      }
 
-        .overlay-panel {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 0 40px;
-            text-align: center;
-            top: 0;
-            height: 100%;
-            width: 50%;
-            transform: translateX(0);
-            transition: transform 0.6s ease-in-out;
-        }
+      .container.right-panel-active .overlay {
+        transform: translateX(50%);
+      }
 
-        .overlay-left {
-            transform: translateX(-20%);
-        }
+      .overlay-panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 40px;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+      }
 
-        .container.right-panel-active .overlay-left {
-            transform: translateX(0);
-        }
+      .overlay-left {
+        transform: translateX(-20%);
+      }
 
-        .overlay-right {
-            right: 0;
-            transform: translateX(0);
-        }
+      .container.right-panel-active .overlay-left {
+        transform: translateX(0);
+      }
 
-        .container.right-panel-active .overlay-right {
-            transform: translateX(20%);
-        }
+      .overlay-right {
+        right: 0;
+        transform: translateX(0);
+      }
 
-        .social-container {
-            margin: 20px 0;
-        }
+      .container.right-panel-active .overlay-right {
+        transform: translateX(20%);
+      }
 
-        .social-container a {
-            border: 1px solid #DDDDDD;
-            border-radius: 50%;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 5px;
-            height: 40px;
-            width: 40px;
-        }
+      .social-container {
+        margin: 20px 0;
+      }
 
-        footer {
-            background-color: #222;
-            color: #fff;
-            font-size: 14px;
-            bottom: 0;
-            position: fixed;
-            left: 0;
-            right: 0;
-            text-align: center;
-            z-index: 999;
-        }
+      .social-container a {
+        border: 1px solid #dddddd;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px;
+        height: 40px;
+        width: 40px;
+      }
 
-        footer p {
-            margin: 10px 0;
-        }
+      footer {
+        background-color: #222;
+        color: #fff;
+        font-size: 14px;
+        bottom: 0;
+        position: fixed;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 999;
+      }
 
-        footer i {
-            color: rgb(0, 0, 0);
-        }
+      footer p {
+        margin: 10px 0;
+      }
 
-        footer a {
-            color: #3c97bf;
-            text-decoration: none;
-        }
-        .logo {
-            max-width: 100px; /* Adjust the max-width to make the logo really small */
-            margin: 20px auto; /* Center the logo horizontally */
-            display: block;
-            /* Set the background image */
-            background-image: url('images/logo1.png'); /* Adjust the path as needed */
-            /* Ensure the background image covers the element */
-            background-size: cover;
-            /* Center the background image */
-            background-position: center;
-            /* Align the logo to the right */
-            align-self: flex-end; /* If using flexbox */
-            justify-self: end; /* If using grid */
-        }
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+      footer i {
+        color: rgb(0, 0, 0);
+      }
 
-        /* Style for the input container */
-        .input-container {
-            position: relative;
-            margin-bottom: 15px; /* Adjust spacing as needed */
-        }
+      footer a {
+        color: #3c97bf;
+        text-decoration: none;
+      }
+      .logo {
+        max-width: 100px; /* Adjust the max-width to make the logo really small */
+        margin: 20px auto; /* Center the logo horizontally */
+        display: block;
+        /* Set the background image */
+        background-image: url("images/logo1.png"); /* Adjust the path as needed */
+        /* Ensure the background image covers the element */
+        background-size: cover;
+        /* Center the background image */
+        background-position: center;
+        /* Align the logo to the right */
+        align-self: flex-end; /* If using flexbox */
+        justify-self: end; /* If using grid */
+      }
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
 
-        /* Style for the icon within the input container */
-        .input-container .icon {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            left: 10px; /* Adjust as needed */
-            color: #aaa; /* Icon color */
-        }
+      /* Style for the input container */
+      .input-container {
+        position: relative;
+        margin-bottom: 15px; /* Adjust spacing as needed */
+      }
 
-        /* Style for the input fields */
-        .input-container input {
-            padding-left: 30px; /* Add padding for the icon */
-            border-radius: 100px;
-        }
-        #video-background {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1000;
-        }
+      /* Style for the icon within the input container */
+      .input-container .icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px; /* Adjust as needed */
+        color: #aaa; /* Icon color */
+      }
+
+      /* Style for the input fields */
+      .input-container input {
+        padding-left: 30px; /* Add padding for the icon */
+        border-radius: 100px;
+      }
+      #video-background {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1000;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <video autoplay muted loop id="video-background">
-        <source src="src/images/MOVIE_Curtain.mp4" type="video/mp4">
-      </video>
+      <source src="src/images/MOVIE_Curtain.mp4" type="video/mp4" />
+    </video>
     <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form id="signUpForm" action="#">
-                <h1>צור חשבון חדש</h1>
-                <br><br><br>
-                <div class="input-container">
-                    <!-- Username input with icon -->
-                    <input type="text" id="username1" name="username" placeholder="שם משתמש" required>
-                    <i class="fa fa-user icon"></i>
-                </div>
-    
-                <!-- Password input with icon -->
-                <div class="input-container">
-                    <input type="password" id="password1" name="password" placeholder="סיסמה" required>
-                    <i class="fa fa-key icon"></i>
-                </div>
-                <button id="signUpButton" type="submit">הרשמה</button>
-            </form>
+      <div class="form-container sign-up-container">
+        <form id="signUpForm" action="#">
+          <h1>צור חשבון חדש</h1>
+          <br /><br /><br />
+          <div class="input-container">
+            <!-- Username input with icon -->
+            <input
+              type="text"
+              id="username1"
+              name="username"
+              placeholder="שם משתמש"
+              required
+            />
+            <i class="fa fa-user icon"></i>
+          </div>
+
+          <!-- Password input with icon -->
+          <div class="input-container">
+            <input
+              type="password"
+              id="password1"
+              name="password"
+              placeholder="סיסמה"
+              required
+            />
+            <i class="fa fa-key icon"></i>
+          </div>
+          <button id="signUpButton" type="submit">הרשמה</button>
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form id="loginForm" action="#">
+          <h1>התחבר לאיזור האישי</h1>
+          <br /><br /><br />
+          <div class="input-container">
+            <!-- Username input with icon -->
+            <input
+              type="text"
+              id="username2"
+              name="username"
+              placeholder="שם משתמש"
+              required
+            />
+            <i class="fa fa-user icon"></i>
+          </div>
+
+          <!-- Password input with icon -->
+          <div class="input-container">
+            <input
+              type="password"
+              id="password2"
+              name="password"
+              placeholder="סיסמה"
+              required
+            />
+            <i class="fa fa-key icon"></i>
+          </div>
+          <a href="#"> ? שחכת את הסיסמה שלך</a>
+          <button id="signInButton" type="submit">התחברות</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>!ברוך שובך</h1>
+            <p>
+              בכדי להישאר מחובר לאזור האישי שלך, אנא התחבר באמצעות שם המשתמש
+              וסיסמה שברשותך
+            </p>
+            <button class="ghost" id="signIn">התחברות למערכת</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <img class="logo" src="/src/images/logo1.png" alt="Logo" />
+            <h1>!היי חבר חדש</h1>
+            <p>
+              במידה ואתה מעוניין להירשם למערכת אנא הכנס את הפרטים האישיים שלך
+            </p>
+            <button class="ghost" id="signUp">הרשמה למערכת</button>
+          </div>
         </div>
-        <div class="form-container sign-in-container">
-            <form id="loginForm" action="#">
-                <h1>התחבר לאיזור האישי</h1>
-                <br><br><br>
-                <div class="input-container">
-                    <!-- Username input with icon -->
-                    <input type="text" id="username2" name="username" placeholder="שם משתמש" required>
-                    <i class="fa fa-user icon"></i>
-                </div>
-        
-                <!-- Password input with icon -->
-                <div class="input-container">
-                    <input type="password" id="password2" name="password" placeholder="סיסמה" required>
-                    <i class="fa fa-key icon"></i>
-                </div>
-                <a href="#"> ? שחכת את הסיסמה שלך</a>
-                <button id="signInButton" type="submit">התחברות</button>
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>!ברוך שובך</h1>
-                    <p>בכדי להישאר מחובר לאזור האישי שלך, אנא התחבר באמצעות שם המשתמש וסיסמה שברשותך</p>
-                    <button class="ghost" id="signIn">התחברות למערכת</button>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <img class="logo" src="/src/images/logo1.png" alt="Logo">
-                    <h1>!היי חבר חדש</h1>
-                    <p>במידה ואתה מעוניין להירשם למערכת אנא הכנס את הפרטים האישיים שלך</p>
-                    <button class="ghost" id="signUp">הרשמה למערכת</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
 
-  
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const signUpButton = document.getElementById("signUp");
+        const signInButton = document.getElementById("signIn");
+        const container = document.getElementById("container");
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container');
+        signUpButton.addEventListener("click", () => {
+          container.classList.add("right-panel-active");
+        });
 
-    signUpButton.addEventListener('click', () => {
-        container.classList.add("right-panel-active");
-    });
+        signInButton.addEventListener("click", () => {
+          container.classList.remove("right-panel-active");
+        });
 
-    signInButton.addEventListener('click', () => {
-        container.classList.remove("right-panel-active");
-    });
+        const signUpForm = document.getElementById("signUpForm");
+        const signUpButtonForm = document.getElementById("signUpButton");
 
-    const signUpForm = document.getElementById('signUpForm');
-    const signUpButtonForm = document.getElementById('signUpButton');
+        signUpForm.addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent the default form submission
 
-    signUpForm.addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent the default form submission
+          const username = document.getElementById("username1").value;
+          const password = document.getElementById("password1").value;
 
-        const username = document.getElementById('username1').value;
-        const password = document.getElementById('password1').value;
-
-        const userData = {
+          const userData = {
             UserName: username,
             Password: password,
-            Role: 'User'
-    };
-    try {
-        const response = await fetch('/add-user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        });
-        
-        if (response.ok) {
-            alert('.החשבון נוצר בהצלחה! עכשיו אתה יכול להיכנס');
-            signUpForm.reset();
-        } else {
-            alert('.שגיאה ביצירת חשבון. אנא נסה שוב מאוחר יותר');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('.אירעה שגיאה בלתי צפויה. אנא נסה שוב מאוחר יותר');
-    }
-});
+            Role: "User",
+          };
+          try {
+            const response = await fetch("/add-user", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userData),
+            });
 
-const signInButtonForm = document.getElementById("signInButton");
-signInButtonForm.addEventListener('click', async function (event) {
-    event.preventDefault();
-    
-    const username = document.getElementById('username2').value;
-    const password = document.getElementById('password2').value;
-    
-    try {
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
-        const data = await response.json();
-        if (response.ok) {
-            if (data.user) {
-                sessionStorage.setItem('username', username);
-                
-                switch (data.user.Role) {
-                    case 'Admin':
-                    window.location.href = 'templates/Manager/HomeManager.html';
-                    break;
-                    
-                    case 'Customer':
-                    window.location.href = 'templates/Customer/Home.html';
-                    break;
-                    
-                    case 'Installer':
-                    window.location.href = 'templates/Installer/Home-Installer.html';
-                    break;
-                    
-                    default:
-                    alert('Unsupported user role');
-                    window.location.href = '/';
-                }
+            if (response.ok) {
+              alert(".החשבון נוצר בהצלחה! עכשיו אתה יכול להיכנס");
+              signUpForm.reset();
             } else {
-                alert('שם המשתמש או הסיסמה שגויים');
+              alert(".שגיאה ביצירת חשבון. אנא נסה שוב מאוחר יותר");
             }
-        } else {
-            alert('אירעה שגיאה בעת הכניסה');
-        }
-    } catch (error) {
-        console.error('Error logging in:', error);
-        alert('אירעה שגיאה בעת הכניסה');
-    }
-});
-});
-  
-</script>
-</body>
+          } catch (error) {
+            console.error("Error:", error);
+            alert(".אירעה שגיאה בלתי צפויה. אנא נסה שוב מאוחר יותר");
+          }
+        });
+
+        const signInButtonForm = document.getElementById("signInButton");
+        signInButtonForm.addEventListener("click", async function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("username2").value;
+          const password = document.getElementById("password2").value;
+
+          try {
+            const response = await fetch("/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, password }),
+            });
+            const data = await response.json();
+            if (response.ok) {
+              if (data.user) {
+                sessionStorage.setItem("username", username);
+
+                switch (data.user.Role) {
+                  case "Admin":
+                    window.location.href = "templates/Manager/HomeManager.html";
+                    break;
+
+                  case "Customer":
+                    window.location.href = "templates/Customer/Home.html";
+                    break;
+
+                  case "Installer":
+                    window.location.href =
+                      "templates/Installer/Home-Installer.html";
+                    break;
+
+                  default:
+                    alert("Unsupported user role");
+                    window.location.href = "/";
+                }
+              } else {
+                alert("שם המשתמש או הסיסמה שגויים");
+              }
+            } else {
+              alert("אירעה שגיאה בעת הכניסה");
+            }
+          } catch (error) {
+            console.error("Error logging in:", error);
+            alert("אירעה שגיאה בעת הכניסה");
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he" dir="auto">
-<head>
+  <head>
     <style>
+      #alert > #start-icon {
+        margin-right: 0;
+        min-width: 20px;
+        text-align: center;
+      }
 
-        #alert>#start-icon {
-            margin-right: 0;
-            min-width: 20px;
-            text-align: center;
-        }
-        
-        #alert>#start-icon {
-            margin-right: 5px;
-        }
-        
-        #greencross
-        {
-          font-size:18px;
-              color: #25ff0b;
-            text-shadow: none;
-        }
-        
-        #alert-simple#alert-success
-        {
-          border: 1px solid rgba(36, 241, 6, 0.46);
-            background-color: rgba(7, 149, 66, 0.12156862745098039);
-            box-shadow: 0px 0px 2px #259c08;
-            color: #0ad406;
-          text-shadow: 2px 1px #00040a;
-          transition:0.5s;
-          cursor:pointer;
-        }
-        #alert-success:hover{
-          background-color: rgba(7, 149, 66, 0.35);
-          transition:0.5s;
-        }
-        #alert-simple#alert-info
-        {
-          border: 1px solid rgba(6, 44, 241, 0.46);
-            background-color: rgba(7, 73, 149, 0.12156862745098039);
-            box-shadow: 0px 0px 2px #0396ff;
-            color: #0396ff;
-          text-shadow: 2px 1px #00040a;
-          transition:0.5s;
-          cursor:pointer;
-        }
-        
-        #alert-info:hover
-        {
-          background-color: rgba(7, 73, 149, 0.35);
-          transition:0.5s;
-        }
-        
-        #blue-cross
-        {
-          font-size: 18px;
-            color: #0bd2ff;
-            text-shadow: none;
-        }
-        
-        #alert-simple#alert-warning
-        {
-              border: 1px solid rgba(241, 142, 6, 0.81);
-            background-color: rgba(220, 128, 1, 0.16);
-            box-shadow: 0px 0px 2px #ffb103;
-            color: #ffb103;
-            text-shadow: 2px 1px #00040a;
-          transition:0.5s;
-          cursor:pointer;
-        }
-        
-        #alert-warning:hover{
-          background-color: rgba(220, 128, 1, 0.33);
-          transition:0.5s;
-        }
-        
-        #warning
-        {
-            font-size: 18px;
-            color: #ffb40b;
-            text-shadow: none;
-        }
-        
-        #alert-simple.alert-danger
-        {
-          border: 1px solid rgba(241, 6, 6, 0.81);
-            background-color: rgba(220, 17, 1, 0.16);
-            box-shadow: 0px 0px 2px #ff0303;
-            color: #ff0303;
-            text-shadow: 2px 1px #00040a;
-          transition:0.5s;
-          cursor:pointer;
-        }
-        
-        #alert-danger:hover
-        {
-             background-color: rgba(220, 17, 1, 0.33);
-          transition:0.5s;
-        }
-        
-        #danger
-        {
-              font-size: 18px;
-            color: #ff0303;
-            text-shadow: none;
-        }
-        
-        #alert-simple#alert-primary
-        {
-          border: 1px solid rgba(6, 241, 226, 0.81);
-            background-color: rgba(1, 204, 220, 0.16);
-            box-shadow: 0px 0px 2px #03fff5;
-            color: #03d0ff;
-            text-shadow: 2px 1px #00040a;
-          transition:0.5s;
-          cursor:pointer;
-        }
-        
-        #alert-primary:hover{
-          background-color: rgba(1, 204, 220, 0.33);
-           transition:0.5s;
-        }
-        
-        #alertprimary
-        {
-              font-size: 18px;
-            color: #03d0ff;
-            text-shadow: none;
-        }
-        
-        #square_box {
-            position: absolute;
-            -webkit-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            transform: rotate(45deg);
-            border-top-left-radius: 45px;
-            opacity: 0.302;
-        }
-        
-        #square_box#box_three {
-            background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-            background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-            background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-            opacity: 0.059;
-            left: -80px;
-            top: -60px;
-            width: 500px;
-            height: 500px;
-            border-radius: 45px;
-        }
-        
-        #square_box#box_four {
-            background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-            background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-            background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-            opacity: 0.059;
-            left: 150px;
-            top: -25px;
-            width: 550px;
-            height: 550px;
-            border-radius: 45px;
-        }
-        
-        #alert:before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: calc(100% - 44px);
-            border-left: 1px solid;
-            border-right: 2px solid;
-            border-bottom-right-radius: 3px;
-            border-top-right-radius: 3px;
-            left: 0;
-            top: 50%;
-            transform: translate(0,-50%);
-              height: 20px;
-        }
-        
-        #fa-times
-        {
+      #alert > #start-icon {
+        margin-right: 5px;
+      }
+
+      #greencross {
+        font-size: 18px;
+        color: #25ff0b;
+        text-shadow: none;
+      }
+
+      #alert-simple#alert-success {
+        border: 1px solid rgba(36, 241, 6, 0.46);
+        background-color: rgba(7, 149, 66, 0.12156862745098039);
+        box-shadow: 0px 0px 2px #259c08;
+        color: #0ad406;
+        text-shadow: 2px 1px #00040a;
+        transition: 0.5s;
+        cursor: pointer;
+      }
+      #alert-success:hover {
+        background-color: rgba(7, 149, 66, 0.35);
+        transition: 0.5s;
+      }
+      #alert-simple#alert-info {
+        border: 1px solid rgba(6, 44, 241, 0.46);
+        background-color: rgba(7, 73, 149, 0.12156862745098039);
+        box-shadow: 0px 0px 2px #0396ff;
+        color: #0396ff;
+        text-shadow: 2px 1px #00040a;
+        transition: 0.5s;
+        cursor: pointer;
+      }
+
+      #alert-info:hover {
+        background-color: rgba(7, 73, 149, 0.35);
+        transition: 0.5s;
+      }
+
+      #blue-cross {
+        font-size: 18px;
+        color: #0bd2ff;
+        text-shadow: none;
+      }
+
+      #alert-simple#alert-warning {
+        border: 1px solid rgba(241, 142, 6, 0.81);
+        background-color: rgba(220, 128, 1, 0.16);
+        box-shadow: 0px 0px 2px #ffb103;
+        color: #ffb103;
+        text-shadow: 2px 1px #00040a;
+        transition: 0.5s;
+        cursor: pointer;
+      }
+
+      #alert-warning:hover {
+        background-color: rgba(220, 128, 1, 0.33);
+        transition: 0.5s;
+      }
+
+      #warning {
+        font-size: 18px;
+        color: #ffb40b;
+        text-shadow: none;
+      }
+
+      #alert-simple.alert-danger {
+        border: 1px solid rgba(241, 6, 6, 0.81);
+        background-color: rgba(220, 17, 1, 0.16);
+        box-shadow: 0px 0px 2px #ff0303;
+        color: #ff0303;
+        text-shadow: 2px 1px #00040a;
+        transition: 0.5s;
+        cursor: pointer;
+      }
+
+      #alert-danger:hover {
+        background-color: rgba(220, 17, 1, 0.33);
+        transition: 0.5s;
+      }
+
+      #danger {
+        font-size: 18px;
+        color: #ff0303;
+        text-shadow: none;
+      }
+
+      #alert-simple#alert-primary {
+        border: 1px solid rgba(6, 241, 226, 0.81);
+        background-color: rgba(1, 204, 220, 0.16);
+        box-shadow: 0px 0px 2px #03fff5;
+        color: #03d0ff;
+        text-shadow: 2px 1px #00040a;
+        transition: 0.5s;
+        cursor: pointer;
+      }
+
+      #alert-primary:hover {
+        background-color: rgba(1, 204, 220, 0.33);
+        transition: 0.5s;
+      }
+
+      #alertprimary {
+        font-size: 18px;
+        color: #03d0ff;
+        text-shadow: none;
+      }
+
+      #square_box {
+        position: absolute;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        border-top-left-radius: 45px;
+        opacity: 0.302;
+      }
+
+      #square_box#box_three {
+        background-image: -moz-linear-gradient(
+          -90deg,
+          #290a59 0%,
+          #3d57f4 100%
+        );
+        background-image: -webkit-linear-gradient(
+          -90deg,
+          #290a59 0%,
+          #3d57f4 100%
+        );
+        background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+        opacity: 0.059;
+        left: -80px;
+        top: -60px;
+        width: 500px;
+        height: 500px;
+        border-radius: 45px;
+      }
+
+      #square_box#box_four {
+        background-image: -moz-linear-gradient(
+          -90deg,
+          #290a59 0%,
+          #3d57f4 100%
+        );
+        background-image: -webkit-linear-gradient(
+          -90deg,
+          #290a59 0%,
+          #3d57f4 100%
+        );
+        background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+        opacity: 0.059;
+        left: 150px;
+        top: -25px;
+        width: 550px;
+        height: 550px;
+        border-radius: 45px;
+      }
+
+      #alert:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: calc(100% - 44px);
+        border-left: 1px solid;
+        border-right: 2px solid;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+        left: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        height: 20px;
+      }
+
+      #fa-times {
         -webkit-animation: blink-1 2s infinite both;
-                    animation: blink-1 2s infinite both;
-        }
-        
-        
-        /**
+        animation: blink-1 2s infinite both;
+      }
+
+      /**
          * ----------------------------------------
          * animation blink-1
          * ----------------------------------------
          */
-        @-webkit-keyframes blink-1 {
-          0%,
-          50%,
-          100% {
-            opacity: 1;
-          }
-          25%,
-          75% {
-            opacity: 0;
-          }
+      @-webkit-keyframes blink-1 {
+        0%,
+        50%,
+        100% {
+          opacity: 1;
         }
-        @keyframes blink-1 {
-          0%,
-          50%,
-          100% {
-            opacity: 1;
-          }
-          25%,
-          75% {
-            opacity: 0;
-          }
+        25%,
+        75% {
+          opacity: 0;
         }
-        
+      }
+      @keyframes blink-1 {
+        0%,
+        50%,
+        100% {
+          opacity: 1;
+        }
+        25%,
+        75% {
+          opacity: 0;
+        }
+      }
     </style>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
+    />
   </head>
 
   <body>
     <div id="overlay"></div>
-    <div id="popupError" style="display: none; position: fixed; bottom: 20px;">
-        <div class="col-sm-12">
-            <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-            <button type="button" class="close font__size-18" data-dismiss="alert" onclick="closePopup()">
-                                        <span aria-hidden="true">
-                                            <i class="fa fa-times danger"></i>
-                                        </span>
-                                        <span class="sr-only">Close</span>
-                                    </button>
-            <i class="start-icon fa fa-times-circle faa-pulse animated"></i>
-            <strong class="font__weight-semibold">בעיה!</strong> נראה ששם המשתמש והסיסמה שהזנת לא נכונים / לא קיימים במערכת.
-            </div>
+    <div id="popupError" style="display: none; position: fixed; bottom: 20px">
+      <div class="col-sm-12">
+        <div
+          class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+          role="alert"
+          data-brk-library="component__alert"
+        >
+          <button
+            type="button"
+            class="close font__size-18"
+            data-dismiss="alert"
+            onclick="closePopup()"
+          >
+            <span aria-hidden="true">
+              <i class="fa fa-times danger"></i>
+            </span>
+            <span class="sr-only">Close</span>
+          </button>
+          <i class="start-icon fa fa-times-circle faa-pulse animated"></i>
+          <strong class="font__weight-semibold">בעיה!</strong> נראה ששם המשתמש
+          והסיסמה שהזנת לא נכונים / לא קיימים במערכת.
         </div>
+      </div>
     </div>
 
-    <div id="popupWarning" style="display: none; position: fixed; bottom: 20px;">
-        <div class="col-sm-12">
-            <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-            <button type="button" class="close font__size-18" data-dismiss="alert" onclick="closePopup()">
-                                        <span aria-hidden="true">
-                                            <i class="fa fa-times warning"></i>
-                                        </span>
-                                        <span class="sr-only">Close</span>
-                                    </button>
-            <i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
-            <strong class="font__weight-semibold">אזהרה!</strong> נראה ששם המשתמש והסיסמה שהזנת לא נכונים / לא קיימים במערכת.
-            </div>
+    <div id="popupWarning" style="display: none; position: fixed; bottom: 20px">
+      <div class="col-sm-12">
+        <div
+          class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+          role="alert"
+          data-brk-library="component__alert"
+        >
+          <button
+            type="button"
+            class="close font__size-18"
+            data-dismiss="alert"
+            onclick="closePopup()"
+          >
+            <span aria-hidden="true">
+              <i class="fa fa-times warning"></i>
+            </span>
+            <span class="sr-only">Close</span>
+          </button>
+          <i
+            class="start-icon fa fa-exclamation-triangle faa-flash animated"
+          ></i>
+          <strong class="font__weight-semibold">אזהרה!</strong> נראה ששם המשתמש
+          והסיסמה שהזנת לא נכונים / לא קיימים במערכת.
         </div>
+      </div>
     </div>
 
+    <script>
+      function openPopup() {
+        document.getElementById("popupError").style.display = "block";
+        document.getElementById("popupWarning").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+      }
 
-    
-  <script>
-    function openPopup() {
-      document.getElementById('popupError').style.display = 'block';
-      document.getElementById('popupWarning').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-    }
-    
-    function closePopup() {
-      document.getElementById('popupError').style.display = 'none';
-      document.getElementById('popupWarning').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-    }
+      function closePopup() {
+        document.getElementById("popupError").style.display = "none";
+        document.getElementById("popupWarning").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+      }
     </script>
-</body>
+  </body>
 </html>
