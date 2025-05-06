@@ -80,10 +80,7 @@ npm start
 
 ## Endpoints
 ### Tenders Management:
-```javascript
-/Tenders (GET) /* Retrieves all tenders */
-```
-
+/Tenders (GET): Retrieves all tenders.
 /addTender (POST): Adds a new tender.
 /Tenders/:id (PUT): Updates a tender by ID.
 /Tenders/:id (DELETE): Deletes a tender by ID.
@@ -190,6 +187,12 @@ npm start
 
 
 ---
+## Security
+
+- **Authentication**: The system uses JSON Web Tokens (JWT) for secure authentication.
+- **Data Protection**: Sensitive data such as passwords and tokens are securely stored and transmitted.
+- **Environment Variables**: Ensure sensitive credentials (e.g., database URI, email credentials) are stored in environment variables and not hardcoded in the source code.
+- **HTTPS**: It is recommended to deploy the application over HTTPS to ensure secure communication.
 
 ### License
 This project is licensed under the MIT License.
