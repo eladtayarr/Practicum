@@ -77,32 +77,123 @@ npm start
 | Additional Actions       | `/submitMessage`          | Sends messages through the interface.                |
 |                          | `/dashboard-data`         | Displays dashboard data (customers, products, etc.). |
 
+
+## Endpoints
+### Tenders Management:
+```javascript
+/Tenders (GET) /* Retrieves all tenders */
+```
+
+/addTender (POST): Adds a new tender.
+/Tenders/:id (PUT): Updates a tender by ID.
+/Tenders/:id (DELETE): Deletes a tender by ID.
+To-Do List:
+
+/api/todos (POST): Adds a new to-do item.
+/api/todos (GET): Retrieves all to-do items.
+/api/todos/:id (DELETE): Deletes a to-do item by ID.
+
+Dashboard Data:
+
+/dashboard-data/customers (GET): Retrieves the total number of customers.
+/dashboard-data/products (GET): Retrieves the total number of products.
+/dashboard-data/installers (GET): Retrieves the total number of installers.
+/dashboard-data/Meetings (GET): Retrieves the total number of meetings.
+/dashboard-data/collections (GET): Retrieves collection counts.
+Feedback Management:
+
+/feedback (GET): Retrieves all feedback.
+/addFeedback (POST): Adds feedback to the database.
+
+Installations:
+
+/installations (GET): Retrieves all installations.
+/addInstallationMeeting (POST): Adds an installation meeting.
+
+
+Features
+Tenders Management:
+
+Manage tenders with endpoints for adding, retrieving, updating, and deleting tenders.
+To-Do List:
+
+Add, retrieve, and delete to-do items for task management.
+Dashboard Data:
+
+View key metrics such as the number of customers, products, installers, and meetings.
+Feedback Management:
+
+Retrieve and add customer feedback.
+Installations:
+
+Manage installation meetings and retrieve installation data.
+
+
+Technologies
+Nodemailer: Used for sending emails.
+JWT (JSON Web Tokens): Used for authentication.
+
 ## Widows - Public folder:
+
+
 
 ### Login:
 
 ![alt text](Public/src/images/ReadmeImages/Signin.png "SignIn Page")
 
 ### Manager:
+* Products
+* Installations
+Customers
+Economic
+Archive
 
-1. Products
-2. Installations
-3. Customers
-4. Economic
-5. Archive
+Installers:
+View Installations
+Add Installations
+Manage Installations
 
-### Installers:
+Customers:
+View Products
+Add Feedback
+Schedule Meetings
 
-### Customers:
+##
 
 ##
 
 ##
 
-##
+## Technologies Used:
+* <b>Backend</b>: Node.js, Express.js
+* <b>Database</b>: MongoDB
+* <b>Frontend</b>: HTML, CSS, JavaScript
+* <b>Email Service</b>: Nodemailer
+* <b>Authentication</b>: JWT (JSON Web Tokens)
 
-##
 
-##
+## How to Contribute
+- Clone the repository:
+```bash
+git clone https://github.com/eladtayar/Practicum.git
+```
+- Install dependencies:
+```bash
+npm install
+```
+- Start the server:
+```bash
+npm start
+```
+<b> Make your changes and submit a pull request. </b>
+
+
+
+---
+
+### License
+This project is licensed under the MIT License.
+
+
 
 ##
