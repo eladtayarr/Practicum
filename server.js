@@ -798,6 +798,17 @@ app.get("/dashboard-data/Meetings", async (req, res) => {
   }
 });
 
+// נתיב שמחזיר את כמות המתקינים
+app.get("/dashboard-data/products", async (req, res) => {
+  try {
+    const productsCount = await countProducts();
+    res.status(200).json({ productsCount });
+  } catch (error) {
+    console.error("Error fetching installers data:", error);
+    res.status(500).json({ error: "Failed to fetch installers data" });
+  }
+});
+
 app.get("/dashboard-data/collections", async (req, res) => {
   try {
     const counts = await getCollectionCounts(); // קריאה לפונקציה שמחזירה את הנתונים
@@ -867,6 +878,18 @@ app.delete("/api/todos/:id", async (req, res) => {
     console.error("Error deleting TODO item:", error);
     res.status(500).json({ error: "Failed to delete TODO item" });
   }
+});
+
+// הכנסות ממכירות
+app.get("/api/profit-loss/income", async (req, res) => {
+  // כאן תוכל לשלוף מה-DB או להחזיר ערך קבוע לדוגמה
+  res.json({ income: 250000 });
+});
+
+// הוצאות
+app.get("/api/profit-loss/expenses", async (req, res) => {
+  // כאן תוכל לשלוף מה-DB או להחזיר ערך קבוע לדוגמה
+  res.json({ expenses: 120000 });
 });
 
 

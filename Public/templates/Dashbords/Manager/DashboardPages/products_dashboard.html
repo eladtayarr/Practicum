@@ -273,43 +273,16 @@
       <!-- Main -->
       <main class="main-container">
         <div class="main-title">
-          <p class="font-weight-bold">לוח בקרה ראשי</p>
+          <p class="font-weight-bold">לוח בקרה - מוצרים</p>
         </div>
 
-        <div class="main-cards">
+        <div class="main-card-products">
           <!-- סה״כ מוצרים -->
           <div class="card">
-            <div class="card-inner">
               <p class="text-primary">מוצרים <br>(סה״כ)</p>
               <span class="material-icons-outlined text-blue">inventory_2</span>
-            </div>
             <span id="totalProducts" class="text-primary font-weight-bold">Loading...</span>
           </div>
-          <!-- סה״כ מכירות -->
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">סה״כ מכירות <br>(שנתי)</p>
-              <span class="material-icons-outlined text-orange">add_shopping_cart</span>
-            </div>
-            <span class="text-primary font-weight-bold">83</span>
-          </div>
-          <!-- הכנסות ממכירות -->
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">הכנסות ממכירות <br> (ב-ש״ח)</p>
-              <span class="material-icons-outlined text-green">shopping_cart</span>
-            </div>
-            <span class="text-primary font-weight-bold">250,000</span>
-          </div>
-          <!-- הזמנות פתוחות -->
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">הזמנות פתוחות <br> (בתהליך)</p>
-              <span class="material-icons-outlined text-red">notification_important</span>
-            </div>
-            <span id="totalMeetings" class="text-primary font-weight-bold">Loading...</span>
-          </div>
-
         </div>
 
         <!-- כמות מוצרים לפי סוג -->
@@ -317,88 +290,63 @@
             <div class="charts-card">
                 <p class="chart-title">כמות מוצרים לפי סוג</p>
                 <div id="bar-chart"></div>
-        </div>
+              </div>
         
-        <!-- הזמנות רכש ומכירה -->
-        <div class="charts-card">
-            <p class="chart-title">הזמנות רכש ומכירה</p>
-            <div id="area-chart"></div>
-        </div>
-
-        <!-- הזמנות רכש ומכירה -->
-        <div class="charts-card">
-            <p class="chart-title">הזמנות רכש ומכירה</p>
-            <div id="pie-chart"></div>
-        </div>
-
-        <!-- לקוחות מול יעד -->
-        <div class="dubble-charts">
-          <div class="charts-card-half">
-            <p class="chart-title">לקוחות מול יעד</p>
-            <div id="speedometer-chart"></div>
-            <p>סה״כ לקוחות</p>
-            <p class="chart-title-inside"> היעד הוא 50 לקוחות</p>
+            <!-- הזמנות רכש ומכירה -->
+            <div class="charts-card">
+                <p class="chart-title">הזמנות רכש ומכירה</p>
+                <div id="area-chart"></div>
+            </div>
           </div>
-        </div>
-        
-        <!-- רשימת משימות לביצוע -->
-        <div class="charts-card">
-          <div class="todo-container">
-            <p class="chart-title">רשימת משימות לביצוע</p>
-            <form id="todoForm" class="todo-form">
-              <input type="text" id="todoInput" placeholder="הוספת משימה חדשה..." required />
-              <button type="submit" class="add-btn">הוספה</button>
-            </form>
-            <ul id="todoList" class="todo-list"></ul>
-            <p id="todoError" style="color: #e5383b; display: none;">Error loading TODO items.</p>
-          </div>
-        </div>
-        
+
         <!-- רשימת אנשי קשר - מתקינים -->
-        <div class="charts-card">
-            <p class="chart-title">רשימת אנשי קשר - מתקינים</p>
-            <table id="installersTable" class="my-table" style="width=100%">
+       
+        <div class="charts-products">
+        <!-- טבלת כל המוצרים במערכת -->
+          <div class="charts-card">
+            <p class="chart-title">רשימת כל המוצרים במערכת</p>
+            <table id="allProductsTable" class="my-table" style="width:100%">
               <thead>
                 <tr>
-                  <th>קוד מתקין</th>
-                  <th>שם מלא</th>
-                  <th>מספר טלפון</th>
-                  <th>אימייל</th>
-                  <th>אזור פעילות</th>
+                  <th>קוד מוצר</th>
+                  <th>סוג המוצר</th>
+                  <th>תיאור המוצר</th>
+                  <th>מחיר המוצר</th>
+                  <th>סטטוס</th>
                 </tr>
               </thead>
               <tbody>
                 <!-- הנתונים יתעדכנו כאן -->
               </tbody>
             </table>
-            <script>
-              document.addEventListener("DOMContentLoaded", async function () {
-                try {
-                  const response = await fetch("/viewInstaller"); // קריאה לנתיב בשרת
-                  if (!response.ok) {
-                    throw new Error("Failed to fetch installers data");
-                  }
-        
-                  const installers = await response.json();
-                  const tableBody = document.querySelector("#installersTable tbody");
-        
-                  installers.forEach((installer) => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                      <td>${installer.InstallerID}</td>
-                      <td>${installer.FullName}</td>
-                      <td>${installer.Phone}</td>
-                      <td>${installer.Email}</td>
-                      <td>${installer.AreaType}</td>
-                    `;
-                    tableBody.appendChild(row);
-                  });
-                } catch (error) {
-                  console.error("Error loading installers data:", error);
-                }
+          </div>
+          <script>
+          document.addEventListener("DOMContentLoaded", async function () {
+            try {
+              const response = await fetch("/Products");
+              if (!response.ok) {
+                throw new Error("Failed to fetch products data");
+              }
+              const products = await response.json();
+              const tableBody = document.querySelector("#allProductsTable tbody");
+              tableBody.innerHTML = "";
+              products.forEach((product) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                  <td>${product.ProductID || ""}</td>
+                  <td>${product.ProductType || ""}</td>
+                  <td>${product.ProductDescription || ""}</td>
+                  <td class="${product.ProductPrice < 0 ? 'negative-value' : ''}">${product.ProductPrice || ""}</td>
+                  <td>${product.ProductStatus || ""}</td>
+                `;
+                tableBody.appendChild(row);
               });
-            </script>
-        </div>        
+            } catch (error) {
+              console.error("Error loading products data:", error);
+            }
+          });
+          </script>
+        </div>
       </main>
       <!-- End Main -->
 
@@ -408,7 +356,7 @@
     <!-- ApexCharts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
     <!-- Custom JS -->
-    <script src="js/scripts.js"></script>
+    <script src="../js/scripts.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", async function () {
         try {
@@ -499,76 +447,6 @@
       });
     </script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const todoForm = document.getElementById("todoForm");
-        const todoInput = document.getElementById("todoInput");
-        const todoList = document.getElementById("todoList");
-        const todoError = document.getElementById("todoError");
-      
-        // Fetch and display TODO items
-        const fetchTodos = async () => {
-          try {
-            const response = await fetch("/api/todos");
-            if (!response.ok) {
-              throw new Error("Failed to fetch TODO items");
-            }
-      
-            const todos = await response.json();
-            todoList.innerHTML = ""; // Clear the list
-            todos.forEach((todo) => addTodoToDOM(todo));
-          } catch (error) {
-            console.error("Error fetching TODO items:", error);
-            todoError.style.display = "block";
-          }
-        };
-      
-        // Add TODO to the DOM
-        const addTodoToDOM = (todo) => {
-          const li = document.createElement("li");
-          li.innerHTML = `
-            <span>${todo.text}</span>
-            <button onclick="deleteTodo('${todo._id}')">Delete</button>
-          `;
-          todoList.appendChild(li);
-        };
-      
-        // Add TODO to the database
-        todoForm.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const text = todoInput.value.trim();
-          if (!text) return;
-      
-          try {
-            const response = await fetch("/api/todos", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ text }),
-            });
-            const newTodo = await response.json();
-            addTodoToDOM({ _id: newTodo.id, text });
-            todoInput.value = "";
-          } catch (error) {
-            console.error("Error adding TODO item:", error);
-          }
-        });
-      
-        // Delete TODO from the database
-        window.deleteTodo = async (id) => {
-          try {
-            const response = await fetch(`/api/todos/${id}`, { method: "DELETE" });
-            if (response.ok) fetchTodos();
-          } catch (error) {
-            console.error("Error deleting TODO item:", error);
-          }
-        };
-      
-        // Initial fetch
-        fetchTodos();
-      });      
-    </script>
-    
-    
     
   </body>
 </html>

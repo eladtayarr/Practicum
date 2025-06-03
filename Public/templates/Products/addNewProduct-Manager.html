@@ -249,8 +249,8 @@
                 <br>
                 
                 <button type="submit" class="btn btn-primary" id="sub">אישור והוספה למלאי המוצרים</button>
-                <br><br>
                 <div id="successMessage" style="display: none;" class="alert alert-success" role="alert">המוצר התווסף לרשימת המוצרים!</div>
+                <div id="errorMessage" style="display: none;" class="alert alert-warning" role="alert">שגיאה בהוספת המוצר למערכת !</div>
             </form>
             
             <br><br><br><br>
@@ -305,6 +305,7 @@
                         location.reload();
                     }, 3000); 
                 } else {
+                    document.getElementById("errorMessage").style.display = "block";
                     console.error("Failed to add property");
                 }
             })

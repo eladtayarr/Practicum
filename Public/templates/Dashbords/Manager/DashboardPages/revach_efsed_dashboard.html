@@ -227,7 +227,7 @@
 
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="Public/templates/Dashbords/Manager/Dashbord-Manager.html" target="_blank"><span class="material-icons-outlined">dashboard</span> ראשי
+            <a href="../Dashbord-Manager.html" target="_blank"><span class="material-icons-outlined">dashboard</span> ראשי
             </a>
           </li>
 
@@ -273,133 +273,72 @@
       <!-- Main -->
       <main class="main-container">
         <div class="main-title">
-          <p class="font-weight-bold">לוח בקרה ראשי</p>
+          <p class="font-weight-bold">דוח רווח והפסד</p>
         </div>
-
-        <div class="main-cards">
-          <!-- סה״כ מוצרים -->
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">מוצרים <br>(סה״כ)</p>
-              <span class="material-icons-outlined text-blue">inventory_2</span>
-            </div>
-            <span id="totalProducts" class="text-primary font-weight-bold">Loading...</span>
-          </div>
-          <!-- סה״כ מכירות -->
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">סה״כ מכירות <br>(שנתי)</p>
-              <span class="material-icons-outlined text-orange">add_shopping_cart</span>
-            </div>
-            <span class="text-primary font-weight-bold">83</span>
-          </div>
-          <!-- הכנסות ממכירות -->
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">הכנסות ממכירות <br> (ב-ש״ח)</p>
-              <span class="material-icons-outlined text-green">shopping_cart</span>
-            </div>
-            <span class="text-primary font-weight-bold">250,000</span>
-          </div>
-          <!-- הזמנות פתוחות -->
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">הזמנות פתוחות <br> (בתהליך)</p>
-              <span class="material-icons-outlined text-red">notification_important</span>
-            </div>
-            <span id="totalMeetings" class="text-primary font-weight-bold">Loading...</span>
-          </div>
-
-        </div>
-
-        <!-- כמות מוצרים לפי סוג -->
-        <div class="charts">
-            <div class="charts-card">
-                <p class="chart-title">כמות מוצרים לפי סוג</p>
-                <div id="bar-chart"></div>
-        </div>
-        
-        <!-- הזמנות רכש ומכירה -->
         <div class="charts-card">
-            <p class="chart-title">הזמנות רכש ומכירה</p>
-            <div id="area-chart"></div>
+          <table class="my-table" style="width:90%">
+            <thead>
+              <tr>
+                <th>סעיף</th>
+                <th>סכום (₪)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>הכנסות ממכירות</td>
+                <td>250,000</td>
+              </tr>
+              <tr>
+                <td>בניכוי עלות המכר</td>
+                <td>120,000-</td>
+              </tr>
+              <tr>
+                <th>רווח גולמי</th>
+                <th>130,000</th>
+              </tr>
+              <tr>
+                <td>הוצאות מכירה</td>
+                <td>30,000-</td>
+              </tr>
+              <tr>
+                <td>הוצאות הנהלה וכלליות</td>
+                <td>20,000-</td>
+              </tr>
+              <tr>
+                <th>רווח תפעולי</th>
+                <th>80,000</th>
+              </tr>
+              <tr>
+                <td>הוצאות מיסים על הכנסה</td>
+                <td>15,000-</td>
+              </tr>
+              <tr>
+                <th>רווח נקי לאחר מס</th>
+                <th>65,000</th>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
-        <!-- הזמנות רכש ומכירה -->
-        <div class="charts-card">
-            <p class="chart-title">הזמנות רכש ומכירה</p>
-            <div id="pie-chart"></div>
-        </div>
-
-        <!-- לקוחות מול יעד -->
-        <div class="dubble-charts">
-          <div class="charts-card-half">
-            <p class="chart-title">לקוחות מול יעד</p>
-            <div id="speedometer-chart"></div>
-            <p>סה״כ לקוחות</p>
-            <p class="chart-title-inside"> היעד הוא 50 לקוחות</p>
-          </div>
-        </div>
-        
-        <!-- רשימת משימות לביצוע -->
-        <div class="charts-card">
-          <div class="todo-container">
-            <p class="chart-title">רשימת משימות לביצוע</p>
-            <form id="todoForm" class="todo-form">
-              <input type="text" id="todoInput" placeholder="הוספת משימה חדשה..." required />
-              <button type="submit" class="add-btn">הוספה</button>
-            </form>
-            <ul id="todoList" class="todo-list"></ul>
-            <p id="todoError" style="color: #e5383b; display: none;">Error loading TODO items.</p>
-          </div>
-        </div>
-        
-        <!-- רשימת אנשי קשר - מתקינים -->
-        <div class="charts-card">
-            <p class="chart-title">רשימת אנשי קשר - מתקינים</p>
-            <table id="installersTable" class="my-table" style="width=100%">
-              <thead>
-                <tr>
-                  <th>קוד מתקין</th>
-                  <th>שם מלא</th>
-                  <th>מספר טלפון</th>
-                  <th>אימייל</th>
-                  <th>אזור פעילות</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- הנתונים יתעדכנו כאן -->
-              </tbody>
-            </table>
-            <script>
-              document.addEventListener("DOMContentLoaded", async function () {
-                try {
-                  const response = await fetch("/viewInstaller"); // קריאה לנתיב בשרת
-                  if (!response.ok) {
-                    throw new Error("Failed to fetch installers data");
-                  }
-        
-                  const installers = await response.json();
-                  const tableBody = document.querySelector("#installersTable tbody");
-        
-                  installers.forEach((installer) => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                      <td>${installer.InstallerID}</td>
-                      <td>${installer.FullName}</td>
-                      <td>${installer.Phone}</td>
-                      <td>${installer.Email}</td>
-                      <td>${installer.AreaType}</td>
-                    `;
-                    tableBody.appendChild(row);
-                  });
-                } catch (error) {
-                  console.error("Error loading installers data:", error);
-                }
-              });
-            </script>
-        </div>        
       </main>
+      <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        try {
+          // דוגמה: שליפת הכנסות ממכירות מהשרת (עדכן לנתיב שלך)
+          const incomeRes = await fetch("/api/profit-loss/income");
+          const expensesRes = await fetch("/api/profit-loss/expenses");
+          const income = incomeRes.ok ? (await incomeRes.json()).income : 0;
+          const expenses = expensesRes.ok ? (await expensesRes.json()).expenses : 0;
+          document.getElementById("income").textContent = income.toLocaleString();
+          document.getElementById("expenses").textContent = expenses.toLocaleString();
+          document.getElementById("netProfit").textContent = (income - expenses).toLocaleString();
+        } catch (error) {
+          document.getElementById("income").textContent = "שגיאה";
+          document.getElementById("expenses").textContent = "שגיאה";
+          document.getElementById("netProfit").textContent = "שגיאה";
+          console.error("Error loading profit & loss data:", error);
+        }
+      });
+      </script>
       <!-- End Main -->
 
     </div>
