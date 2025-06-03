@@ -88,6 +88,76 @@ const countCustomers = async () => {
   }
 };
 
+////    עדכון הלקוחות במערכת
+function updateCustomers() {
+    // Get updated values from the form
+    const updatedData = {
+        CustomerID: parseInt(document.getElementById("updateCustomerID").value), // Parse as integer
+        CustomerName: document.getElementById("updateCustomerName").value,
+        CustomerPhone: parseInt(document.getElementById("updateCustomerPhone").value), // Ensure it's an integer
+        CustomerEmail: document.getElementById("updateCustomerEmail").value,
+        CustomerJoinDate: document.getElementById("updateCustomerJoinDate").value,
+        CustomerType: document.getElementById("updateCustomerType").value,
+        CustomerUserName: document.getElementById("updateCustomerUserName").value // Add missing comma
+    };
+
+    // Send PUT request to update the customer
+    const customerID = updatedData.CustomerID; // Use the correct ID
+    console.log("Updating customer with ID:", customerID);
+    console.log("Payload being sent:", updatedData);
+
+    fetch(`/Customers/${customerID}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedData),
+    })
+        .then((response) => {
+            console.log("Response status:", response.status);
+            if (!response.ok) {
+                return response.text().then((text) => {
+                    throw new Error(text || "שגיאה בעדכון הלקוח");
+                });
+            }
+            console.log("Customer updated successfully!");
+            alert("הלקוח עודכן בהצלחה!");
+            location.reload(); // Reload the page to fetch updated data
+        })
+        .catch((error) => {
+            console.error("Error updating customer:", error.message);
+            alert("שגיאה בעדכון הלקוח. אנא נסה שוב מאוחר יותר.");
+        });
+}
+
+////    מחיקת משתמשים
+async function deletecustomerById(customerID) {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  try {
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const customersCollection = db.collection("Customers");
+    const customerObjectId = new ObjectId(customerID);
+    const result = await customersCollection.deleteOne({ _id: customerObjectId });
+    if (result.deletedCount === 1) {
+      console.log("User deleted successfully");
+    } else {
+      console.log("User not found or deletion failed");
+    }
+    const Customers = await customersCollection.find().toArray();
+    console.log("Customers:", Customers);
+    return Customers;
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    throw err;
+  } finally {
+    await client.close();
+  }
+}
+
+
 ////    שליפת כל חוות הדעת
 const getFeedback = async () => {
   let client; // Define the client variable
@@ -1374,4 +1444,6 @@ module.exports = {
   addTender,
   updateTender,
   deleteTender,
+  updateCustomers,
+  deletecustomerById,
 };

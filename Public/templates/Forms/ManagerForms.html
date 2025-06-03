@@ -5,25 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Trisi Sinai || Practicum</title>
     <link rel="shortcut icon" href="../../src/images/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link rel="shortcut icon" href="../../src/images/favicon.ico" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="../../src/css/animate.css" />
-    <link rel="stylesheet" href="../../src/css/icomoon.css" />
-    <link rel="stylesheet" href="../../src/css/bootstrap.css" />
-    <link rel="stylesheet" href="../../src/css/superfish.css" />
-    <link rel="stylesheet" href="../../src/css/flexslider.css" />
-    <link rel="stylesheet" href="../../src/css/magnific-popup.css" />
-    <link rel="stylesheet" href="../../src/css/bootstrap-datepicker.css" />
-    <link rel="stylesheet" href="../../src/css/cs-select.css" />
-    <link rel="stylesheet" href="../../src/css/cs-skin-border.css" />
-    <link rel="stylesheet" href="../../src/css/style.css" />
-    <script src="../../js/modernizr-2.6.2.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../../src/images/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../src/css/animate.css">
+    <link rel="stylesheet" href="../../src/css/icomoon.css">
+    <link rel="stylesheet" href="../../src/css/bootstrap.css">
+    <link rel="stylesheet" href="../../src/css/superfish.css">
+    <link rel="stylesheet" href="../../src/css/flexslider.css">
+    <link rel="stylesheet" href="../../src/css/magnific-popup.css">
+    <link rel="stylesheet" href="../../src/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../../src/css/cs-select.css">
+    <link rel="stylesheet" href="../../src/css/cs-skin-border.css">
+    <link rel="stylesheet" href="../../src/css/style.css">
     <!--  חלונית popup הסברים  -->
     <script src="../../src/js/popup-explain.js"></script>
     <link rel="stylesheet" href="../../src/css/popup-style.css" />
@@ -202,97 +196,63 @@
         </header>
 
         <aside id="fh5co-hero" class="js-fullheight">
-          <div class="flexslider js-fullheight">
-            <ul class="slides">
-              <li style="background-image: url(https://images.unsplash.com/photo-1706817969183-908d5b67d465?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
-                <div class="overlay">
-                  <h2 class="heading-title">עדכון פרטי מוצר</h2>
-                  <div class="slider-text-inner">
-                    <div class="container-fluid">
-                      <div class="row">
-                        <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+            <div class="flexslider js-fullheight">
+                <ul class="slides">
+                    <li style="background-image: url(../../src/images/ViewProducts.png);">
+                        <div class="overlay">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+                                    <div class="slider-text-inner">
+                                        <h2 class="heading-title">צפייה והפקת</h2>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
+                    </li>
+                </ul>
+            </div>
         </aside>
 
         <div id="fh5co-blog-section" class="fh5co-section-gray">
           <div class="container">
             <div class="row">
               <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                <h3>עדכון בפרטי המוצרים</h3>
+                <h3>צפייה והפקת טפסים</h3>
+              </div>
+              <div id="fh5co-testimonial">
+                <div class="container">
+                  <div class="row animate-box">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="pdf-files" >בחר טופס להורדה:</label>
+                          <div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="pdf-files">בחר טופס להורדה:</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="pdf-files">בחר טופס להורדה:</label>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-            <table
-              id="productsTable"
-              class="Products-table"
-              border="1"
-              style="width: 100%; text-align: center">
-              <thead>
-                <tr>
-                  <th>קוד מוצר</th>
-                  <th>סוג מוצר</th>
-                  <th>מחיר</th>
-                  <th>תאריך ייצור</th>
-                  <th>תיאור</th>
-                  <th>סטטוס</th>
-                  <th>עדכון המוצר</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-
-            <div id="updateFormProducts" style="display: none">
-              <form>
-                <label for="updateProductID">קוד מוצר:</label>
-                <input id="updateProductID" type="text" readonly />
-                <br />
-                
-                <label for="updateProductType">סוג מוצר:</label>
-                
-                <select id="updateProductType" type="text" value="וילונות">
-                  <option value="וילונות">וילונות</option>
-                  <option value="תריסים">תריסים</option>
-                  <option value="מסגרות">מסגרות</option>
-                  <option value="אביזרים">אביזרים</option>
-                  <option value="אחר">אחר</option>
-                </select>
-                <br /><br />
-                
-                <label for="updateProductPrice">מחיר המוצר:</label>
-                <input id="updateProductPrice" type="integer" />
-                <br /><br />
-                
-                <label for="updateProductionDate">תאריך ייצור:</label>
-                <input id="updateProductionDate" type="date" />
-                <br /><br />
-                
-                <label for="updateProductDescription">תיאור המוצר:</label>
-                <input id="updateProductDescription" type="text" />
-                <br /><br />
-                
-                <label for="updateProductStatus">סטטוס:</label>
-                <select id="updateProductStatus" type="text">
-                  <option value="זמין">זמין</option>
-                  <option value="לא זמין">לא זמין</option>
-                </select>
-                <br /><br />
-                
-                <button type="button" class="btn btn-primary" onclick="updateProducts()">שמור שינויים</button>
-                <button type="button" class="btn btn-primary" onclick="closeUpdateForm()">סגור</button>
-              </form>
-            </div>
-
-            <div class="calendar" id="meetingList"></div>
-          </div>
         </div>
-
+        
+        <!-- חוות דעת אחרונות של לקוחות -->
+        
         <footer>
           <div id="footer">
             <div class="container">
@@ -310,151 +270,35 @@
       </div>
     </div>
 
+    <script src="../../src/js/jquery.min.js"></script>
+    <script src="../../src/js/jquery.easing.1.3.js"></script>
+    <script src="../../src/js/bootstrap.min.js"></script>
+    <script src="../../src/js/jquery.waypoints.min.js"></script>
+    <script src="../../src/js/sticky.js"></script>
+    <script src="../../src/js/hoverIntent.js"></script>
+    <script src="../../src/js/superfish.js"></script>
+    <script src="../../src/js/jquery.flexslider-min.js"></script>
+    <script src="../../src/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../src/js/classie.js"></script>
+    <script src="../../src/js/selectFx.js"></script>
+    <script src="../../src/js/main.js"></script>
+
+
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        fetch("/Products")
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            console.log("Fetched Products:", data); // Debugging line to inspect fetched data
-            const productsTable = document.getElementById("productsTable");
-            const tbody = productsTable.querySelector("tbody");
-            tbody.innerHTML = ""; // Clear the table body before adding new rows
-
-            if (data.length === 0) {
-              const noDataRow = tbody.insertRow();
-              noDataRow.innerHTML = `<td colspan="6">No Products available.</td>`;
-              return;
-            }
-
-            // Insert rows into the table
-            data.forEach((Products) => {
-              const row = tbody.insertRow();
-              row.innerHTML = `
-                        <td>${Products.ProductID || "N/A"}</td>
-                        <td>${Products.ProductType || "N/A"}</td>
-                        <td>${Products.ProductPrice || "N/A"}</td>
-                        <td>${Products.ProductionDate || "N/A"}</td>
-                        <td>${Products.ProductDescription || "N/A"}</td>
-                        <td>${Products.ProductStatus || "N/A"}</td>
-                        <td>
-                            <button class="btn btn-primary"" 
-                                onclick="updateFormProducts('${
-                                  Products.ProductID
-                                }', '${Products.ProductType}', 
-                                '${Products.ProductPrice}', '${
-                Products.ProductionDate
-              }', 
-                                '${Products.ProductDescription}', '${
-                Products.ProductStatus
-              }')">
-                                עדכן מוצר זה
-                            </button>
-                        </td>
-                    `;
+        // קריאה ל-API לקבלת רשימת קבצי PDF
+        fetch("/api/forms")
+          .then((response) => response.json())
+          .then((files) => {
+            const pdfList = document.getElementById("pdf-files");
+            files.forEach((file) => {
+              const listItem = document.createElement("li");
+              listItem.innerHTML = `<a href="/src/forms/${file}" target="_blank">${file}</a>`;
+              pdfList.appendChild(listItem);
             });
           })
           .catch((error) => {
-            console.error("Error fetching Products:", error);
-            document.getElementById("errorMessage").textContent =
-              "Error loading Products. Please try again later.";
+            console.error("Error fetching PDF files:", error);
           });
-      });
-
-      function updateFormProducts(
-        id,
-        ProductType,
-        ProductPrice,
-        ProductionDate,
-        ProductDescription,
-        ProductStatus
-      ) {
-        currentProductId = id; // Store the current product ID
-
-        // Fill the form with the current values
-        document.getElementById("updateProductID").value = id;
-        document.getElementById("updateProductType").value = ProductType;
-        document.getElementById("updateProductPrice").value = ProductPrice;
-        document.getElementById("updateProductionDate").value = ProductionDate;
-        document.getElementById("updateProductDescription").value =
-          ProductDescription;
-        document.getElementById("updateProductStatus").value = ProductStatus;
-
-        // Show the form
-        document.getElementById("updateFormProducts").style.display = "block";
-      }
-
-      function updateProducts() {
-        // Get updated values from the form
-        const updatedData = {
-          ProductID: parseInt(document.getElementById("updateProductID").value), // Parse as integer
-          ProductType: document.getElementById("updateProductType").value,
-          ProductPrice: parseInt(
-            document.getElementById("updateProductPrice").value
-          ), // Ensure it's an integer
-          ProductionDate: document.getElementById("updateProductionDate").value,
-          ProductDescription: document.getElementById(
-            "updateProductDescription"
-          ).value,
-          ProductStatus: document.getElementById("updateProductStatus").value,
-        };
-
-        // Validate input before sending to the server
-        if (
-          !updatedData.ProductID ||
-          !updatedData.ProductType ||
-          !updatedData.ProductPrice
-        ) {
-          alert("Please fill in all required fields!");
-          return;
-        }
-
-        // Send PUT request to update the product
-        console.log("Updating product with ID:", currentProductId);
-        console.log("Payload being sent:", updatedData);
-
-        fetch(`/Products/${currentProductId}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedData),
-        })
-          .then((response) => {
-            console.log("Response status:", response.status);
-            if (!response.ok) {
-              return response.text().then((text) => {
-                throw new Error(text || "שגיאה בעדכון המוצר");
-              });
-            }
-            console.log("Product updated successfully!");
-            alert("המוצר עודכן בהצלחה!");
-            location.reload(); // Reload the page to fetch updated data
-          })
-          .catch((error) => {
-            console.error("Error updating product:", error.message);
-            alert("שגיאה בעדכון המוצר. אנא נסה שוב מאוחר יותר.");
-          });
-      }
-
-      function closeUpdateForm() {
-        // Hide the form
-        document.getElementById("updateFormProducts").style.display = "none";
-      }
-    </script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/sticky.js"></script>
-    <script src="js/hoverIntent.js"></script>
-    <script src="js/superfish.js"></script>
-    <script src="js/jquery.flexslider-min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/selectFx.js"></script>
-    <script src="js/main.js"></script>
+      </script>
   </body>
 </html>

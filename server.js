@@ -9,7 +9,6 @@ const port = 4000;
 
 const {
   loginUser,
-  filterAssets,
   getFeedback,
   getAllProducts,
   addNewProduct,
@@ -22,10 +21,8 @@ const {
   addPartner,
   updateProduct,
   getAllPartners,
-  getAllInstallers,
   getCollectionCounts,
   addCustomer,
-  filterAssetsForManager,
   createDeal,
   checkCustomerExists,
   getAllMeetings,
@@ -45,6 +42,8 @@ const {
   addTender,
   updateTender,
   deleteTender,
+  updateCustomers,
+  deletecustomerById,
 } = require("./MongoDB");
 
 app.use(express.static("public"));
@@ -84,6 +83,52 @@ app.post("/login", async (req, res) => {
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        לקוחות       /////////////////////////////
 
+
+////    מוצרים
+app.get("/Customers", async (req, res) => {
+  try {
+    const Customers = await getAllCustomers();
+    res.json(Customers);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch users" });
+  }
+});
+
+app.put("/Customers/:id", async (req, res) => {
+  try {
+    const {
+      customerID,
+      CustomerName,
+      CustomerPhone,
+      CustomerEmail,
+      CustomerJoinDate,
+      CustomerType,
+      CustomerUserName
+    } = req.body;
+    const updatedCount = await updateCustomers(
+      req.params.id,
+      CustomerName,
+      CustomerPhone,
+      CustomerEmail,
+      CustomerJoinDate,
+      CustomerType,
+      CustomerUserName
+    );
+
+    if (updatedCount > 0) {
+      res.status(200).send({ message: "הלקוח עודכן בהצלחה!" });
+    } else {
+      res
+        .status(404)
+        .send({ message: "ישנה בעיה בעדכון פרטי הלקוח." });
+    }
+  } catch (error) {
+    console.error("Error in PUT /Customers/:id:", error.message);
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
 ////    הוספת לקוח חדש
 app.post("/addCustomer", async (req, res) => {
   const {
@@ -98,7 +143,7 @@ app.post("/addCustomer", async (req, res) => {
 
   try {
     // קריאה לפונקציה להוספת הלקוח
-    const customerId = await addCustomer(
+    const customerID = await addCustomer(
       customerID,
       fullName,
       phone,
@@ -109,9 +154,8 @@ app.post("/addCustomer", async (req, res) => {
     );
     res
       .status(201)
-      .json({ message: "Customer added successfully", customerId });
+      .json({ message: "הלקוח התווסף למערכת בהצלחה", customerID });
   } catch (error) {
-    console.error("Error adding customer:", error.message);
     res.status(500).json({ error: error.message });
   }
 });
@@ -128,59 +172,19 @@ app.get("/checkCustomerExists", async (req, res) => {
   }
 });
 
-////    משהו
-app.get("/CustomerAssets", async (req, res) => {
-  const {
-    assetType,
-    assetPriceMin,
-    assetPriceMax,
-    roomNumber,
-    assetStreetNumber,
-    assetStreet,
-  } = req.query;
-
+app.delete("/Customers/:customerID", async (req, res) => {
+  const customerID = req.params.id;
   try {
-    const filteredAssets = await filterAssets(
-      assetType,
-      assetPriceMin,
-      assetPriceMax,
-      assetStreet,
-      assetStreetNumber,
-      roomNumber,
-    );
-    res.json(filteredAssets);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    await deleteUserById(customerID);
+    res.sendStatus(204); // Send success status code
+    } catch (error) {
+      console.error("Error deleting customer:", error);
+      res.sendStatus(500); // Send internal server error status code
+    }
   }
-});
+);
 
-////    משהו
-app.get("/CustomerAssetsForManager", async (req, res) => {
-  const {
-    assetType,
-    assetCity,
-    assetPriceMin,
-    assetPriceMax,
-    roomNumber,
-    assetStreetNumber,
-    assetStreet,
-  } = req.query;
 
-  try {
-    const filteredAssets = await filterAssetsForManager(
-      assetType,
-      assetCity,
-      assetPriceMin,
-      assetPriceMax,
-      assetStreet,
-      assetStreetNumber,
-      roomNumber,
-    );
-    res.json(filteredAssets); // Return filtered assets as JSON response
-  } catch (error) {
-    res.status(500).json({ error: error.message }); // Handle any errors
-  }
-});
 
 ////    חוות דעת לקוחות
 app.get("/feedback", async (req, res) => {
@@ -195,20 +199,20 @@ app.post("/addFeedback", async (req, res) => {
   try {
     const username = feedbackData.Username;
     const result = await addFeedback(username, feedbackData);
-    res.status(201).json({ message: "Feedback added successfully!" });
+    res.status(201).json({ message: "התגובה שלך התקבלה בהצלחה!" });
   } catch (error) {
-    if (error.message.includes("Customer not found")) {
+    if (error.message.includes("הלקוח לא קיים")) {
       res.status(404).json({
         error:
-          "Your Customer ID is not found. Please register as a customer to add a feedback.",
+          "קוד הלקוח שלא לא נמצא. אנא נסבה שוב או פנה למוקד השירות.",
       });
-    } else if (error.message.includes("haven't made a deal")) {
+    } else if (error.message.includes("לא קיים")) {
       res.status(404).json({
-        error: "You still haven't made a deal. A feedback hasn't been added.",
+        error: "המשתמש לא קיים במערכת. אנא נסה שוב או פנה למוקד השירות.",
       });
     } else {
-      console.error("Error adding feedback to database:", error);
-      res.status(500).json({ error: "Failed to add feedback to the database" });
+      console.error("בעיה התקיימה בעת הוספת חוות הדעת שלך למסד התנתונים", error);
+      res.status(500).json({ error: "בעיה התקיימה בעת הוספת חוות הדעת שלך למסד התנתונים" });
     }
   }
 });
@@ -243,16 +247,6 @@ app.post("/submitMessage", async (req, res) => {
   }
 });
 
-////    משהו
-app.get("/AssetsForCustomer", async (req, res) => {
-  try {
-    const assets = await getAvailableAssets(); // Implement this function to fetch all users
-    res.json(assets); // Send the users as a JSON response
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch users" });
-  }
-});
 
 ////    קבלת לקוחות מבסיס הנתונים
 app.get("/getCustomers", async (req, res) => {
@@ -874,6 +868,7 @@ app.delete("/api/todos/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to delete TODO item" });
   }
 });
+
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצת אתר        //////////////////////////
