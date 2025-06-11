@@ -284,7 +284,7 @@
 					<div class="nav-header">
 						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
 						<h1 id="fh5co-logo"><a href="CustomerHome.html"><i class="icon-home"></i> תריסי סיני <span> בע״מ.</span></a></h1>
-                            <nav id="fh5co-menu-wrap" role="navigation">
+						    <nav id="fh5co-menu-wrap" role="navigation">
 								<ul class="sf-menu" id="fh5co-primary-menu">
 									<li><a href="CustomerHome.html">דף הבית</a></li>
 									<li>
@@ -320,7 +320,7 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                     <div class="slider-text-inner">
-                                        <h2 class="heading-title">כל המוצרים שלנו</h2>
+                                        <h2 class="heading-title">חשבוניות וקבלות</h2>
                                     </div>
                                 </div>
                             </div>
@@ -334,28 +334,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                        <h3>צפייה בכל המוצרים</h3>
-                        <div class="search-container">
-                            <input type="text" id="property-id-input" placeholder="הכנס קוד מוצר">
-                            <button style="background-color:#0e6ba8" onclick="">חיפוש</button>
-                        </div>
-
-                        <div class="search-container">
-                            <select id="category-filter">
-                                <option value="">בחר קטגוריה</option>
-                                <option value="וילונות">וילונות</option>
-                                <option value="תריסים">תריסים</option>
-                                <option value="מסגרות">מסגרות</option>
-                                <option value="אביזרים">אביזרים</option>
-                                <option value="אחר">אחר</option>
-                            </select>
-                            <button style="background-color:#0e6ba8" onclick="filterProducts()">סנן</button>
-                        </div>
-
+                        <h3 id="user-invoices-title">חשבוניות וקבלות למשתמש</h3>
                     </div>
                 </div>
-    
-                <div class="row" id="products-container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="receiptsTable" class="table table-bordered table-striped" style="background:#fff;">
+                            <thead>
+                                <tr>
+                                    <th>סוג מסמך</th>
+                                    <th>מספר מסמך</th>
+                                    <th>תאריך</th>
+                                    <th>סכום</th>
+                                    <th>הורד קובץ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- ימולא דינאמית -->
+                            </tbody>
+                        </table>
+                        <div id="noReceiptsMsg" style="display:none; text-align:center; color:#de6277; font-weight:bold;">לא נמצאו קבלות או חשבוניות למשתמש זה.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -455,6 +454,53 @@
         displayProducts(products);
     };
     
+    // שליפת שם המשתמש מה-sessionStorage
+const username = sessionStorage.getItem('username');
+
+// עדכון כותרת הדף עם שם המשתמש
+document.addEventListener("DOMContentLoaded", function () {
+    const title = document.getElementById("user-invoices-title");
+    if (username && title) {
+        title.textContent = `חשבוניות וקבלות למשתמש ${username}`;
+    }
+    fetchReceiptsAndInvoices();
+});
+
+// שליפת מסמכים מהשרת והצגת טבלת קבלות/חשבוניות
+async function fetchReceiptsAndInvoices() {
+    if (!username) return;
+    try {
+        const res = await fetch(`/api/documents?userame=${encodeURIComponent(username)}`);
+        const docs = res.ok ? await res.json() : [];
+
+        const tbody = document.querySelector("#receiptsTable tbody");
+        const noMsg = document.getElementById("noReceiptsMsg");
+        tbody.innerHTML = "";
+
+        if (docs.length === 0) {
+            noMsg.style.display = "block";
+            return;
+        } else {
+            noMsg.style.display = "none";
+        }
+
+        docs.forEach(doc => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${doc.docType || "-"}</td>
+                    <td>${doc.docNumber || "-"}</td>
+                    <td>${doc.date ? new Date(doc.date).toLocaleDateString('he-IL') : "-"}</td>
+                    <td>${doc.amount ? doc.amount + " ₪" : "-"}</td>
+                    <td>
+                        ${doc.fileUrl ? `<a href="${doc.fileUrl}" target="_blank" class="btn btn-info btn-xs">הורד</a>` : "-"}
+                    </td>
+                </tr>
+            `;
+        });
+    } catch (err) {
+        document.querySelector("#receiptsTable tbody").innerHTML = `<tr><td colspan="5" style="text-align:center;color:red;">שגיאה בטעינת נתונים</td></tr>`;
+    }
+}
 </script>
 
 </body>

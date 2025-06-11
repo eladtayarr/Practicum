@@ -55,10 +55,8 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    user: "eladt1010@gmail.com",
-    pass: "password",
-    //user: "nofar.shamir7@gmail.com",
-    //pass: "shebnouqreidnctk",
+    user: "eladt1010@gmail.com", // כתובת הג'ימייל שלך
+    pass: "סיסמת אפליקציה של ג'ימייל" // לא הסיסמה הרגילה! ראה הסבר למטה
   },
 });
 
@@ -219,31 +217,24 @@ app.post("/addFeedback", async (req, res) => {
 
 ////    פנייה לחברה ע״י האתר
 app.post("/submitMessage", async (req, res) => {
-  const formData = req.body;
-
+  const { Name, Email, Phone, Message } = req.body;
   try {
-    const emailContent = `
-          Name: ${formData.Name}
-          Email: ${formData.Email}
-          Phone:${formData.Phone}
-          Message: ${formData.Message}
-      `;
-
-    const mailOptions = {
-      from: "eladt1010@@gmail.com",
-      to: "eladt1010@gmail.com",
-      subject: "New Message Received",
-      text: emailContent,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    console.log("message email sent successfully");
-
-    res.json({ message: "message submitted successfully!" });
+    await transporter.sendMail({
+      from: `"${Name}" <${Email}>`,
+      to: "eladt1010@gmail.com", // כתובת היעד שלך
+      subject: "פנייה חדשה מהאתר",
+      html: `
+        <h3>פנייה חדשה מהאתר</h3>
+        <b>שם:</b> ${Name}<br>
+        <b>אימייל:</b> ${Email}<br>
+        <b>טלפון:</b> ${Phone}<br>
+        <b>הודעה:</b><br>${Message}
+      `
+    });
+    res.json({ message: "Email sent successfully!" });
   } catch (error) {
-    console.error("Error sending message email:", error);
-    res.status(500).json({ error: "Failed to send message email" });
+    console.error(error);
+    res.json({ error: "Failed to send email." });
   }
 });
 
@@ -909,6 +900,20 @@ app.post("/api/orders", async (req, res) => {
   }
 });
 
+app.get('/api/documents', async (req, res) => {
+    const username = req.query.username;
+    if (!username) return res.status(400).json({ error: 'Missing username' });
+
+    try {
+        const client = await MongoClient.connect(uri);
+        const db = client.db('Practicum_Project');
+        const docs = await db.collection('Documents').find({ username }).toArray();
+        client.close();
+        res.json(docs);
+    } catch (err) {
+        res.status(500).json({ error: 'DB error' });
+    }
+});
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצת אתר        //////////////////////////

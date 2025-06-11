@@ -42,6 +42,31 @@
 			width: 50%;
 		}
 		}
+		#fh5co-contact .row.animate-box {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: stretch;
+		}
+		#fh5co-contact .col-md-6 {
+			display: flex;
+			flex-direction: column;
+			justify-content: stretch;
+		}
+		#fh5co-contact .form-group {
+			flex: 0 0 auto;
+		}
+		#fh5co-contact .form-group {
+        margin-bottom: 0px !important; /* צמצום רווח בין שדות */
+        display: block;
+		}
+		#fh5co-contact input.form-control,
+		#fh5co-contact textarea.form-control {
+			margin-bottom: 0 !important;
+		}
+		/* אופציונלי: צמצום רווח גם לכפתור */
+		#fh5co-contact .form-group button[type="submit"] {
+			margin-top: 10px !important;
+		}
 	</style>
 
 	
@@ -65,16 +90,16 @@
 										<li><a href="sale-Customer.html">מוצרים בהנחה</a></li>
 									</ul>
 								</li>
-								<li><a href="blog-Customer.html">בלוג עדכונים</a></li>
-								<li><a href="addC-Customer.html">הצטרפות</a></li>
+								<li><a href="Rate-Customer.html">הוספת חוות דעת</a></li>
+								<li><a href="Forms-Customer.html">חשבוניות וקבלות</a></li>
 								<li>
 									<a>פגישות</a>
 									<ul class="fh5co-sub-menu">
 										<li><a href="meeting-Customer.html">קבע פגישה חדשה</a></li>
 										<li><a href="meetingV-Customer.html">צפייה בפגישות קיימות</a></li>
-										<li><a href="Buy-Customer.html">בקשה להזמנה</a></li>
 									</ul>
 								</li>
+								<li><a href="Buy-Customer.html">בקשה להזמנה</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -440,15 +465,6 @@
 				<form action="#">
 					<div class="row animate-box">
 						<div class="col-md-6">
-							<h3 class="section-title">הכתובת שלנו:</h3>
-							<ul class="contact-info"> 
-								<li><i class="icon-location-pin"></i>אזור תעשייה , חולון</li>
-								<li><i class="icon-phone2"></i>03-999999</li>
-								<li><i class="icon-mail"></i><a href="#">TrisiSinai@gmail.com</a></li>
-								<li><i class="icon-globe2"></i><a href="#">TrisiSinai.co.il</a></li>
-							</ul>
-						</div>
-						<div class="col-md-6">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group">
@@ -477,6 +493,16 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-6">
+							<h3 class="section-title">הכתובת שלנו:</h3>
+							<ul class="contact-info"> 
+								<li><i class="icon-location-pin"></i>אזור תעשייה , חולון</li>
+								<li><i class="icon-phone2"></i>03-999999</li>
+								<li><i class="icon-mail"></i><a href="#">TrisiSinai@gmail.com</a></li>
+								<li><i class="icon-globe2"></i><a href="#">TrisiSinai.co.il</a></li>
+							</ul>
+						</div>
+
 					</div>
 				</form>
 			</div>
