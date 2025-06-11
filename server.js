@@ -892,6 +892,23 @@ app.get("/api/profit-loss/expenses", async (req, res) => {
   res.json({ expenses: 120000 });
 });
 
+app.post("/api/orders", async (req, res) => {
+  try {
+      const client = await MongoClient.connect(uri);
+      const db = client.db("Practicum_Project");
+      const collection = db.collection("OrderRequest");
+      await collection.insertOne({
+          products: req.body.products,
+          date: new Date(),
+          status: "חדש"
+      });
+      client.close();
+      res.status(200).json({ message: "הוזמן בהצלחה" });
+  } catch (err) {
+      res.status(500).json({ error: "שגיאה בשמירת ההזמנה" });
+  }
+});
+
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצת אתר        //////////////////////////

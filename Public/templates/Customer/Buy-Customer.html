@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+ <html class="no-js" lang="he" dir="rtl">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Trisi Sinai || Practicum</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/src/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="/src/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="/src/css/bootstrap.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="/src/css/superfish.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="/src/css/flexslider.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="/src/css/magnific-popup.css">
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="/src/css/bootstrap-datepicker.css">
+	<!-- CS Select -->
+	<link rel="stylesheet" href="/src/css/cs-select.css">
+	<link rel="stylesheet" href="/src/css/cs-skin-border.css">
+	
+	<link rel="stylesheet" href="/src/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<style>
+       .card {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(400px, 10fr));
+			gap: 70px;
+			padding: 70px;
+
+
+		}
+
+		.feedback-item {
+			background-color: #ffffff;
+			border-radius: 20px;
+			padding: 20px;
+			box-shadow: 0 7px 7px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease-in-out;
+			align-items: center;
+			/* כדי למרכז את התוכן אופקית */
+			text-align: center;
+			/* כדי למרכז את התוכן אנכית */
+			font-weight: bold;
+		}
+
+		.feedback-item:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+		}
+
+		.feedback-item h2 {
+			font-family: 'Kunstler Script', cursive;
+			margin-top: auto;
+			margin-bottom: auto;
+			font-weight: bold;
+			font-size: 50px;
+			color: rgba(120, 101, 101, 0.671);
+			text-align: center;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.feedback-item p {
+			margin: 0;
+			font-size: 16px;
+			color: #666666;
+			font-family: 'calibri';
+			margin-left: auto;
+			align-items: center;
+			/* כדי למרכז את התוכן אופקית */
+			text-align: center;
+			/* כדי למרכז את התוכן אנכית */
+			font-weight: bold;
+		}
+	
+
+		.feedback-card p {
+			margin-bottom: 10px;
+			font-size: 16px;
+			align-items: center;
+			text-align: center;
+			font-family: 'Calibri';
+			font-weight: bold;
+
+		}
+
+		.feedback-card h2 {
+			margin-bottom: 10px;
+			font-size: 50px;
+			color: #6c6c6c;
+			font-family: 'Kunstler Script';
+			align-items: center;
+			/* כדי למרכז את התוכן אופקית */
+			text-align: center;
+			/* כדי למרכז את התוכן אנכית */
+			font-weight: initial
+		}
+
+		.star-rating {
+			display: inline-block;
+			unicode-bidi: bidi-override;
+			color: #ffcc00;
+			/* צבע הכוכבים */
+			font-size: 20px;
+			/* גודל הכוכבים */
+			height: 1em;
+			width: auto;
+
+			/* מרווח משמאל */
+			position: relative;
+			padding: 0;
+		}
+
+		.star-rating::before {
+			content: "\2605";
+			/* תו של כוכב */
+			position: absolute;
+			opacity: 0;
+			/* החלק הבא ישנה את השקיפות כדי להציג את מספר הכוכבים */
+		}
+
+		.star-rating:hover::before,
+		.star-rating:hover~.star-rating::before {
+			opacity: 1;
+			color: #ffcc00;
+			/* צבע הכוכבים במצב השקיפות */
+		}
+
+		.feedback-item .rating {
+			display: inline-block;
+			font-size: 16px;
+			/* גודל הטקסט של מספר הכוכבים */
+			vertical-align: middle;
+		}
+
+		.star-rating {
+			display: inline-block;
+			color: #ffcc00;
+			/* צבע הכוכבים */
+			font-size: 20px;
+			/* גודל הכוכבים */
+			vertical-align: middle;
+			text-align: center;
+			/* לישור כוכבים למרכז */
+			width: 100%;
+			/* לקחת את כל הרוחב של המרכז */
+		}
+
+		.star-rating::before {
+			content: "\f005";
+			/* תו של כוכב בגופן Font Awesome */
+			font-family: 'Font Awesome';
+			/* שם הגופן */
+			font-weight: normal;
+			font-style: normal;
+
+			/* מרווח מימין בין האייקון למספר */
+			display: inline-block;
+			/* מרווח מימין בין האייקון למספר */
+		}
+
+		[class^="icon-"],
+		[class*=" icon-"] {
+			/* use !important to prevent issues with browser extensions that change fonts */
+			font-family: 'icomoon' !important;
+			color: lightpink;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			line-height: 1;
+
+			/* Better Font Rendering =========== */
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		.fh5co-section-gray {
+			background: rgba(0, 0, 0, 0);
+		}
+
+		.speech-bubble {
+			position: relative;
+			background-color: #ffffff;
+			border-radius: 10px;
+			padding: 15px;
+			box-shadow: 0 7px 7px rgba(0, 0, 0, 0.1);
+		}
+
+
+		.triangle {
+			position: absolute;
+			bottom: -9px;
+			/* מרחק מהקצה התחתון של הבועה */
+			left: 20px;
+			/* מיקום אופקי */
+			width: 0;
+			height: 0;
+			border-left: 20px solid transparent;
+			/* צבע המשולש נבחר בצורה שקופה */
+			border-right: 20px solid transparent;
+			border-top: 10px solid #ffffff;
+			/* צבע המשולש */
+		}
+
+		.feedback-card {
+    position: relative;
+  }
+
+  .feedback-card .date {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 20px;
+	padding-top: 10px;
+  }
+  #footer #fh5co-header-subscribe button {
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    background: #de6277;
+    border: none;
+}
+ .quote {
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    text-align: center;
+    font-size: 30px;
+    display: table;
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    margin-top: -30px;
+    background: lightpink;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+}
+#fh5co-testimonial .box-testimony blockquote .quote > span {
+    display: table-cell;
+    vertical-align: middle;
+}
+.feedback-card:hover {
+			transform: translateY(-5px);
+		}
+
+		.order-request-container {
+			background-color: #f9f9f9;
+			border-radius: 10px;
+			padding: 20px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			margin-top: 30px;
+		}
+
+		.order-request-container h2 {
+			text-align: center;
+			color: #333;
+			margin-bottom: 20px;
+		}
+
+		.order-request-container label {
+			font-weight: bold;
+			margin-top: 10px;
+			display: block;
+		}
+
+		.order-request-container input,
+		.order-request-container select {
+			width: 100%;
+			padding: 10px;
+			margin-top: 5px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		.order-request-container button {
+			background-color: #de6277;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			margin-top: 10px;
+		}
+
+		.order-request-container button:hover {
+			background-color: #c54a63;
+		}
+
+		#orderMsg {
+			margin-top: 15px;
+			text-align: center;
+			font-weight: bold;
+		}
+</style>
+<body>
+	<div id="fh5co-wrapper">
+	<div id="fh5co-page">
+		<header id="fh5co-header-section" class="sticky-banner">
+			<div class="container">
+				<div class="nav-header">
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+					<h1 id="fh5co-logo"><a href="CustomerHome.html"><i class="icon-home"></i> תריסי סיני <span> בע״מ.</span></a></h1>
+						<nav id="fh5co-menu-wrap" role="navigation">
+							<ul class="sf-menu" id="fh5co-primary-menu">
+								<li><a href="CustomerHome.html">דף הבית</a></li>
+								<li>
+									<a>מוצרים</a>
+									<ul class="fh5co-sub-menu">
+										<li><a href="all-Customer.html">כל המוצרים</a></li>
+										<li><a href="new-Customer.html">מוצרים חדשים</a></li>
+										<li><a href="sale-Customer.html">מוצרים בהנחה</a></li>
+									</ul>
+								</li>
+								<li><a href="blog-Customer.html">בלוג עדכונים</a></li>
+								<li><a href="addC-Customer.html">הצטרפות</a></li>
+								<li>
+									<a>פגישות</a>
+									<ul class="fh5co-sub-menu">
+										<li><a href="meeting-Customer.html">קבע פגישה חדשה</a></li>
+										<li><a href="meetingV-Customer.html">צפייה בפגישות קיימות</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+				</div>
+			</div>
+		</header>
+
+	
+				
+				
+	</div>
+			
+</div>
+			
+	
+	<div style="border-bottom: 5px solid rgb(255, 255, 255);"></div>
+		<div id="fh5co-blog-section" class="fh5co-section-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                        <h3>שליחת בקשה להזמנת מוצר</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- טבלת מוצרים להצגה ללקוח -->
+    <div id="productsTableContainer" style="margin-bottom:30px;">
+        <table id="productsTable" class="table table-bordered table-striped" style="background:#fff;">
+            <thead>
+                <tr>
+                    <th>תמונה</th>
+                    <th>סוג מוצר</th>
+                    <th>תיאור</th>
+                    <th>מחיר</th>
+                    <th>הוסף לסל</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ימולא דינמית -->
+            </tbody>
+        </table>
+    </div>
+    <!-- הצגת סל הקניות -->
+    <div id="cartContainer" style="margin-bottom:30px; display:none;">
+        <h4 style="text-align:center;">סל הקניות שלך</h4>
+        <ul id="cartList" style="list-style:none; padding:0;"></ul>
+    </div>
+    <form id="orderForm">
+        <button type="submit" class="btn btn-primary">שלח בקשה</button>
+        <div id="orderMsg"></div>
+    </form>
+</div>
+		<!-- fh5co-blog-section -->
+		<footer>
+			<div id="footer">
+			  <div class="container">
+				<div class="row row-bottom-padded-md">
+				  <!-- זכויות יוצרים -->
+				  <p style="font-size:20px;">
+					&copy; <span id="year"></span>כל הזכויות שמורות לתריסי סיני בע״מ.<br/>
+					<p style="font-size:18px;">האתר נבנה ומנוהל על ידי:<br> 
+					  אלעד טייר | ליאור סיני | אור מנחם | תאיר מלכה</p>
+					<a style="color: #0077b6; text-decoration: none; font-weight:500 ">Terms of Use</a>|<a style="color: #0077b6; text-decoration: none; font-weight:500">Privacy Policy</a>
+				  </p>
+				  
+				</div>
+				
+			  </div>
+			</div>
+		  </footer>
+
+	</div>
+	</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const username = sessionStorage.getItem('username');
+    if (!username) {
+        console.error('Username not found in session storage');
+        return;
+    }
+
+    const usernameInput = document.getElementById('Username');
+    if (usernameInput) {
+        usernameInput.value = username;
+    }
+});
+
+   
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the current date
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + "-" + mm + "-" + dd;
+
+    // Set the current date to the Date input field
+    document.getElementById("Date").value = today;
+});
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('/feedback');
+        if (!response.ok) {
+            throw new Error('Failed to fetch feedback data');
+        }
+        const data = await response.json();
+
+        const feedbackList = document.getElementById('feedbackList');
+        if (!feedbackList) {
+            throw new Error('Element with ID "feedbackList" not found');
+        }
+
+        feedbackList.innerHTML = '';
+
+        data.forEach((feedback) => {
+            const card = document.createElement('div');
+            card.classList.add('feedback-card');
+
+			card.innerHTML = `
+				<div class="speech-bubble">
+					<span class="triangle"></span>
+					<span class="quote"><i class="icon-quotes-right" style="color:white"></i></span><br>
+					<h2><i class="icon-bubble2"></i> <i class="comment">${feedback.Name}</h2>
+					<p class="date">${feedback.Date} <i class="far fa-calendar"></i></p>
+					<p>${feedback.FeedbackDesc}</p>
+					<p class="rating star-rating"></p><br><br>
+				</div>
+			`;
+
+
+            const ratingElement = card.querySelector('.rating.star-rating');
+            if (ratingElement) {
+                const stars = '\u2605'; // אייקון של כוכב ב-Unicode
+                ratingElement.textContent = stars.repeat(feedback.rating); // משנה את התוכן למספר המציין כוכבים
+            }
+
+            feedbackList.appendChild(card);
+        });
+    } catch (error) {
+        console.error('Error fetching feedback:', error.message);
+    }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var form = document.getElementById("feedbackForm");
+    var successMessage = document.getElementById("successMessage");
+    var errorMessage = document.getElementById("errorMessage");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var formData = new FormData(form);
+        var data = {};
+        formData.forEach(function (value, key) {
+            data[key] = value;
+        });
+
+        // Fetch feedback data
+        fetch("/addFeedback", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then(function (response) {
+            if (response.ok) {
+                // Display success message and reset form
+                successMessage.style.display = "block";
+                errorMessage.style.display = "none";
+                form.reset();
+                
+                // Load the page automatically after adding feedback
+                setTimeout(function () {
+                    window.location.reload();
+                }, 3000); // זמן המתנה במילישניות (בדוגמה זו - 3 שניות)
+            } else {
+                // Display error message
+                errorMessage.style.display = "block";
+                successMessage.style.display = "none";
+            }
+        })
+        .catch(function (error) {
+            console.error("Error:", error);
+            // Display error message
+            errorMessage.style.display = "block";
+            successMessage.style.display = "none";
+        });
+    });
+});
+
+// סל קניות בזיכרון
+let cart = [];
+
+// שליפת רשימת מוצרים מהשרת והצגת טבלה + dropdown
+document.addEventListener("DOMContentLoaded", async function () {
+    const tableBody = document.querySelector("#productsTable tbody");
+    try {
+        const res = await fetch("/Products");
+        const products = await res.json();
+        tableBody.innerHTML = "";
+        products.forEach(prod => {
+            tableBody.innerHTML += `
+                <tr>
+                    <td>
+                        ${prod.ProductImage ? `<img src="${prod.ProductImage}" alt="product" style="max-width:80px;max-height:80px;">` : '<span style="color:#bbb;">אין תמונה</span>'}
+                    </td>
+                    <td>${prod.ProductType || ""}</td>
+                    <td>${prod.ProductDescription || ""}</td>
+                    <td>${prod.ProductPrice ? prod.ProductPrice + " ₪" : "-"}</td>
+                    <td>
+                        <button type="button" class="btn btn-success add-to-cart-btn" 
+                            data-id="${prod.ProductID}" 
+                            data-type="${prod.ProductType || ''}" 
+                            data-desc="${prod.ProductDescription || ''}" 
+                            data-price="${prod.ProductPrice || ''}" 
+                            data-img="${prod.ProductImage || ''}">
+                            הוסף לסל
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        // הוספת אירוע לכל כפתור "הוסף לסל"
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const product = {
+                    ProductID: this.dataset.id,
+                    ProductType: this.dataset.type,
+                    ProductDescription: this.dataset.desc,
+                    ProductPrice: this.dataset.price,
+                    ProductImage: this.dataset.img
+                };
+                cart.push(product);
+                updateCartDisplay();
+            });
+        });
+    } catch (err) {
+        tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:red;">שגיאה בטעינת מוצרים</td></tr>`;
+    }
+});
+
+// הצגת סל הקניות
+function updateCartDisplay() {
+    const cartContainer = document.getElementById('cartContainer');
+    const cartList = document.getElementById('cartList');
+    if (cart.length === 0) {
+        cartContainer.style.display = 'none';
+        cartList.innerHTML = '';
+        return;
+    }
+    cartContainer.style.display = 'block';
+    cartList.innerHTML = '';
+    cart.forEach((item, idx) => {
+        cartList.innerHTML += `
+            <li style="margin-bottom:15px;">
+                <b>${item.ProductType} - ${item.ProductDescription} (${item.ProductPrice ? item.ProductPrice + " ₪" : "-"})</b>
+                <button type="button" class="btn btn-danger btn-xs remove-from-cart-btn" data-idx="${idx}">הסר</button>
+                <div style="margin-top:10px;">
+                    <label>רוחב (ס"מ):</label>
+                    <input type="number" class="form-control cart-width" data-idx="${idx}" min="1" required style="width:100px;display:inline-block;">
+                    <label>גובה (ס"מ):</label>
+                    <input type="number" class="form-control cart-height" data-idx="${idx}" min="1" required style="width:100px;display:inline-block;">
+                    <label>עומק (ס"מ):</label>
+                    <input type="number" class="form-control cart-depth" data-idx="${idx}" min="1" required style="width:100px;display:inline-block;">
+                </div>
+            </li>
+        `;
+    });
+    // אירוע הסרה מהסל
+    document.querySelectorAll('.remove-from-cart-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            cart.splice(this.dataset.idx, 1);
+            updateCartDisplay();
+        });
+    });
+}
+
+// פונקציה להצגת הודעה צבעונית וחולפת
+function showAlert(msg, type = "danger") {
+    // type: "success", "danger", "warning", "info"
+    let alertDiv = document.getElementById("customAlertMsg");
+    if (!alertDiv) {
+        alertDiv = document.createElement("div");
+        alertDiv.id = "customAlertMsg";
+        alertDiv.style.position = "fixed";
+        alertDiv.style.top = "30px";
+        alertDiv.style.left = "50%";
+        alertDiv.style.transform = "translateX(-50%)";
+        alertDiv.style.zIndex = "9999";
+        alertDiv.style.minWidth = "250px";
+        alertDiv.style.textAlign = "center";
+        alertDiv.style.fontSize = "18px";
+        document.body.appendChild(alertDiv);
+    }
+    alertDiv.className = `alert alert-${type}`;
+    alertDiv.textContent = msg;
+    alertDiv.style.display = "block";
+    setTimeout(() => {
+        alertDiv.style.display = "none";
+    }, 2500);
+}
+
+// שליחת טופס הזמנה (כל הסל)
+document.getElementById("orderForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    if (cart.length === 0) {
+        showAlert("נא להוסיף מוצרים לסל!", "warning");
+        return;
+    }
+    // אסוף מידות מכל מוצר
+    let valid = true;
+    const productsWithSizes = cart.map((item, idx) => {
+        const width = document.querySelector(`.cart-width[data-idx="${idx}"]`).value;
+        const height = document.querySelector(`.cart-height[data-idx="${idx}"]`).value;
+        const depth = document.querySelector(`.cart-depth[data-idx="${idx}"]`).value;
+        if (!width || !height || !depth) valid = false;
+        return {
+            ...item,
+            width,
+            height,
+            depth
+        };
+    });
+    if (!valid) {
+        showAlert("נא להזין מידות לכל המוצרים!", "danger");
+        return;
+    }
+    try {
+        const res = await fetch("/api/orders", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ products: productsWithSizes })
+        });
+        if (res.ok) {
+            showAlert("הבקשה נשלחה בהצלחה!", "success");
+            cart = [];
+            updateCartDisplay();
+        } else {
+            showAlert("שגיאה בשליחת הבקשה.", "danger");
+        }
+    } catch {
+        showAlert("שגיאה בשליחת הבקשה.", "danger");
+    }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/sticky.js"></script>
+	<!-- Superfish -->
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- Date Picker -->
+	<script src="js/bootstrap-datepicker.min.js"></script>
+	<!-- CS Select -->
+	<script src="js/classie.js"></script>
+	<script src="js/selectFx.js"></script>
+
+	
+	<!-- Main JS -->
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
