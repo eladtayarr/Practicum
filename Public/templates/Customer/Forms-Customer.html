@@ -470,7 +470,7 @@ document.addEventListener("DOMContentLoaded", function () {
 async function fetchReceiptsAndInvoices() {
     if (!username) return;
     try {
-        const res = await fetch(`/api/documents?userame=${encodeURIComponent(username)}`);
+        const res = await fetch(`/api/documents?username=${encodeURIComponent(username)}`);
         const docs = res.ok ? await res.json() : [];
 
         const tbody = document.querySelector("#receiptsTable tbody");

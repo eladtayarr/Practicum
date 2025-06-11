@@ -1912,7 +1912,7 @@ rating-stars input[type="radio"] {
 
 .rating-stars label::before {
   content: "\2605";
-  color: rgb(231, 81, 116);
+  color: rgb(63, 111, 113);
 }
 
 .rating-stars input[type="radio"]:checked + label::before {
