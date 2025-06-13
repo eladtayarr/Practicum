@@ -292,7 +292,7 @@
             const pdfList = document.getElementById("pdf-files");
             files.forEach((file) => {
               const listItem = document.createElement("li");
-              listItem.innerHTML = `<a href="/src/forms/${file}" target="_blank">${file}</a>`;
+              listItem.innerHTML = `<a href="../../src/forms/${file}" target="_blank">${file}</a>`;
               pdfList.appendChild(listItem);
             });
           })
