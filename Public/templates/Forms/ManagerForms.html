@@ -215,44 +215,21 @@
             </div>
         </aside>
 
-        <div id="fh5co-blog-section" class="fh5co-section-gray">
+        <div class="fh5co-section-gray">
           <div class="container">
             <div class="row">
               <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
                 <h3>צפייה והפקת טפסים</h3>
               </div>
-              <div id="fh5co-testimonial">
-                <div class="container">
-                  <div class="row animate-box">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="pdf-files" >בחר טופס להורדה:</label>
-                          <div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="pdf-files">בחר טופס להורדה:</label>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="pdf-files">בחר טופס להורדה:</label>
-                        </div>
-                      </div>
-                      
-                    </div>
-                  </div>
-                </div>
+                <div class="form-group">
+                  <label>טפסים להורדה:</label>
+                  <ul id="manager-pdf-list" style="display: flex; flex-direction: row; flex-wrap: nowrap; gap: 30px; list-style: none; padding: 0; margin: 0; overflow-x: auto;"></ul>
               </div>
             </div>
           </div>
-        </div>
-        
+
         <!-- חוות דעת אחרונות של לקוחות -->
-        
+
         <footer>
           <div id="footer">
             <div class="container">
@@ -283,22 +260,39 @@
     <script src="../../src/js/selectFx.js"></script>
     <script src="../../src/js/main.js"></script>
 
-
     <script>
-        // קריאה ל-API לקבלת רשימת קבצי PDF
-        fetch("/api/forms")
-          .then((response) => response.json())
-          .then((files) => {
-            const pdfList = document.getElementById("pdf-files");
-            files.forEach((file) => {
-              const listItem = document.createElement("li");
-              listItem.innerHTML = `<a href="../../src/forms/${file}" target="_blank">${file}</a>`;
-              pdfList.appendChild(listItem);
-            });
-          })
-          .catch((error) => {
-            console.error("Error fetching PDF files:", error);
+      // קריאה ל-API לקבלת רשימת קבצי PDF
+      fetch("/api/forms/manager")
+        .then((response) => response.json())
+        .then((files) => {
+          const pdfList = document.getElementById("manager-pdf-list");
+          pdfList.innerHTML = "";
+          // הצג את כל הקבצים בלי חיתוך, גם אם יש הרבה
+          files.forEach((file) => {
+            const imgName = file.replace(/\.pdf$/i, ".png");
+            const imgPath = `../../src/forms/Manager/${imgName}`;
+            const pdfPath = `../../src/forms/Manager/${file}`;
+            const listItem = document.createElement("li");
+            listItem.style.display = "flex";
+            listItem.style.flexDirection = "column";
+            listItem.style.alignItems = "center";
+            listItem.style.gap = "10px";
+            listItem.innerHTML = `
+              <span style="font-weight:bold;font-size:1.1em;">${file.replace(/\.pdf$/i, "").replace(/_/g, " ")}</span>
+              <a href="${pdfPath}" download>
+                <img src="${imgPath}" alt="preview" style="max-width:260px;max-height:260px;border:1px solid #ccc;cursor:pointer;" onerror="this.style.display='none'">
+              </a>
+              <a href="${pdfPath}" target="_blank" style="margin-top:5px;">${file}</a>
+            `;
+            pdfList.appendChild(listItem);
           });
-      </script>
+          if (files.length === 0) {
+            pdfList.innerHTML = "<li>לא נמצאו קבצים</li>";
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching PDF files:", error);
+        });
+    </script>
   </body>
 </html>

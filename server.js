@@ -1,5 +1,7 @@
 const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
+const fs = require('fs');
+const path = require('path');
 
 const uri =
   "mongodb+srv://eladt1010:9wRHk5BLfmqRrQb3@practicumproject.rimn0.mongodb.net/?retryWrites=true&w=majority&appName=PracticumProject";
@@ -913,6 +915,16 @@ app.get('/api/documents', async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: 'DB error' });
     }
+});
+
+app.get('/api/forms/manager', (req, res) => {
+  const formsDir = path.join(__dirname, 'Public', 'src', 'forms', 'Manager');
+  fs.readdir(formsDir, (err, files) => {
+    if (err) return res.status(500).json({ error: 'Cannot read forms directory' });
+    // סנן רק קבצי PDF
+    const pdfFiles = files.filter(f => f.toLowerCase().endsWith('.pdf'));
+    res.json(pdfFiles);
+  });
 });
 
 ////////////////////////////////////////////////////////////////////////
