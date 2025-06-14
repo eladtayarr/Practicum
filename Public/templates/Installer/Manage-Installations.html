@@ -23,6 +23,12 @@
     <link rel="stylesheet" href="/src/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="js/modernizr-2.6.2.min.js"></script>
+
+        <!--  חלונית popup הסברים  -->
+    <script src="../../src/js/popup-explain.js"></script>
+    <link rel="stylesheet" href="../../src/css/popup-style.css" />
+
+    
     <style>
         .calendar {
             display: grid;
@@ -91,7 +97,7 @@
         }
 
         .btn1.btn1-primary {
-            background: #de6277;
+            background:rgb(91, 136, 128);
             color: #fff;
             border: none;
             border: 2px solid transparent;
@@ -101,14 +107,14 @@
         .btn1.btn1-primary:active,
         .btn1.btn1-primary:focus {
             box-shadow: none;
-            background: #de6277;
+            background:rgb(172, 49, 49);
             color: #fff;
         }
 
         .btn1:hover,
         .btn1:active,
         .btn1:focus {
-            background: #393e46;
+            background:rgb(172, 49, 49);
             color: #fff;
             outline: none;
         }
@@ -121,14 +127,14 @@
 
         .btn1.btn1-outline {
             background: transparent;
-            color: #de6277;
-            border: 2px solid #de6277;
+            color: rgb(172, 49, 49);
+            border: 2px solid rgb(172, 49, 49);
         }
 
         .btn1.btn1-outline:hover,
         .btn1.btn1-outline:focus,
         .btn1.btn1-outline:active {
-            background: #de6277;
+            background: rgb(172, 49, 49);
             color: #fff;
         }
 
@@ -150,14 +156,14 @@
         .btn1.btn1-primary:active,
         .btn1.btn1-primary:focus {
             box-shadow: none;
-            background: #de6277;
+            background:rgb(48, 143, 138);
             color: #fff !important;
         }
 
         .btn1:hover,
         .btn1:active,
         .btn1:focus {
-            background: #393e46 !important;
+            background: rgb(172, 49, 49); !important;
             color: #fff;
             outline: none !important;
         }
@@ -203,18 +209,103 @@
                 <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
                 <h1 id="fh5co-logo"><a href="../../templates/Manager/ManagerHome.html"><i class="icon-home"></i> תריסי סיני <span> בע״מ.</span></a></h1>
                 <nav id="fh5co-menu-wrap" role="navigation">
-                    <ul class="sf-menu" id="fh5co-primary-menu">
-                        <li><a href="../../templates/Installer/InstallerHome.html">דף הבית</a></li>
+                <ul class="sf-menu" id="fh5co-primary-menu">
+                  <li >
+                    <a href="../../templates/Manager/ManagerHome.html">דף הבית</a>
+                  </li>
 
-                        <li><a href="../../templates/Installer/ViewAll-Installations.html">View התקנות</a></li>
-                        
-                        <li><a href="../../templates/Installer/Manage-Installations.html">Manage התקנות</a></li>
-                    
-                        <li><a href="../../templates/Installer/AddNew-Installations.html">הוספת התקנה חדשה</a></li>
-                        
-                        <li><a href="../../templates/Dashbords/Installer/Dashbord-Installer.html">Installers Dashbord</a></li>
+                  <li>
+                    <a>מוצרים ומלאי</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Products/allProducts-Manager.html">צפייה בכל המוצרים</a></li>
+                      <li><a href="../../templates/Products/addNewProduct-Manager.html">הוספת מוצר חדש</a></li>
+                      <li><a href="../../templates/Products/updateProducts-Manager.html">עדכון/מחיקת מוצר קיים</a></li>
                     </ul>
-                </nav>
+                  </li>
+
+                  <li>
+                    <a>הפקת טפסים</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Forms/ManagerForms.html">צפייה</a></li>
+                      <li><a href="../../templates/Reports/Reports-Deal.html">הוספה</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>דוחות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Reports/Reports-Customer.html">דוח לקוחות</a></li>
+                      
+                      <li><a href="../../templates/Reports/Reports-Products.html">דוח מוצרים</a></li>
+                      <li><a href="../../templates/Reports/Reports-CustomersFeedback.html">דוח משוב לקוחות</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>משתמשים/הרשאות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Manager/addNewCustomer-Manager.html">הוספת לקוח חדש</a></li>
+                      
+                      <li><a href="../../templates/Installer/Add-Installer.html">הוספת מתקין חדש</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>מכרזים</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Tenders/allTenders.html">צפייה במכרזים</a></li>
+                      <li><a href="../../templates/Tenders/addTenders.html">הוספת מכרז חדש</a></li>
+                      <li><a href="../../templates/Tenders/updateTenders.html">מחיקת מכרז</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>התקנות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Installer/View-Installations.html">צפייה בכל ההתקנות</a></li>
+                      <li><a href="../../templates/Installer/Add-Installations.html">הוספת התקנה חדשה</a></li>
+                      <li><a href="../../templates/Installer/Manage-Installations.html">ניהול התקנות</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                  <li><a href="../../templates/Dashbords/Manager/Dashbord-Manager.html">לוח בקרה</a></li>
+                  <!-- (?) כפתור העזרה -->
+                  <li>
+                    <a><svg id="infoIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></a>
+                  </li>
+                  <!-- חלונית ה-popup -->
+                  <div id="popup" class="popup">
+                    <div class="popup-content">
+                      <span id="closePopup" class="close">&times;</span>
+                      <h3 class="popup-title"> אבי סיני - מנהל המפעל </h3>
+                      <br>
+                      <div><h4 class="popup-page-explain"> דף הבית של מנהל המפעל </h4></div>
+                      <br>
+                      <div class="popup-sec-title"><h7>פעולות בדף</h7><div class="popup-sec-text">
+                          <p>◆ <u>תפריט עליון</u> - תפריט ניווט עם קישורים לדפים כמו מוצרים, מכירות, התקנות, דוחות, ומכרזים.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 
+                  <li>
+                    <a>התקנות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Installer/View-Installations.html">צפייה בכל ההתקנות</a></li>
+                      <li><a href="../../templates/Installer/Add-Installations.html">הוספת התקנה חדשה</a></li>
+                      <li><a href="../../templates/Installer/Manage-Installations.html">ניהול התקנות</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>מכירות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="/../../templates/Manager/DealsV-Manager.html">צפייה בכל המכירות</a></li>
+                      <li><a href="../../templates/Manager/addD-Manager.html">הוספת מוצר להנחה</a></li>
+                    </ul>
+                  </li> -->
+                </ul>
+              </nav>
             </div>
         </div>
     </header>
@@ -222,13 +313,13 @@
     <aside id="fh5co-hero" class="js-fullheight">
         <div class="flexslider js-fullheight">
             <ul class="slides">
-                <li style="background-image: url(images/cov.png);">
+                <li style="background-image: url(https://images.unsplash.com/photo-1615746363486-92cd8c5e0a90?q=80&w=2673&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                     <div class="overlay"></div>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
-                                    <h2 class="heading-title">Meeting</h2>
+                                    <h2 class="heading-title">ניהול התקנות</h2>
                                 </div>
                             </div>
                         </div>
@@ -245,44 +336,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>View Meeting</h3>
+                    <h3>צפייה/עדכון/מחיקה של פרטי התקנות</h3>
                 </div>
             </div>
             <table id="installationsTable" class="installations-table" border="1" style="width:100%; text-align: center;">
                 <thead>
                     <tr>
-                        <th>Customer ID</th>
-                        <th>Installer ID</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Location</th>
-                        <th>Meeting Type</th>
-                        <th>Created At</th>
-                        <th>Delete Meeting</th>
-                        <th>Update Meeting</th>
+                        <th>קוד לקוח</th>
+                        <th>קוד מתקין</th>
+                        <th>תאריך</th>
+                        <th>שעה</th>
+                        <th>מיקום</th>
+                        <th>סוג ההתקנה</th>
+                        <th>נוצר בתאריך</th>
+                        <th>מחק התקנה</th>
+                        <th>עדכן התקנה</th>
                     </tr>
                 </thead>
                 <tbody>
                 </tbody>
             </table>
             <div id="updateFormContainer" style="display: none; margin-top: 20px;">
-                <h3>Update Meeting Information</h3>
+                <h3>עדכון פרטי התקנה</h3>
                 <form id="updateForm">
-                    <label>Customer ID: <input type="text" id="updateCustomerID" /></label><br>
-                    <label>Installer ID: <input type="text" id="updateInstallerID" /></label><br>
-                    <label>Date: <input type="date" id="updateDate" /></label><br>
-                    <label>Time: <input type="time" id="updateTime" /></label><br>
-                    <label>Location: <input type="text" id="updateLocation" /></label><br>
-                    <label>Meeting Type:
-                        <select id="updateMeetingType">
-                            <option value="Taking Measurements">Taking Measurements</option>
-                            <option value="New Installation">New Installation</option>
-                            <option value="Repairing an Existing Product">Repairing an Existing Product</option>
-                            <option value="Laundry">Laundry</option>
+                    <label>קוד לקוח: <input type="text" id="updateCustomerID" /></label><br>
+                    <label>קוד מתקין: <input type="text" id="updateInstallerID" /></label><br>
+                    <label>תאריך: <input type="date" id="updateDate" /></label><br>
+                    <label>שעה: <input type="time" id="updateTime" /></label><br>
+                    <label>מיקום: <input type="text" id="updateLocation" /></label><br>
+                    <label>סוג ההתקנה:
+                        <select id="updateInstallationType">
+                            <option value="לקיחת מידות">לקיחת מידות</option>
+                            <option value="התקנה חדשה">התקנה חדשה</option>
+                            <option value="תיקון מוצר קיים">תיקון מוצר קיים</option>
+                            <option value="כביסה">כביסה</option>
                         </select>
                     </label><br><br>
-                    <button type="button" class="btn1 btn1-primary" onclick="updateMeeting()">Save Changes</button>
-                    <button type="button" class="btn1 btn1-outline" onclick="closeUpdateForm()">Cancel</button>
+                    <button type="button" class="btn1 btn1-primary" onclick="updateMeeting()">שמור שינויים</button>
+                    <button type="button" class="btn1 btn1-outline" onclick="closeUpdateForm()">ביטול</button>
                 </form>
             </div>
             
@@ -345,8 +436,8 @@
                             <td>${installation.Location || "N/A"}</td>
                             <td>${installation.MeetingType || "N/A"}</td>
                             <td>${installation.CreatedAt || "N/A"}</td>
-                            <td><button class="btn1 btn1-outline" onclick="deleteMeeting('${installation._id}', this)">Delete</button></td>
-                            <td><button class="btn1 btn1-primary" onclick="showUpdateForm('${installation._id}', '${installation.CustomerID}', '${installation.InstallerID}', '${installation.Date}', '${installation.Time}', '${installation.Location}', '${installation.MeetingType}')">Update</button></td>
+                            <td><button class="btn1 btn1-outline" onclick="deleteMeeting('${installation._id}', this)">מחק</button></td>
+                            <td><button class="btn1 btn1-primary" onclick="showUpdateForm('${installation._id}', '${installation.CustomerID}', '${installation.InstallerID}', '${installation.Date}', '${installation.Time}', '${installation.Location}', '${installation.MeetingType}')">עדכן</button></td>
                         `;
 
                     });
@@ -459,18 +550,18 @@
         
         
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/sticky.js"></script>
-    <script src="js/hoverIntent.js"></script>
-    <script src="js/superfish.js"></script>
-    <script src="js/jquery.flexslider-min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/selectFx.js"></script>
-    <script src="js/main.js"></script>
+<script src="../../src/js/jquery.min.js"></script>
+<script src="../../src/js/jquery.easing.1.3.js"></script>
+<script src="../../src/js/bootstrap.min.js"></script>
+<script src="../../src/js/jquery.waypoints.min.js"></script>
+<script src="../../src/js/sticky.js"></script>
+<script src="../../src/js/hoverIntent.js"></script>
+<script src="../../src/js/superfish.js"></script>
+<script src="../../src/js/jquery.flexslider-min.js"></script>
+<script src="../../src/js/bootstrap-datepicker.min.js"></script>
+<script src="../../src/js/classie.js"></script>
+<script src="../../src/js/selectFx.js"></script>
+<script src="../../src/js/main.js"></script>
 
     
     

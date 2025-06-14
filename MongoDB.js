@@ -185,6 +185,19 @@ const getFeedback = async () => {
   }
 };
 
+async function getAllFeedback() {
+  const client = new MongoClient(uri);
+  try {
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const collection = db.collection("Feedback");
+    return await collection.find({}).toArray();
+  } finally {
+    await client.close();
+  }
+}
+module.exports.getAllFeedback = getAllFeedback;
+
 ////    הוספת חוות דעת בבסיס הנתונים
 const addFeedback = async (Username, feedbackData) => {
   const client = new MongoClient(uri, {
@@ -195,35 +208,20 @@ const addFeedback = async (Username, feedbackData) => {
   try {
     await client.connect();
     const database = client.db("Practicum_Project");
-    const customersCollection = database.collection("Customers");
-    const dealsCollection = database.collection("Deals");
-
-    // Find the customer by Username
-    const customer = await customersCollection.findOne({ UserName: Username });
-    if (!customer) {
-      throw new Error(
-        "Customer not found. Please register as a customer to add feedback.",
-      );
-    }
-
-    // Find the customer ID from the found customer
-    const customerId = customer.CustomerID;
-
-    // Check if the customer has made any deals
-    const dealsCount = await dealsCollection.countDocuments({
-      customerId: customerId,
-    });
-    if (dealsCount === 0) {
-      throw new Error(
-        "You still haven't made a deal. A feedback hasn't been added.",
-      );
-    }
-
-    // Add the feedback to the Feedback collection
     const feedbackCollection = database.collection("Feedback");
-    const result = await feedbackCollection.insertOne(feedbackData);
+
+    // ודא שכל השדות קיימים
+    const feedback = {
+      Username: feedbackData.Username,
+      Name: feedbackData.Name,
+      Phone: feedbackData.Phone,
+      Date: feedbackData.Date,
+      FeedbackDesc: feedbackData.FeedbackDesc,
+      rating: Number(feedbackData.rating)
+    };
+
+    const result = await feedbackCollection.insertOne(feedback);
     console.log("Feedback added successfully!");
-    console.log("Received feedback data:", feedbackData);
     return result;
   } catch (error) {
     console.error("Error adding feedback:", error);
@@ -1400,6 +1398,8 @@ const deleteTender = async (id) => {
   }
 };
 
+
+
 ////////////////////////////////////////////////////////////////////////
 
 module.exports = {
@@ -1446,4 +1446,5 @@ module.exports = {
   deleteTender,
   updateCustomers,
   deletecustomerById,
+  getAllFeedback,
 };

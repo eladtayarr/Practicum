@@ -46,6 +46,7 @@ const {
   deleteTender,
   updateCustomers,
   deletecustomerById,
+  getAllFeedback,
 } = require("./MongoDB");
 
 app.use(express.static("public"));
@@ -202,28 +203,34 @@ app.get("/feedback", async (req, res) => {
   res.json(feedback);
 });
 
+app.get("/getAllFeedback", async (req, res) => {
+  try {
+    const feedbacks = await getAllFeedback();
+    res.json(feedbacks);
+  } catch (error) {
+    res.status(500).json({ error: "בעיה בשליפת חוות הדעת" });
+  }
+});
+
+
 ////    הוספת חוות דעת
 app.post("/addFeedback", async (req, res) => {
-  const feedbackData = req.body; // Data sent from the form on the client side
-
+  const { Username, Name, Phone, Date, FeedbackDesc, rating } = req.body;
+  console.log("BODY:", req.body); // הוסף שורה זו
   try {
-    const username = feedbackData.Username;
-    const result = await addFeedback(username, feedbackData);
+    // שלח את כל השדות לפונקציה שמוסיפה למסד הנתונים
+    const feedbackData = {
+      Username,
+      Name,
+      Phone,
+      Date,
+      FeedbackDesc,
+      rating: Number(rating)
+    };
+    const result = await addFeedback(Username, feedbackData);
     res.status(201).json({ message: "התגובה שלך התקבלה בהצלחה!" });
   } catch (error) {
-    if (error.message.includes("הלקוח לא קיים")) {
-      res.status(404).json({
-        error:
-          "קוד הלקוח שלא לא נמצא. אנא נסבה שוב או פנה למוקד השירות.",
-      });
-    } else if (error.message.includes("לא קיים")) {
-      res.status(404).json({
-        error: "המשתמש לא קיים במערכת. אנא נסה שוב או פנה למוקד השירות.",
-      });
-    } else {
-      console.error("בעיה התקיימה בעת הוספת חוות הדעת שלך למסד התנתונים", error);
-      res.status(500).json({ error: "בעיה התקיימה בעת הוספת חוות הדעת שלך למסד התנתונים" });
-    }
+    res.status(500).json({ error: "בעיה בהוספת חוות הדעת" });
   }
 });
 
