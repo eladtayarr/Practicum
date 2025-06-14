@@ -90,7 +90,7 @@ app.get("/Customers", async (req, res) => {
     const Customers = await getAllCustomers();
     res.json(Customers);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch users" });
+    res.status(500).json({ error: "בעיה בהצגת כל הלקוחות" });
   }
 });
 
@@ -139,22 +139,32 @@ app.post("/addCustomer", async (req, res) => {
     joinDate,
     customerType,
     UserName,
+    Password, // קבל גם את הסיסמה
   } = req.body;
 
   try {
-    // קריאה לפונקציה להוספת הלקוח
-    const customerID = await addCustomer(
+    // הוספה לטבלת לקוחות
+    await addCustomer(
       customerID,
       fullName,
       phone,
       email,
       joinDate,
       customerType,
-      UserName,
+      UserName
     );
-    res
-      .status(201)
-      .json({ message: "הלקוח התווסף למערכת בהצלחה", customerID });
+
+    // הוספה לטבלת משתמשים
+    await addUser({
+      username: UserName,
+      password: Password,
+      fullName: fullName,
+      email: email,
+      phone: phone,
+      role: "customer"
+    });
+
+    res.status(201).json({ message: "הלקוח התווסף למערכת בהצלחה" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -178,7 +188,7 @@ app.delete("/Customers/:customerID", async (req, res) => {
     await deleteUserById(customerID);
     res.sendStatus(204); // Send success status code
     } catch (error) {
-      console.error("Error deleting customer:", error);
+      console.error("בעיה במחיקת הלקוח:", error);
       res.sendStatus(500); // Send internal server error status code
     }
   }
@@ -233,10 +243,10 @@ app.post("/submitMessage", async (req, res) => {
         <b>הודעה:</b><br>${Message}
       `
     });
-    res.json({ message: "Email sent successfully!" });
+    res.json({ message: "המייל נשלח בהצלחה!" });
   } catch (error) {
     console.error(error);
-    res.json({ error: "Failed to send email." });
+    res.json({ error: "בעיה בשליחת האימייל." });
   }
 });
 
@@ -248,7 +258,7 @@ app.get("/getCustomers", async (req, res) => {
     res.json(Customers); // Send the users as a JSON response
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch Customers" });
+    res.status(500).json({ error: "בעיה פנימית בשרת" });
   }
 });
 
@@ -261,7 +271,7 @@ app.get("/getCustomerID", async (req, res) => {
     if (customer) {
       res.status(200).json(customer); // Return the customer data if found
     } else {
-      res.status(404).json({ error: "Customer not found" }); // Return a 404 error if customer not found
+      res.status(404).json({ error: "לקוח לא נמצא" }); // Return a 404 error if customer not found
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -273,14 +283,14 @@ app.get("/meetings-customer", async (req, res) => {
   try {
     const username = req.query.username;
     if (!username) {
-      return res.status(400).json({ error: "Username not provided" });
+      return res.status(400).json({ error: "שם משתמש לא סופק" });
     }
 
     const meetings = await getMeetingsByUsername(username);
     res.json(meetings);
   } catch (error) {
-    console.error("Error fetching meetings:", error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error("בעיה:", error);
+    res.status(500).json({ error: "בעיה פנימית בשרת" });
   }
 });
 
@@ -305,9 +315,9 @@ app.post("/addNewProduct", async (req, res) => {
       ProductDescription,
       ProductImage,
     );
-    res.status(201).json({ message: "Product added successfully", productId });
+    res.status(201).json({ message: "המוצר נוסף בהצלחה", productId });
   } catch (error) {
-    console.error("Error adding product:", error);
+    console.error("בעיה בהוספת מוצר:", error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -325,7 +335,7 @@ app.post("/addDeal", async (req, res) => {
       SignatureDate,
       PartnerUserName,
     );
-    res.status(201).json({ message: "Deals added successfully", deal });
+    res.status(201).json({ message: "", deal });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -356,7 +366,7 @@ app.post("/updateProperty", async (req, res) => {
     );
     res
       .status(201)
-      .json({ message: "Property updated successfully", propertyId });
+      .json({ message: "הנכס עודכן בהצלחה", propertyId });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -369,7 +379,7 @@ app.get("/Products", async (req, res) => {
     res.json(Products);
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch users" });
+    res.status(500).json({ error: "בעיה בהצגת כל המוצרים" });
   }
 });
 
@@ -403,7 +413,7 @@ app.put("/Products/:id", async (req, res) => {
     } else {
       res
         .status(404)
-        .send({ message: "Product not found or no updates were made." });
+        .send({ message: "המוצר לא נמצא או שלא בוצעו עדכונים." });
     }
   } catch (error) {
     console.error("Error in PUT /Products/:id:", error.message);
@@ -418,7 +428,7 @@ app.get("/deals", async (req, res) => {
     res.json(deals);
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch deals" });
+    res.status(500).json({ error: "בעיה בהצגת כל המבצעים" });
   }
 });
 
@@ -443,7 +453,7 @@ app.get("/installations", async (req, res) => {
     res.status(200).json(installations); // Send data as JSON
   } catch (error) {
     console.error("Error fetching installations:", error.message);
-    res.status(500).json({ error: "Failed to fetch installations." });
+    res.status(500).json({ error: "בעיה בהצגת כל ההתקנות." });
   } finally {
     if (client) await client.close(); // Safely close the client
   }
@@ -472,10 +482,10 @@ app.put("/installations/:id", async (req, res) => {
       return res.status(404).json({ error: "Installation not found." });
     }
 
-    res.status(200).json({ message: "Installation updated successfully." });
+    res.status(200).json({ message: "ההתקנה עודכנה בהצלחה." });
   } catch (error) {
     console.error("Error updating installation:", error.message);
-    res.status(500).json({ error: "Failed to update installation." });
+    res.status(500).json({ error: "בעיה בעדכון ההתקנה." });
   }
 });
 
@@ -494,7 +504,7 @@ app.post("/addMeeting", async (req, res) => {
   try {
     const customerExists = await checkCustomerExists(customerID);
     if (!customerExists) {
-      return res.status(400).json({ error: "Customer does not exist" });
+      return res.status(400).json({ error: "הלקוח לא קיים" });
     }
 
     const meetingId = await addMeeting(
@@ -506,7 +516,7 @@ app.post("/addMeeting", async (req, res) => {
       meetingType,
       assetSelect,
     );
-    res.status(201).json({ message: "Meeting added successfully", meetingId });
+    res.status(201).json({ message: "הפגישה נוספה בהצלחה", meetingId });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

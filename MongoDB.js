@@ -359,7 +359,7 @@ async function addUser(userData) {
     const result = await usersCollection.insertOne(userData);
     console.log("Insert result:", result);
 
-    if (result && result.insertedCount === 1) {
+    if (result && result.insertedId === 1) {
       console.log("User added:", userData);
       return userData;
     } else {
@@ -1319,7 +1319,7 @@ const getAllTenders = async () => {
     return tenders;
   } catch (error) {
     console.error("Error fetching tenders:", error);
-    throw new Error("Failed to fetch tenders");
+    throw new Error("כישלון בשליפת מכרזים");
   }
 };
 
@@ -1354,7 +1354,7 @@ const addTender = async (
     return result.insertedId;
   } catch (error) {
     console.error("Error adding tender:", error);
-    throw new Error("Failed to add tender");
+    throw new Error("כישלון בהוספת מכרז");
   }
 };
 
@@ -1370,14 +1370,14 @@ const updateTender = async (id, updatedData) => {
     );
 
     if (result.matchedCount === 0) {
-      throw new Error("Tender not found");
+      throw new Error("מכרז לא נמצא");
     }
 
     console.log("Tender updated successfully");
     return result.modifiedCount;
   } catch (error) {
     console.error("Error updating tender:", error);
-    throw new Error("Failed to update tender");
+    throw new Error("כישלון בעדכון המכרז");
   }
 };
 
@@ -1389,14 +1389,14 @@ const deleteTender = async (id) => {
 
     const result = await collection.deleteOne({ _id: new ObjectId(id) });
     if (result.deletedCount === 0) {
-      throw new Error("Tender not found");
+      throw new Error("מכרז לא נמצא");
     }
 
     console.log("Tender deleted successfully");
     return true;
   } catch (error) {
     console.error("Error deleting tender:", error);
-    throw new Error("Failed to delete tender");
+    throw new Error("כישלון במחיקת המכרז");
   }
 };
 

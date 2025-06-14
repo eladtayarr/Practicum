@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="/src/css/cs-skin-border.css" />
     <link rel="stylesheet" href="/src/css/style.css" />
     <script src="js/modernizr-2.6.2.min.js"></script>
+
+
+        <!--  חלונית popup הסברים  -->
+    <script src="../../src/js/popup-explain.js"></script>
+    <link rel="stylesheet" href="../../src/css/popup-style.css" />
+
     <style>
       .customer-card {
         background-color: #ffffff;
@@ -158,111 +164,86 @@
                   <li>
                     <a href="../../templates/Manager/ManagerHome.html">דף הבית</a>
                   </li>
+
                   <li>
-                    <a>מוצרים</a>
+                    <a>מוצרים ומלאי</a>
                     <ul class="fh5co-sub-menu">
-                      <li>
-                        <a
-                          href="../../templates/Products/allProducts-Manager.html"
-                          >צפייה בכל המוצרים</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          href="../../templates/Products/addNewProduct-Manager.html"
-                          >הוספת מוצר חדש</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          href="../../templates/Products/updateProducts-Manager.html"
-                          >עדכון מוצר</a
-                        >
-                      </li>
-                    </ul>
-                  </li>
-                  <!-- New "Deals" tab containing "Deal" and "Deals View" links -->
-                  <li>
-                    <a>מכירות</a>
-                    <ul class="fh5co-sub-menu">
-                      <li>
-                        <a href="/../../templates/Manager/DealsV-Manager.html"
-                          >צפייה בכל המכירות</a
-                        >
-                      </li>
-                      <li>
-                        <a href="../../templates/Manager/addD-Manager.html"
-                          >הוספת מכירה חדשה</a
-                        >
-                      </li>
+                      <li><a href="../../templates/Products/allProducts-Manager.html">צפייה בכל המוצרים</a></li>
+                      <li><a href="../../templates/Products/addNewProduct-Manager.html">הוספת מוצר חדש</a></li>
+                      <li><a href="../../templates/Products/updateProducts-Manager.html">עדכון/מחיקת מוצר קיים</a></li>
                     </ul>
                   </li>
 
                   <li>
-                    <a>ניהול</a>
+                    <a>הפקת טפסים</a>
                     <ul class="fh5co-sub-menu">
-                      <li>
-                        <a
-                          href="../../templates/Manager/addNewCustomer-Manager.html"
-                          >הוספת לקוח חדש</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          href="../../templates/Manager/Add_ViewUsers-Manager.html"
-                          >הוספת משתמש חדש</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          href="../../templates/Installer/Add-Installations.html"
-                          >הוספת מתקין חדש</a
-                        >
-                      </li>
+                      <li><a href="../../templates/Reports/Reports-Customer.html">צפייה</a></li>
+                      <li><a href="../../templates/Reports/Reports-Deal.html">הוספה</a></li>
                     </ul>
                   </li>
-                  <li>
-                    <a>התקנות</a>
-                    <ul class="fh5co-sub-menu">
-                      <li>
-                        <a
-                          href="../../templates/Installer/View-Installations.html"
-                          >צפייה בכל ההתקנות</a
-                        >
-                      </li>
-                      <li>
-                        <a href="../../templates/Installer/add-Installer.html"
-                          >הוספת התקנה חדשה</a
-                        >
-                      </li>
-                    </ul>
-                  </li>
+
                   <li>
                     <a>דוחות</a>
                     <ul class="fh5co-sub-menu">
-                      <li>
-                        <a href="../../templates/Reports/Reports-Customer.html"
-                          >דוח לקוחות</a
-                        >
-                      </li>
-                      <li>
-                        <a href="../../templates/Reports/Reports-Deal.html"
-                          >דוח מכירות</a
-                        >
-                      </li>
-                      <li>
-                        <a href="../../templates/Reports/Reports-Products.html"
-                          >דוח מוצרים</a
-                        >
-                      </li>
+                      <li><a href="../../templates/Reports/Reports-Customer.html">דוח לקוחות</a></li>
+                      <li><a href="../../templates/Reports/Reports-Deal.html">דוח מכירות</a></li>
+                      <li><a href="../../templates/Reports/Reports-Products.html">דוח מוצרים</a></li>
+                      <li><a href="../../templates/Reports/Reports-CustomersFeedback.html">דוח משוב לקוחות</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>משתמשים/הרשאות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Manager/addNewCustomer-Manager.html">הוספת לקוח חדש</a></li>
+                      <li><a href="../../templates/Manager/Add_ViewUsers-Manager.html">הוספת משתמש חדש</a></li>
+                      <li><a href="../../templates/Installer/Add-Installations.html">הוספת מתקין חדש</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>מכרזים</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Tenders/allTenders.html">צפייה במכרזים</a></li>
+                      <li><a href="../../templates/Tenders/addTenders.html">הוספת מכרז חדש</a></li>
+                      <li><a href="../../templates/Tenders/updateTenders.html">מחיקת מכרז</a></li>
                     </ul>
                   </li>
                   <li>
-                    <a
-                      href="../../templates/Dashbords/Manager/Dashbord-Manager.html"
-                      >Dashbord</a
-                    >
+                  <li><a href="../../templates/Dashbords/Manager/Dashbord-Manager.html">לוח בקרה</a></li>
+                  <!-- (?) כפתור העזרה -->
+                  <li>
+                    <a><svg id="infoIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></a>
                   </li>
+                  <!-- חלונית ה-popup -->
+                  <div id="popup" class="popup">
+                    <div class="popup-content">
+                      <span id="closePopup" class="close">&times;</span>
+                      <h3 class="popup-title"> אבי סיני - מנהל המפעל </h3>
+                      <br>
+                      <div><h4 class="popup-page-explain"> דף הבית של מנהל המפעל </h4></div>
+                      <br>
+                      <div class="popup-sec-title"><h7>פעולות בדף</h7><div class="popup-sec-text">
+                          <p>◆ <u>תפריט עליון</u> - תפריט ניווט עם קישורים לדפים כמו מוצרים, מכירות, התקנות, דוחות, ומכרזים.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 
+                  <li>
+                    <a>התקנות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="../../templates/Installer/View-Installations.html">צפייה בכל ההתקנות</a></li>
+                      <li><a href="../../templates/Installer/add-Installer.html">הוספת התקנה חדשה</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>מכירות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="/../../templates/Manager/DealsV-Manager.html">צפייה בכל המכירות</a></li>
+                      <li><a href="../../templates/Manager/addD-Manager.html">הוספת מוצר להנחה</a></li>
+                    </ul>
+                  </li> -->
                 </ul>
               </nav>
             </div>
@@ -304,7 +285,7 @@
                   <input
                     type="text"
                     id="customerIDFilter"
-                    placeholder="Enter Customer ID"
+                    placeholder="רשום קוד לקוח לסינון"
                   />
                   <button type="button" id="filterBtn" class="btn btn-primary">
                     סינון
@@ -362,6 +343,7 @@
                     id="customerID"
                     name="customerID"
                     required
+                    readonly
                   />
                 </div>
                 <div class="form-group">
@@ -371,6 +353,16 @@
                     class="form-control"
                     id="UserName"
                     name="UserName"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="Password">סיסמה:</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="Password"
+                    name="Password"
                     required
                   />
                 </div>
@@ -431,7 +423,7 @@
                   </select>
                 </div>
                 <button type="submit" class="btn btn-primary" id="sub">
-                  הוספה</button
+                  הוספת לקוח</button
                 ><br /><br />
                 <div
                   id="successMessage"
@@ -452,6 +444,23 @@
                 <br /><br /><br /><br />
               </form>
             </div>
+          </div>
+
+          <div class="container">
+            <table id="customersTable" class="table table-bordered table-striped" style="background:#fff;">
+              <thead>
+                <tr>
+                  <th>קוד לקוח</th>
+                  <th>שם מלא</th>
+                  <th>מספר טלפון</th>
+                  <th>אימייל</th>
+                  <th>סוג לקוח</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- ימולא דינאמית -->
+              </tbody>
+            </table>
           </div>
         </div>
         <footer>
@@ -498,20 +507,21 @@
           formData.forEach(function (value, key) {
             data[key] = value;
           });
-          // Add current month name to the data object
+
+          // הוסף את קוד הלקוח מהשדה (כי readonly לא תמיד נשלח)
+          data["customerID"] = document.getElementById("customerID").value;
+
+          // Add current date
           var currentDate = new Date();
           var formattedDate = currentDate.toLocaleDateString("en-GB", {
             day: "numeric",
             month: "numeric",
             year: "numeric",
           });
-
           data["joinDate"] = formattedDate;
 
-          console.log(data);
-
-          // Send data to server
-          fetch("/AddCustomer", {
+          // שלח לשרת
+          fetch("/addCustomer", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -520,19 +530,15 @@
           })
             .then(function (response) {
               if (response.ok) {
-                document.getElementById("successMessage").style.display =
-                  "block";
-                console.log("Customer added successfully");
+                document.getElementById("successMessage").style.display = "block";
                 setTimeout(function () {
                   location.reload();
                 }, 3000);
               } else {
                 response.json().then(function (data) {
                   if (data.error) {
-                    document.getElementById("errorMessage").innerText =
-                      data.error;
-                    document.getElementById("errorMessage").style.display =
-                      "block";
+                    document.getElementById("errorMessage").innerText = data.error;
+                    document.getElementById("errorMessage").style.display = "block";
                   }
                 });
               }
@@ -547,7 +553,7 @@
         fetch("/getCustomers")
           .then((response) => {
             if (!response.ok) {
-              throw new Error("Network response was not ok");
+              throw new Error("בעיה בקבלת הלקוחות מהשרת");
             }
             return response.json();
           })
@@ -560,7 +566,8 @@
               customerElement.classList.add("customer-row");
               customerElement.innerHTML = `
    				 <div class="customer-card">
-				<img src="https://as1.ftcdn.net/jpg/05/53/79/60/220_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="User Avatar">
+
+				<img src="../../src/images/Customers/${customer.CustomerID}.png" alt="User Avatar">
                     <p>קוד לקוח: ${customer.CustomerID}</p>
                     <p>שם מלא: ${customer.FullName}</p>
                     <p>מספר טלפון: ${customer.Phone}</p>
@@ -598,7 +605,7 @@
               displayCustomers(data);
             })
             .catch((error) => {
-              console.error("Error fetching all customers:", error);
+              console.error("בעיה בהצגת כל הלקוחות:", error);
             });
         }
 
@@ -607,56 +614,64 @@
           fetch(`/getCustomerID?customerID=${customerIDFilter}`)
             .then((response) => {
               if (!response.ok) {
-                throw new Error("Network response was not ok");
+                throw new Error("בעיה בקבלת הלקוח מהשרת");
               }
               return response.json();
             })
             .then((data) => {
-              // בדיקה של הנתונים המתקבלים
-              console.log(data);
-              const customersList = document.getElementById("customersList");
-              customersList.innerHTML = ""; // ניקוי הרשימה לפני הוספת הפריטים המסוננים
-
-              const customerElement = document.createElement("div");
-              customerElement.classList.add("customer-row");
-              customerElement.innerHTML = `
-                <div class="customer-card">
-                    <img src="https://as1.ftcdn.net/jpg/05/53/79/60/220_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="User Avatar">
-                    <p>קוד לקוח: ${data.CustomerID}</p>
-                    <p>שם מלא: ${data.FullName}</p>
-                    <p>מספר טלפון: ${data.Phone}</p>
-                    <p>אימייל: ${data.Email}</p>
-                    <p>סוג לקוח: ${data.CustomerType}</p>
-                    <hr>
-                </div>
-            `;
-              customersList.appendChild(customerElement);
+              const tbody = document.querySelector("#customersTable tbody");
+              tbody.innerHTML = "";
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${data.CustomerID || ""}</td>
+                <td>${data.FullName || ""}</td>
+                <td>${data.Phone || ""}</td>
+                <td>${data.Email || ""}</td>
+                <td>${data.CustomerType || ""}</td>
+              `;
+              tbody.appendChild(row);
             })
-            .catch((error) => console.error("Error:", error));
+            .catch((error) => console.error("בעיה:", error));
         }
 
         // פונקציה להצגת הלקוחות ב-DOM (לדוגמה)
         function displayCustomers(customers) {
-          const customersList = document.getElementById("customersList");
-          customersList.innerHTML = ""; // ניקוי הרשימה הקיימת
+          const tbody = document.querySelector("#customersTable tbody");
+          tbody.innerHTML = ""; // ניקוי הטבלה
 
           customers.forEach((customer) => {
-            const customerElement = document.createElement("div");
-            customerElement.classList.add("customer-row");
-            customerElement.innerHTML = `
-                <div class="customer-card">
-                    <img src="https://as1.ftcdn.net/jpg/05/53/79/60/220_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="User Avatar">
-                    <p>קוד לקוח: ${customer.CustomerID}</p>
-                    <p>שם מלא: ${customer.FullName}</p>
-                    <p>מספר טלפון: ${customer.Phone}</p>
-                    <p>אימייל: ${customer.Email}</p>
-                    <p>סוג לקוח: ${customer.CustomerType}</p>
-                    <hr>
-                </div>
-            `;
-            customersList.appendChild(customerElement);
+            const row = document.createElement("tr");
+            row.innerHTML = `
+      <td>${customer.CustomerID || ""}</td>
+      <td>${customer.FullName || ""}</td>
+      <td>${customer.Phone || ""}</td>
+      <td>${customer.Email || ""}</td>
+      <td>${customer.CustomerType || ""}</td>
+    `;
+            tbody.appendChild(row);
           });
         }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // שלוף את כל הלקוחות מהשרת
+        fetch("/getCustomers")
+          .then((response) => response.json())
+          .then((customers) => {
+            let newID = "";
+            if (customers.length < 9) {
+              // לקוחות ראשונים: 1111, 2222, ... 9999
+              const digit = (customers.length + 1).toString();
+              newID = digit.repeat(4);
+            } else {
+              // מהלקוח העשירי: מספר רץ בן 4 ספרות
+              newID = (customers.length + 1).toString().padStart(4, "0");
+            }
+            document.getElementById("customerID").value = newID;
+          })
+          .catch((error) => {
+            console.error("בעיה ביצירת קוד לקוח חדש:", error);
+            document.getElementById("customerID").value = "0001";
+          });
       });
     </script>
   </body>
