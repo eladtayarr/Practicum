@@ -506,7 +506,7 @@ async function addNewProduct(
       ProductionDate,
       ProductDescription,
       ProductImage,
-      ProductStatus: "Available",
+      ProductStatus: "זמין",
     };
 
     const result = await collection.insertOne(product);
@@ -538,7 +538,7 @@ const filterProducts = async (
     console.log("Connected to the database.");
     const database = client.db("Practicum_Project");
     const collection = database.collection("Products");
-    const filter = { ProductStatus: "Available" }; // Add condition for ProductStatus
+    const filter = { ProductStatus: "זמין" }; // Add condition for ProductStatus
     if (ProductType) filter.ProductType = ProductType;
     if (ProductPriceMin || ProductPriceMax) {
       // Convert string inputs to numeric values
@@ -875,13 +875,13 @@ async function getAvailableProducts() {
     const database = client.db("Practicum_Project");
     const collection = database.collection("Products");
     const projection = { _id: 0 };
-    const filter = { ProductStatus: "Available" };
+    const filter = { ProductStatus: "זמין" };
     const products = await collection.find(filter, { projection }).toArray();
     console.log(products);
     return products;
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to fetch available products.");
+    throw new Error("שגיאה בשליפת מוצרים זמינים.");
   } finally {
     await client.close();
   }
@@ -1023,20 +1023,20 @@ async function createDeal(
       throw new Error("Product not found.");
     }
 
-    if (product.ProductStatus === "Unavailable") {
-      throw new Error("Product is unavailable.");
+    if (product.ProductStatus === "לא זמין") {
+      throw new Error("המוצר לא זמין.");
     }
 
     let dealType, customer1Role, customer2Role, dealCommission;
     if (product.ProductType.toLowerCase() === "rent") {
-      dealType = "Renting";
-      customer1Role = "Rented";
-      customer2Role = "Rentee";
+      dealType = "השכרה";
+      customer1Role = "שוכר";
+      customer2Role = "שוכר משנה";
       dealCommission = product.ProductPrice;
     } else if (product.ProductType.toLowerCase() === "sale") {
-      dealType = "Buying";
-      customer1Role = "Seller";
-      customer2Role = "Buyer";
+      dealType = "מכירה";
+      customer1Role = "מוכר";
+      customer2Role = "קונה";
       dealCommission = product.ProductPrice * 0.01;
     } else {
       throw new Error(

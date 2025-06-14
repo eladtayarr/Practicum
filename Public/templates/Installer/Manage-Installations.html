@@ -357,6 +357,10 @@
                 <form id="updateForm">
                     <label>קוד לקוח: <input type="text" id="updateCustomerID" /></label><br>
                     <label>קוד מתקין: <input type="text" id="updateInstallerID" /></label><br>
+                    <label for="updateInstallerID">קוד מתקין:</label>
+                    <select class="form-control" id="installerID" name="updateInstallerID" required>
+                        <option value="">בחר מתקין</option>
+                    </select>
                     <label>תאריך: <input type="date" id="updateDate" /></label><br>
                     <label>שעה: <input type="time" id="updateTime" /></label><br>
                     <label>מיקום: <input type="text" id="updateLocation" /></label><br>
@@ -544,6 +548,73 @@
 
         </script>
         
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+      // מילוי רשימת המתקינים
+      fetch("/getInstallers")
+        .then((response) => response.json())
+        .then((installers) => {
+          const select = document.getElementById("installerID");
+          installers.forEach((installer) => {
+            // אפשר להציג גם שם, לא רק קוד
+            const option = document.createElement("option");
+            option.value = installer.InstallerID || installer._id || "";
+            option.textContent = installer.InstallerID
+              ? `${installer.InstallerID} - ${installer.FullName || ""}`
+              : installer.FullName || "";
+            select.appendChild(option);
+          });
+        })
+        .catch((error) => {
+          console.error("בעיה בשליפת מתקינים:", error);
+        });
+    });
+
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("installationForm").addEventListener("submit", function (event) {
+				event.preventDefault();
+		
+				// Ensure Date Format YYYY-MM-DD
+				const dateInput = document.getElementById("date").value;
+				const dateRegex = /^\d{4}-\d{2}-\d{2}$/; // Regular expression for YYYY-MM-DD
+		
+				if (!dateRegex.test(dateInput)) {
+					alert("אנא הכנס את תאריך ההתקנה בפורמט YYYY-MM-DD.");
+					return;
+				}
+		
+				// Collect form data
+				const formData = new FormData(this);
+				const data = {};
+				formData.forEach((value, key) => {
+					data[key] = value;
+				});
+		
+				// Debugging: Log the data being sent
+				console.log("Form Data:", data);
+		
+				// Send to backend
+				fetch("/addInstallationMeeting", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(data),
+				})
+				.then(response => response.json())
+				.then(result => {
+					if (result.error) {
+						alert("Error: " + result.error);
+					} else {
+						alert("ההתקנה התווספה בהצלחה למערכת!");
+						location.reload();
+					}
+				})
+				.catch(error => console.error("Error:", error));
+			});
+		});
+	</script>
+		
+
+
         
 
 <script src="/src/js/jquery.min.js"></script>

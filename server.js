@@ -581,7 +581,7 @@ app.post("/addInstallationMeeting", async (req, res) => {
     );
     res
       .status(201)
-      .json({ message: "Installation added successfully", installationID });
+      .json({ message: "ההתקנה הוספה בהצלחה", installationID });
   } catch (error) {
     console.error("Error:", error.message);
     res.status(400).json({ error: error.message });
@@ -609,10 +609,10 @@ app.delete("/installations/:id", async (req, res) => {
       return res.status(404).json({ error: "Installation not found." });
     }
 
-    res.status(200).json({ message: "Installation deleted successfully." });
+    res.status(200).json({ message: "ההתקנה נמחקה בהצלחה." });
   } catch (error) {
     console.error("Error deleting installation:", error.message);
-    res.status(500).json({ error: "Failed to delete installation." });
+    res.status(500).json({ error: "שגיאה במחיקת ההתקנה." });
   }
 });
 
@@ -853,7 +853,7 @@ app.put("/Products/:id/units", async (req, res) => {
 
     const success = await updateProductUnits(productId, units);
     if (success) {
-      res.status(200).json({ message: "Product units updated successfully" });
+      res.status(200).json({ message: "יחידות המוצר עודכנו בהצלחה" });
     } else {
       res.status(404).json({ error: "Product not found" });
     }
@@ -869,10 +869,10 @@ app.post("/api/todos", async (req, res) => {
   try {
     const todoItem = req.body;
     const id = await addTodoItem(todoItem);
-    res.status(201).json({ id, message: "TODO item added successfully!" });
+    res.status(201).json({ id, message: "פריט TODO נוסף בהצלחה!" });
   } catch (error) {
     console.error("Error adding TODO item:", error);
-    res.status(500).json({ error: "Failed to add TODO item" });
+    res.status(500).json({ error: "שגיאה בהוספת פריט TODO" });
   }
 });
 
@@ -893,9 +893,9 @@ app.delete("/api/todos/:id", async (req, res) => {
     const success = await deleteTodoItem(todoId); // Call the delete function
 
     if (success) {
-      res.status(200).json({ message: "TODO item deleted successfully!" });
+      res.status(200).json({ message: "פריט TODO נמחק בהצלחה!" });
     } else {
-      res.status(404).json({ error: "TODO item not found" });
+      res.status(404).json({ error: "פריט TODO לא נמצא" });
     }
   } catch (error) {
     console.error("Error deleting TODO item:", error);
@@ -957,6 +957,18 @@ app.get('/api/forms/manager', (req, res) => {
   });
 });
 
+app.get("/getCurtainsProducts", async (req, res) => {
+  try {
+    const client = new MongoClient(uri);
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const products = await db.collection("Products").find({ Category: "וילונות" }).toArray();
+    res.json(products);
+    await client.close();
+  } catch (error) {
+    res.status(500).json({ error: "בעיה בשליפת מוצרים" });
+  }
+});
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצת אתר        //////////////////////////
 

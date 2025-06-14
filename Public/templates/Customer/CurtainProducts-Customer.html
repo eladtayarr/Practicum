@@ -321,7 +321,7 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                     <div class="slider-text-inner">
-                                        <h2 class="heading-title">כל המוצרים שלנו</h2>
+                                        <h2 class="heading-title">צפייה בוילונות המפעל</h2>
                                     </div>
                                 </div>
                             </div>
@@ -335,24 +335,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                        <h3>צפייה בכל המוצרים</h3>
+                        <h3>צפייה בוילונות</h3>
                         <div class="search-container">
                             <input type="text" id="property-id-input" placeholder="הכנס קוד מוצר">
                             <button style="background-color:#0e6ba8" onclick="">חיפוש</button>
                         </div>
-
-                        <div class="search-container">
-                            <select id="category-filter">
-                                <option value="">בחר קטגוריה</option>
-                                <option value="וילונות">וילונות</option>
-                                <option value="תריסים">תריסים</option>
-                                <option value="מסגרות">מסגרות</option>
-                                <option value="אביזרים">אביזרים</option>
-                                <option value="אחר">אחר</option>
-                            </select>
-                            <button style="background-color:#0e6ba8" onclick="filterProducts()">סנן</button>
-                        </div>
-
                     </div>
                 </div>
     
@@ -421,13 +408,13 @@
                 productDiv.innerHTML = `
                     <div class="property-details">
                         <h3 class="${product.ProductStatus === 'זמין' ? '' : 'לא זמין'}">
-                            ${product.ProductID || "Unknown Type"} &nbsp;(${product.ProductType || "Unknown Type"})
+                            ${product.ProductID || "קוד מוצר לא ידוע"} &nbsp;(${product.ProductType || "סוג מוצר לא ידוע"})
 
                         </h3>
                         <img class="square-image" src="${product.ProductImage || 'default.jpg'}" alt="${product.ProductType}" class="img-responsive">
-                        <p style="font-weight:500">${product.ProductDescription || "No description available"}</p>
-                        <p style="font-weight:700">${product.ProductPrice ? `מחיר: ₪${product.ProductPrice}` : 'Price not available'}</p>
-                        <p style="font-weight:700">סטטוס: ${product.ProductStatus || "Unknown"}</p>
+                        <p style="font-weight:500">${product.ProductDescription || "לא קיים תיאור"}</p>
+                        <p style="font-weight:700">${product.ProductPrice ? `מחיר: ₪${product.ProductPrice}` : 'מחיר לא זמין'}</p>
+                        <p style="font-weight:700">סטטוס: ${product.ProductStatus || "לא ידוע"}</p>
                     </div>
                 `;
     
@@ -456,6 +443,29 @@
         displayProducts(products);
     };
     
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  fetch("/getCurtainsProducts")
+    .then((response) => response.json())
+    .then((products) => {
+      const tbody = document.getElementById("productsTbody");
+      tbody.innerHTML = "";
+      products.forEach((product) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${product.Name || ""}</td>
+          <td>${product.Category || ""}</td>
+          <td>${product.Status || ""}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    })
+    .catch((error) => {
+      console.error("בעיה בשליפת מוצרים:", error);
+    });
+});
 </script>
 
 </body>
