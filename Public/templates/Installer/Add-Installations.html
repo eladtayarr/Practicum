@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Trisi Sinai || Practicum</title>
+	<title>תריסי סיני || פרקטיקום</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../../images/favicon.ico">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
@@ -154,8 +154,6 @@
                       <li><a href="../../templates/Installer/Manage-Installations.html">ניהול התקנות</a></li>
                     </ul>
                   </li>
-
-
                   <li>
                   <li><a href="../../templates/Dashbords/Manager/Dashbord-Manager.html">לוח בקרה</a></li>
                   <!-- (?) כפתור העזרה -->
@@ -176,22 +174,6 @@
                       </div>
                     </div>
                   </div>
-                  <!-- 
-                  <li>
-                    <a>התקנות</a>
-                    <ul class="fh5co-sub-menu">
-                      <li><a href="../../templates/Installer/View-Installations.html">צפייה בכל ההתקנות</a></li>
-                      <li><a href="../../templates/Installer/Add-Installations.html">הוספת התקנה חדשה</a></li>
-                      <li><a href="../../templates/Installer/Manage-Installations.html">ניהול התקנות</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a>מכירות</a>
-                    <ul class="fh5co-sub-menu">
-                      <li><a href="/../../templates/Manager/DealsV-Manager.html">צפייה בכל המכירות</a></li>
-                      <li><a href="../../templates/Manager/addD-Manager.html">הוספת מוצר להנחה</a></li>
-                    </ul>
-                  </li> -->
                 </ul>
             </nav>
         </div>
@@ -239,9 +221,11 @@
 
 						<!-- מספר מתקין -->
 						<div class="form-group">
-							<label for="installerID">קוד מתקין:</label>
-							<input type="text" class="form-control" id="installerID" name="installerID" required>
-						</div>
+              <label for="installerID">קוד מתקין:</label>
+              <select class="form-control" id="installerID" name="installerID" required>
+                <option value="">בחר מתקין</option>
+              </select>
+            </div>
 
 						<!-- תאריך התקנה -->
 						<div class="form-group">
@@ -311,6 +295,27 @@
 	</div>
 
 	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+      // מילוי רשימת המתקינים
+      fetch("/getInstallers")
+        .then((response) => response.json())
+        .then((installers) => {
+          const select = document.getElementById("installerID");
+          installers.forEach((installer) => {
+            // אפשר להציג גם שם, לא רק קוד
+            const option = document.createElement("option");
+            option.value = installer.InstallerID || installer._id || "";
+            option.textContent = installer.InstallerID
+              ? `${installer.InstallerID} - ${installer.FullName || ""}`
+              : installer.FullName || "";
+            select.appendChild(option);
+          });
+        })
+        .catch((error) => {
+          console.error("בעיה בשליפת מתקינים:", error);
+        });
+    });
+
 		document.addEventListener("DOMContentLoaded", function () {
 			document.getElementById("installationForm").addEventListener("submit", function (event) {
 				event.preventDefault();

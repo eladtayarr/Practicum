@@ -758,6 +758,19 @@ app.get("/installers", async (req, res) => {
   }
 });
 
+app.get("/getInstallers", async (req, res) => {
+  try {
+    const client = new MongoClient(uri);
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const installers = await db.collection("Installers").find({}).toArray();
+    res.json(installers);
+    await client.close();
+  } catch (error) {
+    res.status(500).json({ error: "בעיה בשליפת מתקינים" });
+  }
+});
+
 const {
   countCustomers,
   countProducts,
