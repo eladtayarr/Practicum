@@ -292,11 +292,9 @@ app.get("/meetings-customer", async (req, res) => {
     if (!username) {
       return res.status(400).json({ error: "שם משתמש לא סופק" });
     }
-
     const meetings = await getMeetingsByUsername(username);
     res.json(meetings);
   } catch (error) {
-    console.error("בעיה:", error);
     res.status(500).json({ error: "בעיה פנימית בשרת" });
   }
 });

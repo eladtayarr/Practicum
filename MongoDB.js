@@ -1118,32 +1118,17 @@ async function getMeetingsByUsername(username) {
   try {
     await client.connect();
     const db = client.db("Practicum_Project");
-    console.log(username);
-
-    // Step 1: Find the customer document based on the username
-    const customer = await db
-      .collection("Customers")
-      .findOne({ UserName: username });
-    if (!customer) {
-      console.log("Customer not found");
-      return [];
-    }
-
-    // Step 2: Find all meetings that match the CustomerID
-    const meetings = await db
-      .collection("Meetings")
-      .find({ CustomerID: customer.CustomerID })
-      .toArray();
-    console.log("Meetings:", meetings);
+    // שלב 1: מצא את הלקוח לפי שם משתמש
+    const customer = await db.collection("Customers").findOne({ UserName: username });
+    if (!customer) return [];
+    // שלב 2: מצא את כל הפגישות של הלקוח לפי CustomerID
+    const meetings = await db.collection("Meetings").find({ CustomerID: customer.CustomerID }).toArray();
     return meetings;
-  } catch (error) {
-    console.error("Error fetching meetings:", error);
-    throw error;
   } finally {
-    // Close the MongoDB connection
     await client.close();
   }
 }
+module.exports.getMeetingsByUsername = getMeetingsByUsername;
 
 ////    קבלת כל השותפים
 const getInstallers = async () => {
