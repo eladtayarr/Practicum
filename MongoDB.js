@@ -128,6 +128,77 @@ function updateCustomers() {
         });
 }
 
+
+////    עדכון המתקינים במערכת
+function updateInstallers() {
+    // Get updated values from the form
+    const updatedData = {
+        InstallerID: parseInt(document.getElementById("updateInstallerID").value), // Parse as integer
+        InstallerName: document.getElementById("updateInstallerName").value,
+        InstallerPhone: parseInt(document.getElementById("updateInstallerPhone").value), // Ensure it's an integer
+        InstallerEmail: document.getElementById("updateInstallerEmail").value,
+        InstallerJoinDate: document.getElementById("updateInstallerJoinDate").value,
+        InstallerArea: document.getElementById("updateInstallerArea").value,
+        InstallerUserName: document.getElementById("updateInstallerUserName").value // Add missing comma
+    };
+
+    // Send PUT request to update the installer
+    const installerID = updatedData.InstallerID; // Use the correct ID
+    console.log("Updating installer with ID:", installerID);
+    console.log("Payload being sent:", updatedData);
+
+    fetch(`/Installers/${installerID}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedData),
+    })
+        .then((response) => {
+            console.log("Response status:", response.status);
+            if (!response.ok) {
+                return response.text().then((text) => {
+                    throw new Error(text || "שגיאה בעדכון המתקין");
+                });
+            }
+            console.log("Installer updated successfully!");
+            alert("המתקין עודכן בהצלחה!");
+            location.reload(); // Reload the page to fetch updated data
+        })
+        .catch((error) => {
+            console.error("Error updating installer:", error.message);
+            alert("שגיאה בעדכון המתקין. אנא נסה שוב מאוחר יותר.");
+        });
+}
+////    מחיקת מתקינים
+async function deleteInstallerById(installerID) {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  try {
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const installersCollection = db.collection("Installers");
+    const installerObjectId = new ObjectId(installerID);
+    const result = await installersCollection.deleteOne({ _id: installerObjectId });
+    if (result.deletedCount === 1) {
+      console.log("המתקין נמחק בהצלחה");
+    } else {
+      console.log("User not found or deletion failed");
+    }
+    const Installers = await installersCollection.find().toArray();
+    console.log("Installers:", Installers);
+    return Installers;
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    throw err;
+  } finally {
+    await client.close();
+  }
+}
+
+
+
 ////    מחיקת משתמשים
 async function deletecustomerById(customerID) {
   const client = new MongoClient(uri, {
@@ -1383,6 +1454,28 @@ const deleteTender = async (id) => {
   }
 };
 
+async function addInstaller(installer) {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  try {
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const installers = db.collection("Installers");
+    // בדוק אם קיים מתקין עם אותו קוד
+    const exists = await installers.findOne({ InstallerID: installer.InstallerID });
+    if (exists) {
+      throw new Error("קוד מתקין כבר קיים");
+    }
+    await installers.insertOne(installer);
+    return true;
+  } finally {
+    await client.close();
+  }
+}
+module.exports.addInstaller = addInstaller;
+
 async function getCustomerByUserName(username) {
   const client = new MongoClient(uri, {
     useNewUrlParser: true,
@@ -1448,4 +1541,7 @@ module.exports = {
   deletecustomerById,
   getAllFeedback,
   getCustomerByUserName,
+  getInstallerByUserName,
+  deleteInstallerById,
+  updateInstallers,
 };

@@ -126,7 +126,7 @@
                     <a>דוחות</a>
                     <ul class="fh5co-sub-menu">
                       <li><a href="../../templates/Reports/Reports-Customer.html">דוח לקוחות</a></li>
-<li><a href="../../templates/Reports/Reports-Installer.html">דוח מתקינים</a></li>
+                      <li><a href="../../templates/Reports/Reports-Installer.html">דוח מתקינים</a></li>
                       
                       <li><a href="../../templates/Reports/Reports-Products.html">דוח מוצרים</a></li>
                       <li><a href="../../templates/Reports/Reports-CustomersFeedback.html">דוח משוב לקוחות</a></li>
@@ -212,7 +212,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
-                                    <h2 class="heading-title">לקוחות</h2>
+                                    <h2 class="heading-title">מתקינים</h2>
                                     <p class="fh5co-lead"><i class="icon-heart3"></i> </p>
                                 </div>
                             </div>
@@ -229,66 +229,53 @@
         <div class="container"><br><br><br><br><br>
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>צפייה בלקוחות</h3>
+                    <h3>צפייה במתקינים</h3>
                 </div>
             </div>
-            <div id="customersTable">
+            <div id="installersTable">
                 <table id="productsTable" class="Products-table" border="1" style="width: 100%; text-align: center">
                     <thead>
                         <tr>
-                            <th>קוד לקוח</th>
+                            <th>קוד מתקין</th>
+                            <th>שם משתמש</th>
                             <th>שם מלא</th>
                             <th>מספר טלפון</th>
                             <th>אימייל</th>
-                            <th>תאריך הצטרפות</th>
-                            <th>סוג לקוח</th>
-                            <th>שם משתמש</th>
-                            <th>עדכון פרטים</th>
-                            <th>מחיקת לקוח</th>
+                            <th>אזור פעילות</th>
+                            <th>עדכון</th>
+                            <th>מחיקה</th>
                         </tr>
                     </thead>
                     <tbody> <!-- Table rows will be populated dynamically --> </tbody>
                 </table>
 
-                <div id="updateFormCustomers" style="display: none">
+                <div id="updateFormInstallers" style="display: none">
                     <form>
-                      <label for="updateCustomerID">קוד הלקוח:</label>
-                      <input id="updateCustomerID" type="text" readonly />
+                      <label for="updateInstallerID">קוד המתקין:</label>
+                      <input id="updateInstallerID" type="text" readonly />
                       <br><br>
                       
-                      <label for="updateCustomerName">שם הלקוח:</label>
-                      <input id="updateCustomerUserName" type="text" />
+                      <label for="updateInstallerName">שם המתקין:</label>
+                      <input id="updateInstallerName" type="text" />
                       <br><br>
 
-                      <label for="updateCustomerPhone">מספר הטלפון:</label>
-                      <input id="updateCustomerUserName" type="text" />
+                      <label for="updateInstallerPhone">מספר הטלפון:</label>
+                      <input id="updateInstallerPhone" type="text" />
                       <br><br>
                       
-                      <label for="updateCustomerEmail">אימייל:</label>
-                      <input id="updateCustomerUserName" type="text" />
+                      <label for="updateInstallerEmail">אימייל:</label>
+                      <input id="updateInstallerEmail" type="text" />
                       <br><br>
 
-                      <select id="updateCustomerType" type="text" value="סוג לקוח">
-                        <option value="קופת חולים">קופת חולים</option>
-                        <option value="בית חולים ציבורי">בית חולים ציבורי</option>
-                        <option value="בית חולים פרטי">בית חולים פרטי</option>
-                        <option value="לקוח פרטי">לקוח פרטי</option>
+                      <select id="updateInstallerArea" type="text" value="אזור פעילות">
+                        <option value="צפון">צפון</option>
+                        <option value="דרום">דרום</option>
+                        <option value="מרכז">מרכז</option>
+                        <option value="ירושלים">ירושלים</option>
                       </select>
                       <br><br>
 
-                      <label for="updateCustomerJoinDate">תאריך הצטרפות:</label>
-                      <input id="updateCustomerJoinDate" type="date" readonly />
-                      <br><br>
-                      
-                      <label for="updateProductPrice">מחיר המוצר:</label>
-                      <input id="updateProductPrice" type="integer" />
-                      <br><br>
-                      
-                      <label for="updateCustomerUserName">שם המשתמש:</label>
-                      <input id="updateCustomerUserName" type="text" />
-                      <br><br>
-                                            
-                      <button type="button" class="btn btn-primary" onclick="updateCustomers()">שמור שינויים</button>
+                      <button type="button" class="btn btn-primary" onclick="updateInstallers()">שמור שינויים</button>
                       <button type="button" class="btn btn-primary" onclick="closeUpdateForm()">סגור</button>
                     </form>
                   </div>
@@ -330,7 +317,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            fetch("/getCustomers")
+            fetch("/getInstallers")
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
@@ -339,26 +326,25 @@
                 })
                 .then(data => {
                     console.log(data); // Add this line to inspect the data returned from the server
-                    const customersTable = document.getElementById("customersTable");
-                    const tbody = customersTable.querySelector("tbody");
+                    const installersTable = document.getElementById("installersTable");
+                    const tbody = installersTable.querySelector("tbody");
                     tbody.innerHTML = ""; // Clear the table body before adding new rows
-                    data.forEach(customer => {
+                    data.forEach(installer => {
                         const row = tbody.insertRow();
                         row.innerHTML = `
-                            <td>${customer.CustomerID || "N/A"}</td>
-                            <td>${customer.FullName || "N/A"}</td>
-                            <td>${customer.Phone || "N/A"}</td>
-                            <td>${customer.Email || "N/A"}</td>
-                            <td>${customer.joinDate || "N/A"}</td>
-                            <td>${customer.CustomerType || "N/A"}</td>
-                            <td>${customer.UserName || "N/A"}</td>
+                            <td>${installer.InstallerID || "N/A"}</td>
+                            <td>${installer.UserName || "N/A"}</td>
+                            <td>${installer.FullName || "N/A"}</td>
+                            <td>${installer.Phone || "N/A"}</td>
+                            <td>${installer.Email || "N/A"}</td>
+                            <td>${installer.AreaType || "N/A"}</td>
                             <td>
-                                <button class="btn btn-primary" onclick="updateFormCustomers('${customer.CustomerID || "N/A"}', '${customer.FullName || "N/A"}', '${customer.Phone || "N/A"}', '${customer.Email || "N/A"}', '${customer.joinDate || "N/A"}', '${customer.CustomerType || "N/A"}', '${customer.UserName || "N/A"}')">
-                                    עדכן לקוח זה
+                                <button class="btn btn-primary" onclick="updateFormInstallers('${installer.InstallerID || "N/A"}', '${installer.FullName || "N/A"}', '${installer.Phone || "N/A"}', '${installer.Email || "N/A"}', '${installer.joinDate || "N/A"}', '${installer.AreaType || "N/A"}', '${installer.UserName || "N/A"}')">
+                                    עדכן מתקין זה
                                 </button>
                             </td>
                             <td>
-                                <button class="btn btn-danger" onclick="deleteCustomer('${customer.CustomerID || "N/A"}')">מחק לקוח זה</button>
+                                <button class="btn btn-danger" onclick="deleteInstaller('${installer.InstallerID || "N/A"}')">מחק מתקין זה</button>
                             </td>
                         `;
                     });
@@ -389,21 +375,21 @@
         }
         
         // Function to delete a customer
-        function deleteCustomer(customerID) {
-            if (confirm("האם אתה בטוח שברצונך למחוק את הלקוח?")) {
-                fetch(`/Customers/${customerID}`, {
+        function deleteInstallerById(installerID) {
+            if (confirm("האם אתה בטוח שברצונך למחוק את המתקין?")) {
+                fetch(`/Installers/${installerID}`, {
                     method: "DELETE",
                 })
                     .then(response => {
                         if (!response.ok) {
-                            throw new Error("Failed to delete customer");
+                            throw new Error("Failed to delete installer");
                         }
-                        alert("הלקוח נמחק בהצלחה!");
+                        alert("המתקין נמחק בהצלחה!");
                         location.reload(); // Reload the page to refresh the table
                     })
                     .catch(error => {
-                        console.error("Error deleting customer:", error.message);
-                        alert("שגיאה במחיקת הלקוח. אנא נסה שוב מאוחר יותר.");
+                        console.error("Error deleting installer:", error.message);
+                        alert("שגיאה במחיקת המתקין. אנא נסה שוב מאוחר יותר.");
                     });
             }
         }  
@@ -412,39 +398,38 @@
 
     <script>
   
-        function updateFormCustomers(
-            CustomerID,
-            CustomerName,
-            CustomerPhone,
-            CustomerEmail,
-            CustomerJoinDate,
-            CustomerType,
-            CustomerUserName
+        function updateFormInstallers(
+            InstallerID,
+            InstallerName,
+            InstallerPhone,
+            InstallerEmail,
+            InstallerArea,
+            InstallerUserName
         ) {
-            currentCustomerID = CustomerID; // Store the current Customer ID
-  
+            currentInstallerID = InstallerID; // Store the current Installer ID
+
           // Fill the form with the current values
-          document.getElementById("updateCustomerID").value = CustomerID;
-          document.getElementById("updateCustomerName").value = CustomerName;
-          document.getElementById("updateCustomerPhone").value = CustomerPhone;
-          document.getElementById("updateCustomerEmail").value = CustomerEmail;
-          document.getElementById("updateCustomerType").value = CustomerType;
-          document.getElementById("updateCustomerJoinDate").value = CustomerJoinDate;
+          document.getElementById("updateInstallerID").value = InstallerID;
+          document.getElementById("updateInstallerName").value = InstallerName;
+          document.getElementById("updateInstallerPhone").value = InstallerPhone;
+          document.getElementById("updateInstallerEmail").value = InstallerEmail;
+          document.getElementById("updateInstallerArea").value = InstallerArea;
+          document.getElementById("updateInstallerUserName").value = InstallerUserName;
           document.getElementById("updateCustomerUserName").value = CustomerUserName;
   
           // Show the form
-          document.getElementById("updateFormCustomers").style.display = "block";
+          document.getElementById("updateFormInstallers").style.display = "block";
         }
 
         function updateCustomers() {
           // Get updated values from the form Customerid
           const updatedData = {
-            CustomerID: parseInt(document.getElementById("updateCustomerID").value), // Parse as integer
-            CustomerName: document.getElementById("updateCustomerName").value,
-            CustomerPhone: parseInt(document.getElementById("updateCustomerPhone").value), // Ensure it's an integer
-            CustomerEmail: document.getElementById("updateCustomerEmail").value,
+            InstallerID: parseInt(document.getElementById("updateInstallerID").value), // Parse as integer
+            InstallerName: document.getElementById("updateInstallerName").value,
+            InstallerPhone: parseInt(document.getElementById("updateInstallerPhone").value), // Ensure it's an integer
+            InstallerEmail: document.getElementById("updateInstallerEmail").value,
             CustomerJoinDate: document.getElementById("updateCustomerJoinDate").value,
-            CustomerType: document.getElementById("updateCustomerType").value
+            CustomerType: document.getElementById("updateInstallerArea").value
             CustomerUserName: document.getElementById("updateCustomerUserName").value
           };
   
@@ -477,7 +462,7 @@
   
         function closeUpdateForm() {
           // Hide the form
-          document.getElementById("updateFormCustomers").style.display = "none";
+          document.getElementById("updateFormInstallers").style.display = "none";
         }
     </script>
     

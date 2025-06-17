@@ -171,12 +171,14 @@
                   <div id="popup" class="popup">
                     <div class="popup-content">
                       <span id="closePopup" class="close">&times;</span>
-                      <h3 class="popup-title">צפייה במוצרי החנות </h3>
+                      <h3 class="popup-title">Dashboard - מנהל </h3>
                       <br>
-                      <div><h4 class="popup-page-explain"> מוצרים </h4></div>
+                      <div><h4 class="popup-page-explain"> Dashboard - מבט כללי </h4></div>
                       <br>
-                      <div class="popup-sec-title"><h7>פעולות בדף</h7><div class="popup-sec-text">
-                          <p>◆ <u>תפריט עליון</u> - בדף זה תוכלו לצפות בלבד במוצרי החנות.</p>
+                      <div class="popup-sec-title"><h7>פעולות עיקריות</h7><div class="popup-sec-text">
+                          <p>◆ <u>Overview</u> - בדף זה, תוכל לראות מבט כולל אודות פרטי החברה, המוצרים, המתקינים וכדומה.</p>
+                          <p>◆ <u>דוח רווח והפסד</u> - בדף זה, תוכל להפיק דוח רווח והפסד עבור החברה.</p>
+                          <p>◆ <u>מתקינים, מוצרים ולקוחות</u> - בדף זה, תוכל לנהל את המידע אודות המתקינים, המוצרים והלקוחות במערכת.</p>
                         </div>
                       </div>
                     </div>
@@ -345,14 +347,15 @@
         <!-- רשימת אנשי קשר - מתקינים -->
         <div class="charts-card">
             <p class="chart-title">רשימת אנשי קשר - מתקינים</p>
-            <table id="installersTable" class="my-table" style="width=100%">
+            <table id="installersTable" class="my-table" style="width:100%; text-align:center;">
               <thead>
                 <tr>
                   <th>קוד מתקין</th>
+                  <th>שם משתמש</th>
                   <th>שם מלא</th>
-                  <th>מספר טלפון</th>
+                  <th>טלפון</th>
                   <th>אימייל</th>
-                  <th>אזור פעילות</th>
+                  <th>תאריך הצטרפות</th>
                 </tr>
               </thead>
               <tbody>
@@ -362,7 +365,7 @@
             <script>
               document.addEventListener("DOMContentLoaded", async function () {
                 try {
-                  const response = await fetch("/viewInstaller"); // קריאה לנתיב בשרת
+                  const response = await fetch("/getInstallers"); // קריאה לנתיב בשרת
                   if (!response.ok) {
                     throw new Error("Failed to fetch installers data");
                   }
@@ -373,11 +376,12 @@
                   installers.forEach((installer) => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
-                      <td>${installer.InstallerID}</td>
-                      <td>${installer.FullName}</td>
-                      <td>${installer.Phone}</td>
-                      <td>${installer.Email}</td>
-                      <td>${installer.AreaType}</td>
+                      <td>${installer.InstallerID || ""}</td>
+                      <td>${installer.UserName || ""}</td>
+                      <td>${installer.FullName || ""}</td>
+                      <td>${installer.Phone || ""}</td>
+                      <td>${installer.Email || ""}</td>
+                      <td>${installer.JoinDate || ""}</td>
                     `;
                     tableBody.appendChild(row);
                   });

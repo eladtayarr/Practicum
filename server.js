@@ -196,7 +196,34 @@ app.delete("/Customers/:customerID", async (req, res) => {
   }
 );
 
-
+app.post("/addInstaller", async (req, res) => {
+  const { installerID, UserName, fullName, phone, email, joinDate } = req.body;
+  try {
+    // בדוק אם קיים מתקין עם אותו קוד
+    const client = new MongoClient(uri);
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const installers = db.collection("Installers");
+    const exists = await installers.findOne({ InstallerID: installerID });
+    if (exists) {
+      await client.close();
+      return res.status(400).json({ error: "קוד מתקין כבר קיים" });
+    }
+    // הוסף מתקין
+    await installers.insertOne({
+      InstallerID: installerID,
+      UserName,
+      FullName: fullName,
+      Phone: phone,
+      Email: email,
+      JoinDate: joinDate,
+    });
+    await client.close();
+    res.status(201).json({ message: "המתקין התווסף בהצלחה" });
+  } catch (error) {
+    res.status(500).json({ error: "שגיאה בהוספת מתקין" });
+  }
+});
 
 ////    חוות דעת לקוחות
 app.get("/feedback", async (req, res) => {
