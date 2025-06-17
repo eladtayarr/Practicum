@@ -47,6 +47,7 @@ const {
   updateCustomers,
   deletecustomerById,
   getAllFeedback,
+  getCustomerByUserName,
 } = require("./MongoDB");
 
 app.use(express.static("public"));
@@ -967,6 +968,23 @@ app.get("/getCurtainsProducts", async (req, res) => {
     res.status(500).json({ error: "בעיה בשליפת מוצרים" });
   }
 });
+
+
+app.get("/getCustomerByUserName", async (req, res) => {
+  const { username } = req.query;
+  try {
+    const customer = await getCustomerByUserName(username);
+    if (customer) {
+      res.json(customer);
+    } else {
+      res.status(404).json({ error: "לקוח לא נמצא" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 ////////////////////////////////////////////////////////////////////////
 //////////////////////        הרצת אתר        //////////////////////////
 

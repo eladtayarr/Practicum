@@ -1383,6 +1383,21 @@ const deleteTender = async (id) => {
   }
 };
 
+async function getCustomerByUserName(username) {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  try {
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const customer = await db.collection("Customers").findOne({ UserName: username });
+    return customer;
+  } finally {
+    await client.close();
+  }
+}
+module.exports.getCustomerByUserName = getCustomerByUserName;
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -1432,4 +1447,5 @@ module.exports = {
   updateCustomers,
   deletecustomerById,
   getAllFeedback,
+  getCustomerByUserName,
 };
