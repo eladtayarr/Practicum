@@ -934,7 +934,20 @@ const checkMeetingExists = async (date, time, partner) => {
     }
   }
 };
-
+async function addCustomerMeeting(meeting) {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  try {
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    await db.collection("CustomerMeetings").insertOne(meeting);
+    return true;
+  } finally {
+    await client.close();
+  }
+}
 ////    הצגת מוצרים במלאי בלבד
 async function getAvailableProducts() {
   const client = new MongoClient(uri);
@@ -1541,7 +1554,7 @@ module.exports = {
   deletecustomerById,
   getAllFeedback,
   getCustomerByUserName,
-  getInstallerByUserName,
   deleteInstallerById,
   updateInstallers,
+  addCustomerMeeting,
 };

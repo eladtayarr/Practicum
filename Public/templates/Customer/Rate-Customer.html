@@ -484,12 +484,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // Fetch feedback data
-        fetch("/addFeedback", {
+        fetch("/submitMessage", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ Name, Email, Phone, Message })
         })
         .then(function (response) {
             if (response.ok) {

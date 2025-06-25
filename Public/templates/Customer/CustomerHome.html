@@ -488,7 +488,7 @@
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<button type="submit" class="btn btn-primary" id="sub" onclick="submitMessage()">שלח הודעה</button>
+											<button type="submit" class="btn btn-primary" id="sub">שלח הודעה</button>
 										</div>
 									</div>
 								</div>
@@ -539,47 +539,36 @@
 	<script src="../../src/js/main.js"></script>
 
 	<script>
-		async function submitMessage() {
-    const Name = document.getElementById('Name').value;
-    const Email = document.getElementById('Email').value;
-    const Phone = document.getElementById('Phone').value;
-    const Message = document.getElementById('Message').value;
+		document.addEventListener("DOMContentLoaded", function () {
+			const form = document.querySelector("#fh5co-contact form");
+			form.addEventListener("submit", async function (e) {
+				e.preventDefault();
 
-    const formData = {
-        Name: Name,
-        Email: Email,
-        Phone: Phone,
-        Message: Message
-    };
+				const Name = document.getElementById('Name').value;
+				const Email = document.getElementById('Email').value;
+				const Phone = document.getElementById('Phone').value;
+				const Message = document.getElementById('Message').value;
 
-    try {
-        const response = await fetch('/submitMessage', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
-        
-        const data = await response.json();
-        if (data.error) {
-            console.error('Error submitting message:', data.error);
-            alert('An error occurred while submitting message.');
-        } else {
-            console.log('Message submitted successfully:', data.message);
-            alert('Email sent successfully!');
-            console.log('check');
+				const formData = { Name, Email, Phone, Message };
 
-            document.getElementById('Name').value = '';
-            document.getElementById('Email').value = '';
-            document.getElementById('Phone').value = '';
-            document.getElementById('Message').value = '';
-        }
-    } catch (error) {
-        console.error('Error submitting message:', error);
-        alert('An error occurred while submitting message.');
-    }
-}
+				try {
+					const response = await fetch('/submitMessage', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(formData)
+					});
+					const data = await response.json();
+					if (data.error) {
+						alert('שגיאה בשליחת ההודעה: ' + data.error);
+					} else {
+						alert('המייל נשלח בהצלחה!');
+						form.reset();
+					}
+				} catch (error) {
+					alert('שגיאה בשליחת ההודעה.');
+				}
+			});
+		});
 
 		
 	

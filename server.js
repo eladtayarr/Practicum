@@ -53,15 +53,15 @@ const {
 app.use(express.static("public"));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const nodemailer = require("nodemailer");
-
 const transporter = nodemailer.createTransport({
-  service: "Gmail",
+  service: "gmail",
   auth: {
-    user: "eladt1010@gmail.com", // כתובת הג'ימייל שלך
-    pass: "סיסמת אפליקציה של ג'ימייל" // לא הסיסמה הרגילה! ראה הסבר למטה
-  },
+    user: "eladt1010@gmail.com",
+    pass: "lllw opsd rpsn ezqb"
+  }
 });
 
 ///////////////////          דף הבית           //////////////////////////
@@ -555,14 +555,50 @@ app.post("/addMeeting", async (req, res) => {
   }
 });
 
-////    התקנות במערכת
-app.get("/meetings", async (req, res) => {
+app.use(express.json());
+
+app.post("/addCustomerMeeting", async (req, res) => {
+  console.log("BODY:", req.body);
+  const { UserName, Date, Time, MeetingType } = req.body;
+  if ( !Date || !Time || !MeetingType) {
+    return res.status(400).json({ success: false, error: "חסר שדה חובה" });
+  }
   try {
-    const meetings = await getAllMeetings();
-    res.json(meetings);
+    const client = new MongoClient(uri);
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    await db.collection("CustomerMeetings").insertOne({
+      UserName,
+      Date,
+      Time,
+      MeetingType,
+      CreatedAt: new Date() // שים לב ל-new
+    });
+    await client.close();
+    res.status(201).json({ success: true, message: "הפגישה נוספה בהצלחה" });
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ error: "Failed to fetch meetings" });
+    res.status(500).json({ success: false, error: "שגיאה בהוספת הפגישה" });
+  }
+});
+
+////    הוספת פגישה חדשה
+app.post("/addMeeting", express.json(), async (req, res) => {
+  const { UserName, Date, Time, MeetingType } = req.body;
+  try {
+    const client = new MongoClient(uri);
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    await db.collection("Meetings").insertOne({
+      UserName,
+      Date,
+      Time,
+      MeetingType
+    });
+    res.status(201).json({ message: "הפגישה נוספה בהצלחה" });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to add meeting" });
   }
 });
 
