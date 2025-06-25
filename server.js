@@ -994,6 +994,19 @@ app.post("/api/orders", async (req, res) => {
   }
 });
 
+app.get("/api/orders", async (req, res) => {
+  try {
+    const client = new MongoClient(uri);
+    await client.connect();
+    const db = client.db("Practicum_Project");
+    const orders = await db.collection("OrderRequest").find({}).toArray();
+    await client.close();
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: "שגיאה בשליפת ההזמנות" });
+  }
+});
+
 app.get('/api/documents', async (req, res) => {
     const username = req.query.username;
     if (!username) return res.status(400).json({ error: 'Missing username' });

@@ -30,6 +30,8 @@
 	
 	<link rel="stylesheet" href="/src/css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<script src="../../src/js/popup-explain.js"></script>
+    <link rel="stylesheet" href="../../src/css/popup-style.css" />
 
 
 
@@ -273,21 +275,18 @@
 <body>
 	<div id="fh5co-wrapper">
 		<div id="fh5co-page">
-			<header id="fh5co-header-section" class="sticky-banner">
+				<header id="fh5co-header-section" class="sticky-banner">
 					<div class="container">
 						<div class="nav-header">
 							<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
 							<h1 id="fh5co-logo"><a href="CustomerHome.html"><i class="icon-home"></i> תריסי סיני <span> בע״מ.</span></a></h1>
-							<nav id="fh5co-menu-wrap" role="navigation">
+                            <nav id="fh5co-menu-wrap" role="navigation">
 								<ul class="sf-menu" id="fh5co-primary-menu">
 									<li><a href="CustomerHome.html">דף הבית</a></li>
 									<li>
 										<a>מוצרים</a>
 										<ul class="fh5co-sub-menu">
 											<li><a href="all-Customer.html">כל המוצרים</a></li>
-													<!--<li><a href="CurtainProducts-Customer.html">צפייה בוילונות המפעל</a></li>-->
-																						<!--<li><a href="sale-Customer.html">מוצרים בהנחה</a></li>-->
-
 										</ul>
 									</li>
 									<li><a href="Rate-Customer.html">הוספת חוות דעת</a></li>
@@ -300,11 +299,48 @@
 										</ul>
 									</li>
 									<li><a href="Buy-Customer.html">בקשה להזמנה</a></li>
+                                    <li>
+                                        <a><svg id="infoIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></a>
+                                    </li>
+                                    <!-- חלונית ה-popup -->
+                                    <div id="popup" class="popup">
+                                        <div class="popup-content">
+                                            <span id="closePopup" class="close">&times;</span>
+                                            <h3 class="popup-title">מתן חוות דעת</h3>
+                                            <br>
+                                            <div class="popup-sec-title"><h7>הסבר על הדף</h7>
+                                              <div class="popup-sec-text">
+                                                <p>◆ <u>בחירת דירוג</u> - בחר דירוג בין 1 ל-5 כוכבים.</p>
+                                                <p>◆ <u>הוספת תגובה</u> - ניתן להוסיף תגובה חופשית על השירות או המוצר.</p>
+                                                <p>◆ <u>שליחה</u> - לחץ על "שלח" כדי להעביר את המשוב למערכת.</p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
 								</ul>
-							</nav>
+                            </nav>
 						</div>
 					</div>
-				</header>		
+					
+				</header>
+				<aside id="fh5co-hero" class="js-fullheight">
+					<div class="flexslider js-fullheight">
+						<ul class="slides">
+							<li style="background-image: url(https://images.unsplash.com/photo-1633613286991-611fe299c4be?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+								<div class="overlay"></div>
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+											<div class="slider-text-inner">
+												<h2 class="heading-title">דירוג חוות דעת</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</aside>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html class="no-js" lang="he" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>תריסי סיני || פרקטיקום</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/src/images/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/src/css/animate.css">
+    <link rel="stylesheet" href="/src/css/icomoon.css">
+    <link rel="stylesheet" href="/src/css/bootstrap.css">
+    <link rel="stylesheet" href="/src/css/superfish.css">
+    <link rel="stylesheet" href="/src/css/flexslider.css">
+    <link rel="stylesheet" href="/src/css/magnific-popup.css">
+    <link rel="stylesheet" href="/src/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/src/css/cs-select.css">
+    <link rel="stylesheet" href="/src/css/cs-skin-border.css">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="/src/js/modernizr-2.6.2.min.js"></script>
+
+        <!--  חלונית popup הסברים  -->
+    <script src="/src/js/popup-explain.js"></script>
+    <link rel="stylesheet" href="/src/css/popup-style.css" />
+
+    
+    <style>
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .meeting-item {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .meeting-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .meeting-item h4 {
+            font-family: 'Kunstler Script';
+            margin-top: auto;
+            margin-bottom: auto;
+            font-size: 50px;
+            color: rgba(120, 101, 101, 0.671);
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .meeting-item p {
+            margin: 0;
+            font-size: 16px;
+            color: #666666;
+            font-family: 'calibri';
+        }
+
+        .meeting-item .date {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .meeting-item .location {
+            margin-top: 10px;
+        }
+
+        .meeting-item .customer {
+            margin-top: 10px;
+        }
+
+        .meeting-item .asset-details {
+            margin-top: 10px;
+        }
+
+        .btn1 {
+            -webkit-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+        .btn1 {
+            letter-spacing: 1px;
+            -webkit-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+        .btn1.btn1-primary {
+            background:rgb(91, 136, 128);
+            color: #fff;
+            border: none;
+            border: 2px solid transparent;
+        }
+
+        .btn1.btn1-primary:hover,
+        .btn1.btn1-primary:active,
+        .btn1.btn1-primary:focus {
+            box-shadow: none;
+            background:rgb(172, 49, 49);
+            color: #fff;
+        }
+
+        .btn1:hover,
+        .btn1:active,
+        .btn1:focus {
+            background:rgb(172, 49, 49);
+            color: #fff;
+            outline: none;
+        }
+
+        .btn1.btn1-default:hover,
+        .btn1.btn1-default:focus,
+        .btn1.btn1-default:active {
+            border-color: transparent;
+        }
+
+        .btn1.btn1-outline {
+            background: transparent;
+            color: rgb(172, 49, 49);
+            border: 2px solid rgb(172, 49, 49);
+        }
+
+        .btn1.btn1-outline:hover,
+        .btn1.btn1-outline:focus,
+        .btn1.btn1-outline:active {
+            background: rgb(172, 49, 49);
+            color: #fff;
+        }
+
+        .tab-content .btn1 {
+            letter-spacing: 0;
+            font-weight: bold;
+            font-size: 8px;
+            text-transform: none !important;
+        }
+
+        #sub1 {
+            display: block;
+            margin: 0 auto;
+            padding: 6px;
+            width: fit-content;
+        }
+
+        .btn1.btn1-primary:hover,
+        .btn1.btn1-primary:active,
+        .btn1.btn1-primary:focus {
+            box-shadow: none;
+            background:rgb(48, 143, 138);
+            color: #fff !important;
+        }
+
+        .btn1:hover,
+        .btn1:active,
+        .btn1:focus {
+            background: rgb(172, 49, 49); !important;
+            color: #fff;
+            outline: none !important;
+        }
+
+        .btn1.btn1-default:hover,
+        .btn1.btn1-default:focus,
+        .btn1.btn1-default:active {
+            border-color: transparent;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+        }
+    
+        .form-group input[type="text"] {
+            margin-left: -30px; /* Adjust this value as needed */
+        }
+
+        .form-group button[type="submit"] {
+        margin-top: 20px; /* Adjust this value to move the button down */
+        }
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
+
+    <header id="fh5co-header-section" class="sticky-banner">
+        <div class="container">
+            <div class="nav-header">
+                <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+                <h1 id="fh5co-logo"><a href="/templates/Manager/ManagerHome.html"><i class="icon-home"></i> תריסי סיני <span> בע״מ.</span></a></h1>
+                <nav id="fh5co-menu-wrap" role="navigation">
+                <ul class="sf-menu" id="fh5co-primary-menu">
+                  <li >
+                    <a href="/templates/Manager/ManagerHome.html">דף הבית</a>
+                  </li>
+
+                  <li>
+                    <a>מוצרים ומלאי</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="/templates/Products/allProducts-Manager.html">צפייה בכל המוצרים</a></li>
+                      <li><a href="/templates/Products/addNewProduct-Manager.html">הוספת מוצר חדש</a></li>
+                      <li><a href="/templates/Products/updateProducts-Manager.html">עדכון/מחיקת מוצר קיים</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>הפקת טפסים</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="/templates/Forms/ManagerForms.html">צפייה</a></li>
+                      <li><a href="/templates/Reports/Reports-Deal.html">הוספה</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>דוחות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="/templates/Reports/Reports-Customer.html">דוח לקוחות</a></li>
+                      
+                      <li><a href="/templates/Reports/Reports-Products.html">דוח מוצרים</a></li>
+                      <li><a href="/templates/Reports/Reports-CustomersFeedback.html">דוח משוב לקוחות</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>משתמשים/הרשאות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="/templates/Manager/addNewCustomer-Manager.html">הוספת לקוח חדש</a></li>
+                      
+                      <li><a href="/templates/Installer/Add-Installer.html">הוספת מתקין חדש</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>מכרזים</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="/templates/Tenders/allTenders.html">צפייה במכרזים</a></li>
+                      <li><a href="/templates/Tenders/addTenders.html">הוספת מכרז חדש</a></li>
+                      <li><a href="/templates/Tenders/updateTenders.html">מחיקת מכרז</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>התקנות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="/templates/Installer/View-Installations.html">צפייה בכל ההתקנות</a></li>
+                      <li><a href="/templates/Installer/Add-Installations.html">הוספת התקנה חדשה</a></li>
+                      <li><a href="/templates/Installer/Manage-Installations.html">ניהול התקנות</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                  <li><a href="/templates/Dashbords/Manager/Dashbord-Manager.html">לוח בקרה</a></li>
+                  <!-- (?) כפתור העזרה -->
+                  <li>
+                    <a><svg id="infoIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></a>
+                  </li>
+                  <!-- חלונית ה-popup -->
+                  <div id="popup" class="popup">
+                    <div class="popup-content">
+                      <span id="closePopup" class="close">&times;</span>
+                      <h3 class="popup-title"> ניהול התקנות </h3>
+                      <br>
+                      <div><h4 class="popup-page-explain"> התקנות - עריכה/מחיקה </h4></div>
+                      <br>
+                      <div class="popup-sec-title"><h7>פעולות בדף</h7><div class="popup-sec-text">
+                          <p>◆ <u>פעולות</u> - בדף זה תוכל לערוך או למחוק התקנות קיימות .</p>
+                            <p>◆ <u>עדכון התקנה</u> - על מנת לעדכן התקנה קיימת יש ללחוץ על כפתור העדכון בצמוד להתקנה הרצויה, למלא את הפרטים וללחוץ על כפתור "שמור שינויים".</p>
+                            <p>◆ <u>מחיקת התקנה</u> - על מנת למחוק התקנה קיימת יש ללחוץ על כפתור המחיקה בצמוד להתקנה הרצויה, ולאשר את המחיקה.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 
+                  <li>
+                    <a>התקנות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="/templates/Installer/View-Installations.html">צפייה בכל ההתקנות</a></li>
+                      <li><a href="/templates/Installer/Add-Installations.html">הוספת התקנה חדשה</a></li>
+                      <li><a href="/templates/Installer/Manage-Installations.html">ניהול התקנות</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>מכירות</a>
+                    <ul class="fh5co-sub-menu">
+                      <li><a href="//templates/Manager/DealsV-Manager.html">צפייה בכל המכירות</a></li>
+                      <li><a href="/templates/Manager/addD-Manager.html">הוספת מוצר להנחה</a></li>
+                    </ul>
+                  </li> -->
+                </ul>
+              </nav>
+            </div>
+        </div>
+    </header>
+    
+    <aside id="fh5co-hero" class="js-fullheight">
+        <div class="flexslider js-fullheight">
+            <ul class="slides">
+                <li style="background-image: url(https://images.unsplash.com/photo-1615746363486-92cd8c5e0a90?q=80&w=2673&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+                    <div class="overlay"></div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
+                                <div class="slider-text-inner">
+                                    <h2 class="heading-title">ניהול התקנות</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+                       
+        </div>
+    </aside>
+
+
+
+    <div id="fh5co-blog-section" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                    <h3>צפייה בהזמנות חדשות שהתקבלו</h3>
+                </div>
+            </div>
+            <table id="ordersTable" class="table" border="1" style="width:100%; text-align:center;">
+                <thead>
+                    <tr>
+                    <th>מספר הזמנה</th>
+                    <th>מוצרים</th>
+                    <th>תאריך</th>
+                    <th>סטטוס</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ימולא דינאמית -->
+                </tbody>
+            </table>            
+            <div id="updateFormContainer" style="display: none; margin-top: 20px;">
+                <h3>עדכון פרטי התקנה</h3>
+                <form id="updateForm">
+                    <label>קוד לקוח: <input type="text" id="updateCustomerID" /></label><br>
+                    <label>קוד מתקין: <input type="text" id="updateInstallerID" /></label><br>
+                    <label for="updateInstallerID">קוד מתקין:</label>
+                    <select class="form-control" id="installerID" name="updateInstallerID" required>
+                        <option value="">בחר מתקין</option>
+                    </select>
+                    <label>תאריך: <input type="date" id="updateDate" /></label><br>
+                    <label>שעה: <input type="time" id="updateTime" /></label><br>
+                    <label>מיקום: <input type="text" id="updateLocation" /></label><br>
+                    <label>סוג ההתקנה:
+                        <select id="updateInstallationType">
+                            <option value="לקיחת מידות">לקיחת מידות</option>
+                            <option value="התקנה חדשה">התקנה חדשה</option>
+                            <option value="תיקון מוצר קיים">תיקון מוצר קיים</option>
+                            <option value="כביסה">כביסה</option>
+                        </select>
+                    </label><br><br>
+                    <button type="button" class="btn1 btn1-primary" onclick="updateMeeting()">שמור שינויים</button>
+                    <button type="button" class="btn1 btn1-outline" onclick="closeUpdateForm()">ביטול</button>
+                </form>
+            </div>
+            
+            <div class="calendar" id="meetingList">
+                
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div id="footer">
+          <div class="container">
+            <div class="row row-bottom-padded-md">
+              <!-- זכויות יוצרים -->
+              <p style="font-size:20px;">
+                &copy; <span id="year"></span>כל הזכויות שמורות לתריסי סיני בע״מ.<br/>
+                <p style="font-size:18px;">באתר נבנה ומנוהל על ידי:<br> 
+                  אלעד טייר | ליאור סיני | אור מנחם | תאיר מלכה</p>
+                <a style="color: #0077b6; text-decoration: none; font-weight:500 ">תקנון תנאי השימוש</a><a style="color: white">||</a><a style="color: #0077b6; text-decoration: none; font-weight:500">מדיניות פרטיות</a>
+            </p>
+              
+            </div>
+            
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        fetch("/api/orders")
+            .then(response => response.json())
+            .then(orders => {
+            const tbody = document.querySelector("#ordersTable tbody");
+            tbody.innerHTML = "";
+            if (!orders || orders.length === 0) {
+            tbody.innerHTML = "<tr><td colspan='4'>אין בקשות להזמנה</td></tr>";
+            return;
+            }
+            orders.forEach((order, idx) => {
+            // המרת תאריך
+            let dateStr = "";
+            if (order.date && order.date.$date && order.date.$date.$numberLong) {
+                const d = new Date(Number(order.date.$date.$numberLong));
+                dateStr = d.toLocaleDateString("he-IL");
+            } else if (order.date) {
+                dateStr = new Date(order.date).toLocaleDateString("he-IL");
+            }
+            // טבלת מוצרים
+            let productsHtml = `<table style="width:100%; border-collapse:collapse;">
+                <thead>
+                <tr>
+                    <th>מזהה</th>
+                    <th>סוג</th>
+                    <th>תיאור</th>
+                    <th>מחיר</th>
+                    <th>תמונה</th>
+                </tr>
+                </thead>
+                <tbody>`;
+            (order.products || []).forEach(p => {
+              productsHtml += `
+                <tr>
+                <td>${p.ProductID || ""}</td>
+                <td>${p.ProductType || ""}</td>
+                <td>${p.ProductDescription || ""}</td>
+                <td>${p.ProductPrice || ""} ₪</td>
+                <td><img src="${p.ProductImage || ''}" alt="" style="max-width:80px;max-height:80px;"></td>
+                </tr>
+              `;
+            });
+            productsHtml += "</tbody></table>";
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${order._id && order._id.$oid ? order._id.$oid : (order._id || idx + 1)}</td>
+              <td>${productsHtml}</td>
+              <td>${dateStr}</td>
+              <td>${order.status || ""}</td>
+            `;
+            tbody.appendChild(row);
+            });
+            })
+            .catch(error => {
+            console.error("בעיה בשליפת ההזמנות:", error);
+            document.querySelector("#ordersTable tbody").innerHTML = "<tr><td colspan='4'>שגיאה בטעינת ההזמנות</td></tr>";
+            });
+        });
+    </script>
+		
+
+
+        
+
+<script src="/src/js/jquery.min.js"></script>
+<script src="/src/js/jquery.easing.1.3.js"></script>
+<script src="/src/js/bootstrap.min.js"></script>
+<script src="/src/js/jquery.waypoints.min.js"></script>
+<script src="/src/js/sticky.js"></script>
+<script src="/src/js/hoverIntent.js"></script>
+<script src="/src/js/superfish.js"></script>
+<script src="/src/js/jquery.flexslider-min.js"></script>
+<script src="/src/js/bootstrap-datepicker.min.js"></script>
+<script src="/src/js/classie.js"></script>
+<script src="/src/js/selectFx.js"></script>
+<script src="/src/js/main.js"></script>
+
+    
+    
+    </body>
+
+</html>
