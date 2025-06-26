@@ -402,66 +402,70 @@
     </div>
     
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
         fetch("/api/orders")
             .then(response => response.json())
             .then(orders => {
-            const tbody = document.querySelector("#ordersTable tbody");
-            tbody.innerHTML = "";
-            if (!orders || orders.length === 0) {
-            tbody.innerHTML = "<tr><td colspan='4'>אין בקשות להזמנה</td></tr>";
-            return;
-            }
-            orders.forEach((order, idx) => {
-            // המרת תאריך
-            let dateStr = "";
-            if (order.date && order.date.$date && order.date.$date.$numberLong) {
-                const d = new Date(Number(order.date.$date.$numberLong));
-                dateStr = d.toLocaleDateString("he-IL");
-            } else if (order.date) {
-                dateStr = new Date(order.date).toLocaleDateString("he-IL");
-            }
-            // טבלת מוצרים
-            let productsHtml = `<table style="width:100%; border-collapse:collapse;">
-                <thead>
-                <tr>
-                    <th>מזהה</th>
-                    <th>סוג</th>
-                    <th>תיאור</th>
-                    <th>מחיר</th>
-                    <th>תמונה</th>
-                </tr>
-                </thead>
-                <tbody>`;
-            (order.products || []).forEach(p => {
-              productsHtml += `
-                <tr>
-                <td>${p.ProductID || ""}</td>
-                <td>${p.ProductType || ""}</td>
-                <td>${p.ProductDescription || ""}</td>
-                <td>${p.ProductPrice || ""} ₪</td>
-                <td><img src="${p.ProductImage || ''}" alt="" style="max-width:80px;max-height:80px;"></td>
-                </tr>
-              `;
-            });
-            productsHtml += "</tbody></table>";
-
-            const row = document.createElement("tr");
-            row.innerHTML = `
-              <td>${order._id && order._id.$oid ? order._id.$oid : (order._id || idx + 1)}</td>
-              <td>${productsHtml}</td>
-              <td>${dateStr}</td>
-              <td>${order.status || ""}</td>
-            `;
-            tbody.appendChild(row);
-            });
+                const tbody = document.querySelector("#ordersTable tbody");
+                tbody.innerHTML = "";
+                if (!orders || orders.length === 0) {
+                    tbody.innerHTML = "<tr><td colspan='5'>אין בקשות להזמנה</td></tr>";
+                    return;
+                }
+                orders.forEach((order, idx) => {
+                    // ...existing code...
+                    const approveBtn = `<button class="btn1 btn1-primary" onclick="approveOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}', '${order.customerEmail || ""}')">אישור</button>`;
+                    const rejectBtn = `<button class="btn1 btn1-outline" onclick="rejectOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}')">דחייה</button>`;
+                    // ...existing code...
+                });
             })
             .catch(error => {
-            console.error("בעיה בשליפת ההזמנות:", error);
-            document.querySelector("#ordersTable tbody").innerHTML = "<tr><td colspan='4'>שגיאה בטעינת ההזמנות</td></tr>";
+                // ...existing code...
             });
-        });
+    });
+
+    // פונקציות אישור ודחייה
+    function approveOrder(orderId, customerEmail) {
+        if (!confirm("האם לאשר את הבקשה?")) return;
+        fetch(`/api/orders/${orderId}/approve`, {
+            method: "POST"
+        })
+        .then(res => res.json())
+        .then(data => {
+            // שליחת מייל ללקוח
+            if (customerEmail) {
+                fetch("/api/send-approval-email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: customerEmail,
+                        orderId: orderId
+                    })
+                })
+                .then(() => {
+                    alert("הבקשה אושרה ונשלח מייל ללקוח!");
+                    location.reload();
+                })
+                .catch(() => {
+                    alert("הבקשה אושרה, אך הייתה שגיאה בשליחת המייל.");
+                    location.reload();
+                });
+            } else {
+                alert("הבקשה אושרה (לא נמצא מייל לקוח לשליחה).");
+                location.reload();
+            }
+        })
+        .catch(() => alert("שגיאה באישור הבקשה"));
+        }
+
+        function rejectOrder(orderId) {
+            // ...existing code...
+        }
+    
     </script>
+
 		
 
 
