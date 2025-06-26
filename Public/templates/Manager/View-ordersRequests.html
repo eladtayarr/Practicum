@@ -213,6 +213,7 @@
                   <li>
                     <a>מוצרים ומלאי</a>
                     <ul class="fh5co-sub-menu">
+                      <li><a href="/templates/Manager/View-ordersRequests.html">צפייה בכל המוצרים</a></li>                    
                       <li><a href="/templates/Products/allProducts-Manager.html">צפייה בכל המוצרים</a></li>
                       <li><a href="/templates/Products/addNewProduct-Manager.html">הוספת מוצר חדש</a></li>
                       <li><a href="/templates/Products/updateProducts-Manager.html">עדכון/מחיקת מוצר קיים</a></li>
@@ -231,7 +232,7 @@
                     <a>דוחות</a>
                     <ul class="fh5co-sub-menu">
                       <li><a href="/templates/Reports/Reports-Customer.html">דוח לקוחות</a></li>
-                      
+
                       <li><a href="/templates/Reports/Reports-Products.html">דוח מוצרים</a></li>
                       <li><a href="/templates/Reports/Reports-CustomersFeedback.html">דוח משוב לקוחות</a></li>
                     </ul>
@@ -241,7 +242,6 @@
                     <a>משתמשים/הרשאות</a>
                     <ul class="fh5co-sub-menu">
                       <li><a href="/templates/Manager/addNewCustomer-Manager.html">הוספת לקוח חדש</a></li>
-                      
                       <li><a href="/templates/Installer/Add-Installer.html">הוספת מתקין חדש</a></li>
                     </ul>
                   </li>
@@ -279,8 +279,8 @@
                       <div><h4 class="popup-page-explain"> התקנות - עריכה/מחיקה </h4></div>
                       <br>
                       <div class="popup-sec-title"><h7>פעולות בדף</h7><div class="popup-sec-text">
-                          <p>◆ <u>פעולות</u> - בדף זה תוכל לערוך או למחוק התקנות קיימות .</p>
-                            <p>◆ <u>עדכון התקנה</u> - על מנת לעדכן התקנה קיימת יש ללחוץ על כפתור העדכון בצמוד להתקנה הרצויה, למלא את הפרטים וללחוץ על כפתור "שמור שינויים".</p>
+                        <p>◆ <u>פעולות</u> - בדף זה תוכל לערוך או למחוק התקנות קיימות .</p>
+                        <p>◆ <u>עדכון התקנה</u> - על מנת לעדכן התקנה קיימת יש ללחוץ על כפתור העדכון בצמוד להתקנה הרצויה, למלא את הפרטים וללחוץ על כפתור "שמור שינויים".</p>
                             <p>◆ <u>מחיקת התקנה</u> - על מנת למחוק התקנה קיימת יש ללחוץ על כפתור המחיקה בצמוד להתקנה הרצויה, ולאשר את המחיקה.</p>
                         </div>
                       </div>
@@ -311,13 +311,13 @@
     <aside id="fh5co-hero" class="js-fullheight">
         <div class="flexslider js-fullheight">
             <ul class="slides">
-                <li style="background-image: url(https://images.unsplash.com/photo-1615746363486-92cd8c5e0a90?q=80&w=2673&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+                <li style="background-image: url(https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                     <div class="overlay"></div>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
-                                    <h2 class="heading-title">ניהול התקנות</h2>
+                                    <h2 class="heading-title">בקשות להזמנה</h2>
                                 </div>
                             </div>
                         </div>
@@ -334,7 +334,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>צפייה בהזמנות חדשות שהתקבלו</h3>
+                    <h3>אישור או דחיית בקשות להזמנה שהתקבלו</h3>
                 </div>
             </div>
             <table id="ordersTable" class="table" border="1" style="width:100%; text-align:center;">
@@ -344,6 +344,7 @@
                     <th>מוצרים</th>
                     <th>תאריך</th>
                     <th>סטטוס</th>
+                    <th>פעולות</th> <!-- עמודה חדשה לפעולות -->
                     </tr>
                 </thead>
                 <tbody>
@@ -402,38 +403,88 @@
     </div>
     
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch("/api/orders")
-            .then(response => response.json())
-            .then(orders => {
-                const tbody = document.querySelector("#ordersTable tbody");
-                tbody.innerHTML = "";
-                if (!orders || orders.length === 0) {
-                    tbody.innerHTML = "<tr><td colspan='5'>אין בקשות להזמנה</td></tr>";
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/api/orders")
+                .then(response => response.json())
+                .then(orders => {
+                    const tbody = document.querySelector("#ordersTable tbody");
+                    tbody.innerHTML = "";
+                    if (!orders || orders.length === 0) {
+                        tbody.innerHTML = "<tr><td colspan='5'>אין בקשות להזמנה</td></tr>";
+                        return;
+                    }
+                    orders.forEach((order, idx) => {
+                        // המרת תאריך
+                        let dateStr = "";
+                        if (order.date && order.date.$date && order.date.$date.$numberLong) {
+                            const d = new Date(Number(order.date.$date.$numberLong));
+                            dateStr = d.toLocaleDateString("he-IL");
+                        } else if (order.date) {
+                            dateStr = new Date(order.date).toLocaleDateString("he-IL");
+                        }
+                        // טבלת מוצרים
+                        let productsHtml = `<table style="width:100%; border-collapse:collapse;">
+                            <thead>
+                            <tr>
+                                <th>מזהה</th>
+                                <th>סוג</th>
+                                <th>תיאור</th>
+                                <th>מחיר</th>
+                                <th>תמונה</th>
+                            </tr>
+                            </thead>
+                            <tbody>`;
+                        (order.products || []).forEach(p => {
+                            productsHtml += `
+                                <tr>
+                                <td>${p.ProductID || ""}</td>
+                                <td>${p.ProductType || ""}</td>
+                                <td>${p.ProductDescription || ""}</td>
+                                <td>${p.ProductPrice || ""} ₪</td>
+                                <td><img src="${p.ProductImage || ''}" alt="" style="max-width:80px;max-height:80px;"></td>
+                                </tr>
+                            `;
+                        });
+                        productsHtml += "</tbody></table>";
+
+                        // כפתורי אישור ודחייה
+                        const approveBtn = `<button class="btn1 btn1-primary" onclick="approveOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}')">אישור</button>`;
+                        const rejectBtn = `<button class="btn1 btn1-outline" onclick="rejectOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}')">דחייה</button>`;
+
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${order._id && order._id.$oid ? order._id.$oid : (order._id || idx + 1)}</td>
+                            <td>${productsHtml}</td>
+                            <td>${dateStr}</td>
+                            <td>${order.status || ""}</td>
+                            <td>${approveBtn} ${rejectBtn}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error("בעיה בשליפת ההזמנות:", error);
+                    document.querySelector("#ordersTable tbody").innerHTML = "<tr><td colspan='5'>שגיאה בטעינת ההזמנות</td></tr>";
+                });
+        });
+
+        // פונקציות אישור ודחייה
+        function approveOrder(orderId, customerEmail) {
+            if (!confirm("האם לאשר את הבקשה?")) return;
+            if (!customerEmail) {
+                const email = prompt("אנא הזן מייל לקוח:");
+                if (!email) {
+                    alert("לא הוזן מייל. לא ניתן לאשר את הבקשה.");
                     return;
                 }
-                orders.forEach((order, idx) => {
-                    // ...existing code...
-                    const approveBtn = `<button class="btn1 btn1-primary" onclick="approveOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}', '${order.customerEmail || ""}')">אישור</button>`;
-                    const rejectBtn = `<button class="btn1 btn1-outline" onclick="rejectOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}')">דחייה</button>`;
-                    // ...existing code...
-                });
+                customerEmail = email;
+            }
+            fetch(`/api/orders/${orderId}/approve`, {
+                method: "POST"
             })
-            .catch(error => {
-                // ...existing code...
-            });
-    });
-
-    // פונקציות אישור ודחייה
-    function approveOrder(orderId, customerEmail) {
-        if (!confirm("האם לאשר את הבקשה?")) return;
-        fetch(`/api/orders/${orderId}/approve`, {
-            method: "POST"
-        })
-        .then(res => res.json())
-        .then(data => {
-            // שליחת מייל ללקוח
-            if (customerEmail) {
+            .then(res => res.json())
+            .then(data => {
+                // שליחת מייל ללקוח על אישור הבקשה
                 fetch("/api/send-approval-email", {
                     method: "POST",
                     headers: {
@@ -445,27 +496,53 @@
                     })
                 })
                 .then(() => {
-                    alert("הבקשה אושרה ונשלח מייל ללקוח!");
+                    alert("הבקשה אושרה ונשלח מייל ללקוח על אישור ההזמנה.");
                     location.reload();
                 })
                 .catch(() => {
                     alert("הבקשה אושרה, אך הייתה שגיאה בשליחת המייל.");
                     location.reload();
                 });
-            } else {
-                alert("הבקשה אושרה (לא נמצא מייל לקוח לשליחה).");
-                location.reload();
-            }
-        })
-        .catch(() => alert("שגיאה באישור הבקשה"));
+            })
+            .catch(() => alert("שגיאה באישור הבקשה"));
         }
 
         function rejectOrder(orderId) {
-            // ...existing code...
+            if (!confirm("האם לדחות את הבקשה?")) return;
+            // בקשת מייל מהמשתמש
+            const email = prompt("אנא הזן מייל לקוח:");
+            if (!email) {
+                alert("לא הוזן מייל. לא ניתן לדחות את הבקשה.");
+                return;
+            }
+            fetch(`/api/orders/${orderId}/reject`, {
+                method: "POST"
+            })
+            .then(res => res.json())
+            .then(data => {
+                // שליחת מייל ללקוח על דחיית הבקשה
+                fetch("/api/send-reject-email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        orderId: orderId
+                    })
+                })
+                .then(() => {
+                    alert("הבקשה נדחתה ונשלח מייל ללקוח על דחיית ההזמנה.");
+                    location.reload();
+                })
+                .catch(() => {
+                    alert("הבקשה נדחתה, אך הייתה שגיאה בשליחת המייל.");
+                    location.reload();
+                });
+            })
+            .catch(() => alert("שגיאה בדחיית הבקשה"));
         }
-    
     </script>
-
 		
 
 
@@ -487,5 +564,4 @@
     
     
     </body>
-
 </html>
