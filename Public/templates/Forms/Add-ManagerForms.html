@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>תריסי סיני || פרקטיקום</title>
+<title>מנהל || הוספת טופס חדש</title>
 <link rel="shortcut icon" href="../../images/favicon.ico" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -187,16 +187,15 @@
                   <div id="popup" class="popup">
                     <div class="popup-content">
                       <span id="closePopup" class="close">&times;</span>
-                      <h3 class="popup-title">הוספת מוצרים חדשים</h3>
+                      <h3 class="popup-title">הוספת טופס חדש</h3>
                       <br>
                       <div class="popup-sec-title">
                         <h7>הסבר על השדות בדף</h7>
                         <div class="popup-sec-text">
-                          <p>◆ <u>סוג המוצר</u> - בחר את הקטגוריה המתאימה למוצר (וילונות, תריסים, מסגרות, אביזרים, אחר).</p>
-                          <p>◆ <u>מחיר ליחידה/מטר</u> - הזן את המחיר של המוצר (מספר בלבד).</p>
-                          <p>◆ <u>תאריך הגעת המוצר</u> - בחר את התאריך בו המוצר התקבל למלאי.</p>
-                          <p>◆ <u>תיאור המוצר</u> - כתוב תיאור קצר וברור של המוצר.</p>
-                          <p>◆ <u>קישור לתמונה</u> - יש להדביק קישור מלא לתמונה (URL) כך שהמערכת תוכל להציג את התמונה. לדוג' קישור תקין: https://example.com/image.jpg.</p>
+                          <p>◆ <u>סוג הטופס</u> - בחר את סוג הטופס (הצעת מחיר, חשבונית, קבלה, אחר).</p>
+                          <p>◆ <u>תאריך יצירת הטופס</u> - בחר את התאריך בו נוצר הטופס.</p>
+                          <p>◆ <u>תיאור הטופס</u> - כתוב תיאור קצר וברור של הטופס.</p>
+                          <p>◆ <u>קישור לקובץ הטופס</u> - יש להדביק קישור מלא לקובץ (PDF/Word) כך שהמערכת תוכל להציג או להוריד את הקובץ. לדוג' קישור תקין: https://example.com/file.pdf.</p>
                         </div>
                       </div>
                     </div>
@@ -207,16 +206,16 @@
         </div>
     </header>
 
-    <aside id="fh5co-hero" class="js-fullheight">
+<aside id="fh5co-hero" class="js-fullheight">
         <div class="flexslider js-fullheight">
             <ul class="slides">
-               <li style="background-image: url(https://images.unsplash.com/photo-1599280611965-bef72efc48fb?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+               <li style="background-image: url(https://images.unsplash.com/photo-1554224155-cfa08c2a758f?q=80&w=1652&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                    <div class="overlay"></div>
                    <div class="container-fluid">
                        <div class="row">
                            <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text">
                                <div class="slider-text-inner">
-                                   <h2 class="heading-title">הוספת מוצרים חדשים</h2>
+                                   <h2 class="heading-title">הוספת טופס חדש</h2>
                                </div>
                            </div>
                        </div>
@@ -226,88 +225,51 @@
          </div>
     </aside>
 
-        
-        <div class="container"><br><br><br><br><br>
-            <form id="propertyForm" action="/addNewProduct" method="POST">
-                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                    <h3>הוסף מידע על המוצר החדש</h3>
-                </div>
-
-                <div class="form-group">
-                    <label for="ProductType">סוג המוצר:</label>
-                    <select type="text" id="ProductType" name="ProductType">
-                        <option value="">אנא בחר את סוג המוצר</option>
-                        <option value="וילונות">וילונות</option>
-                        <option value="תריסים">תריסים</option>
-                        <option value="מסגרות">מסגרות</option>
-                        <option value="אביזרים">אביזרים</option>
-                        <option value="אחר">אחר</option>
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="ProductPrice">מחיר מהמוצר ליחידה/למטר:</label>
-                    <input type="number" class="form-control" id="ProductPrice" name="ProductPrice" required>
-                </div>
-                
-                <div class="form-group">
-                <label for="ProductionDate">תאריך הגעת המוצר:</label>
-							<input dir="auto" type="date" class="form-control" id="ProductionDate" name="ProductionDate" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="ProductDescription">תיאור המוצר:</label>
-                    <input type="text" class="form-control" id="ProductDescription" name="ProductDescription" required>
-                </div>
-                
-                
-                <div class="form-group">
-                    <a><svg id="infoIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></a><label for="ProductImage">הוסף קישור לתמונה:</label>
-                    <input type="text" class="form-control" id="ProductImage" name="ProductImage" required>
-                </div> 
-                <!-- (?) כפתור העזרה -->
-                  <!-- חלונית ה-popup -->
-                  <div id="popup" class="popup">
-                    <div class="popup-content">
-                      <span id="closePopup" class="close">&times;</span>
-                      <h3 class="popup-title"> הוספת מוצר חדש </h3>
-                      <br>
-                      <div><h4 class="popup-page-explain">  תמונה למוצר חדש </h4></div>
-                      <br>
-                      <div class="popup-sec-title"><h7>תמונה חדשה</h7><div class="popup-sec-text">
-                          <p>◆ <u>קישור התמונה</u> - בעת הוספת תמונה של מוצר חדש למערכת, חשוב לשים לב להדביק קישור לתמונה כך שהמערכת תקרא את התמונה באופן מקוון.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                
-                <br>
-                
-                <button type="submit" class="btn btn-primary" id="sub">אישור והוספה למלאי המוצרים</button>
-                <div id="successMessage" style="display: none;" class="alert alert-success" role="alert">המוצר התווסף לרשימת המוצרים!</div>
-                <div id="errorMessage" style="display: none;" class="alert alert-warning" role="alert">שגיאה בהוספת המוצר למערכת !</div>
-            </form>
-            
-            <br><br><br><br>
-
-        </div>
+    <div class="container"><br><br><br><br><br>
+        <form id="formForm" action="/addNewForm" method="POST">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                <h3>הוסף טופס חדש</h3>
+            </div>
+            <div class="form-group">
+                <label for="FormType">סוג הטופס:</label>
+                <select id="FormType" name="FormType" required>
+                    <option value="">אנא בחר את סוג הטופס</option>
+                    <option value="הצעת מחיר">הצעת מחיר</option>
+                    <option value="חשבונית">חשבונית</option>
+                    <option value="קבלה">קבלה</option>
+                    <option value="אחר">אחר</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="FormDate">תאריך יצירת הטופס:</label>
+                <input type="date" class="form-control" id="FormDate" name="FormDate" required>
+            </div>
+            <div class="form-group">
+                <label for="FormDescription">תיאור הטופס:</label>
+                <input type="text" class="form-control" id="FormDescription" name="FormDescription" required>
+            </div>
+            <div class="form-group">
+                <label for="FormFile">קישור לקובץ הטופס (PDF/Word):</label>
+                <input type="text" class="form-control" id="FormFile" name="FormFile" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="sub">אישור והוספה למאגר הטפסים</button>
+            <div id="successMessage" style="display: none;" class="alert alert-success" role="alert">הטופס התווסף בהצלחה!</div>
+            <div id="errorMessage" style="display: none;" class="alert alert-warning" role="alert">שגיאה בהוספת הטופס למערכת!</div>
+        </form>
+        <br><br><br><br>
     </div>
-   
 
     <footer>
         <div id="footer">
           <div class="container">
             <div class="row row-bottom-padded-md">
-              <!-- זכויות יוצרים -->
               <p style="font-size:20px;">
                 &copy; <span id="year"></span>כל הזכויות שמורות לתריסי סיני בע״מ.<br/>
-                <p style="font-size:18px;">באתר נבנה ומנוהל על ידי:<br> 
+                <p style="font-size:18px;">האתר נבנה ומנוהל על ידי:<br> 
                   אלעד טייר | ליאור סיני | אור מנחם | תאיר מלכה</p>
                 <a style="color: #0077b6; text-decoration: none; font-weight:500 ">תקנון תנאי השימוש</a><a style="color: white">||</a><a style="color: #0077b6; text-decoration: none; font-weight:500">מדיניות פרטיות</a>
             </p>
-              
             </div>
-            
           </div>
         </div>
       </footer>
@@ -315,7 +277,7 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var form = document.getElementById("propertyForm");
+        var form = document.getElementById("formForm");
         form.addEventListener("submit", function(event) {
             event.preventDefault();
             var formData = new FormData(form);
@@ -324,7 +286,7 @@
                 data[key] = value;
             });
 
-            fetch("/addNewProduct", {
+            fetch("/addNewForm", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -333,19 +295,16 @@
             })
             .then(function(response) {
                 if (response.ok) {
-                    // Show success message
                     document.getElementById("successMessage").style.display = "block";
-                    console.log("המוצר התווסף בהצלחה!");
                     setTimeout(function() {
                         location.reload();
                     }, 3000); 
                 } else {
                     document.getElementById("errorMessage").style.display = "block";
-                    console.error("שגיאה בהוספת המוצר");
                 }
             })
             .catch(function(error) {
-                console.error("Error:", error);
+                document.getElementById("errorMessage").style.display = "block";
             });
         });
     });

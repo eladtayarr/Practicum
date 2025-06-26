@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <title>תריסי סיני || פרקטיקום</title>
+    <title>לקוח || כל המוצרים</title>
 <link rel="shortcut icon" href="../../src/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -418,361 +418,71 @@
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-            const username = sessionStorage.getItem('username');
-
-            if (!username) {
-
-                console.error('Username not found in session storage');
-
-                return;
-
-            }
-
-
-            console.log('Username:', username); // Log the username
-
-
-            fetch(`/meetings-customer?username=${username}`)
-
-            .then(response => {
-
-                if (!response.ok) {
-
-                    throw new Error('Network response was not ok');
-
-                }
-
-
-                return response.json();
-
-            })
-
-            .then(data => {
-
-                console.log('Response data:', data); // Log the response data
-
-                const meetingList = document.getElementById('meetingList');
-
-                // Check if data is an array before iterating over it
-
-                if (Array.isArray(data)) {
-
-                    data.forEach(meeting => {
-
-                        const meetingItem = document.createElement('div');
-
-                        meetingItem.classList.add('meeting-item');
-
-                        meetingItem.innerHTML = `
-
-                        <h4>${meeting.MeetingType}</h4><br><br>
-
-                        <p><i class="fas fa-calendar"></i> &nbsp;&nbsp;Date: ${meeting.Date} at ${meeting.Time}</p><br>
-
-                        <p><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp;Location: ${meeting.Location}</p><br>
-
-                        <p><i class="fas fa-user"></i> &nbsp;&nbsp;Partner: ${meeting.Partner}</p><br>
-
-                        <p><i class="fas fa-phone"></i> &nbsp; Partner's phone: 052-7688854</p><br>
-
-                        ${meeting.AssetSelect ? `<p><i class="fas fa-home"></i> &nbsp;&nbsp;AssetDetails: ${meeting.AssetSelect}</p><br>` : ''}
-
-                        <button class="btn1 btn1-primary" id="sub1" onclick="deleteMeeting('${meeting._id}')">Delete Meeting</button>
-
-                        `;
-
-
-
-                        
-                
-                        meetingList.appendChild(meetingItem);
-
-                
-                        // Fetch customer data after appending the item
-                
-                        fetchCustomerData(meeting.Partner, meeting._id);
-            
-
-                    });
-
-                } else {
-
-                    console.error('Response data is not an array:', data);
-
-                }
-
-            })
-
-            .catch(error => {
-
-                console.error('Error fetching meetings:', error);
-
-                // Handle the error and show an error message to the user
-
-                const meetingList = document.getElementById('meetingList');
-
-                meetingList.innerHTML = '<p>Error fetching meetings. Please try again later.</p>';
-
-            });
-
-
-            
-
-            const fetchCustomerData = (partner, meetingId) => {
-
-                if (!partner) {
-
-                    console.error('Partner is empty');
-
-                    return;
-
-                }
-
-                fetch(`/Partners?Partner=${partner}`)
-
-                .then(response => {
-
-                    if (!response.ok) {
-
-                        throw new Error('Network response was not ok');
-
-                    }
-
-                    return response.json();
-
-                })
-
-                .then(partner => {
-
-                    if (partner) {
-
-                        const partnerPhone = partner.Phone;
-
-                        const partnerPhoneElement = document.getElementById(`Phone_${meetingId}`);
-
-                        if (partnerPhoneElement) {
-
-                            partnerPhoneElement.innerHTML = `&nbsp;&nbsp;Partner's phone ${partnerPhone}`;
-
-                        }
-
-                    } else {
-
-                        console.error('Partner not found');
-
-                        const partnerPhoneElement = document.getElementById(`Phone_${meetingId}`);
-
-                        if (partnerPhoneElement) {
-
-                            partnerPhoneElement.innerHTML = `&nbsp;&nbsp;Partner's Phone: Not Available`;
-
-                        }
-
-                    }
-
-                })
-
-                .catch(error => {
-
-                    console.error('Error fetching partners data:', error);
-
-                    const partnerPhoneElement = document.getElementById(`Phone_${meetingId}`);
-
-                    if (partnerPhoneElement) {
-
-                        partnerPhoneElement.innerHTML = `&nbsp;&nbsp;Partner's Phone: Not Available`;
-
-                    }
-
-                });
-
-            };
-
-
-            const fetchCustomerData = (partner, meetingId) => {
-
-                if (!partner) {
-
-                    console.error('Partner is empty');
-
-                    return;
-
-                }
-
-                fetch(`/Partners?Partner=${partner}`)
-
-                .then(response => {
-
-                    if (!response.ok) {
-
-                        throw new Error('Network response was not ok');
-
-                    }
-
-                    return response.json();
-
-                })
-
-                .then(partner => {
-
-                    if (partner) {
-
-                        const partnerPhone = partner.Phone;
-
-                        const partnerPhoneElement = document.getElementById(`Phone_${meetingId}`);
-
-                        if (partnerPhoneElement) {
-
-                            partnerPhoneElement.innerHTML = `&nbsp;&nbsp;Partner's phone ${partnerPhone}`;
-
-                        }
-
-                    } else {
-                console.error('Partner not found');
-
-                const partnerPhoneElement = document.getElementById(`Phone_${meetingId}`);
-
-                if (partnerPhoneElement) {
-
-                    partnerPhoneElement.innerHTML = `&nbsp;&nbsp;Partner's Phone: Not Available`;
-
-                }
-
-            }
-
-        })
-        .catch(error => {
-
-            console.error('Error fetching partners data:', error);
-
-            const partnerPhoneElement = document.getElementById(`Phone_${meetingId}`);
-
-            if (partnerPhoneElement) {
-
-                partnerPhoneElement.innerHTML = `&nbsp;&nbsp;Partner's Phone: Not Available`;
-
-            }
-
+document.addEventListener("DOMContentLoaded", function () {
+    // הצגת כל המוצרים בטעינה ראשונית
+    fetchProducts().then(displayProducts);
+
+    // חיפוש לפי קוד מוצר
+    window.searchByProductId = function() {
+        const input = document.getElementById('property-id-input').value.trim();
+        if (!input) {
+            fetchProducts().then(displayProducts);
+            return;
+        }
+        fetchProducts().then(products => {
+            const filtered = products.filter(p => (p.ProductID || '').toString().includes(input));
+            displayProducts(filtered);
         });
+    };
 
-        };
-
-
-        const deleteMeeting = (meetingId) => {
-
-            fetch(`/meeting/${meetingId}`, {
-
-                method: 'DELETE',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-
-            })
-
-
-            .then(response => {
-                if (!response.ok) {
-
-                    throw new Error('Network response was not ok');
-
-                }
-
-                // If deletion is successful, show a success alert to the user
-
-                alert('Meeting deleted successfully!');
-
-                // If deletion is successful, remove the element from the page
-
-                const meetingElement = document.getElementById(meetingId);
-
-                if (meetingElement) {
-
-                    meetingElement.remove();
-
-                }
-
-                // Reload the page immediately after deletion
-
-                window.location.reload();
-
-            })
-
-            .catch(error => {
-
-                console.error('Error deleting meeting:', error);
-
-                // Handle the error and show an error alert to the user
-
-                alert('An error occurred while deleting the meeting. Please try again later.');
-
-
-            });
-
-    
-
-        };
+    // סינון לפי קטגוריה
+    window.filterProducts = async function() {
+        const selectedCategory = document.getElementById("category-filter").value;
+        const products = await fetchProducts();
+        const filteredProducts = selectedCategory
+            ? products.filter(product => product.ProductType === selectedCategory)
+            : products;
+        displayProducts(filteredProducts);
+    };
 
     async function fetchProducts() {
         try {
-            const response = await fetch('http://localhost:4000/Products'); // Use full URL
+            const response = await fetch('/Products');
             const products = await response.json();
             return products;
         } catch (error) {
             console.error(error);
-            throw new Error('Failed to fetch products');
+            return [];
         }
     }
-    
-    async function displayProducts(products) {
+
+    function displayProducts(products) {
         const productsContainer = document.getElementById('products-container');
         productsContainer.innerHTML = '';
-    
-        products.forEach((product) => {
-            try {
-                const productDiv = document.createElement('div');
-                productDiv.classList.add('col-md-4', 'product-item');
-    
-                productDiv.innerHTML = `
-                    <div class="property-details">
-                        <h3 class="${product.ProductStatus === 'זמין' ? '' : 'לא זמין'}">
-                            ${product.ProductID || "Unknown Type"} &nbsp;(${product.ProductType || "Unknown Type"})
 
-                        </h3>
-                        <img class="square-image" src="${product.ProductImage || 'default.jpg'}" alt="${product.ProductType}" class="img-responsive">
-                        <p style="font-weight:500">${product.ProductDescription || "No description available"}</p>
-                        <p style="font-weight:700">${product.ProductPrice ? `מחיר: ₪${product.ProductPrice}` : 'Price not available'}</p>
-                        <p style="font-weight:700">סטטוס: ${product.ProductStatus || "Unknown"}</p>
-                    </div>
-                `;
-    
-                productsContainer.appendChild(productDiv);
-            } catch (error) {
-                console.error("Error displaying product:", product, error);
-            }
+        if (!products.length) {
+            productsContainer.innerHTML = '<div style="text-align:center;width:100%">לא נמצאו מוצרים</div>';
+            return;
+        }
+
+        products.forEach((product) => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('col-md-4', 'product-item');
+            productDiv.innerHTML = `
+                <div class="property-details">
+                    <h3 class="${product.ProductStatus === 'זמין' ? '' : 'Not-Available'}">
+                        ${product.ProductID || "Unknown Type"} &nbsp;(${product.ProductType || "Unknown Type"})
+                    </h3>
+                    <img class="square-image" src="${product.ProductImage || 'default.jpg'}" alt="${product.ProductType}" class="img-responsive">
+                    <p style="font-weight:500">${product.ProductDescription || "No description available"}</p>
+                    <p style="font-weight:700">${product.ProductPrice ? `מחיר: ₪${product.ProductPrice}` : 'Price not available'}</p>
+                    <p style="font-weight:700">סטטוס: ${product.ProductStatus || "Unknown"}</p>
+                </div>
+            `;
+            productsContainer.appendChild(productDiv);
         });
     }
-
-    async function filterProducts() {
-        const selectedCategory = document.getElementById("category-filter").value;
-        const products = await fetchProducts(); // קבלת כל המוצרים מהשרת
-    
-        // סינון המוצרים לפי הקטגוריה שנבחרה
-        const filteredProducts = selectedCategory
-            ? products.filter(product => product.ProductType === selectedCategory)
-            : products;
-    
-        // הצגת המוצרים המסוננים
-        displayProducts(filteredProducts);
-    }
-
-    window.onload = async function() {
-        const products = await fetchProducts();
-        displayProducts(products);
-    };
-    
+});
 </script>
 
 </body>

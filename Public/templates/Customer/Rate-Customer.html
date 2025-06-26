@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>תריסי סיני || פרקטיקום</title>
+	<title>לקוח || חוות דעת</title>
 <link rel="shortcut icon" href="images/favicon.ico" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -519,32 +519,26 @@ document.addEventListener("DOMContentLoaded", function () {
             data[key] = value;
         });
 
-        // Fetch feedback data
-        fetch("/submitMessage", {
+        fetch("/addFeedback", { // <-- כאן התיקון
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ Name, Email, Phone, Message })
+            body: JSON.stringify(data)
         })
         .then(function (response) {
             if (response.ok) {
-                // Display success message and reset form
                 successMessage.style.display = "block";
                 errorMessage.style.display = "none";
                 form.reset();
-                
-                // Load the page automatically after adding feedback
                 setTimeout(function () {
                     window.location.reload();
-                }, 3000); // זמן המתנה במילישניות (בדוגמה זו - 3 שניות)
+                }, 3000);
             } else {
-                // Display error message
                 errorMessage.style.display = "block";
                 successMessage.style.display = "none";
             }
         })
         .catch(function (error) {
             console.error("Error:", error);
-            // Display error message
             errorMessage.style.display = "block";
             successMessage.style.display = "none";
         });
