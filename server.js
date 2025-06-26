@@ -64,6 +64,42 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+// שליחת מייל אישור
+app.post("/api/send-approval-email", async (req, res) => {
+  const { email, orderId } = req.body;
+  if (!email) return res.status(400).json({ error: "חסר מייל לקוח" });
+  try {
+    await transporter.sendMail({
+      from: '"תריסי סיני" <eladt1010@gmail.com>',
+      to: email,
+      subject: "הזמנתך אושרה",
+      html: `<h3>שלום,</h3><p>ההזמנה שביצעת (מספר הזמנה: ${orderId}) אושרה!</p>`
+    });
+    res.json({ message: "המייל נשלח בהצלחה" });
+  } catch (error) {
+    console.error("שגיאה בשליחת מייל אישור:", error);
+    res.status(500).json({ error: "שגיאה בשליחת המייל" });
+  }
+});
+
+// שליחת מייל דחייה
+app.post("/api/send-reject-email", async (req, res) => {
+  const { email, orderId } = req.body;
+  if (!email) return res.status(400).json({ error: "חסר מייל לקוח" });
+  try {
+    await transporter.sendMail({
+      from: '"תריסי סיני" <eladt1010@gmail.com>',
+      to: email,
+      subject: "הזמנתך נדחתה",
+      html: `<h3>שלום,</h3><p>ההזמנה שביצעת (מספר הזמנה: ${orderId}) נדחתה.</p>`
+    });
+    res.json({ message: "המייל נשלח בהצלחה" });
+  } catch (error) {
+    console.error("שגיאה בשליחת מייל דחייה:", error);
+    res.status(500).json({ error: "שגיאה בשליחת המייל" });
+  }
+});
+
 ///////////////////          דף הבית           //////////////////////////
 app.get("/", (req, res) => {
   res.send("Hello from the root URL!");
@@ -1004,54 +1040,6 @@ app.get("/api/orders", async (req, res) => {
     res.json(orders);
   } catch (err) {
     res.status(500).json({ error: "שגיאה בשליפת ההזמנות" });
-  }
-});
-
-// שליחת מייל דחייה ללקוח
-app.post("/api/send-reject-email", async (req, res) => {
-  const { email, orderId } = req.body;
-  if (!email) {
-    return res.status(400).json({ error: "חסר מייל לקוח" });
-  }
-  try {
-    await transporter.sendMail({
-      from: '"תריסי סיני" <eladt1010@gmail.com>',
-      to: email,
-      subject: "הזמנתך נדחתה",
-      html: `
-        <h3>שלום,</h3>
-        <p>ההזמנה שביצעת (מספר הזמנה: ${orderId}) נדחתה. לפרטים נוספים ניתן ליצור קשר עם החברה.</p>
-        <p>בברכה,<br>תריסי סיני</p>
-      `
-    });
-    res.json({ message: "המייל נשלח בהצלחה" });
-  } catch (error) {
-    console.error("שגיאה בשליחת מייל דחייה:", error);
-    res.status(500).json({ error: "שגיאה בשליחת המייל" });
-  }
-});
-
-// שליחת מייל אישור ללקוח
-app.post("/api/send-approval-email", async (req, res) => {
-  const { email, orderId } = req.body;
-  if (!email) {
-    return res.status(400).json({ error: "חסר מייל לקוח" });
-  }
-  try {
-    await transporter.sendMail({
-      from: '"תריסי סיני" <eladt1010@gmail.com>',
-      to: email,
-      subject: "הזמנתך אושרה",
-      html: `
-        <h3>שלום,</h3>
-        <p>ההזמנה שביצעת (מספר הזמנה: ${orderId}) אושרה! ניצור איתך קשר להמשך טיפול.</p>
-        <p>בברכה,<br>תריסי סיני</p>
-      `
-    });
-    res.json({ message: "המייל נשלח בהצלחה" });
-  } catch (error) {
-    console.error("שגיאה בשליחת מייל אישור:", error);
-    res.status(500).json({ error: "שגיאה בשליחת המייל" });
   }
 });
 

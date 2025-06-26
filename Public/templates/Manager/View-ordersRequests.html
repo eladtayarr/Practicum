@@ -448,8 +448,8 @@
                         productsHtml += "</tbody></table>";
 
                         // כפתורי אישור ודחייה
-                        const approveBtn = `<button class="btn1 btn1-primary" onclick="approveOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}')">אישור</button>`;
-                        const rejectBtn = `<button class="btn1 btn1-outline" onclick="rejectOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}')">דחייה</button>`;
+                        const approveBtn = `<button class="btn1 btn1-primary" onclick="approveOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}', '${order.customerEmail || ""}')">אישור</button>`;
+                        const rejectBtn = `<button class="btn1 btn1-outline" onclick="rejectOrder('${order._id && order._id.$oid ? order._id.$oid : order._id}', '${order.customerEmail || ""}')">דחייה</button>`;
 
                         const row = document.createElement("tr");
                         row.innerHTML = `
@@ -486,14 +486,9 @@
             .then(data => {
                 // שליחת מייל ללקוח על אישור הבקשה
                 fetch("/api/send-approval-email", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        email: customerEmail,
-                        orderId: orderId
-                    })
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ email: customerEmail, orderId: orderId })
                 })
                 .then(() => {
                     alert("הבקשה אושרה ונשלח מייל ללקוח על אישור ההזמנה.");
@@ -507,13 +502,15 @@
             .catch(() => alert("שגיאה באישור הבקשה"));
         }
 
-        function rejectOrder(orderId) {
+        function rejectOrder(orderId, customerEmail) {
             if (!confirm("האם לדחות את הבקשה?")) return;
-            // בקשת מייל מהמשתמש
-            const email = prompt("אנא הזן מייל לקוח:");
-            if (!email) {
-                alert("לא הוזן מייל. לא ניתן לדחות את הבקשה.");
-                return;
+            if (!customerEmail) {
+                const email = prompt("אנא הזן מייל לקוח:");
+                if (!email) {
+                    alert("לא הוזן מייל. לא ניתן לדחות את הבקשה.");
+                    return;
+                }
+                customerEmail = email;
             }
             fetch(`/api/orders/${orderId}/reject`, {
                 method: "POST"
@@ -527,7 +524,7 @@
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        email: email,
+                        email: customerEmail,
                         orderId: orderId
                     })
                 })
